@@ -1,0 +1,38 @@
+@import url('https://fonts.cdnfonts.com/css/anurati');
+
+#Title{
+  text-shadow: 0px 0px 10px #fff;
+  font-family: 'Anurati', sans-serif;
+}
+  #Title .main{
+    opacity: 0;
+    animation: opacity1 1s 1s forwards ease, titleAnim 1s 1.5s forwards ease ;
+  }
+  #Title .sub{
+    position: absolute;
+    opacity: 0;
+    animation: subAnim 1s 1.5s forwards ease;
+  }
+
+@keyframes subAnim{
+  100%{
+    transform: translateY(20px);
+    opacity: 1;
+  }
+}
+@keyframes titleAnim{
+  100%{
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+@keyframes opacity1{
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes opacity0{
+  100%{
+    opacity: 0;
+  }
+}
