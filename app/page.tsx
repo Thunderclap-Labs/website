@@ -36,13 +36,17 @@ export default function Home() {
       return;
     }
 
-    if (window) {
+    if (window !== undefined) {
       const Globe = new globeGl(globeVizElement); // Initialize Globe with the DOM element
 
       Globe
-        .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
-        .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png');
-      // (document.getElementById('globeViz')); // This line is removed as it's handled in the constructor
+        .globeImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/2560px-The_earth_at_night.jpg")
+        .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+        .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png');
+
+      // Set initial camera position (latitude, longitude, altitude)
+      // Altitude is relative to the globe's radius (1 = on the surface, 2 = one radius away)
+      Globe.pointOfView({ lat: 30, lng: 26, altitude: 2.3 }); 
 
       // Configure auto-rotation
     Globe.controls().autoRotate = true;
