@@ -1,21 +1,14 @@
 "use client";
 
 import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
 import { Button } from "@heroui/button";
-import { Code } from "@heroui/code";
 
-import { siteConfig } from "@/config/site";
-import { GithubIcon } from "@/components/icons";
-
-import globeGl from 'globe.gl';
-import { useEffect } from 'react'; // Added useEffect
-import * as THREE from 'three'; // Added THREE
+import { useEffect } from 'react'; 
+import * as THREE from 'three'; 
 import Image from "next/image";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
-import europeanunion from "../components/images/europeanunion.png";
 import pcbway from "../components/images/pcbway.png";
 import fwd from "../components/images/fwd.png";
 import thunderbee from "../components/images/thunderbee.png";
@@ -36,23 +29,28 @@ export default function Home() {
       return;
     }
 
-    if (window !== undefined) {
-      const Globe = new globeGl(globeVizElement); // Initialize Globe with the DOM element
+    // Ensure this code runs only on the client side
+    if (typeof window !== 'undefined') {
+      import('globe.gl').then(globeModule => {
+        const GlobeGl = globeModule.default; // Access the default export
+        const Globe = new GlobeGl(globeVizElement); 
 
-      Globe
-        .globeImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/2560px-The_earth_at_night.jpg")
-        .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
-        .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png');
+        Globe
+          .globeImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/2560px-The_earth_at_night.jpg")
+          .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+          .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png');
 
-      // Set initial camera position (latitude, longitude, altitude)
-      // Altitude is relative to the globe's radius (1 = on the surface, 2 = one radius away)
-      Globe.pointOfView({ lat: 30, lng: 26, altitude: 2.3 }); 
+        // Set initial camera position (latitude, longitude, altitude)
+        Globe.pointOfView({ lat: 30, lng: 26, altitude: 2.3 }); 
 
-      // Configure auto-rotation
-    Globe.controls().autoRotate = true;
-    Globe.controls().autoRotateSpeed = 0.2; // Adjust speed as needed (lower is slower)
-    Globe.controls().enableZoom = false; // Disable zoom for better experience
+        // Configure auto-rotation
+        Globe.controls().autoRotate = true;
+        Globe.controls().autoRotateSpeed = 0.2; 
+        Globe.controls().enableZoom = false; 
 
+      }).catch(error => {
+        console.error("Failed to load globe.gl module", error);
+      });
     }
   }, []); // Empty dependency array ensures this runs once on mount
 
@@ -68,6 +66,9 @@ export default function Home() {
               <p className='sub text-md'>LABS</p>
             </div>
           </div>
+        </div>
+        <div className="absolute top-[50%] left-0">
+          <div className="bg-white h-1/2 w-6"></div>
         </div>
         <div className="absolute bottom-4 mx-6 left-0 right-0 flex justify-center items-center p-4">
           <div className="flex justify-evenly w-full opacity-40">
