@@ -20,6 +20,22 @@ const config = {
         background: "#000",
         foreground: "#fff",
       },
+      animation: {
+        'mouse-wheel': 'wheel-animation 1.8s ease-in-out infinite',
+        'fade-in-delayed': 'fade-in-animation 1s ease-out 10s forwards', // 10s delay
+      },
+      keyframes: {
+        'wheel-animation': {
+          '0%': { opacity: '0', transform: 'translateY(-2px) translateX(-50%)' }, // Start transparent and slightly up
+          '20%': { opacity: '1', transform: 'translateY(0px) translateX(-50%)' }, // Fade in
+          '80%': { opacity: '0', transform: 'translateY(15px) translateX(-50%)' },
+          '100%': { opacity: '0', transform: 'translateY(15px) translateX(-50%)' },
+        },
+        'fade-in-animation': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
     },
   },
   darkMode: "class",

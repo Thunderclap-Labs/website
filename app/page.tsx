@@ -31,28 +31,49 @@ export default function Home() {
 
     // Ensure this code runs only on the client side
     if (typeof window !== 'undefined') {
-      import('globe.gl').then(globeModule => {
-        const GlobeGl = globeModule.default; // Access the default export
-        const Globe = new GlobeGl(globeVizElement); 
+      const isMobile = window.innerWidth < 768;
 
-        Globe
+      import('globe.gl').then(globeModule => {
+        const GlobeGl = globeModule.default; 
+        // It seems GlobeGl might be a factory or class.
+        // Assuming `new GlobeGl()` and then `instance(element)` or `new GlobeGl({ domElement: element })`
+        // or if GlobeGl is the globe function itself: `GlobeGl()(globeVizElement)`
+        // The original code `const Globe = new GlobeGl(globeVizElement);` is kept if it works.
+        // For safety, let's try the common pattern:
+        const Globe = GlobeGl(); // Get the factory/constructor
+        Globe(globeVizElement) // Initialize with the element
           .globeImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/2560px-The_earth_at_night.jpg")
           .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
           .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png');
 
-        // Set initial camera position (latitude, longitude, altitude)
         Globe.pointOfView({ lat: 30, lng: 26, altitude: 2.3 }); 
 
-        // Configure auto-rotation
         Globe.controls().autoRotate = true;
         Globe.controls().autoRotateSpeed = 0.2; 
         Globe.controls().enableZoom = false; 
+
+        if (isMobile) {
+          //make it so only half of the globe is visible on mobile
+          Globe.scene().position.x = 125; // Adjust position to show only half the globe
+          Globe.scene().position.y = 25;
+
+
+          Globe.controls().enableRotate = false; // Disable manual rotation on mobile
+          Globe.controls().enablePan = false;    // Disable panning on mobile
+        } else {}
 
       }).catch(error => {
         console.error("Failed to load globe.gl module", error);
       });
     }
   }, []); // Empty dependency array ensures this runs once on mount
+
+  const handleScrollDown = () => {
+    const aboutSection = document.getElementById('about-us-section');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="relative -top-16">
@@ -70,15 +91,31 @@ export default function Home() {
         <div className="absolute top-[50%] left-0">
           <div className="bg-white h-1/2 w-6"></div>
         </div>
+        {/* Scroll Down Mouse Icon */}
+        <div 
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 cursor-pointer z-20 group opacity-0 animate-fade-in-delayed" // Added opacity-0 and animate-fade-in-delayed
+          onClick={handleScrollDown}
+          title="Scroll to learn more"
+        >
+          <div className="w-[30px] h-[50px] border-2 border-neutral-400 group-hover:border-white rounded-full relative transition-colors duration-300">
+            <div className="w-1.5 h-1.5 bg-neutral-400 group-hover:bg-white rounded-full absolute top-[8px] left-1/2 -translate-x-1/2 animate-mouse-wheel transition-colors duration-300"></div>
+          </div>
+        </div>
         <div className="absolute bottom-4 mx-6 left-0 right-0 flex justify-center items-center p-4">
-          <div className="flex justify-evenly w-full opacity-40">
-            <Image src={ktustartupspace} alt="KTU Startup Space" height={30}/>
-            <Image src={ltarmedforces} alt="LT Armed Forces" height={30}/>
-            <Image src={pcbway} alt="PCBWay" height={30}/>
+          <div className="flex justify-evenly w-full gap-4 opacity-40">
+            <div className="flex items-center justify-center max-w-48">
+              <Image src={ktustartupspace} alt="KTU Startup Space" height={30}/>
+            </div>
+            <div className="flex items-center justify-center max-w-48">
+              <Image src={ltarmedforces} alt="LT Armed Forces" height={30}/>
+            </div>
+            <div className="flex items-center justify-center max-w-48">
+              <Image src={pcbway} alt="PCBWay" height={30}/>
+            </div>
           </div>
         </div>
       </section>
-      <section className="py-20 bg-neutral-900 text-neutral-100">
+      <section id="about-us-section" className="py-20 bg-neutral-900 text-neutral-100">
         <div className="container max-w-7xl mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Engineering the Future of Atmospheric and Aerospace Systems</h2>
