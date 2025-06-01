@@ -49,14 +49,14 @@ export default function Home() {
         Globe.controls().enableZoom = false; 
 
         if (isMobile) {
-          //make it so only half of the globe is visible on mobile
-          Globe.scene().position.x = 125; // Adjust position to show only half the globe
-          Globe.scene().position.y = 25;
-
+          Globe.pointOfView({ lat: 30, lng: 26, altitude: 5.2 }); // Adjust POV for mobile
 
           Globe.controls().enableRotate = false; // Disable manual rotation on mobile
           Globe.controls().enablePan = false;    // Disable panning on mobile
-        } else {}
+          globeVizElement.style.pointerEvents = 'none'; // Allow scrolling over the globe on mobile
+        } else {
+          globeVizElement.style.pointerEvents = 'auto'; // Ensure interactions are enabled on desktop
+        }
 
       }).catch(error => {
         console.error("Failed to load globe.gl module", error);
@@ -80,12 +80,12 @@ export default function Home() {
   return (
     <div className="relative -top-16">
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black">
-        <div className="relative mx-6 h-[calc(100vh-170px)] w-full rounded-xl overflow-hidden">
-          <div id="globeViz" className="absolute -top-20 -left-10 z-0" />
+        <div className="relative md:mx-6 h-[calc(100vh-170px)] w-full md:rounded-xl overflow-hidden">
+          <div id="globeViz" className="absolute -top-24 -left-10 z-0" />
           <div className="z-10 flex h-full items-center justify-center">
             <div id="Title" className="flex flex-col items-center justify-center drop-shadow-sm ">
-              <span className='main text-4xl'>THUNDERCLAP</span>
-              <p className='sub text-md'>LABS</p>
+              <span className='main md:text-4xl text-3xl'>THUNDERCLAP</span>
+              <p className='sub md:text-md text-sm'>LABS</p>
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-4 mx-6 left-0 right-0 flex justify-center items-center p-4">
-          <div className="flex justify-evenly w-full gap-4 opacity-40">
+          <div className="flex justify-evenly w-full gap-4 opacity-60">
             <div className="flex items-center justify-center max-w-48 w-full">
               <Image src={ktustartupspace} alt="KTU Startup Space" height={30}/>
             </div>
@@ -207,13 +207,6 @@ export default function Home() {
             <p className="text-xl text-neutral-300 mb-6">
               Powering the next leap in aerospace accessibility.
             </p>
-            <Button
-              as={Link}
-              href="/technology/propulsion" // Example link, adjust as needed
-              className={`border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white text-lg px-8 py-3`}
-            >
-              Learn More About Our Propulsion Tech
-            </Button>
           </div>
         </div>
         
@@ -372,7 +365,7 @@ export default function Home() {
               as={Link}
               isExternal
               href="mailto:thunderclaplabs@gmail.com" // Adjust link to a contact page or investor relations page
-              className={`border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-lg px-8 py-3`}
+              className={`border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-sm px-8 py-3`}
             >
               Discuss Investment Opportunities
             </Button>
