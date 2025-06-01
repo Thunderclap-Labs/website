@@ -81,7 +81,7 @@ export default function Home() {
     <div className="relative -top-16">
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black">
         <div className="relative md:mx-6 h-[calc(100vh-170px)] w-full md:rounded-xl overflow-hidden">
-          <div id="globeViz" className="absolute -top-24 -left-10 z-0" />
+          <div id="globeViz" className="absolute -top-24 md:-left-10 z-0" />
           <div className="z-10 flex h-full items-center justify-center">
             <div id="Title" className="flex flex-col items-center justify-center drop-shadow-sm ">
               <span className='main md:text-4xl text-3xl'>THUNDERCLAP</span>
