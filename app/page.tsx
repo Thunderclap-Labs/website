@@ -34,14 +34,10 @@ export default function Home() {
       const isMobile = window.innerWidth < 768;
 
       import('globe.gl').then(globeModule => {
-        const GlobeGl = globeModule.default; 
-        // It seems GlobeGl might be a factory or class.
-        // Assuming `new GlobeGl()` and then `instance(element)` or `new GlobeGl({ domElement: element })`
-        // or if GlobeGl is the globe function itself: `GlobeGl()(globeVizElement)`
-        // The original code `const Globe = new GlobeGl(globeVizElement);` is kept if it works.
-        // For safety, let's try the common pattern:
-        const Globe = GlobeGl(); // Get the factory/constructor
-        Globe(globeVizElement) // Initialize with the element
+        const GlobeGl = globeModule.default;
+        const Globe = new GlobeGl(globeVizElement);
+
+        Globe // Initialize with the element
           .globeImageUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/2560px-The_earth_at_night.jpg")
           .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
           .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png');
@@ -75,13 +71,18 @@ export default function Home() {
     }
   };
 
+  const handleKeyDownScroll = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleScrollDown();
+    }
+  };
+
   return (
     <div className="relative -top-16">
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black">
         <div className="relative mx-6 h-[calc(100vh-170px)] w-full rounded-xl overflow-hidden">
           <div id="globeViz" className="absolute -top-20 -left-10 z-0" />
-          {/* Globe container */}
-          <div className="z-10 flex h-full items-center justify-center"> {/* Added flex items-center justify-center */}
+          <div className="z-10 flex h-full items-center justify-center">
             <div id="Title" className="flex flex-col items-center justify-center drop-shadow-sm ">
               <span className='main text-4xl'>THUNDERCLAP</span>
               <p className='sub text-md'>LABS</p>
@@ -91,10 +92,12 @@ export default function Home() {
         <div className="absolute top-[50%] left-0">
           <div className="bg-white h-1/2 w-6"></div>
         </div>
-        {/* Scroll Down Mouse Icon */}
         <div 
+          role="button"
+          tabIndex={0}
           className="absolute bottom-28 left-1/2 -translate-x-1/2 cursor-pointer z-20 group opacity-0 animate-fade-in-delayed" // Added opacity-0 and animate-fade-in-delayed
           onClick={handleScrollDown}
+          onKeyDown={handleKeyDownScroll}
           title="Scroll to learn more"
         >
           <div className="w-[30px] h-[50px] border-2 border-neutral-400 group-hover:border-white rounded-full relative transition-colors duration-300">
@@ -103,13 +106,13 @@ export default function Home() {
         </div>
         <div className="absolute bottom-4 mx-6 left-0 right-0 flex justify-center items-center p-4">
           <div className="flex justify-evenly w-full gap-4 opacity-40">
-            <div className="flex items-center justify-center max-w-48">
+            <div className="flex items-center justify-center max-w-48 w-full">
               <Image src={ktustartupspace} alt="KTU Startup Space" height={30}/>
             </div>
-            <div className="flex items-center justify-center max-w-48">
+            <div className="flex items-center justify-center max-w-48 w-full">
               <Image src={ltarmedforces} alt="LT Armed Forces" height={30}/>
             </div>
-            <div className="flex items-center justify-center max-w-48">
+            <div className="flex items-center justify-center max-w-48 w-full">
               <Image src={pcbway} alt="PCBWay" height={30}/>
             </div>
           </div>
