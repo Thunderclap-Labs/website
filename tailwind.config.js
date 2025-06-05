@@ -17,8 +17,13 @@ const config = {
         primary: "#97DFFC",
         secondary: "#858AE3",
         accent: "#613DC1",
-        background: "#000",
+        background: "#000", // Used for bg-background
         foreground: "#fff",
+      },
+      backgroundImage: {
+        'gradient-radial-top-right': "radial-gradient(circle at top right, rgba(121, 68, 154, 0.13), transparent)",
+        'gradient-radial-bottom-left': "radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)",
+        'radial-gradient-layers': "radial-gradient(circle at top right, rgba(0, 0, 0, 1), transparent), radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)",
       },
       animation: {
         'mouse-wheel': 'wheel-animation 1.8s ease-in-out infinite',

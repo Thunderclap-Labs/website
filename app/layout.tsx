@@ -43,18 +43,17 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
-          <main>
+          <main className="relative -top-16 overflow-hidden">
             {children}
           </main>
-          <footer className="w-full flex items-center justify-center py-3">
+          <footer className="-mt-16 w-full flex items-center justify-center py-3">
             <Link
-              isExternal
               className="flex items-center gap-1 text-current"
-              href="https://heroui.com?utm_source=next-app-template"
-              title="heroui.com homepage"
+              href="/team"
+              title="Thunderclap Group"
             >
               <span className="text-default-600">Powered by</span>
-              <p className="text-primary">HeroUI</p>
+              <p className="text-primary">Passion</p> <span className="text-default-600">;)</span>
             </Link>
           </footer>
         </Providers>

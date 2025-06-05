@@ -106,7 +106,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative -top-16">
+    <div className="relative">
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black">
         <div id="Hero" className="relative md:mx-6 h-[calc(100vh-170px)] w-full md:rounded-xl overflow-hidden">
           {isClientMobile === null ? (
@@ -143,19 +143,19 @@ export default function Home() {
             <div className="flex items-center justify-center max-w-48 w-full" 
               data-aos="fade-up" 
               {...(isClientMobile === false ? { 'data-aos-anchor': '#Hero' } : {})}
-              data-aos-delay={isClientMobile ? 0 : 2200}>
+              data-aos-delay={isClientMobile ? 0 : 1200}>
               <Image src={ktustartupspace} alt="KTU Startup Space" height={30}/>
             </div>
             <div className="flex items-center justify-center max-w-48 w-full" 
               data-aos="fade-up" 
               {...(isClientMobile === false ? { 'data-aos-anchor': '#Hero' } : {})}
-              data-aos-delay={isClientMobile ? 0 : 2400}>
+              data-aos-delay={isClientMobile ? 0 : 1400}>
               <Image src={ltarmedforces} alt="LT Armed Forces" height={30}/>
             </div>
             <div className="flex items-center justify-center max-w-48 w-full" 
               data-aos="fade-up" 
               {...(isClientMobile === false ? { 'data-aos-anchor': '#Hero' } : {})}
-              data-aos-delay={isClientMobile ? 0 : 2600}>
+              data-aos-delay={isClientMobile ? 0 : 1600}>
               <Image src={pcbway} alt="PCBWay" height={30}/>
             </div>
           </div>
@@ -206,22 +206,6 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-          </div>
-
-          <div className="mt-16 md:mt-20 text-center" 
-            data-aos="zoom-in" 
-            {...(isClientMobile === false ? { 'data-aos-anchor': '#about_us_section' } : {})} 
-            data-aos-delay={isClientMobile ? "0" : "500"}>
-            <p className="text-xl text-neutral-300 mb-6">
-              Discover the technologies shaping tomorrow.
-            </p>
-            <Button
-              as={Link}
-              href="/projects"
-              className={`border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white text-lg px-8 py-3`}
-            >
-              Explore Our Projects
-            </Button>
           </div>
         </div>
       </section>
@@ -391,13 +375,6 @@ export default function Home() {
             <p className="text-xl text-neutral-300 mb-6">
               Innovating for a sustainable atmospheric future.
             </p>
-            <Button
-              as={Link}
-              href="/technology/cloud-seeding"
-              className={`border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white text-lg px-8 py-3`}
-            >
-              Explore Our Seeding Technology
-            </Button>
           </div>
         </div>
         
