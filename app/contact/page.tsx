@@ -47,17 +47,17 @@ const faqItems = [
     key: "1",
     title: "Are you an official business?",
     content:
-      "No, we are a passionate team of students from mostly Kaunas University of Technology, Lithuania. We are not an official business entity, although we are looking for funding for a starting capital to become one.",
+      "We are a dedicated team of students, primarily from Kaunas University of Technology in Lithuania. While we are not yet a registered business entity, we are actively seeking initial funding to establish one and transition into a formal organization.",
   },
   {
     key: "2",
     title: "Are you incubated by KTU?",
-    content: "Yes, we are incubated by Kaunas University of Technology Startup Space, which provides us with a workplace and other support.",
+    content: "Yes, we are currently incubated by the Kaunas University of Technology Startup Space, which provides us with workspace, mentorship, and institutional support as we develop our venture.",
   },
   {
     key: "3",
     title: "Are you looking for new team members?",
-    content: "Yes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is very selective, we go to great lengths to ensure that we only recruit the best of the best. We often overlook people who contact us directly - we go out and find the best candidates ourselves in various events etc.",
+    content: "Yes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is very selective, we go to great lengths to ensure that we only recruit the best of the best. If you are interested in joining us, please reach out to us via eYes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is highly selective — we strive to bring in only the most driven and capable people. If you're interested in joining us, please reach out through our social media channelsmail at",
   },
   {
     key: "4",
@@ -67,7 +67,7 @@ const faqItems = [
   {
     key: "5",
     title: "What are the companies and organisations listed on the landing page?",
-    content: "Companies and organisations listed on the landing page are our partners / collaborators / supporters. We work with them to provide various services and solutions. If you are interested in partnering with us, please contact us.",
+    content: "The companies and organizations featured on our landing page are valued partners, collaborators, and supporters. We work closely with them to deliver innovative solutions and mutual value. If you're interested in exploring a partnership, feel free to reach out through our official channels.",
   },
 ];
 
