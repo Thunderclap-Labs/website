@@ -57,7 +57,7 @@ const faqItems = [
   {
     key: "3",
     title: "Are you looking for new team members?",
-    content: "Yes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is very selective, we go to great lengths to ensure that we only recruit the best of the best. If you are interested in joining us, please reach out to us via eYes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is highly selective — we strive to bring in only the most driven and capable people. If you're interested in joining us, please reach out through our social media channelsmail at",
+    content: "Yes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is highly selective — we strive to bring in only the most driven and capable people. If you're interested in joining us, please reach out through our social media channels.",
   },
   {
     key: "4",
