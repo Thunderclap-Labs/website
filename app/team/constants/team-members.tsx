@@ -2,12 +2,11 @@ import googleBadge from "../images/icons/google.png"
 import teltonikaBadge from "../images/icons/Teltonika.png"
 import ktuBadge from "../images/icons/ktu.png"
 import ktuGiftedBadge from "../images/icons/ktugift.png"
-import { link } from "fs";
 
 export const teamMembers = [
     {
         name: 'Simonas Aukštuolis',
-        role: 'Lead Electrical Engineer, Material Scientist, Chemistry & 3D Modeling Specialist',
+        role: 'Electrical Engineer, Material Scientist, Chemistry & 3D Modeling Specialist',
         email: 'test@example.com',
         phone: '+1234567890',
         image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', // Placeholder image
@@ -24,8 +23,15 @@ export const teamMembers = [
                 link: "https://admissions.ktu.edu/programme/b-informatics-engineering/"
             }
         ],
-        description: 'Simonas is the lead engineer with expertise in materials science, chemistry, and 3D modeling. He is passionate about developing innovative materials and solutions.',
+        description: 'Simonas is a versatile and highly skilled engineer with a deep, practical understanding of multiple scientific and technical disciplines. Simonas expertise spans the complex realms of chemistry, electricity, and mechanics, which he masterfully apply to create impressive and diverse inventions.',
         skills: ['Propulsion Systems', 'Aerodynamics', '3D Modeling (Fusion 360)', 'Chemistry', 'Electrical Engineering', 'Material Science'],
+        tclProjects: [
+            "cloudseeding",
+            "thunderbee",
+            "rocketfuel",
+            "rocketfuelautomation",
+            "cansat1"
+        ],
         personalProjects: [
             {
                 name: "Project A",
@@ -75,10 +81,12 @@ export const teamMembers = [
             'Jira', 'PocketBase', 'Tauri', 'OpenCV', 'Arduino'
         ],
         tclProjects: [
-            {
-                name: "Thunderclap Cansat v1 (Satellite Project)",
-                link: "https://www.youtube.com/watch?v=AwtJzvZ51m0&t=1s",
-            }
+            "cloudseeding",
+            "thunderbee",
+            "rocketfuelautomation",
+            "fullselfdriving",
+            "dronedetection",
+            "cansat1",
         ],
         personalProjects: [
             {
@@ -123,6 +131,13 @@ export const teamMembers = [
         ],
         description: 'MEKAS PEKAS MIAU',
         skills: ['Meteorology', 'Climate Modeling', 'Data Analysis', 'Python', 'GIS'],
+        tclProjects: [
+            "cloudseeding",
+            "rocketfuelautomation",
+            "fullselfdriving",
+            "dronedetection",
+            "thunderbee",
+        ],
         personalProjects: []
     },
 ];

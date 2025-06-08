@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faPhone, faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone, faGlobe, faLink } from "@fortawesome/free-solid-svg-icons"; // Added faLink
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules'; // Import Autoplay module
 
@@ -15,6 +15,7 @@ import "swiper/css";
 import "../globals.css"; // Ensure global styles are imported
 
 import { teamMembers } from "./constants/team-members";
+import { projects as definedProjectsList } from "../projects/constants/team-members"; // Import project definitions
 
 export default function DocsPage() {
   return (
@@ -42,7 +43,7 @@ export default function DocsPage() {
             >
               <div className="bg-neutral-800/70 backdrop-blur-sm p-6 rounded-xl shadow-xl h-full flex flex-col">
                 <div className="flex items-start mb-4">
-                  <div className="relative w-24 h-24 md:w-28 md:h-28 mr-4 rounded-full overflow-hidden border-2 border-primary-500">
+                  <div className="relative min-w-28 min-h-28 mr-4 rounded-full overflow-hidden border-2 border-primary-500">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -51,7 +52,7 @@ export default function DocsPage() {
                       className="rounded-full"
                     />
                   </div>
-                  <div>
+                  <div className="w-full">
                     <h2 className="text-xl md:text-2xl font-bold text-neutral-100">{member.name}</h2>
                     <p className="text-primary-400 text-sm md:text-md">{member.role}</p>
                     <div className="flex items-center justify-between space-x-2 mt-2 w-full"> {/* Changed items-between and added w-full */}
@@ -118,33 +119,48 @@ export default function DocsPage() {
 
                 {member.tclProjects && member.tclProjects.length > 0 && (
                   <div className="mb-4">
-                    <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Thunderclap Labs Projects: <span className="text-accent-400">{member.tclProjects.length}</span></h3>
+                    <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Thunderclap Labs Projects: <span className="text-accent-500">{member.tclProjects.length}</span></h3>
                     <Swiper
                       modules={[Autoplay]}
                       spaceBetween={10}
                       slidesPerView={'auto'}
                       loop={true}
                       autoplay={{
-                        delay: 5200, // Slightly different delay
+                        delay: 5000, 
                         disableOnInteraction: false,
                       }}
                       className="h-full"
                     >
-                      {member.tclProjects.map(project => (
-                        <SwiperSlide key={project.name} style={{ width: 'auto' }}>
-                          {project.link ? (
-                            <Link href={project.link} isExternal className="block">
-                              <span className="bg-accent-500/20 text-accent-300 px-3 py-1.5 text-xs rounded-md whitespace-nowrap hover:bg-accent-500/40 transition-colors">
-                                {project.name}
-                              </span>
-                            </Link>
-                          ) : (
-                            <span className="bg-accent-500/20 text-accent-300 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
-                              {project.name}
-                            </span>
-                          )}
-                        </SwiperSlide>
-                      ))}
+                      {member.tclProjects.map(projectId => {
+                        const projectDetail = definedProjectsList.find(p => p.id === projectId);
+                        if (!projectDetail) {
+                          return null; 
+                        }
+                        
+                        const projectContent = (
+                          <span className={`flex items-center bg-secondary-500/20 text-secondary-800 px-3 py-1.5 text-xs rounded-md whitespace-nowrap ${projectDetail.link ? 'hover:bg-accent-500/40 transition-colors' : ''}`}>
+                            {projectDetail.active && (
+                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2" title="Active"></span>
+                            )}
+                            {projectDetail.name}
+                            {projectDetail.link && (
+                              <FontAwesomeIcon icon={faLink} className="ml-2 text-xs" />
+                            )}
+                          </span>
+                        );
+
+                        return (
+                          <SwiperSlide key={projectDetail.id} style={{ width: 'auto' }}>
+                            {projectDetail.link ? (
+                              <Link href={projectDetail.link} isExternal className="block">
+                                {projectContent}
+                              </Link>
+                            ) : (
+                              projectContent
+                            )}
+                          </SwiperSlide>
+                        );
+                      })}
                     </Swiper>
                   </div>
                 )}
