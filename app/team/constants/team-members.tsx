@@ -1,3 +1,8 @@
+import googleBadge from "../images/icons/google.png"
+import teltonikaBadge from "../images/icons/Teltonika.png"
+import ktuBadge from "../images/icons/ktu.png"
+import ktuGiftedBadge from "../images/icons/ktugift.png"
+
 export const teamMembers = [
     {
         name: 'Simonas Aukštuolis',
@@ -11,6 +16,7 @@ export const teamMembers = [
             twitter: 'https://twitter.com/johndoe',
             website: 'https://johndoe.com',
         },
+        badges: [],
         description: 'Simonas is the lead engineer with expertise in materials science, chemistry, and 3D modeling. He is passionate about developing innovative materials and solutions.',
         skills: ['Propulsion Systems', 'Aerodynamics', '3D Modeling (Fusion 360)', 'Chemistry', 'Electrical Engineering', 'Material Science'],
         projects: [
@@ -30,7 +36,24 @@ export const teamMembers = [
             github: 'https://github.com/ignuxas', // No specific GitHub profile provided
             website: 'https://ignuxas.com/', // No specific personal website provided
         },
-        description: "Ignas is a self-taught software engineer based in Kaunas, Lithuania, studying Computer Science & Cyber Security Engineering at KTU. Passionate about tech, coding, robotics, and innovative projects. Experienced in full-stack web development and cyber-security (Google Bug Bounty Honorable Mentions List). Notable projects include Fuel Map, Project Green, and Armilla.",
+        badges: [
+            {
+                label: "Google",
+                image: googleBadge,
+                link: "https://bughunters.google.com/leaderboard/honorable-mentions"
+            },
+            {
+                label: "Teltonika Networks",
+                image: teltonikaBadge,
+                link: "https://teltonika-networks.com/"
+            },
+            {
+                label: "KTU",
+                image: ktuBadge,
+                link: "https://admissions.ktu.edu/programme/b-informatics-engineering/"
+            }
+        ],
+        description: "Ignas is a self-taught software engineer based in Kaunas, Lithuania, studying Computer Science & Cyber Security Engineering at KTU. Passionate about tech, coding, robotics, and innovative projects. Is an official Google Awardee Experienced in full-stack web development, cyber-security, AI and robotics.",
         skills: [
             'Python', 'JavaScript', 'React.js', 'Vue.js', 'Node.js', 'Next.js', 'PHP', 'SQL', 'noSQL', 
             'GraphQL', 'MongoDB', 'HTML', 'CSS', 'Tailwind CSS', 'C#', 'C++', 'Rust', 'Unity', 
@@ -39,19 +62,12 @@ export const teamMembers = [
             'Jira', 'PocketBase', 'Tauri', 'OpenCV', 'Arduino'
         ],
         projects: [
+            "Thunderclap Cansat v1 (Satellite Project)",
+            "Mini Smart Fridge (IoT Project)",
             "Edullectus (AI Education Platform)",
             "Armilla (E-commerce Prototype)",
             "Lawcare (AI Legal Assistant)",
             "Nukes n' shit (Urban Exploration Website)",
-            "Thunderclap Cansat v1 (Satellite Project)",
-            "Mini Smart Fridge (IoT Project)",
-            "Project Green (Listing Aggregator App)",
-            "Fuel Station Map (Web Application)",
-            "Pixel Aimbot (Computer Vision)",
-            "Chemistry App (Educational Tool)",
-            "Lane Detection (Computer Vision)",
-            "Corona Case Meter (Data Tracker)",
-            "Discord EmojiBot (Automation Bot)"
         ]
     },
     {
@@ -66,32 +82,20 @@ export const teamMembers = [
             twitter: '', // No Twitter
             website: '', // No personal website
         },
-        description: 'Bob is an expert in atmospheric modeling and weather modification technologies. His research is pivotal to our environmental solutions.',
+        badges: [
+            {
+                label: "KTU GIFTed",
+                image: ktuGiftedBadge,
+                link: "https://students.ktu.edu/ed-programmes/gifted/"
+            },
+        ],
+        description: 'MEKAS PEKAS MIAU',
         skills: ['Meteorology', 'Climate Modeling', 'Data Analysis', 'Python', 'GIS'],
         projects: [
             "Cloud Seeding Optimization",
             "Atmospheric Data Platform"
         ]
     },
-    {
-        name: 'Eva Williams',
-        role: 'Robotics & AI Specialist',
-        email: 'eva.williams@example.com',
-        phone: '+1555666777',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', // Placeholder image
-        social: {
-            linkedin: 'https://www.linkedin.com/in/evawilliams',
-            github: 'https://github.com/evawilliams',
-            twitter: 'https://twitter.com/evawilliams',
-            website: 'https://eva.ai',
-        },
-        description: 'Eva designs and implements AI-driven control systems for our drones and autonomous vehicles. She is passionate about the intersection of robotics and intelligent systems.',
-        skills: ['Robotics', 'Machine Learning', 'Computer Vision', 'C++', 'ROS'],
-        projects: [
-            "ThunderBee Interceptor AI",
-            "Autonomous Navigation Systems"
-        ]
-    }
 ];
 
 

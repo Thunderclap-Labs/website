@@ -54,8 +54,8 @@ export default function DocsPage() {
                   <div>
                     <h2 className="text-xl md:text-2xl font-bold text-neutral-100">{member.name}</h2>
                     <p className="text-primary-400 text-sm md:text-md">{member.role}</p>
-                    <div className="flex items-between space-x-2 mt-2">
-                      <div className="mt-2 flex space-x-3">
+                    <div className="flex items-center justify-between space-x-2 mt-2 w-full"> {/* Changed items-between and added w-full */}
+                      <div className="flex space-x-3"> {/* Kept class name for social icons */}
                         {member.social.linkedin && (
                           <Link href={member.social.linkedin} isExternal className="text-neutral-400 hover:text-primary-400">
                             <FontAwesomeIcon icon={faLinkedin} size="lg" />
@@ -76,6 +76,18 @@ export default function DocsPage() {
                             <FontAwesomeIcon icon={faGlobe} size="lg" />
                           </Link>
                         )}
+                      </div>
+                      <div className="badges flex space-x-2 items-center"> {/* Added flex, space-x-2, items-center */}
+                        {member.badges && member.badges.map((badge, badgeIndex) => (
+                          <Link key={badgeIndex} href={badge.link} isExternal title={badge.label}>
+                            <Image
+                              src={badge.image}
+                              alt={badge.label}
+                              height={24} // Adjust size as needed
+                              className="rounded" // Optional: if badges need rounding
+                            />
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
