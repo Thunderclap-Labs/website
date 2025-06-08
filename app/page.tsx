@@ -28,8 +28,6 @@ import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
 import cansatwireframe from "../components/images/cansatwireframe.png";
 
-import ApexCharts from 'apexcharts'
-
 import "./styles/hero.css"
 import "./globals.css"
 
@@ -65,12 +63,12 @@ export default function Home() {
   const [isClientMobile, setIsClientMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true, 
-    });
-
     if (typeof window !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: true, 
+      });
+
       const handleResize = () => {
         const mobileCheck = window.innerWidth < 768;
         setIsClientMobile(mobileCheck);
@@ -144,78 +142,10 @@ export default function Home() {
       });
     }
     // Refresh AOS when mobile status changes, to apply/remove anchors and delays
-    AOS.refreshHard();
-  }, [isClientMobile]);
-
-  useEffect(() => {
-    if (isClientMobile === null || typeof window === 'undefined') return;
-
-    const fundsData = [
-      { name: "Complete Fuel Manufacturing System", value: 20 },
-      { name: "Rocket Assembly & Testing", value: 50 },
-      { name: "Payload Integration", value: 10 },
-      { name: "Operational Infrastructure", value: 10 },
-      { name: "Pilot Programs & Market Development", value: 5 },
-      { name: "Contingency & Unforeseen Expenses", value: 5}, // Ensuring sum is 100%
-    ];
-
-    const chartOptions = {
-      series: fundsData.map(item => item.value),
-      chart: {
-        type: 'pie',
-        height: 350,
-        toolbar: {
-          show: false
-        }
-      },
-      labels: fundsData.map(item => item.name),
-      colors: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe', '#dbeafe'], // Example blue palette
-      legend: {
-        position: 'bottom',
-        labels: {
-          colors: ['#e5e7eb'] // Light gray for legend text to match theme
-        }
-      },
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: '100%'
-          },
-          legend: {
-            position: 'bottom'
-          }
-        }
-      }],
-      tooltip: {
-        y: {
-          formatter: function (val: number) {
-            return val + "%"
-          }
-        },
-        theme: 'dark'
-      },
-      dataLabels: {
-        enabled: true,
-        style: {
-          colors: ['#333'] // Darker color for data labels for contrast on light pie slices
-        },
-        dropShadow: {
-          enabled: false,
-        }
-      }
-    };
-
-    const chartElement = document.querySelector("#funds-chart");
-    if (chartElement && chartElement.children.length === 0) { // Check if chart not already rendered
-      const chart = new ApexCharts(chartElement, chartOptions);
-      chart.render();
-      return () => {
-        chart.destroy(); // Clean up chart instance on component unmount or re-render
-      };
+    if (typeof window !== 'undefined') {
+      AOS.refreshHard();
     }
   }, [isClientMobile]);
-
 
   const handleScrollDown = () => {
     const aboutSection = document.getElementById('about-us-section');

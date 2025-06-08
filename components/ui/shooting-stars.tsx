@@ -86,6 +86,12 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     const currentSvgRef = svgRef.current;
     if (!currentSvgRef) return;
 
+    if (typeof window === 'undefined') { // Guard against SSR
+        // Optionally set a default size or handle SSR case if needed
+        setContainerSize({ width: 0, height: 0 }); // Or some default non-zero if it helps avoid other issues
+        return;
+    }
+
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         setContainerSize({
