@@ -2,6 +2,7 @@ import googleBadge from "../images/icons/google.png"
 import teltonikaBadge from "../images/icons/Teltonika.png"
 import ktuBadge from "../images/icons/ktu.png"
 import ktuGiftedBadge from "../images/icons/ktugift.png"
+import { link } from "fs";
 
 export const teamMembers = [
     {
@@ -16,13 +17,25 @@ export const teamMembers = [
             twitter: 'https://twitter.com/johndoe',
             website: 'https://johndoe.com',
         },
-        badges: [],
+        badges: [
+            {
+                label: "KTU",
+                image: ktuBadge,
+                link: "https://admissions.ktu.edu/programme/b-informatics-engineering/"
+            }
+        ],
         description: 'Simonas is the lead engineer with expertise in materials science, chemistry, and 3D modeling. He is passionate about developing innovative materials and solutions.',
         skills: ['Propulsion Systems', 'Aerodynamics', '3D Modeling (Fusion 360)', 'Chemistry', 'Electrical Engineering', 'Material Science'],
-        projects: [
-            "Project A",
-            "Project B",
-            "Project C"
+        personalProjects: [
+            {
+                name: "Project A",
+            },
+            {
+                name: "Project B",
+            },
+            {
+                name: "Project B",
+            }
         ]
     },
     {
@@ -61,13 +74,32 @@ export const teamMembers = [
             'Full-Stack Development', 'Git', 'Linux', 'AWS', 'Serverless', 'Prisma', 'SupaBase', 
             'Jira', 'PocketBase', 'Tauri', 'OpenCV', 'Arduino'
         ],
-        projects: [
-            "Thunderclap Cansat v1 (Satellite Project)",
-            "Mini Smart Fridge (IoT Project)",
-            "Edullectus (AI Education Platform)",
-            "Armilla (E-commerce Prototype)",
-            "Lawcare (AI Legal Assistant)",
-            "Nukes n' shit (Urban Exploration Website)",
+        tclProjects: [
+            {
+                name: "Thunderclap Cansat v1 (Satellite Project)",
+                link: "https://www.youtube.com/watch?v=AwtJzvZ51m0&t=1s",
+            }
+        ],
+        personalProjects: [
+            {
+                name: "Mini Smart Fridge (IoT Project)",
+            },
+            {
+                name: "Edullectus (AI Education Platform)",
+                link: "https://edullectus.com/"
+            },
+            {
+                name: "Armilla (E-commerce Prototype)",
+                link: "https://armilla.ignuxas.com/"
+            },
+            {
+                name: "Lawcare (AI Legal Assistant)",
+                link: "https://lawcare.lt/"
+            },
+            {
+                name: "Nukes n' shit (Urban Exploration Website)",
+                link: "https://nukestore.vercel.app/"
+            },
         ]
     },
     {
@@ -91,10 +123,7 @@ export const teamMembers = [
         ],
         description: 'MEKAS PEKAS MIAU',
         skills: ['Meteorology', 'Climate Modeling', 'Data Analysis', 'Python', 'GIS'],
-        projects: [
-            "Cloud Seeding Optimization",
-            "Atmospheric Data Platform"
-        ]
+        personalProjects: []
     },
 ];
 

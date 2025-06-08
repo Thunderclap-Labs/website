@@ -116,25 +116,66 @@ export default function DocsPage() {
                   </Swiper>
                 </div>
 
-                {member.projects && member.projects.length > 0 && (
+                {member.tclProjects && member.tclProjects.length > 0 && (
                   <div className="mb-4">
-                    <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Projects: <span className="text-secondary-400">{member.projects.length}</span></h3>
+                    <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Thunderclap Labs Projects: <span className="text-accent-400">{member.tclProjects.length}</span></h3>
                     <Swiper
-                      modules={[Autoplay]} // Add Autoplay module
+                      modules={[Autoplay]}
                       spaceBetween={10}
                       slidesPerView={'auto'}
-                      loop={true} // Optional: for continuous scrolling
+                      loop={true}
+                      autoplay={{
+                        delay: 5200, // Slightly different delay
+                        disableOnInteraction: false,
+                      }}
+                      className="h-full"
+                    >
+                      {member.tclProjects.map(project => (
+                        <SwiperSlide key={project.name} style={{ width: 'auto' }}>
+                          {project.link ? (
+                            <Link href={project.link} isExternal className="block">
+                              <span className="bg-accent-500/20 text-accent-300 px-3 py-1.5 text-xs rounded-md whitespace-nowrap hover:bg-accent-500/40 transition-colors">
+                                {project.name}
+                              </span>
+                            </Link>
+                          ) : (
+                            <span className="bg-accent-500/20 text-accent-300 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
+                              {project.name}
+                            </span>
+                          )}
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                )}
+
+                {member.personalProjects && member.personalProjects.length > 0 && (
+                  <div className="mb-4">
+                    <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Personal Projects: <span className="text-secondary-400">{member.personalProjects.length}</span></h3>
+                    <Swiper
+                      modules={[Autoplay]}
+                      spaceBetween={10}
+                      slidesPerView={'auto'}
+                      loop={true} 
                       autoplay={{
                         delay: 5000,
                         disableOnInteraction: false,
                       }}
                       className="h-full"
                     >
-                      {member.projects.map(project => (
-                        <SwiperSlide key={project} style={{ width: 'auto' }}>
-                          <span className="bg-secondary-500/20 text-secondary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
-                            {project}
-                          </span>
+                      {member.personalProjects.map((project, i) => (
+                        <SwiperSlide key={i} style={{ width: 'auto' }}>
+                          {('link' in project && project.link) ? (
+                            <Link href={project.link as string} isExternal className="block">
+                              <span className="bg-secondary-500/20 text-secondary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap hover:bg-secondary-500/40 transition-colors">
+                                {project.name}
+                              </span>
+                            </Link>
+                          ) : (
+                            <span className="bg-secondary-500/20 text-secondary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
+                              {project.name}
+                            </span>
+                          )}
                         </SwiperSlide>
                       ))}
                     </Swiper>
