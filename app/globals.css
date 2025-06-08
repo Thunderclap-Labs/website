@@ -32,7 +32,12 @@ body {
 .featured-card {
   position: relative;
   overflow: hidden; /* Contain the pseudo-element */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-card.white-feature::before {
+  background: radial-gradient(circle closest-side, rgba(255, 255, 255, 1), transparent);
+  width: 500px; /* Adjust size of glow */
+  height: 500px; /* Adjust size of glow */
 }
 
 .featured-card::before {
@@ -43,7 +48,6 @@ body {
   width: 300px; /* Adjust size of glow */
   height: 300px; /* Adjust size of glow */
   background: radial-gradient(circle closest-side, rgba(133, 138, 227, 0.15), transparent);
-  border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 1; /* Always visible, removed opacity: 0 */
   transition: opacity 0.2s ease-out;
