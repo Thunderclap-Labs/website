@@ -5,13 +5,12 @@ import { Logo } from "@/components/icons";
 import Image from "next/image";
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faGithub, faTwitter, faInternetExplorer } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faPhone, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Scrollbar } from 'swiper/modules'; // Import Scrollbar module
+import { Autoplay } from 'swiper/modules'; // Import Autoplay module
 
 import "swiper/css";
-import "swiper/css/scrollbar";
 
 import "../globals.css"; // Ensure global styles are imported
 
@@ -55,27 +54,29 @@ export default function DocsPage() {
                   <div>
                     <h2 className="text-xl md:text-2xl font-bold text-neutral-100">{member.name}</h2>
                     <p className="text-primary-400 text-sm md:text-md">{member.role}</p>
-                    <div className="mt-2 flex space-x-3">
-                      {member.social.linkedin && (
-                        <Link href={member.social.linkedin} isExternal className="text-neutral-400 hover:text-primary-400">
-                          <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                        </Link>
-                      )}
-                      {member.social.github && (
-                        <Link href={member.social.github} isExternal className="text-neutral-400 hover:text-primary-400">
-                          <FontAwesomeIcon icon={faGithub} size="lg" />
-                        </Link>
-                      )}
-                      {member.social.twitter && (
-                        <Link href={member.social.twitter} isExternal className="text-neutral-400 hover:text-primary-400">
-                          <FontAwesomeIcon icon={faTwitter} size="lg" />
-                        </Link>
-                      )}
-                      {member.social.website && (
-                        <Link href={member.social.website} isExternal className="text-neutral-400 hover:text-primary-400">
-                          <FontAwesomeIcon icon={faInternetExplorer} size="lg" />
-                        </Link>
-                      )}
+                    <div className="flex items-between space-x-2 mt-2">
+                      <div className="mt-2 flex space-x-3">
+                        {member.social.linkedin && (
+                          <Link href={member.social.linkedin} isExternal className="text-neutral-400 hover:text-primary-400">
+                            <FontAwesomeIcon icon={faLinkedin} size="lg" />
+                          </Link>
+                        )}
+                        {member.social.github && (
+                          <Link href={member.social.github} isExternal className="text-neutral-400 hover:text-primary-400">
+                            <FontAwesomeIcon icon={faGithub} size="lg" />
+                          </Link>
+                        )}
+                        {member.social.twitter && (
+                          <Link href={member.social.twitter} isExternal className="text-neutral-400 hover:text-primary-400">
+                            <FontAwesomeIcon icon={faTwitter} size="lg" />
+                          </Link>
+                        )}
+                        {member.social.website && (
+                          <Link href={member.social.website} isExternal className="text-neutral-400 hover:text-primary-400">
+                            <FontAwesomeIcon icon={faGlobe} size="lg" />
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -83,15 +84,19 @@ export default function DocsPage() {
                 <div className="mb-4">
                   <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Skills: <span className="text-primary-400">{member.skills.length}</span></h3>
                   <Swiper
-                    modules={[Scrollbar]}
+                    modules={[Autoplay]} // Add Autoplay module
                     spaceBetween={10}
                     slidesPerView={'auto'}
-                    scrollbar={{ draggable: true, hide: true }}
-                    className="h-full" // Add a class for potential custom styling
+                    loop={true}
+                    autoplay={{
+                      delay: 5000,
+                      disableOnInteraction: false,
+                    }}
+                    className="h-full" 
                   >
                     {member.skills.map(skill => (
                       <SwiperSlide key={skill} style={{ width: 'auto' }}>
-                        <span className="bg-primary-500/20 text-primary-300 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
+                        <span className="bg-primary-500/20 text-primary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
                           {skill}
                         </span>
                       </SwiperSlide>
@@ -103,15 +108,19 @@ export default function DocsPage() {
                   <div className="mb-4">
                     <h3 className="font-semibold text-neutral-200 mb-2 text-sm">Projects: <span className="text-secondary-400">{member.projects.length}</span></h3>
                     <Swiper
-                      modules={[Scrollbar]}
+                      modules={[Autoplay]} // Add Autoplay module
                       spaceBetween={10}
                       slidesPerView={'auto'}
-                      scrollbar={{ draggable: true, hide: true }}
-                      className="h-full" // Add a class for potential custom styling
+                      loop={true} // Optional: for continuous scrolling
+                      autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                      }}
+                      className="h-full"
                     >
                       {member.projects.map(project => (
                         <SwiperSlide key={project} style={{ width: 'auto' }}>
-                          <span className="bg-secondary-500/20 text-secondary-300 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
+                          <span className="bg-secondary-500/20 text-secondary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
                             {project}
                           </span>
                         </SwiperSlide>

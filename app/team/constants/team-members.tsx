@@ -26,10 +26,9 @@ export const teamMembers = [
         phone: '+1987654321', // Kept existing as no new info provided
         image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', // Kept existing placeholder
         social: {
-            linkedin: '', // No specific LinkedIn provided in the new text
-            github: '', // No specific GitHub profile provided
-            twitter: '', // No specific Twitter provided
-            website: '', // No specific personal website provided
+            linkedin: 'https://www.linkedin.com/in/ignas-mikolaitis-501782267/', // No specific LinkedIn provided in the new text
+            github: 'https://github.com/ignuxas', // No specific GitHub profile provided
+            website: 'https://ignuxas.com/', // No specific personal website provided
         },
         description: "Ignas is a self-taught software engineer based in Kaunas, Lithuania, studying Computer Science & Cyber Security Engineering at KTU. Passionate about tech, coding, robotics, and innovative projects. Experienced in full-stack web development and cyber-security (Google Bug Bounty Honorable Mentions List). Notable projects include Fuel Map, Project Green, and Armilla.",
         skills: [
