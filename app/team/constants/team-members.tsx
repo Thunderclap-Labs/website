@@ -3,17 +3,19 @@ import teltonikaBadge from "../images/icons/Teltonika.png"
 import ktuBadge from "../images/icons/ktu.png"
 import ktuGiftedBadge from "../images/icons/ktugift.png"
 
+import ignasImage from "../images/members/ignas.png";
+import simonasImage from "../images/members/simonas.png";
+import migleImage from "../images/members/migle.png";
+
 export const teamMembers = [
     {
         name: 'Simonas Aukštuolis',
         role: 'Electrical Engineer, Material Scientist, Chemistry & 3D Modeling Specialist',
         email: 'test@example.com',
-        phone: '+1234567890',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', // Placeholder image
+        image: simonasImage,
         social: {
             linkedin: 'https://www.linkedin.com/in/johndoe',
             github: 'https://github.com/johndoe',
-            twitter: 'https://twitter.com/johndoe',
             website: 'https://johndoe.com',
         },
         badges: [
@@ -48,12 +50,12 @@ export const teamMembers = [
         name: 'Ignas Mikolaitis',
         role: 'Software Engineer, Robotics & AI/ML Specialist',
         email: 'mikolaitis.ignas@gmail.com',
-        phone: '+1987654321', // Kept existing as no new info provided
-        image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', // Kept existing placeholder
+        image: ignasImage,
         social: {
-            linkedin: 'https://www.linkedin.com/in/ignas-mikolaitis-501782267/', // No specific LinkedIn provided in the new text
-            github: 'https://github.com/ignuxas', // No specific GitHub profile provided
-            website: 'https://ignuxas.com/', // No specific personal website provided
+            website: 'https://ignuxas.com/',
+            linkedin: 'https://www.linkedin.com/in/ignas-mikolaitis-501782267/',
+            github: 'https://github.com/ignuxas',
+            facebook: 'https://www.facebook.com/ignuxas/',
         },
         badges: [
             {
@@ -114,8 +116,7 @@ export const teamMembers = [
         name: 'Miglė Cirtautaitė',
         role: 'Atmospheric Scientist, Technical Writer',
         email: 'bob.johnson@example.com',
-        phone: '+1122334455',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png', // Placeholder image
+        image: migleImage,
         social: {
             linkedin: 'https://www.linkedin.com/in/bobjohnson',
             github: 'https://github.com/bobjohnson',

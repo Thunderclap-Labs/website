@@ -1,11 +1,11 @@
 "use client";
 
 import { title, subtitle } from "@/components/primitives";
-import { Logo } from "@/components/icons";
+import logo from "@/components/images/logo.png";
 import Image from "next/image";
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faGithub, faTwitter, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faPhone, faGlobe, faLink } from "@fortawesome/free-solid-svg-icons"; // Added faLink
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules'; // Import Autoplay module
@@ -23,7 +23,7 @@ export default function DocsPage() {
       <div className="relative z-10 max-w-7xl container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         {/* Header Section */}
         <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
-          <Logo className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" /> 
+          <Image src={logo} alt="Thunderclap Logo" className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" />
           <h1 className={title({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
             Meet The Thunderclap Group
           </h1>
@@ -67,9 +67,9 @@ export default function DocsPage() {
                             <FontAwesomeIcon icon={faGithub} size="lg" />
                           </Link>
                         )}
-                        {member.social.twitter && (
-                          <Link href={member.social.twitter} isExternal className="text-neutral-400 hover:text-primary-400">
-                            <FontAwesomeIcon icon={faTwitter} size="lg" />
+                        {member.social.facebook && (
+                          <Link href={member.social.facebook} isExternal className="text-neutral-400 hover:text-primary-400">
+                            <FontAwesomeIcon icon={faFacebook} size="lg" />
                           </Link>
                         )}
                         {member.social.website && (
@@ -203,9 +203,9 @@ export default function DocsPage() {
                     <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> {member.email}
                   </p>
                 )}
-                {member.phone && (
+                {(member as { phone?: string }).phone && (
                   <p className="text-xs text-neutral-400">
-                    <FontAwesomeIcon icon={faPhone} className="mr-2" /> {member.phone}
+                    <FontAwesomeIcon icon={faPhone} className="mr-2" /> {(member as { phone?: string }).phone}
                   </p>
                 )}
               </div>
