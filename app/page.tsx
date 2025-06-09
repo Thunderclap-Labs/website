@@ -14,6 +14,8 @@ import 'aos/dist/aos.css';
 import { StarsBackground } from "@/components/ui/stars-background";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 
+import { useFeaturedCardMouseEffect } from "@/lib/featured-card"; // Import the new hook
+
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
 import pcbway from "../components/images/pcbway.png";
@@ -29,7 +31,6 @@ import conveyorwireframe from "../components/images/conveyorwireframe.png";
 import cansatwireframe from "../components/images/cansatwireframe.png";
 
 import "./styles/hero.css"
-import "./globals.css"
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -62,6 +63,8 @@ export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
   const [isClientMobile, setIsClientMobile] = useState<boolean | null>(null);
 
+  useFeaturedCardMouseEffect(); // Call the custom hook
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       AOS.init({
@@ -79,27 +82,6 @@ export default function Home() {
 
       return () => window.removeEventListener('resize', handleResize);
     }
-  }, []);
-
-  useEffect(() => {
-      const handleMouseMove = (e: MouseEvent) => {
-      const cards = document.querySelectorAll('.featured-card');
-      for (const card of Array.from(cards)) {
-        if (card instanceof HTMLElement) {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   }, []);
 
   useEffect(() => {

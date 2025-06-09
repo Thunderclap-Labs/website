@@ -15,8 +15,7 @@ import { useEffect, useRef } from "react"; // Import useEffect and useRef
 import { Button } from "@heroui/button";
 import AOS from 'aos'; // Added
 import 'aos/dist/aos.css'; // Added
-
-import "../globals.css"; // Import global styles
+import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
 
 const contactMethods = [
   {
@@ -73,32 +72,13 @@ const faqItems = [
 
 export default function ContactPage() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
+  useFeaturedCardMouseEffect(); // Custom hook for mouse effect on cards
 
   useEffect(() => {
     AOS.init({
       duration: 800, // values from 0 to 3000, with step 50ms
       once: true, // whether animation should happen only once - while scrolling down
     });
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cardGridRef.current) return;
-      const cards = cardGridRef.current.getElementsByClassName("featured-card");
-      for (const card of Array.from(cards)) {
-        if (card instanceof HTMLElement) {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   }, []);
 
 
@@ -117,7 +97,6 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Contact Cards Section */}
         <div 
           id="contact-card-grid" 
           ref={cardGridRef} 
