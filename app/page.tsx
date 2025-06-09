@@ -353,7 +353,7 @@ export default function Home() {
                 data-aos="fade-up" 
                 {...(isClientMobile === false ? { 'data-aos-anchor': '#cloud-seeding-section' } : {})} 
                 data-aos-delay={isClientMobile ? "0" : "650"}>
-                Our drone / rocket-based system offers a targeted and efficient solution for these critical environmental and economic challenges.
+                Our IAV-based system offers a targeted and efficient solution for these critical environmental and economic challenges.
               </p>
             </div>
             <div 
@@ -459,23 +459,23 @@ export default function Home() {
                   <li 
                     data-aos="fade-left" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
-                    data-aos-delay={isClientMobile ? "0" : "600"}><span className="font-semibold">Extreme Acceleration:</span> Capable of very high acceleration for rapid target interception.</li>
+                    data-aos-delay={isClientMobile ? "0" : "600"}><span className="font-semibold">Rapid Acceleration:</span> Tuned for high-velocity bursts to enable fast-response target interception.</li>
                   <li 
                     data-aos="fade-left" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
-                    data-aos-delay={isClientMobile ? "0" : "650"}><span className="font-semibold">IR Detection:</span> Reliable enemy drone detection, effective in low light or at night.</li>
+                    data-aos-delay={isClientMobile ? "0" : "650"}><span className="font-semibold">IR Detection:</span> Optimized for reliable drone tracking in low-light and nighttime conditions.</li>
                   <li 
                     data-aos="fade-left" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
-                    data-aos-delay={isClientMobile ? "0" : "700"}><span className="font-semibold">Compact & Agile:</span> Highly compact and maneuverable design, with a low overall weight and significant thrust.</li>
+                    data-aos-delay={isClientMobile ? "0" : "700"}><span className="font-semibold">Compact & Agile:</span> Lightweight frame engineered for tight maneuvering and high-thrust performance.</li>
                   <li 
                     data-aos="fade-left" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
-                    data-aos-delay={isClientMobile ? "0" : "750"}><span className="font-semibold">Short-Burst Endurance:</span> Battery optimized for high-current discharge for focused, short-duration intercept missions.</li>
+                    data-aos-delay={isClientMobile ? "0" : "750"}><span className="font-semibold">Short-Burst Endurance:</span> Battery designed for high-current output to support brief, intensive intercept missions.</li>
                   <li 
                     data-aos="fade-left" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
-                    data-aos-delay={isClientMobile ? "0" : "800"}><span className="font-semibold">High Thrust-to-Weight Ratio:</span> Enables rapid acceleration and agile flight dynamics.</li>
+                    data-aos-delay={isClientMobile ? "0" : "800"}><span className="font-semibold">High Thrust-to-Weight Ratio:</span> Engineered for rapid acceleration and high-agility maneuvering during dynamic flight operations.</li>
                 </ul>
               </div>
             </div>

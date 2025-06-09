@@ -22,7 +22,7 @@ const contactMethods = [
   {
     icon: faComments,
     title: "Chat with us",
-    description: "Speak to our friendly team.",
+    description: "Speak to our team.",
     link: "mailto:thunderclaplabs@gmail.com",
     linkText: "thunderclaplabs@gmail.com",
   },
@@ -110,7 +110,7 @@ export default function ContactPage() {
         <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
           <Logo className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" /> 
           <h1 className={titleStyle({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
-            Contact our friendly team
+            Contact our team
           </h1>
           <p className={subtitleStyle({ class: "max-w-2xl mx-auto text-lg sm:text-xl" })} data-aos="fade-up" data-aos-delay="100">
             Let us know how we can help.
