@@ -14,6 +14,8 @@ import 'aos/dist/aos.css';
 import { StarsBackground } from "@/components/ui/stars-background";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 
+import { useFeaturedCardMouseEffect } from "@/lib/featured-card"; // Import the new hook
+
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
 import pcbway from "../components/images/pcbway.png";
@@ -29,7 +31,6 @@ import conveyorwireframe from "../components/images/conveyorwireframe.png";
 import cansatwireframe from "../components/images/cansatwireframe.png";
 
 import "./styles/hero.css"
-import "./globals.css"
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -62,6 +63,8 @@ export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
   const [isClientMobile, setIsClientMobile] = useState<boolean | null>(null);
 
+  useFeaturedCardMouseEffect(); // Call the custom hook
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       AOS.init({
@@ -79,27 +82,6 @@ export default function Home() {
 
       return () => window.removeEventListener('resize', handleResize);
     }
-  }, []);
-
-  useEffect(() => {
-      const handleMouseMove = (e: MouseEvent) => {
-      const cards = document.querySelectorAll('.featured-card');
-      for (const card of Array.from(cards)) {
-        if (card instanceof HTMLElement) {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   }, []);
 
   useEffect(() => {
@@ -251,8 +233,8 @@ export default function Home() {
               data-aos="fade-left" 
               {...(isClientMobile === false ? { 'data-aos-anchor': '#about_us_section' } : {})} 
               data-aos-delay={isClientMobile ? "0" : "400"}>
-              <div className="featured-card white-feature bg-neutral-900 p-[2px]">
-                <div className="bg-neutral-800 p-6 shadow-xl">
+              <div className="featured-card white-feature bg-neutral-900 p-[1px] rounded-xl">
+                <div className="bg-neutral-800 p-6 shadow-xl rounded-xl">
                   <h4 className="text-xl font-semibold mb-3 text-neutral-100">Core Focus Areas:</h4>
                   <ul className="list-disc list-inside space-y-2 text-neutral-300">
                     <li>Next-Generation Satellite Systems</li>
@@ -265,7 +247,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div id="focus-areas" className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card white-feature gap-[2px] bg-neutral-800 p-[2px]" ref={cardGridRef} data-aos="fade-up">
+          <div id="focus-areas" className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card white-feature gap-[2px] bg-neutral-800 p-[1px]" ref={cardGridRef} data-aos="fade-up">
             {focus_areas.map((area, i) => (
               <div key={area.title} className="flex p-4 flex-col h-full bg-neutral-900 hover:bg-primary-100 !transition-all duration-300" data-aos="fade-up" data-aos-anchor={isClientMobile === false ? '#focus-areas' : undefined}>
                 <h5 className="text-lg font-semibold text-neutral-100 mb-4">{area.title}</h5>
@@ -301,14 +283,14 @@ export default function Home() {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-start">
-              <div className="flex flex-col h-full justify-between">
+              <div className="flex flex-col h-full justify-between rounded">
                 <div
                   data-aos="fade-left" 
                   {...(isClientMobile === false ? { 'data-aos-anchor': '#propulsion-section' } : {})} 
                   data-aos-delay={isClientMobile ? "0" : "300"}
-                  className="featured-card white-feature bg-neutral-800 p-[2px]"
+                  className="featured-card white-feature bg-neutral-800 p-[2px] rounded-lg"
                   >
-                  <div className="p-6 shadow-xl bg-black">
+                  <div className="p-6 shadow-xl bg-black rounded-lg">
                     <h3 className="text-2xl font-semibold mb-4 text-neutral-100">Key Innovations:</h3>
                     <ul className="list-disc list-inside space-y-3 text-neutral-300">
                       <li 
@@ -351,9 +333,9 @@ export default function Home() {
                 data-aos="fade-right" 
                 {...(isClientMobile === false ? { 'data-aos-anchor': '#propulsion-section' } : {})} 
                 data-aos-delay={isClientMobile ? "0" : "300"}
-                className="featured-card w-fit h-min white-feature bg-neutral-800 p-[2px]"
+                className="featured-card w-fit h-min white-feature bg-neutral-800 p-[2px] rounded-lg"
                 >
-                <div className="shadow-xl">
+                <div className="shadow-xl rounded-lg overflow-hidden">
                   <Image src={fwd} alt="FWD"
                     data-aos="zoom-in" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#propulsion-section' } : {})} 
@@ -382,11 +364,11 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-              <div className="featured-card white-feature p-[2px]">
-                <div className="bg-black p-6" 
+              <div className="featured-card white-feature p-[2px] bg-neutral-800 rounded-lg"
                   data-aos="fade-right" 
                   {...(isClientMobile === false ? { 'data-aos-anchor': '#cloud-seeding-section' } : {})} 
                   data-aos-delay={isClientMobile ? "0" : "300"}>
+                <div className="bg-black p-6 rounded-lg">
                   <h3 className="text-2xl font-semibold mb-4 text-neutral-100">Primary Applications</h3>
                   <ul className="list-disc list-inside space-y-3 text-neutral-300">
                     <li 
@@ -426,19 +408,13 @@ export default function Home() {
                       <span className="font-semibold text-blue-300">Water Resource Management:</span> Enhancing water supply for various needs.
                     </li>
                   </ul>
-                  <p className="mt-4 text-neutral-400 text-sm" 
-                    data-aos="fade-up" 
-                    {...(isClientMobile === false ? { 'data-aos-anchor': '#cloud-seeding-section' } : {})} 
-                    data-aos-delay={isClientMobile ? "0" : "650"}>
-                    Our drone / rocket-based system offers a targeted and efficient solution for these critical environmental and economic challenges.
-                  </p>
                 </div>
                 </div>
               <div 
                 data-aos="fade-left" 
                 {...(isClientMobile === false ? { 'data-aos-anchor': '#cloud-seeding-section' } : {})} 
                 data-aos-delay={isClientMobile ? "0" : "300"}>
-                <div className="bg-black p-6 flex items-center justify-center">
+                <div className="p-6 flex items-center justify-center">
                   <Image src={cloudseeding} alt="Cloud Seeding Rocket System" className="mx-auto rounded-xl overflow-hidden" 
                     data-aos="zoom-in" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#cloud-seeding-section' } : {})} 
@@ -486,11 +462,11 @@ export default function Home() {
                   data-aos="fade-up" 
                   {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
                   data-aos-delay={isClientMobile ? "0" : "450"}>Conceptual design of the ThunderBee micro-interceptor.</p>
-                <div className="featured-card white-feature bg-neutral-800 p-[2px] mt-8">
-                  <div className="bg-black p-6" 
+                <div className="featured-card white-feature bg-neutral-800 p-[2px] mt-8 rounded-lg"
                     data-aos="fade-up" 
                     {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
                     data-aos-delay={isClientMobile ? "0" : "500"}>
+                  <div className="bg-black p-6 rounded-lg">
                     <h3 className="text-xl font-semibold mb-3 text-neutral-100 text-center">Development Progress & Recognition</h3>
                     <p className="text-neutral-300 text-center md:text-base">
                       During intensive hackathon efforts, Team Thunderclap has conducted extensive research, identified optimal components, and designed an accurate 3D model of the ThunderBee. This project was recognized as an EUDIS hackathon winner, highlighting its innovative approach and potential, and has garnered trust from the <Link isExternal className="text-blue-400" href="https://kariuomene.lt/en">Lithuanian Armed Forces</Link>.
@@ -503,11 +479,11 @@ export default function Home() {
                   data-aos="fade-left" 
                   {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
                   data-aos-delay={isClientMobile ? "0" : "300"}>
-                  <div className="featured-card bg-neutral-800 white-feature p-[2px]">
-                    <div className="bg-black p-6" 
+                  <div className="featured-card bg-neutral-800 white-feature p-[2px] rounded-lg"
                       data-aos="fade-left" 
                       {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
                       data-aos-delay={isClientMobile ? "0" : "350"}>
+                    <div className="bg-black p-6 rounded-lg">
                       <h3 className="text-2xl font-semibold mb-4 text-neutral-100">Key Features</h3>
                       <ul className="list-disc list-inside space-y-3 text-neutral-300">
                         <li 
@@ -531,11 +507,11 @@ export default function Home() {
                       </ul>
                     </div>
                   </div>
-                <div className="featured-card bg-neutral-800 white-feature p-[2px]">
-                  <div className="bg-black p-6" 
-                    data-aos="fade-left" 
-                    {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})} 
+                <div className="featured-card bg-neutral-800 white-feature p-[2px] rounded-lg"
+                    data-aos="fade-left"
+                    {...(isClientMobile === false ? { 'data-aos-anchor': '#thunderbee-section' } : {})}
                     data-aos-delay={isClientMobile ? "0" : "550"}>
+                  <div className="bg-black p-6 rounded-lg">
                     <h3 className="text-2xl font-semibold mb-4 text-neutral-100">Technical Capabilities</h3>
                     <ul className="list-disc list-inside space-y-3 text-neutral-300">
                       <li 

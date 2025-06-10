@@ -24,8 +24,8 @@ body {
 }
 
 .glow {
-  filter: drop-shadow(0 0 1px var(--primary))
-          drop-shadow(0 0 12px var(--primary))
+  filter: drop-shadow(0 0 1px white)
+          drop-shadow(0 0 12px white)
           drop-shadow(0 0 12px var(--primary));
 }
 

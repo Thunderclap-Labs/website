@@ -9,6 +9,8 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 
+import "./globals.css"
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,

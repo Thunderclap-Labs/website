@@ -8,20 +8,19 @@ import {
   NavbarMenuItem,
 } from "@heroui/navbar";
 import { Button } from "@heroui/button";
-import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
+import logo from "@/components/images/logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import {
   GithubIcon,
   HeartFilledIcon,
-  Logo,
 } from "@/components/icons";
 
 export const Navbar = () => {
@@ -29,8 +28,8 @@ export const Navbar = () => {
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
+          <NextLink className="flex justify-start items-center gap-4" href="/">
+            <Image src={logo} alt="Thunderclap Labs" height={32} />
             <p className="font-bold text-inherit">Thunderclap Labs</p>
           </NextLink>
         </NavbarBrand>
