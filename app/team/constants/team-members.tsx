@@ -5,6 +5,8 @@ import ktuGiftedBadge from "../images/icons/ktugift.png"
 import fidiBadge from "../images/icons/Fidi.png"
 import ORBadge from "../images/icons/OR.png"
 import VUBadge from "../images/icons/VU.png"
+import makerspaceBadge from "../images/icons/makerspace.png";
+import mlabBadge from "../images/icons/mlab.png";
 
 import ignasImage from "../images/members/ignas.png";
 import simonasImage from "../images/members/simonas.png";
@@ -15,19 +17,23 @@ export const teamMembers = [
     {
         name: 'Simonas Aukštuolis',
         role: 'Electrical Engineer, Material Scientist, Chemistry & 3D Modeling Specialist',
-        email: 'test@example.com',
+        email: 'simonas.aukstuolis@gmail.com',
         image: simonasImage,
         social: {
-            linkedin: 'https://www.linkedin.com/in/johndoe',
-            github: 'https://github.com/johndoe',
-            website: 'https://johndoe.com',
+            facebook: 'https://www.facebook.com/simonas.aukstuolis',
+            linkedin: 'https://www.linkedin.com/in/simonas-auk%C5%A1tuolis-13768a283/',
         },
         badges: [
             {
-                label: "KTU",
+                label: "Kaunas Makerspace",
+                image: makerspaceBadge,
+                link: "https://makerspace.lt/"
+            },
+            {
+                label: "KTU - Automation and Control Engineering",
                 image: ktuBadge,
-                link: "https://admissions.ktu.edu/programme/b-informatics-engineering/"
-            }
+                link: "https://stojantiesiems.ktu.edu/programme/b-automatika-ir-valdymas/"
+            },
         ],
         description: 'Simonas is a versatile and highly skilled engineer with a deep, practical understanding of multiple scientific and technical disciplines. Simonas expertise spans the complex realms of chemistry, electricity, and mechanics, which he masterfully apply to create impressive and diverse inventions.',
         skills: [ 'CNC machining', 'Propulsion Systems', 'Aerodynamics', '3D Modeling (Fusion 360)', 'Chemistry', 'Electrical Engineering', 'Material Science'],
@@ -36,17 +42,24 @@ export const teamMembers = [
             "thunderbee",
             "rocketfuel",
             "rocketfuelautomation",
-            "cansat1"
+            "cansat1",
+            "smartfridge",
         ],
         personalProjects: [
             {
-                name: "Project A",
+                name: "10 kW Tesla Coil",
             },
             {
-                name: "Project B",
+                name: "X-Ray Imaging Machine",
             },
             {
-                name: "Project B",
+                name: "11 kW Two Stroke Bicycle",
+            },
+            {
+                name: "e-Bike",
+            },
+            {
+                name: "Self-made 3D Printer",
             }
         ]
     },
@@ -73,18 +86,19 @@ export const teamMembers = [
                 link: "https://teltonika-networks.com/"
             },
             {
-                label: "KTU",
+                label: "Kaunas Makerspace",
+                image: makerspaceBadge,
+                link: "https://makerspace.lt/"
+            },
+            {
+                label: "KTU - Informatics Engineering",
                 image: ktuBadge,
                 link: "https://admissions.ktu.edu/programme/b-informatics-engineering/"
             }
         ],
         description: "Ignas is a self-taught software engineer based in Kaunas, Lithuania, studying Computer Science & Cyber Security Engineering at KTU. Passionate about tech, coding, robotics, and innovative projects. Is an official Google Awardee Experienced in full-stack web development, cyber-security, AI and robotics.",
         skills: [
-            'Python', 'JavaScript', 'React.js', 'Vue.js', 'Node.js', 'Next.js', 'PHP', 'SQL', 'noSQL', 
-            'GraphQL', 'MongoDB', 'HTML', 'CSS', 'Tailwind CSS', 'C#', 'C++', 'Rust', 'Unity', 
-            'PyTorch', 'Tensorflow', 'Blender', 'Fusion 360', 'Cyber Security', 'Robotics', 'AI/ML', 
-            'Full-Stack Development', 'Git', 'Linux', 'AWS', 'Serverless', 'Prisma', 'SupaBase', 
-            'Jira', 'PocketBase', 'Tauri', 'OpenCV', 'Arduino'
+            'Software Engineering', 'Full-Stack Development', 'Robotics', 'IoT', 'Embedded Systems', 'Cyber Security', 'AI/ML', 'Databases'
         ],
         tclProjects: [
             "cloudseeding",
@@ -93,6 +107,8 @@ export const teamMembers = [
             "fullselfdriving",
             "dronedetection",
             "cansat1",
+            "smartfridge",
+            "website"
         ],
         personalProjects: [
             {
@@ -119,22 +135,25 @@ export const teamMembers = [
     {
         name: 'Miglė Cirtautaitė',
         role: 'Atmospheric Scientist, Technical Writer',
-        email: 'bob.johnson@example.com',
+        email: 'migle.cirtautaite@gmail.com',
         image: migleImage,
         social: {
-            linkedin: 'https://www.linkedin.com/in/bobjohnson',
-            github: 'https://github.com/bobjohnson',
-            twitter: '', // No Twitter
-            website: '', // No personal website
+            linkedin: 'https://www.linkedin.com/in/migle-cirtautaite/',
+            github: 'https://github.com/cmigle',
         },
         badges: [
+            {
+                label: "Kaunas Makerspace",
+                image: makerspaceBadge,
+                link: "https://makerspace.lt/"
+            },
             {
                 label: "KTU GIFTed",
                 image: ktuGiftedBadge,
                 link: "https://students.ktu.edu/ed-programmes/gifted/"
             },
         ],
-        description: 'MEKAS PEKAS MIAU',
+        description: 'Miglė is a technical writer, programmer, and a gifted KTU student. Her programming skills (scripting, code structures) provide a practical edge, enabling her to bridge technical concepts and contribute to innovative projects.',
         skills: ['Meteorology', 'Climate Modeling', 'Data Analysis', 'Python', 'GIS'],
         tclProjects: [
             "cloudseeding",
@@ -147,7 +166,7 @@ export const teamMembers = [
     },
     {
         name: 'Dominykas Mačiulaitis',
-        role: 'physicist, programmer, electronics engineer',
+        role: 'Physicist, Programmer, Electronics Engineer',
         email: 'dominykas.maciulaitis1@gmail.com',
         image: dominykasImage,
         social: {
@@ -166,6 +185,11 @@ export const teamMembers = [
                 label: "Open readings",
                 image: ORBadge,
                 link: "https://openreadings.eu/"
+            },
+            {
+                label: "Kaunas Makerspace",
+                image: makerspaceBadge,
+                link: "https://makerspace.lt/"
             },
             {
                 label: "Vilnius University",

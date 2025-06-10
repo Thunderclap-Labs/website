@@ -42,6 +42,20 @@ export const projects = [
         active: true,
     },
     {
+        id: 'website',
+        name: 'Website',
+        description: 'A project to develop a responsive website for Thunderclap Labs.',
+        link: 'https://thunderclaplabs.com/',
+        active: true,
+    },
+    {
+        id: 'smartfridge',
+        name: 'Smart Fridge',
+        description: 'An mini DIY Smart fridge that is controlled with a small ESP32 microcontroller and a custom interface, features individually controllable LEDs.',
+        link: 'https://drive.google.com/drive/folders/1Rx6soLrsUmhCqM45BhdIxT6KlD43HZLu',
+        active: false,
+    },
+    {
         id: 'cansat1',
         name: 'Thunderclap Cansat v1 (Satellite Project)',
         description: 'A miniature satellite project designed to demonstrate the principles of space technology and engineering.',

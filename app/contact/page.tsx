@@ -2,7 +2,7 @@
 
 import { title as titleStyle, subtitle as subtitleStyle } from "@/components/primitives";
 import MovingStars from "@/components/ui/moving-stars";
-import { Card, CardBody, Link, Accordion, AccordionItem } from "@heroui/react";
+import { Link, Accordion, AccordionItem } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComments, // Replaces ChatBubbleLeftRightIcon
@@ -10,12 +10,13 @@ import {
   faPhoneAlt, // Replaces PhoneIcon
   faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
-import { Logo } from "@/components/icons";
+import logo from "@/components/images/logo.png";
 import { useEffect, useRef } from "react"; // Import useEffect and useRef
 import { Button } from "@heroui/button";
 import AOS from 'aos'; // Added
 import 'aos/dist/aos.css'; // Added
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
+import Image from "next/image";
 
 const contactMethods = [
   {
@@ -88,7 +89,7 @@ export default function ContactPage() {
       <div className="relative z-10 max-w-7xl container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         {/* Header Section */}
         <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
-          <Logo className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" /> 
+          <Image src={logo} alt="Thunderclap Logo" className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" />
           <h1 className={titleStyle({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
             Contact our friendly team
           </h1>

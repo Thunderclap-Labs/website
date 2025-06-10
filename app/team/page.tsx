@@ -15,7 +15,7 @@ import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
 import "swiper/css";
 
 import { teamMembers } from "./constants/team-members";
-import { projects as definedProjectsList } from "../projects/constants/team-members"; // Import project definitions
+import { projects as definedProjectsList } from "../projects/constants/projects"; // Import project definitions
 
 export default function DocsPage() {
   useFeaturedCardMouseEffect();
@@ -57,7 +57,7 @@ export default function DocsPage() {
                     <div className="w-full">
                       <h2 className="text-xl md:text-2xl font-bold text-neutral-100">{member.name}</h2>
                       <p className="text-primary-400 text-sm md:text-md">{member.role}</p>
-                      <div className="flex items-center justify-between space-x-2 mt-2 w-full"> {/* Changed items-between and added w-full */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 mt-2 w-full"> {/* Changed items-between and added w-full */}
                         <div className="flex space-x-3"> {/* Kept class name for social icons */}
                           {member.social.linkedin && (
                             <Link href={member.social.linkedin} isExternal className="text-neutral-400 hover:text-primary-400">
