@@ -2,10 +2,13 @@ import googleBadge from "../images/icons/google.png"
 import teltonikaBadge from "../images/icons/Teltonika.png"
 import ktuBadge from "../images/icons/ktu.png"
 import ktuGiftedBadge from "../images/icons/ktugift.png"
+import fidiBadge from "../images/icons/Fidi.png"
+import ORBadge from "../images/icons/OR.png"
 
 import ignasImage from "../images/members/ignas.png";
 import simonasImage from "../images/members/simonas.png";
 import migleImage from "../images/members/migle.png";
+import dominykasImage from "../images/members/dominykas.jpg";
 
 export const teamMembers = [
     {
@@ -26,7 +29,7 @@ export const teamMembers = [
             }
         ],
         description: 'Simonas is a versatile and highly skilled engineer with a deep, practical understanding of multiple scientific and technical disciplines. Simonas expertise spans the complex realms of chemistry, electricity, and mechanics, which he masterfully apply to create impressive and diverse inventions.',
-        skills: ['Propulsion Systems', 'Aerodynamics', '3D Modeling (Fusion 360)', 'Chemistry', 'Electrical Engineering', 'Material Science'],
+        skills: [ 'CNC machining', 'Propulsion Systems', 'Aerodynamics', '3D Modeling (Fusion 360)', 'Chemistry', 'Electrical Engineering', 'Material Science'],
         tclProjects: [
             "cloudseeding",
             "thunderbee",
@@ -138,6 +141,40 @@ export const teamMembers = [
             "fullselfdriving",
             "dronedetection",
             "thunderbee",
+        ],
+        personalProjects: []
+    },
+    {
+        name: 'Dominykas Mačiulaitis',
+        role: 'physicist, programmer, electronics engineer',
+        email: 'dominykas.maciulaitis1@gmail.com',
+        image: dominykasImage,
+        social: {
+            linkedin: 'https://www.linkedin.com/in/dominykas-ma%C4%8Diulaitis-651a18263/',
+            github: 'https://github.com/Persejas',
+            twitter: '', // No Twitter
+            website: '', // No personal website
+        },
+        badges: [
+            {
+                label: "FIDI - Fiziko diena",
+                image: fidiBadge,
+                link: "https://fidi.lt/"
+            },
+            {
+                label: "Open readings",
+                image: ORBadge,
+                link: "https://openreadings.eu/"
+            }
+        ],
+
+        description: 'Dominykas is a bright physicist whose technical foundation was solidified by graduating from the Junior Computer Science School. Dominykas is a skillful engineer, possessing a notable talent for hands-on projects involving electricity.',
+        skills: ['Electrical Engineering', 'C++', 'Data Analysis', 'Python', 'SOLIDWORKS', 'robotics', '3D modeling'],
+        tclProjects: [
+            "cloudseeding",
+            "rocketfuelautomation",
+            "fullselfdriving",
+            "dronedetection",
         ],
         personalProjects: []
     },
