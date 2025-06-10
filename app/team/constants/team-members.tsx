@@ -4,6 +4,7 @@ import ktuBadge from "../images/icons/ktu.png"
 import ktuGiftedBadge from "../images/icons/ktugift.png"
 import fidiBadge from "../images/icons/Fidi.png"
 import ORBadge from "../images/icons/OR.png"
+import VUBadge from "../images/icons/VU.png"
 
 import ignasImage from "../images/members/ignas.png";
 import simonasImage from "../images/members/simonas.png";
@@ -165,7 +166,12 @@ export const teamMembers = [
                 label: "Open readings",
                 image: ORBadge,
                 link: "https://openreadings.eu/"
-            }
+            },
+            {
+                label: "Vilnius University",
+                image: VUBadge,
+                link: "https://www.vu.lt/en/"
+            },
         ],
 
         description: 'Dominykas is a bright physicist whose technical foundation was solidified by graduating from the Junior Computer Science School. Dominykas is a skillful engineer, possessing a notable talent for hands-on projects involving electricity.',
