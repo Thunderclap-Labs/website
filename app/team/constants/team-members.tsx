@@ -154,7 +154,7 @@ export const teamMembers = [
             },
         ],
         description: 'Miglė is a technical writer, programmer, and a gifted KTU student. Her programming skills (scripting, code structures) provide a practical edge, enabling her to bridge technical concepts and contribute to innovative projects.',
-        skills: ['Meteorology', 'Climate Modeling', 'Data Analysis', 'Python', 'GIS'],
+        skills: ['Technical Writing & Documentation', 'Programming', 'Client Communication', 'Research', 'Data Analysis'],
         tclProjects: [
             "cloudseeding",
             "rocketfuelautomation",
