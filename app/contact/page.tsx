@@ -22,7 +22,7 @@ const contactMethods = [
   {
     icon: faComments,
     title: "Chat with us",
-    description: "Speak to our friendly team.",
+    description: "Speak to our team.",
     link: "mailto:thunderclaplabs@gmail.com",
     linkText: "thunderclaplabs@gmail.com",
   },
@@ -57,7 +57,7 @@ const faqItems = [
   {
     key: "3",
     title: "Are you looking for new team members?",
-    content: "Yes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is very selective, we go to great lengths to ensure that we only recruit the best of the best. If you are interested in joining us, please reach out to us via eYes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is highly selective — we strive to bring in only the most driven and capable people. If you're interested in joining us, please reach out through our social media channelsmail at",
+    content: "Yes, we are always looking for passionate and talented individuals to join our team. Our recruitment process is highly selective — we strive to bring in only the most driven and capable people. If you're interested in joining us, please reach out through our social media channels.",
   },
   {
     key: "4",
@@ -91,7 +91,7 @@ export default function ContactPage() {
         <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
           <Image src={logo} alt="Thunderclap Logo" className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" />
           <h1 className={titleStyle({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
-            Contact our friendly team
+            Contact our team
           </h1>
           <p className={subtitleStyle({ class: "max-w-2xl mx-auto text-lg sm:text-xl" })} data-aos="fade-up" data-aos-delay="100">
             Let us know how we can help.
