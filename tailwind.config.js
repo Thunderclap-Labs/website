@@ -28,6 +28,8 @@ const config = {
       animation: {
         'mouse-wheel': 'wheel-animation 1.8s ease-in-out infinite',
         'fade-in-delayed': 'fade-in-animation 1s ease-out 10s forwards', // 10s delay
+        'expand': 'expand 0.3s ease-out',
+        'collapse': 'collapse 0.3s ease-in',
       },
       keyframes: {
         'wheel-animation': {
@@ -39,6 +41,14 @@ const config = {
         'fade-in-animation': {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        'expand': {
+          '0%': { maxHeight: '8rem', opacity: '0.7' },
+          '100%': { maxHeight: '24rem', opacity: '1' },
+        },
+        'collapse': {
+          '0%': { maxHeight: '24rem', opacity: '1' },
+          '100%': { maxHeight: '8rem', opacity: '0.7' },
         },
       },
     },

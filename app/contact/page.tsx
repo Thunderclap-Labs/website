@@ -5,18 +5,19 @@ import MovingStars from "@/components/ui/moving-stars";
 import { Link, Accordion, AccordionItem } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faComments, // Replaces ChatBubbleLeftRightIcon
-  faMapMarkerAlt, // Replaces MapPinIcon
-  faPhoneAlt, // Replaces PhoneIcon
+  faComments,
+  faMapMarkerAlt,
+  faPhoneAlt,
   faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "@/components/images/logo.png";
-import { useEffect, useRef } from "react"; // Import useEffect and useRef
+import { useEffect, useRef } from "react";
 import { Button } from "@heroui/button";
-import AOS from 'aos'; // Added
-import 'aos/dist/aos.css'; // Added
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
 import Image from "next/image";
+import { Heading } from "@/components/common/heading";
 
 const contactMethods = [
   {
@@ -72,31 +73,24 @@ const faqItems = [
 ];
 
 export default function ContactPage() {
-  const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
-  useFeaturedCardMouseEffect(); // Custom hook for mouse effect on cards
+  const cardGridRef = useRef<HTMLDivElement>(null);
+  useFeaturedCardMouseEffect();
 
   useEffect(() => {
     AOS.init({
-      duration: 800, // values from 0 to 3000, with step 50ms
-      once: true, // whether animation should happen only once - while scrolling down
+      duration: 800,
+      once: true,
     });
   }, []);
-
 
   return (
     <div className="relative min-h-screen bg-background bg-radial-gradient-layers text-foreground">
       <MovingStars />
       <div className="relative z-10 max-w-7xl container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        {/* Header Section */}
-        <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
-          <Image src={logo} alt="Thunderclap Logo" className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" />
-          <h1 className={titleStyle({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
-            Contact our team
-          </h1>
-          <p className={subtitleStyle({ class: "max-w-2xl mx-auto text-lg sm:text-xl" })} data-aos="fade-up" data-aos-delay="100">
-            Let us know how we can help.
-          </p>
-        </div>
+        <Heading
+          title="Contact our team"
+          subtitle="Let us know how we can help."
+        />
 
         <div 
           id="contact-card-grid" 

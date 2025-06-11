@@ -247,7 +247,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div id="focus-areas" className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card white-feature gap-[2px] bg-neutral-800 p-[1px]" ref={cardGridRef} data-aos="fade-up">
+          <div id="focus-areas" className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card white-feature gap-[1px] bg-neutral-800 p-[1px]" ref={cardGridRef} data-aos="fade-up">
             {focus_areas.map((area, i) => (
               <div key={area.title} className="flex p-4 flex-col h-full bg-neutral-900 hover:bg-primary-100 !transition-all duration-300" data-aos="fade-up" data-aos-anchor={isClientMobile === false ? '#focus-areas' : undefined}>
                 <h5 className="text-lg font-semibold text-neutral-100 mb-4">{area.title}</h5>

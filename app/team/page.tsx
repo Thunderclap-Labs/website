@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules'; // Import Autoplay module
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
+import { Heading } from "@/components/common/heading";
 
 import "swiper/css";
 
@@ -20,26 +21,26 @@ import { projects as definedProjectsList } from "../projects/constants/projects"
 export default function DocsPage() {
   useFeaturedCardMouseEffect();
 
+  // Function to create anchor ID from member name
+  const createAnchorId = (memberName: string) => {
+    return memberName.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+  };
+
   return (
     <div className="flex flex-col items-center justify-start text-center min-h-screen">
       <ShootingStars className="absolute z-0" />
       <div className="relative z-10 max-w-7xl container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        {/* Header Section */}
-        <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
-          <Image src={logo} alt="Thunderclap Logo" className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" />
-          <h1 className={title({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
-            Meet The Thunderclap Group
-          </h1>
-          <p className={subtitle({ class: "max-w-2xl mx-auto text-lg sm:text-xl" })} data-aos="fade-up" data-aos-delay="100">
-            A collective of passionate engineers, developers, and creators dedicated to building innovative solutions and pushing the boundaries of technology - Best of the best.
-          </p>
-        </div>
+        <Heading
+          title="Meet The Thunderclap Group"
+          subtitle="A collective of passionate engineers, developers, and creators dedicated to building innovative solutions and pushing the boundaries of technology - Best of the best."
+        />
 
         {/* Team Members Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {teamMembers.map((member, index) => (
               <div
                 key={member.name}
+                id={createAnchorId(member.name)} // Add anchor ID
                 className="featured-card white-feature bg-transparent p-[2px] rounded-xl text-left"
                 data-aos="fade-up"
               >

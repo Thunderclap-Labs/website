@@ -11,7 +11,7 @@ import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import logo from "@/components/images/logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube, faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -19,7 +19,6 @@ import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import {
-  GithubIcon,
   HeartFilledIcon,
 } from "@/components/icons";
 
@@ -55,9 +54,9 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/3 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden sm:flex gap-2">
+        <NavbarItem className="hidden sm:flex gap-4">
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-default-500" />
+            <FontAwesomeIcon icon={faGithub} className="text-default-500 text-lg md:text-xl" />
           </Link>
           <Link
             isExternal
@@ -66,7 +65,7 @@ export const Navbar = () => {
           >
             <FontAwesomeIcon
               icon={faYoutube}
-              className="text-default-500 w-6"
+              className="text-default-500 text-lg md:text-xl"
             />
           </Link>
           <Link
@@ -76,7 +75,7 @@ export const Navbar = () => {
           >
             <FontAwesomeIcon
               icon={faInstagram}
-              className="text-default-500 w-5"
+              className="text-default-500 text-lg md:text-xl"
             />
           </Link>
         </NavbarItem>
@@ -96,7 +95,7 @@ export const Navbar = () => {
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500" />
+          <FontAwesomeIcon icon={faGithub} className="text-default-500 text-lg md:text-xl" />
         </Link>
         <NavbarMenuToggle />
       </NavbarContent>
