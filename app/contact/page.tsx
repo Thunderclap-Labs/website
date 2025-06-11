@@ -2,7 +2,7 @@
 
 import { title as titleStyle, subtitle as subtitleStyle } from "@/components/primitives";
 import MovingStars from "@/components/ui/moving-stars";
-import { Card, CardBody, Link, Accordion, AccordionItem } from "@heroui/react";
+import { Link, Accordion, AccordionItem } from "@heroui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faComments, // Replaces ChatBubbleLeftRightIcon
@@ -10,13 +10,13 @@ import {
   faPhoneAlt, // Replaces PhoneIcon
   faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
-import { Logo } from "@/components/icons";
+import logo from "@/components/images/logo.png";
 import { useEffect, useRef } from "react"; // Import useEffect and useRef
 import { Button } from "@heroui/button";
 import AOS from 'aos'; // Added
 import 'aos/dist/aos.css'; // Added
-
-import "../globals.css"; // Import global styles
+import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
+import Image from "next/image";
 
 const contactMethods = [
   {
@@ -73,32 +73,13 @@ const faqItems = [
 
 export default function ContactPage() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
+  useFeaturedCardMouseEffect(); // Custom hook for mouse effect on cards
 
   useEffect(() => {
     AOS.init({
       duration: 800, // values from 0 to 3000, with step 50ms
       once: true, // whether animation should happen only once - while scrolling down
     });
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!cardGridRef.current) return;
-      const cards = cardGridRef.current.getElementsByClassName("featured-card");
-      for (const card of Array.from(cards)) {
-        if (card instanceof HTMLElement) {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   }, []);
 
 
@@ -108,7 +89,7 @@ export default function ContactPage() {
       <div className="relative z-10 max-w-7xl container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         {/* Header Section */}
         <div className="flex flex-col text-center mb-16 mt-16 sm:mb-20">
-          <Logo className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" /> 
+          <Image src={logo} alt="Thunderclap Logo" className="glow mx-auto mb-4 h-12 w-12" data-aos="zoom-in" />
           <h1 className={titleStyle({ class: "mb-4 text-4xl sm:text-5xl lg:text-6xl"})} data-aos="fade-up">
             Contact our team
           </h1>
@@ -117,7 +98,6 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Contact Cards Section */}
         <div 
           id="contact-card-grid" 
           ref={cardGridRef} 
