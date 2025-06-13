@@ -113,19 +113,6 @@ export const projects: Project[] = [
         categories: ['Software']
     },
     {
-        id: 'smartfridge',
-        name: 'Smart Fridge',
-        description: 'A mini DIY Smart fridge controlled with ESP32 microcontroller featuring custom interface and individually controllable LEDs.',
-        link: 'https://drive.google.com/drive/folders/1Rx6soLrsUmhCqM45BhdIxT6KlD43HZLu',
-        active: false,
-        tags: ['IoT', 'Electronics', 'ESP32', 'Embedded Systems', '3D Modeling'],
-        teamMembers: ['Ignas Mikolaitis'],
-        startDate: '2023-08',
-        status: 'Completed',
-        image: fridge,
-        categories: ['Hardware', 'Software']
-    },
-    {
         id: 'cansat1',
         name: 'Thunderclap Cansat v1 (Satellite Project)',
         description: 'A miniature satellite project designed to demonstrate the principles of space technology and engineering with telemetry systems.',

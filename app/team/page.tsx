@@ -41,7 +41,7 @@ export default function DocsPage() {
               <div
                 key={member.name}
                 id={createAnchorId(member.name)} // Add anchor ID
-                className="featured-card white-feature bg-transparent p-[2px] rounded-xl text-left"
+                className="featured-card white-feature bg-transparent p-[1px] rounded-xl text-left"
                 data-aos="fade-up"
               >
                 <div className="bg-neutral-800 backdrop-blur-sm p-6 rounded-xl shadow-xl h-full flex flex-col">

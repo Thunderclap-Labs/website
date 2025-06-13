@@ -6,12 +6,13 @@ import fidiBadge from "../images/icons/Fidi.png"
 import ORBadge from "../images/icons/OR.png"
 import VUBadge from "../images/icons/VU.png"
 import makerspaceBadge from "../images/icons/makerspace.png";
-import mlabBadge from "../images/icons/mlab.png";
 
 import ignasImage from "../images/members/ignas.png";
 import simonasImage from "../images/members/simonas.png";
 import migleImage from "../images/members/migle.png";
 import dominykasImage from "../images/members/dominykas.jpg";
+import dominykaslImage from "../images/members/dominykasl.png";
+import juliusImage from "../images/members/julius.png";
 
 export const teamMembers = [
     {
@@ -60,12 +61,16 @@ export const teamMembers = [
             },
             {
                 name: "Self-made 3D Printer",
+            },
+            {
+                name: "Smart Fridge",
+                link: 'https://drive.google.com/drive/folders/1Rx6soLrsUmhCqM45BhdIxT6KlD43HZLu',
             }
         ]
     },
     {
         name: 'Ignas Mikolaitis',
-        role: 'Software Engineer, Robotics & AI/ML Specialist',
+        role: 'Software Engineer, Mechatronics, Robotics & AI/ML Specialist',
         email: 'mikolaitis.ignas@gmail.com',
         image: ignasImage,
         social: {
@@ -207,6 +212,60 @@ export const teamMembers = [
             "dronedetection",
         ],
         personalProjects: []
+    },
+    {
+        name: 'Julius Barauskas',
+        role: 'Manufacturing, IT & Robotics Specialist',
+        email: 'jbarauskas0@gmail.com',
+        image: juliusImage,
+        social: {
+            facebook: 'https://www.facebook.com/julius.hg.9',
+        },
+        badges: [
+            {
+                label: "Kaunas Makerspace",
+                image: makerspaceBadge,
+                link: "https://makerspace.lt/"
+            },
+            {
+                label: "KTU - Software Engineering",
+                image: ktuBadge,
+                link: "https://admissions.ktu.edu/programme/b-software-engineering/"
+            }
+        ],
+        description: "Julius Barauskas is a dynamic and multifaceted specialist with expertise spanning Manufacturing, IT, and Robotics. His diverse skill set and hands-on experience make him a valuable asset in any technical environment.",
+        skills:  [
+            'CNC machining', '3D Modeling (Fusion 360)', 'Electrical Engineering', 'Software Engineering', 'Robotics', 'IoT', 'Embedded Systems',
+        ],
+        tclProjects: [
+            "cloudseeding",
+            "thunderbee",
+            "rocketfuelautomation",
+            "dronedetection",
+        ],
+    },
+        {
+        name: 'Dominykas Leknickas',
+        role: '3D Modeling & Mechanics Specialist',
+        email: 'dominykasleknickas@gmail.com',
+        image: dominykaslImage,
+        social: {
+            facebook: 'https://www.facebook.com/dominykas.leknickas',
+        },
+        badges: [
+            {
+                label: "KTU",
+                image: ktuBadge,
+                link: "https://admissions.ktu.edu/programme/b-software-engineering/"
+            }
+        ],
+        description: "Dominykas Leknickas is a talented 3D modeling and mechanics specialist with a strong background in engineering. His hands-on experience and creative approach make him a valuable asset to any project.",
+        skills:  [
+            '3D Modeling (Fusion 360, AutoCad)', 'Mechanics', 'Material Science', '3D Printing'
+        ],
+        tclProjects: [
+            "rocketfuelautomation", "cansat1",
+        ],
     },
 ];
 
