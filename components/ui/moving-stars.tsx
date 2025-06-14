@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
-const STAR_COLOR = '#fff';
+const STAR_COLOR = "#fff";
 const STAR_SIZE = 3;
 const STAR_MIN_SCALE = 0.2;
 const OVERFLOW_THRESHOLD = 50;
@@ -28,18 +28,19 @@ const MovingStars: React.FC = () => {
   const pointerYRef = useRef<number | null>(null);
   const velocityRef = useRef<Velocity>({ x: 0, y: 0, tx: 0, ty: 0, z: 0.0005 });
   const touchInputRef = useRef<boolean>(false);
-  
+
   const scaleRef = useRef<number>(1);
   const widthRef = useRef<number>(0);
   const heightRef = useRef<number>(0);
   const STAR_COUNT = useRef<number>(0);
   const animationFrameIdRef = useRef<number | null>(null);
 
-
   useEffect(() => {
     const canvas = canvasRef.current;
+
     if (!canvas) return;
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext("2d");
+
     if (!context) return;
 
     const generate = () => {
@@ -59,40 +60,41 @@ const MovingStars: React.FC = () => {
     };
 
     const recycleStar = (star: Star) => {
-      let direction = 'z';
+      let direction = "z";
       const vx = Math.abs(velocityRef.current.x);
       const vy = Math.abs(velocityRef.current.y);
 
       if (vx > 1 || vy > 1) {
         let axis;
+
         if (vx > vy) {
-          axis = Math.random() < vx / (vx + vy) ? 'h' : 'v';
+          axis = Math.random() < vx / (vx + vy) ? "h" : "v";
         } else {
-          axis = Math.random() < vy / (vx + vy) ? 'v' : 'h';
+          axis = Math.random() < vy / (vx + vy) ? "v" : "h";
         }
-        if (axis === 'h') {
-          direction = velocityRef.current.x > 0 ? 'l' : 'r';
+        if (axis === "h") {
+          direction = velocityRef.current.x > 0 ? "l" : "r";
         } else {
-          direction = velocityRef.current.y > 0 ? 't' : 'b';
+          direction = velocityRef.current.y > 0 ? "t" : "b";
         }
       }
-      
+
       star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
 
-      if (direction === 'z') {
+      if (direction === "z") {
         star.z = 0.1;
         star.x = Math.random() * widthRef.current;
         star.y = Math.random() * heightRef.current;
-      } else if (direction === 'l') {
+      } else if (direction === "l") {
         star.x = -OVERFLOW_THRESHOLD;
         star.y = heightRef.current * Math.random();
-      } else if (direction === 'r') {
+      } else if (direction === "r") {
         star.x = widthRef.current + OVERFLOW_THRESHOLD;
         star.y = heightRef.current * Math.random();
-      } else if (direction === 't') {
+      } else if (direction === "t") {
         star.x = widthRef.current * Math.random();
         star.y = -OVERFLOW_THRESHOLD;
-      } else if (direction === 'b') {
+      } else if (direction === "b") {
         star.x = widthRef.current * Math.random();
         star.y = heightRef.current + OVERFLOW_THRESHOLD;
       }
@@ -102,12 +104,12 @@ const MovingStars: React.FC = () => {
       scaleRef.current = window.devicePixelRatio || 1;
       widthRef.current = window.innerWidth * scaleRef.current;
       heightRef.current = window.innerHeight * scaleRef.current;
-      
-      if(canvas) {
+
+      if (canvas) {
         canvas.width = widthRef.current;
         canvas.height = heightRef.current;
       }
-      
+
       STAR_COUNT.current = (window.innerWidth + window.innerHeight) / 8;
       generate(); // Regenerate stars if count changes significantly or on first load
       starsRef.current.forEach(placeStar);
@@ -116,17 +118,26 @@ const MovingStars: React.FC = () => {
     const update = () => {
       velocityRef.current.tx *= 0.96;
       velocityRef.current.ty *= 0.96;
-      velocityRef.current.x += (velocityRef.current.tx - velocityRef.current.x) * 0.8;
-      velocityRef.current.y += (velocityRef.current.ty - velocityRef.current.y) * 0.8;
+      velocityRef.current.x +=
+        (velocityRef.current.tx - velocityRef.current.x) * 0.8;
+      velocityRef.current.y +=
+        (velocityRef.current.ty - velocityRef.current.y) * 0.8;
 
       starsRef.current.forEach((star) => {
         star.x += velocityRef.current.x * star.z;
         star.y += velocityRef.current.y * star.z;
-        star.x += (star.x - widthRef.current / 2) * velocityRef.current.z * star.z;
-        star.y += (star.y - heightRef.current / 2) * velocityRef.current.z * star.z;
+        star.x +=
+          (star.x - widthRef.current / 2) * velocityRef.current.z * star.z;
+        star.y +=
+          (star.y - heightRef.current / 2) * velocityRef.current.z * star.z;
         star.z += velocityRef.current.z;
 
-        if (star.x < -OVERFLOW_THRESHOLD || star.x > widthRef.current + OVERFLOW_THRESHOLD || star.y < -OVERFLOW_THRESHOLD || star.y > heightRef.current + OVERFLOW_THRESHOLD) {
+        if (
+          star.x < -OVERFLOW_THRESHOLD ||
+          star.x > widthRef.current + OVERFLOW_THRESHOLD ||
+          star.y < -OVERFLOW_THRESHOLD ||
+          star.y > heightRef.current + OVERFLOW_THRESHOLD
+        ) {
           recycleStar(star);
         }
       });
@@ -137,7 +148,7 @@ const MovingStars: React.FC = () => {
       context.clearRect(0, 0, widthRef.current, heightRef.current);
       starsRef.current.forEach((star) => {
         context.beginPath();
-        context.lineCap = 'round';
+        context.lineCap = "round";
         context.lineWidth = STAR_SIZE * star.z * scaleRef.current;
         context.globalAlpha = 0.5 + 0.5 * Math.random();
         context.strokeStyle = STAR_COLOR;
@@ -145,6 +156,7 @@ const MovingStars: React.FC = () => {
         context.moveTo(star.x, star.y);
         let tailX = velocityRef.current.x * 2;
         let tailY = velocityRef.current.y * 2;
+
         if (Math.abs(tailX) < 0.1) tailX = 0.5;
         if (Math.abs(tailY) < 0.1) tailY = 0.5;
         context.lineTo(star.x + tailX, star.y + tailY);
@@ -159,11 +171,17 @@ const MovingStars: React.FC = () => {
     };
 
     const movePointer = (x: number, y: number) => {
-      if (typeof pointerXRef.current === 'number' && typeof pointerYRef.current === 'number') {
+      if (
+        typeof pointerXRef.current === "number" &&
+        typeof pointerYRef.current === "number"
+      ) {
         const ox = x - pointerXRef.current;
         const oy = y - pointerYRef.current;
-        velocityRef.current.tx += (ox / 200 * scaleRef.current) * (touchInputRef.current ? 1 : -1);
-        velocityRef.current.ty += (oy / 200 * scaleRef.current) * (touchInputRef.current ? 1 : -1);
+
+        velocityRef.current.tx +=
+          (ox / 200) * scaleRef.current * (touchInputRef.current ? 1 : -1);
+        velocityRef.current.ty +=
+          (oy / 200) * scaleRef.current * (touchInputRef.current ? 1 : -1);
       }
       pointerXRef.current = x;
       pointerYRef.current = y;
@@ -186,31 +204,37 @@ const MovingStars: React.FC = () => {
     };
 
     resize(); // Initial setup
-    step();   // Start animation
+    step(); // Start animation
 
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
     if (canvas) {
-        canvas.addEventListener('mousemove', onMouseMove);
-        canvas.addEventListener('touchmove', onTouchMove, { passive: false });
-        canvas.addEventListener('touchend', onMouseLeave); // Also reset on touchend
+      canvas.addEventListener("mousemove", onMouseMove);
+      canvas.addEventListener("touchmove", onTouchMove, { passive: false });
+      canvas.addEventListener("touchend", onMouseLeave); // Also reset on touchend
     }
-    document.addEventListener('mouseleave', onMouseLeave);
+    document.addEventListener("mouseleave", onMouseLeave);
 
-    return () => { // Cleanup
+    return () => {
+      // Cleanup
       if (animationFrameIdRef.current) {
         cancelAnimationFrame(animationFrameIdRef.current);
       }
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
       if (canvas) {
-        canvas.removeEventListener('mousemove', onMouseMove);
-        canvas.removeEventListener('touchmove', onTouchMove);
-        canvas.removeEventListener('touchend', onMouseLeave);
+        canvas.removeEventListener("mousemove", onMouseMove);
+        canvas.removeEventListener("touchmove", onTouchMove);
+        canvas.removeEventListener("touchend", onMouseLeave);
       }
-      document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener("mouseleave", onMouseLeave);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0 pointer-events-none" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+    />
+  );
 };
 
 export default MovingStars;

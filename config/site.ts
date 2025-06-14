@@ -2,7 +2,8 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Thunderclap Labs",
-  description: "Developing critical technologies to solve complex global challenges.",
+  description:
+    "Developing critical technologies to solve complex global challenges.",
   navItems: [
     {
       label: "Home",
@@ -14,7 +15,7 @@ export const siteConfig = {
     },
     {
       label: "Projects",
-      href: "/gallery",
+      href: "/projects",
     },
     {
       label: "Contact",
@@ -32,7 +33,7 @@ export const siteConfig = {
     },
     {
       label: "Projects",
-      href: "/gallery",
+      href: "/projects",
     },
     {
       label: "Contact",
