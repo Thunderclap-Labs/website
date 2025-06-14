@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 
-import "./styles/globals.css"
+import "./styles/globals.css";
 
 export const metadata: Metadata = {
   title: {
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en" className="overflow-x-hidden">
+    <html suppressHydrationWarning className="overflow-x-hidden" lang="en">
       <head />
       <body
         className={clsx(
@@ -44,17 +44,16 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <Navbar />
-          <main className="relative -top-16 overflow-hidden">
-            {children}
-          </main>
-          <footer className="-mt-16 w-full flex items-center justify-center py-3">
+          <main className="relative !overflow-hidden">{children}</main>
+          <footer className="w-full flex items-center justify-center py-3">
             <Link
               className="flex items-center gap-1 text-current"
               href="/team"
               title="Thunderclap Group"
             >
               <span className="text-default-600">Powered by</span>
-              <p className="text-primary">Passion</p> <span className="text-default-600">;)</span>
+              <p className="text-primary">Passion</p>{" "}
+              <span className="text-default-600">;)</span>
             </Link>
           </footer>
         </Providers>

@@ -2,149 +2,208 @@
 
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faUsers, faCalendar, faCheckCircle, faClock, faSearch, faFilter, faSort, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLink,
+  faUsers,
+  faCalendar,
+  faCheckCircle,
+  faClock,
+  faSearch,
+  faFilter,
+  faSort,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from 'swiper/modules';
-import { Heading } from "@/components/common/heading";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { projects } from "./constants/projects";
+import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { useState, useMemo } from "react";
-import { Input, Select, SelectItem, Button, Chip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@heroui/react";
+import {
+  Input,
+  Select,
+  SelectItem,
+  Button,
+  Chip,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
+
+import { projects } from "./constants/projects";
+
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { Heading } from "@/components/common/heading";
 
 import "swiper/css";
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case 'Active':
-      return 'text-green-400';
-    case 'Completed':
-      return 'text-blue-400';
-    case 'On Hold':
-      return 'text-yellow-400';
+    case "Active":
+      return "text-green-400";
+    case "Completed":
+      return "text-blue-400";
+    case "On Hold":
+      return "text-yellow-400";
     default:
-      return 'text-gray-400';
+      return "text-gray-400";
   }
 };
 
 const getCategoryColor = (category: string) => {
   switch (category) {
-    case 'Aerospace':
-      return 'bg-blue-500/20 text-blue-400';
-    case 'Drone Technology':
-      return 'bg-purple-500/20 text-purple-400';
-    case 'Software':
-      return 'bg-green-500/20 text-green-400';
-    case 'Hardware':
-      return 'bg-orange-500/20 text-orange-400';
-    case 'Research':
-      return 'bg-cyan-500/20 text-cyan-400';
+    case "Aerospace":
+      return "bg-blue-500/20 text-blue-400";
+    case "Chemistry":
+      return "bg-purple-500/20 text-purple-400";
+    case "Software":
+      return "bg-green-500/20 text-green-400";
+    case "Hardware":
+      return "bg-orange-500/20 text-orange-400";
+    case "Research":
+      return "bg-cyan-500/20 text-cyan-400";
+    case "AI":
+      return "bg-yellow-500/20 text-yellow-400";
     default:
-      return 'bg-gray-500/20 text-gray-400';
+      return "bg-gray-500/20 text-gray-400";
   }
 };
 
 // Function to create team member link with anchor
 const createTeamMemberLink = (memberName: string) => {
   // Convert name to a URL-friendly anchor (lowercase, replace spaces with hyphens)
-  const anchor = memberName.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+  const anchor = memberName
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+
   return `/team#${anchor}`;
 };
 
 // Get unique values for filters
 const getUniqueCategories = () => {
   const categories = new Set();
-  projects.forEach(project => {
-    project.categories.forEach(category => categories.add(category));
+
+  projects.forEach((project) => {
+    project.categories.forEach((category) => categories.add(category));
   });
+
   return Array.from(categories) as string[];
 };
 
 const getUniqueTags = () => {
   const tags = new Set();
-  projects.forEach(project => {
-    project.tags.forEach(tag => tags.add(tag));
+
+  projects.forEach((project) => {
+    project.tags.forEach((tag) => tags.add(tag));
   });
+
   return Array.from(tags) as string[];
 };
 
 const getUniqueMembers = () => {
   const members = new Set();
-  projects.forEach(project => {
-    project.teamMembers.forEach(member => members.add(member));
+
+  projects.forEach((project) => {
+    project.teamMembers.forEach((member) => members.add(member));
   });
+
   return Array.from(members) as string[];
 };
 
 const sortOptions = [
-  { key: 'name', label: 'Name (A-Z)' },
-  { key: 'nameDesc', label: 'Name (Z-A)' },
-  { key: 'dateNew', label: 'Newest First' },
-  { key: 'dateOld', label: 'Oldest First' },
-  { key: 'status', label: 'Status (Active First)' },
-  { key: 'teamSize', label: 'Team Size' },
-  { key: 'techCount', label: 'Technology Count' }
+  { key: "name", label: "Name (A-Z)" },
+  { key: "nameDesc", label: "Name (Z-A)" },
+  { key: "dateNew", label: "Newest First" },
+  { key: "dateOld", label: "Oldest First" },
+  { key: "status", label: "Status (Active First)" },
+  { key: "teamSize", label: "Team Size" },
+  { key: "techCount", label: "Technology Count" },
 ];
 
 export default function ProjectsPage() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [selectedStatus, setSelectedStatus] = useState<string>("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState('dateNew');
+  const [sortBy, setSortBy] = useState("status");
   const [showActiveOnly, setShowActiveOnly] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Filter and sort projects
   const filteredAndSortedProjects = useMemo(() => {
-    let filtered = projects.filter(project => {
+    let filtered = projects.filter((project) => {
       // Search filter
-      const matchesSearch = !searchQuery || 
+      const matchesSearch =
+        !searchQuery ||
         project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+        project.tags.some((tag) =>
+          tag.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
 
       // Category filter
-      const matchesCategory = selectedCategories.length === 0 || 
-        selectedCategories.some(cat => project.categories.includes(cat as any));
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        selectedCategories.some((cat) =>
+          project.categories.includes(cat as any),
+        );
 
       // Status filter
-      const matchesStatus = !selectedStatus || project.status === selectedStatus;
+      const matchesStatus =
+        !selectedStatus || project.status === selectedStatus;
 
       // Tags filter
-      const matchesTags = selectedTags.length === 0 || 
-        selectedTags.some(tag => project.tags.includes(tag));
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.some((tag) => project.tags.includes(tag));
 
       // Members filter
-      const matchesMembers = selectedMembers.length === 0 || 
-        selectedMembers.some(member => project.teamMembers.includes(member));
+      const matchesMembers =
+        selectedMembers.length === 0 ||
+        selectedMembers.some((member) => project.teamMembers.includes(member));
 
       // Active only filter
       const matchesActive = !showActiveOnly || project.active;
 
-      return matchesSearch && matchesCategory && matchesStatus && matchesTags && matchesMembers && matchesActive;
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesStatus &&
+        matchesTags &&
+        matchesMembers &&
+        matchesActive
+      );
     });
 
     // Sort projects
     filtered.sort((a, b) => {
       switch (sortBy) {
-        case 'name':
+        case "name":
           return a.name.localeCompare(b.name);
-        case 'nameDesc':
+        case "nameDesc":
           return b.name.localeCompare(a.name);
-        case 'dateNew':
-          return new Date(b.startDate || '').getTime() - new Date(a.startDate || '').getTime();
-        case 'dateOld':
-          return new Date(a.startDate || '').getTime() - new Date(b.startDate || '').getTime();
-        case 'status':
-          if (a.status === 'Active' && b.status !== 'Active') return -1;
-          if (b.status === 'Active' && a.status !== 'Active') return 1;
+        case "dateNew":
+          return (
+            new Date(b.startDate || "").getTime() -
+            new Date(a.startDate || "").getTime()
+          );
+        case "dateOld":
+          return (
+            new Date(a.startDate || "").getTime() -
+            new Date(b.startDate || "").getTime()
+          );
+        case "status":
+          if (a.status === "Active" && b.status !== "Active") return -1;
+          if (b.status === "Active" && a.status !== "Active") return 1;
+
           return a.status.localeCompare(b.status);
-        case 'teamSize':
+        case "teamSize":
           return b.teamMembers.length - a.teamMembers.length;
-        case 'techCount':
+        case "techCount":
           return b.tags.length - a.tags.length;
         default:
           return 0;
@@ -152,28 +211,42 @@ export default function ProjectsPage() {
     });
 
     return filtered;
-  }, [projects, searchQuery, selectedCategories, selectedStatus, selectedTags, selectedMembers, sortBy, showActiveOnly]);
+  }, [
+    projects,
+    searchQuery,
+    selectedCategories,
+    selectedStatus,
+    selectedTags,
+    selectedMembers,
+    sortBy,
+    showActiveOnly,
+  ]);
 
   // Clear all filters
   const clearFilters = () => {
-    setSearchQuery('');
+    setSearchQuery("");
     setSelectedCategories([]);
-    setSelectedStatus('');
+    setSelectedStatus("");
     setSelectedTags([]);
     setSelectedMembers([]);
     setShowActiveOnly(false);
   };
 
-  const hasActiveFilters = searchQuery || selectedCategories.length > 0 || selectedStatus || 
-    selectedTags.length > 0 || selectedMembers.length > 0 || showActiveOnly;
+  const hasActiveFilters =
+    searchQuery ||
+    selectedCategories.length > 0 ||
+    selectedStatus ||
+    selectedTags.length > 0 ||
+    selectedMembers.length > 0 ||
+    showActiveOnly;
 
   return (
     <div className="flex flex-col items-center justify-start text-center min-h-screen">
-        <ShootingStars />
+      <ShootingStars />
       <div className="relative z-10 max-w-7xl container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 h-full flex flex-col">
         <Heading
-          title="Our Projects"
           subtitle="Discover the innovative solutions and cutting-edge technologies we're developing to shape the future of aerospace, defense, and atmospheric sciences."
+          title="Our Projects"
         />
 
         {/* Filters and Controls */}
@@ -183,66 +256,77 @@ export default function ProjectsPage() {
             {/* Search Bar - Full width on mobile, flex-1 on desktop */}
             <div className="flex-1 w-full">
               <Input
-                placeholder="Search projects, descriptions, or technologies..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                startContent={<FontAwesomeIcon icon={faSearch} className="text-neutral-400" />}
                 classNames={{
                   input: "bg-neutral-800 border-neutral-700",
                   inputWrapper: "bg-neutral-800 border-neutral-700 w-full",
                 }}
+                placeholder="Search projects, descriptions, or technologies..."
+                startContent={
+                  <FontAwesomeIcon
+                    className="text-neutral-400"
+                    icon={faSearch}
+                  />
+                }
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            
+
             {/* All controls in one line - take remaining space */}
             <div className="flex gap-2 items-center flex-wrap lg:flex-nowrap flex-shrink-0">
               {/* Active Only Button */}
               <Button
+                className={
+                  showActiveOnly
+                    ? "bg-green-600 text-white"
+                    : "bg-neutral-800 border-neutral-700 text-neutral-200"
+                }
                 size="sm"
                 variant={showActiveOnly ? "solid" : "bordered"}
                 onPress={() => setShowActiveOnly(!showActiveOnly)}
-                className={showActiveOnly ? "bg-green-600 text-white" : "bg-neutral-800 border-neutral-700 text-neutral-200"}
               >
                 Active Only
               </Button>
 
               {/* Filters Button */}
               <Button
-                onPress={onOpen}
-                variant="bordered"
                 className="bg-neutral-800 border-neutral-700 text-neutral-200"
                 startContent={<FontAwesomeIcon icon={faFilter} />}
+                variant="bordered"
+                onPress={onOpen}
               >
-                Filters {hasActiveFilters && `(${[selectedCategories.length, selectedTags.length, selectedMembers.length, selectedStatus ? 1 : 0, showActiveOnly ? 1 : 0].reduce((a, b) => a + b, 0)})`}
+                Filters{" "}
+                {hasActiveFilters &&
+                  `(${[selectedCategories.length, selectedTags.length, selectedMembers.length, selectedStatus ? 1 : 0, showActiveOnly ? 1 : 0].reduce((a, b) => a + b, 0)})`}
               </Button>
-              
+
               {/* Sort Dropdown */}
               <Select
-                placeholder="Sort by"
-                selectedKeys={[sortBy]}
-                onSelectionChange={(keys) => setSortBy(Array.from(keys)[0] as string)}
                 className="w-48 flex-shrink-0"
                 classNames={{
                   trigger: "bg-neutral-800 border-neutral-700",
-                  value: "text-neutral-200"
+                  value: "text-neutral-200",
                 }}
+                placeholder="Sort by"
+                selectedKeys={[sortBy]}
                 startContent={<FontAwesomeIcon icon={faSort} />}
+                onSelectionChange={(keys) =>
+                  setSortBy(Array.from(keys)[0] as string)
+                }
               >
                 {sortOptions.map((option) => (
-                  <SelectItem key={option.key}>
-                    {option.label}
-                  </SelectItem>
+                  <SelectItem key={option.key}>{option.label}</SelectItem>
                 ))}
               </Select>
 
               {/* Clear All and Results Count */}
               {hasActiveFilters && (
                 <Button
+                  className="text-red-400 hover:bg-red-400/10"
                   size="sm"
+                  startContent={<FontAwesomeIcon icon={faTimes} />}
                   variant="light"
                   onPress={clearFilters}
-                  className="text-red-400 hover:bg-red-400/10"
-                  startContent={<FontAwesomeIcon icon={faTimes} />}
                 >
                   Clear All
                 </Button>
@@ -257,45 +341,55 @@ export default function ProjectsPage() {
           {/* Active Filters Display */}
           {hasActiveFilters && (
             <div className="flex flex-wrap gap-2 w-full">
-              {selectedCategories.map(category => (
+              {selectedCategories.map((category) => (
                 <Chip
                   key={category}
-                  onClose={() => setSelectedCategories(prev => prev.filter(c => c !== category))}
-                  variant="flat"
                   color="primary"
                   size="sm"
+                  variant="flat"
+                  onClose={() =>
+                    setSelectedCategories((prev) =>
+                      prev.filter((c) => c !== category),
+                    )
+                  }
                 >
                   Category: {category}
                 </Chip>
               ))}
-              {selectedTags.map(tag => (
+              {selectedTags.map((tag) => (
                 <Chip
                   key={tag}
-                  onClose={() => setSelectedTags(prev => prev.filter(t => t !== tag))}
-                  variant="flat"
                   color="secondary"
                   size="sm"
+                  variant="flat"
+                  onClose={() =>
+                    setSelectedTags((prev) => prev.filter((t) => t !== tag))
+                  }
                 >
                   Tech: {tag}
                 </Chip>
               ))}
-              {selectedMembers.map(member => (
+              {selectedMembers.map((member) => (
                 <Chip
                   key={member}
-                  onClose={() => setSelectedMembers(prev => prev.filter(m => m !== member))}
-                  variant="flat"
                   color="warning"
                   size="sm"
+                  variant="flat"
+                  onClose={() =>
+                    setSelectedMembers((prev) =>
+                      prev.filter((m) => m !== member),
+                    )
+                  }
                 >
                   Member: {member}
                 </Chip>
               ))}
               {selectedStatus && (
                 <Chip
-                  onClose={() => setSelectedStatus('')}
-                  variant="flat"
                   color="success"
                   size="sm"
+                  variant="flat"
+                  onClose={() => setSelectedStatus("")}
                 >
                   Status: {selectedStatus}
                 </Chip>
@@ -311,13 +405,17 @@ export default function ProjectsPage() {
               <div className="col-span-full flex items-center justify-center h-full">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🔍</div>
-                  <h3 className="text-xl font-semibold text-neutral-300 mb-2">No projects found</h3>
-                  <p className="text-neutral-500">Try adjusting your filters or search terms</p>
+                  <h3 className="text-xl font-semibold text-neutral-300 mb-2">
+                    No projects found
+                  </h3>
+                  <p className="text-neutral-500">
+                    Try adjusting your filters or search terms
+                  </p>
                   {hasActiveFilters && (
                     <Button
-                      onPress={clearFilters}
-                      variant="bordered"
                       className="mt-4"
+                      variant="bordered"
+                      onPress={clearFilters}
                     >
                       Clear Filters
                     </Button>
@@ -329,7 +427,9 @@ export default function ProjectsPage() {
                 <div
                   key={project.id}
                   className={`featured-card white-feature bg-transparent p-[2px] rounded-xl text-left transition-all duration-300 ease-in-out h-full ${
-                    hoveredProject === project.id ? 'scale-105 z-10' : 'hover:scale-102'
+                    hoveredProject === project.id
+                      ? "scale-105 z-10"
+                      : "hover:scale-102"
                   }`}
                   onMouseEnter={() => setHoveredProject(project.id)}
                   onMouseLeave={() => setHoveredProject(null)}
@@ -337,21 +437,23 @@ export default function ProjectsPage() {
                   <div className="bg-neutral-800 backdrop-blur-sm rounded-xl shadow-xl h-full flex flex-col overflow-hidden">
                     {/* Project Image */}
                     {project.image && (
-                      <div className={`relative overflow-hidden transition-all duration-500 ease-in-out ${
-                        hoveredProject === project.id ? 'h-80' : 'h-48'
-                      }`}>
+                      <div
+                        className={`relative overflow-hidden transition-all duration-500 ease-in-out ${
+                          hoveredProject === project.id ? "h-80" : "h-48"
+                        }`}
+                      >
                         <Image
-                          src={project.image}
-                          alt={project.name}
                           fill
+                          alt={project.name}
                           className="object-cover transition-transform duration-300 hover:scale-110"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          src={project.image}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 to-transparent opacity-60" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 to-transparent opacity-90" />
                         {project.active && (
                           <div className="absolute top-4 right-4">
                             <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
-                              <span className="w-2 h-2 bg-green-500 rounded-full mr-1.5"></span>
+                              <span className="w-2 h-2 bg-green-500 rounded-full mr-1.5" />
                               Active
                             </span>
                           </div>
@@ -363,60 +465,96 @@ export default function ProjectsPage() {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <h2 className="text-xl md:text-2xl font-bold text-neutral-100">{project.name}</h2>
+                            <h2 className="text-xl md:text-2xl font-bold text-neutral-100">
+                              {project.name}
+                            </h2>
                             {project.active && !project.image && (
-                              <span className="inline-block w-2 h-2 bg-green-500 rounded-full" title="Active Project"></span>
+                              <span
+                                className="inline-block w-2 h-2 bg-green-500 rounded-full"
+                                title="Active Project"
+                              />
                             )}
                           </div>
                           <div className="flex items-center gap-2 mb-2 flex-wrap">
                             {/* Multiple Categories */}
                             {project.categories.map((category, index) => (
-                              <span key={index} className={`px-2 py-1 text-xs rounded-md ${getCategoryColor(category)}`}>
+                              <span
+                                key={index}
+                                className={`px-2 py-1 text-xs rounded-md ${getCategoryColor(category)}`}
+                              >
                                 {category}
                               </span>
                             ))}
                             <div className="flex items-center gap-1 text-sm text-neutral-400">
-                              <FontAwesomeIcon icon={project.status === 'Active' ? faCheckCircle : faClock} className="w-3 h-3" />
-                              <span className={getStatusColor(project.status)}>{project.status}</span>
+                              <FontAwesomeIcon
+                                className="w-3 h-3"
+                                icon={
+                                  project.status === "Active"
+                                    ? faCheckCircle
+                                    : faClock
+                                }
+                              />
+                              <span className={getStatusColor(project.status)}>
+                                {project.status}
+                              </span>
                             </div>
                           </div>
                           {project.startDate && (
                             <p className="text-xs text-neutral-400 mb-2">
-                              <FontAwesomeIcon icon={faCalendar} className="mr-2" />
-                              Started: {new Date(project.startDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+                              <FontAwesomeIcon
+                                className="mr-2"
+                                icon={faCalendar}
+                              />
+                              Started:{" "}
+                              {new Date(project.startDate).toLocaleDateString(
+                                "en-US",
+                                { year: "numeric", month: "long" },
+                              )}
                             </p>
                           )}
                         </div>
                         {project.link && (
-                          <Link href={project.link} isExternal className="text-neutral-400 hover:text-primary-400 ml-4">
+                          <Link
+                            isExternal
+                            className="text-neutral-400 hover:text-primary-400 ml-4"
+                            href={project.link}
+                          >
                             <FontAwesomeIcon icon={faLink} size="lg" />
                           </Link>
                         )}
                       </div>
 
-                      <p className="text-neutral-300 text-sm mb-4 flex-grow">{project.description}</p>
+                      <p className="text-neutral-300 text-sm mb-4 flex-grow">
+                        {project.description}
+                      </p>
 
                       {/* Standard content container - fixed overflow issues */}
                       <div>
                         {/* Technology Tags - fixed cutoff */}
                         <div className="mb-4">
                           <h3 className="font-semibold text-neutral-200 mb-2 text-sm">
-                            Technologies: <span className="text-primary-400">{project.tags.length}</span>
+                            Technologies:{" "}
+                            <span className="text-primary-400">
+                              {project.tags.length}
+                            </span>
                           </h3>
                           <div className="overflow-visible">
                             <Swiper
-                              modules={[Autoplay]}
-                              spaceBetween={10}
-                              slidesPerView={'auto'}
-                              loop={project.tags.length > 3}
                               autoplay={{
                                 delay: 4000,
                                 disableOnInteraction: false,
                               }}
                               className="h-7"
+                              loop={project.tags.length > 3}
+                              modules={[Autoplay]}
+                              slidesPerView={"auto"}
+                              spaceBetween={10}
                             >
-                              {project.tags.map(tag => (
-                                <SwiperSlide key={tag} style={{ width: 'auto' }}>
+                              {project.tags.map((tag) => (
+                                <SwiperSlide
+                                  key={tag}
+                                  style={{ width: "auto" }}
+                                >
                                   <span className="bg-primary-500/20 text-primary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap">
                                     {tag}
                                   </span>
@@ -430,24 +568,36 @@ export default function ProjectsPage() {
                         {project.teamMembers.length > 0 && (
                           <div>
                             <h3 className="font-semibold text-neutral-200 mb-2 text-sm">
-                              <FontAwesomeIcon icon={faUsers} className="mr-2" />
-                              Team: <span className="text-secondary-400">{project.teamMembers.length}</span>
+                              <FontAwesomeIcon
+                                className="mr-2"
+                                icon={faUsers}
+                              />
+                              Team:{" "}
+                              <span className="text-secondary-400">
+                                {project.teamMembers.length}
+                              </span>
                             </h3>
                             <div className="overflow-visible">
                               <Swiper
-                                modules={[Autoplay]}
-                                spaceBetween={10}
-                                slidesPerView={'auto'}
-                                loop={project.teamMembers.length > 2}
                                 autoplay={{
                                   delay: 5000,
                                   disableOnInteraction: false,
                                 }}
                                 className="h-7"
+                                loop={project.teamMembers.length > 2}
+                                modules={[Autoplay]}
+                                slidesPerView={"auto"}
+                                spaceBetween={10}
                               >
                                 {project.teamMembers.map((member, i) => (
-                                  <SwiperSlide key={i} style={{ width: 'auto' }}>
-                                    <Link href={createTeamMemberLink(member)} className="block">
+                                  <SwiperSlide
+                                    key={i}
+                                    style={{ width: "auto" }}
+                                  >
+                                    <Link
+                                      className="block"
+                                      href={createTeamMemberLink(member)}
+                                    >
                                       <span className="bg-secondary-500/20 text-secondary-500 px-3 py-1.5 text-xs rounded-md whitespace-nowrap hover:bg-secondary-500/40 transition-colors cursor-pointer">
                                         {member}
                                       </span>
@@ -492,33 +642,42 @@ export default function ProjectsPage() {
         </div>
 
         {/* Advanced Filters Modal */}
-        <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+        <Modal isOpen={isOpen} size="2xl" onClose={onClose}>
           <ModalContent>
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
                   <h3 className="text-xl font-semibold">Advanced Filters</h3>
-                  <p className="text-sm text-neutral-500">Filter projects by categories, technologies, team members, and more</p>
+                  <p className="text-sm text-neutral-500">
+                    Filter projects by categories, technologies, team members,
+                    and more
+                  </p>
                 </ModalHeader>
                 <ModalBody>
                   <div className="space-y-6">
                     {/* Categories Filter */}
                     <div>
-                      <label className="block text-sm font-medium mb-2">Categories</label>
-                      <div className="flex flex-wrap gap-2">
-                        {getUniqueCategories().map(category => (
+                      <div id="categories-label" className="block text-sm font-medium mb-2">
+                        Categories
+                      </div>
+                      <div aria-labelledby="categories-label" className="flex flex-wrap gap-2">
+                        {getUniqueCategories().map((category) => (
                           <Button
                             key={category}
+                            className={getCategoryColor(category)}
                             size="sm"
-                            variant={selectedCategories.includes(category) ? "solid" : "bordered"}
+                            variant={
+                              selectedCategories.includes(category)
+                                ? "solid"
+                                : "bordered"
+                            }
                             onPress={() => {
-                              setSelectedCategories(prev => 
-                                prev.includes(category) 
-                                  ? prev.filter(c => c !== category)
-                                  : [...prev, category]
+                              setSelectedCategories((prev) =>
+                                prev.includes(category)
+                                  ? prev.filter((c) => c !== category)
+                                  : [...prev, category],
                               );
                             }}
-                            className={getCategoryColor(category)}
                           >
                             {category}
                           </Button>
@@ -528,11 +687,18 @@ export default function ProjectsPage() {
 
                     {/* Status Filter */}
                     <div>
-                      <label className="block text-sm font-medium mb-2">Status</label>
+                      <label htmlFor="status-select" className="block text-sm font-medium mb-2">
+                        Status
+                      </label>
                       <Select
+                        id="status-select"
                         placeholder="Select status"
                         selectedKeys={selectedStatus ? [selectedStatus] : []}
-                        onSelectionChange={(keys) => setSelectedStatus(Array.from(keys)[0] as string || '')}
+                        onSelectionChange={(keys) =>
+                          setSelectedStatus(
+                            (Array.from(keys)[0] as string) || "",
+                          )
+                        }
                       >
                         <SelectItem key="Active">Active</SelectItem>
                         <SelectItem key="Completed">Completed</SelectItem>
@@ -542,22 +708,28 @@ export default function ProjectsPage() {
 
                     {/* Technologies Filter */}
                     <div>
-                      <label className="block text-sm font-medium mb-2">Technologies ({selectedTags.length} selected)</label>
-                      <div className="max-h-40 overflow-y-auto">
+                      <div id="technologies-label" className="block text-sm font-medium mb-2">
+                        Technologies ({selectedTags.length} selected)
+                      </div>
+                      <div aria-labelledby="technologies-label" className="max-h-40 overflow-y-auto">
                         <div className="flex flex-wrap gap-2">
-                          {getUniqueTags().map(tag => (
+                          {getUniqueTags().map((tag) => (
                             <Button
                               key={tag}
+                              className="text-xs"
                               size="sm"
-                              variant={selectedTags.includes(tag) ? "solid" : "bordered"}
+                              variant={
+                                selectedTags.includes(tag)
+                                  ? "solid"
+                                  : "bordered"
+                              }
                               onPress={() => {
-                                setSelectedTags(prev => 
-                                  prev.includes(tag) 
-                                    ? prev.filter(t => t !== tag)
-                                    : [...prev, tag]
+                                setSelectedTags((prev) =>
+                                  prev.includes(tag)
+                                    ? prev.filter((t) => t !== tag)
+                                    : [...prev, tag],
                                 );
                               }}
-                              className="text-xs"
                             >
                               {tag}
                             </Button>
@@ -568,18 +740,24 @@ export default function ProjectsPage() {
 
                     {/* Team Members Filter */}
                     <div>
-                      <label className="block text-sm font-medium mb-2">Team Members ({selectedMembers.length} selected)</label>
-                      <div className="flex flex-wrap gap-2">
-                        {getUniqueMembers().map(member => (
+                      <div id="team-members-label" className="block text-sm font-medium mb-2">
+                        Team Members ({selectedMembers.length} selected)
+                      </div>
+                      <div aria-labelledby="team-members-label" className="flex flex-wrap gap-2">
+                        {getUniqueMembers().map((member) => (
                           <Button
                             key={member}
                             size="sm"
-                            variant={selectedMembers.includes(member) ? "solid" : "bordered"}
+                            variant={
+                              selectedMembers.includes(member)
+                                ? "solid"
+                                : "bordered"
+                            }
                             onPress={() => {
-                              setSelectedMembers(prev => 
-                                prev.includes(member) 
-                                  ? prev.filter(m => m !== member)
-                                  : [...prev, member]
+                              setSelectedMembers((prev) =>
+                                prev.includes(member)
+                                  ? prev.filter((m) => m !== member)
+                                  : [...prev, member],
                               );
                             }}
                           >

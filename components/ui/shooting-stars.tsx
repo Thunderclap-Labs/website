@@ -1,6 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
 import React, { useEffect, useState, useRef, useCallback } from "react";
+
+import { cn } from "@/lib/utils";
 
 interface ShootingStar {
   id: number;
@@ -58,38 +59,42 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
         case 0: // Top edge, moving towards bottom-right
           x = offsetRatio * containerWidth;
           y = 0;
-          angle = 45; 
+          angle = 45;
           break;
         case 1: // Right edge, moving towards bottom-left
           x = containerWidth;
           y = offsetRatio * containerHeight;
-          angle = 135; 
+          angle = 135;
           break;
         case 2: // Bottom edge, moving towards top-left
           x = offsetRatio * containerWidth;
           y = containerHeight;
-          angle = 225; 
+          angle = 225;
           break;
         case 3: // Left edge, moving towards top-right
         default:
           x = 0;
           y = offsetRatio * containerHeight;
-          angle = 315; 
+          angle = 315;
           break;
       }
+
       return { x, y, angle };
     },
-    []
+    [],
   );
 
   useEffect(() => {
     const currentSvgRef = svgRef.current;
+
     if (!currentSvgRef) return;
 
-    if (typeof window === 'undefined') { // Guard against SSR
-        // Optionally set a default size or handle SSR case if needed
-        setContainerSize({ width: 0, height: 0 }); // Or some default non-zero if it helps avoid other issues
-        return;
+    if (typeof window === "undefined") {
+      // Guard against SSR
+      // Optionally set a default size or handle SSR case if needed
+      setContainerSize({ width: 0, height: 0 }); // Or some default non-zero if it helps avoid other issues
+
+      return;
     }
 
     const resizeObserver = new ResizeObserver((entries) => {
@@ -121,20 +126,22 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
 
     const numStarsToCreate = Math.max(
       1,
-      Math.floor(containerSize.height / starDensity)
+      Math.floor(containerSize.height / starDensity),
     );
 
     setStars((prevStars) => {
       const newStarsArray: ShootingStar[] = [];
+
       for (let i = 0; i < numStarsToCreate; i++) {
-        const initialDelay =
-          Math.random() * (maxDelay - minDelay) + minDelay;
+        const initialDelay = Math.random() * (maxDelay - minDelay) + minDelay;
+
         if (prevStars[i] && prevStars[i].id) {
           // Try to reuse existing star objects if array size changes
           const { x, y, angle } = getRandomStartPoint(
             containerSize.width,
-            containerSize.height
+            containerSize.height,
           );
+
           newStarsArray.push({
             ...prevStars[i],
             x,
@@ -149,8 +156,9 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
         } else {
           const { x, y, angle } = getRandomStartPoint(
             containerSize.width,
-            containerSize.height
+            containerSize.height,
           );
+
           newStarsArray.push({
             id: Date.now() + i + Math.random(), // More unique ID
             x,
@@ -164,6 +172,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
           });
         }
       }
+
       return newStarsArray;
     });
   }, [
@@ -189,11 +198,13 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
         prevStars.map((star) => {
           if (!star.isActive) {
             const newDelay = star.delayUntilActive - deltaTime;
+
             if (newDelay <= 0) {
               const { x, y, angle } = getRandomStartPoint(
                 containerSize.width,
-                containerSize.height
+                containerSize.height,
               );
+
               return {
                 ...star,
                 x,
@@ -206,6 +217,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
                 delayUntilActive: 0,
               };
             }
+
             return { ...star, delayUntilActive: newDelay };
           }
 
@@ -223,6 +235,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
           const newScale = 1 + newDistance / 200; // Adjust scaling factor as needed
 
           const buffer = starWidth * newScale * 1.5; // Buffer to ensure it's fully off-screen
+
           if (
             newX < -buffer ||
             newX > containerSize.width + buffer ||
@@ -232,11 +245,19 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
             return {
               ...star,
               isActive: false,
-              delayUntilActive: Math.random() * (maxDelay - minDelay) + minDelay,
+              delayUntilActive:
+                Math.random() * (maxDelay - minDelay) + minDelay,
             };
           }
-          return { ...star, x: newX, y: newY, scale: newScale, distance: newDistance };
-        })
+
+          return {
+            ...star,
+            x: newX,
+            y: newY,
+            scale: newScale,
+            distance: newDistance,
+          };
+        }),
       );
       // lastFrameTime = currentTime; // This should be outside setStars to avoid stale closure
       animationFrameId = requestAnimationFrame(animate);
@@ -246,17 +267,20 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     let frameTime = performance.now();
     const loop = (currentTime: number) => {
       const deltaTime = currentTime - frameTime;
+
       frameTime = currentTime;
       // Call the main animation logic with deltaTime
       setStars((prevStars) =>
         prevStars.map((star) => {
           if (!star.isActive) {
             const newDelay = star.delayUntilActive - deltaTime;
+
             if (newDelay <= 0) {
               const { x, y, angle } = getRandomStartPoint(
                 containerSize.width,
-                containerSize.height
+                containerSize.height,
               );
+
               return {
                 ...star,
                 x,
@@ -269,22 +293,27 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
                 delayUntilActive: 0,
               };
             }
+
             return { ...star, delayUntilActive: newDelay };
           }
 
           const normalizedDeltaTimeFactor = deltaTime / (1000 / 60); // Factor relative to 60 FPS frame time
           const newX =
             star.x +
-            star.speed * Math.cos((star.angle * Math.PI) / 180) *
+            star.speed *
+              Math.cos((star.angle * Math.PI) / 180) *
               normalizedDeltaTimeFactor;
           const newY =
             star.y +
-            star.speed * Math.sin((star.angle * Math.PI) / 180) *
+            star.speed *
+              Math.sin((star.angle * Math.PI) / 180) *
               normalizedDeltaTimeFactor;
-          const newDistance = star.distance + star.speed * normalizedDeltaTimeFactor;
+          const newDistance =
+            star.distance + star.speed * normalizedDeltaTimeFactor;
           const newScale = 1 + newDistance / 200;
 
           const buffer = starWidth * newScale * 1.5;
+
           if (
             newX < -buffer ||
             newX > containerSize.width + buffer ||
@@ -294,16 +323,25 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
             return {
               ...star,
               isActive: false,
-              delayUntilActive: Math.random() * (maxDelay - minDelay) + minDelay,
+              delayUntilActive:
+                Math.random() * (maxDelay - minDelay) + minDelay,
             };
           }
-          return { ...star, x: newX, y: newY, scale: newScale, distance: newDistance };
-        })
+
+          return {
+            ...star,
+            x: newX,
+            y: newY,
+            scale: newScale,
+            distance: newDistance,
+          };
+        }),
       );
       animationFrameId = requestAnimationFrame(loop);
     };
 
     animationFrameId = requestAnimationFrame(loop);
+
     return () => cancelAnimationFrame(animationFrameId);
   }, [
     containerSize,
@@ -318,22 +356,22 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
   return (
     <svg
       ref={svgRef}
-      className={cn("w-full h-full absolute inset-0 pointer-events-none", className)} // Added pointer-events-none
+      className={cn(
+        "w-full h-full absolute inset-0 pointer-events-none",
+        className,
+      )} // Added pointer-events-none
     >
       <defs>
         <linearGradient
           id="shooting-star-gradient"
           x1="0%"
-          y1="0%"
           x2="100%"
+          y1="0%"
           y2="0%"
         >
           {" "}
           {/* Adjusted gradient for horizontal trail */}
-          <stop
-            offset="0%"
-            style={{ stopColor: trailColor, stopOpacity: 0 }}
-          />
+          <stop offset="0%" style={{ stopColor: trailColor, stopOpacity: 0 }} />
           <stop
             offset="100%"
             style={{ stopColor: starColor, stopOpacity: 1 }}
@@ -345,12 +383,12 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
         .map((star) => (
           <rect
             key={star.id}
+            fill="url(#shooting-star-gradient)"
+            height={starHeight} // This is the thickness of the trail
+            transform={`rotate(${star.angle}, ${star.x}, ${star.y})`} // Rotate around the star's actual point
+            width={starWidth * star.scale} // This is the length of the trail
             x={star.x}
             y={star.y - starHeight / 2} // Center the trail vertically
-            width={starWidth * star.scale} // This is the length of the trail
-            height={starHeight} // This is the thickness of the trail
-            fill="url(#shooting-star-gradient)"
-            transform={`rotate(${star.angle}, ${star.x}, ${star.y})`} // Rotate around the star's actual point
           />
         ))}
     </svg>
