@@ -10,7 +10,7 @@ import "aos/dist/aos.css";
 // Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle, faCloudRain, faShieldAlt, faEye, faSeedling, faTint, faSmog } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle, faCloudRain, faShieldAlt, faEye, faSeedling, faTint, faSmog, faBullseye, faBolt, faBatteryHalf, faRocket, faSatelliteDish, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
@@ -195,12 +195,12 @@ export default function Home() {
             <div className="w-1.5 h-2 bg-neutral-400 group-hover:bg-white rounded-full absolute top-[8px] left-1/2 -translate-x-1/2 animate-mouse-wheel transition-colors duration-300" />
           </div>
         </div>
-        <div className="absolute bottom-4 mx-6 left-0 right-0 flex justify-center items-center p-4">
+        <div className="absolute bottom-0 mx-6 left-0 right-0 flex justify-center items-center p-4">
           <div className="w-full max-w-7xl opacity-60 relative">
             <div className="relative overflow-hidden">
-              {/* Fade overlay masks */}
-              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+              {/* Fade overlay masks - adjusted for mobile peeking */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
               <Swiper
                 autoplay={{
@@ -208,11 +208,18 @@ export default function Home() {
                   disableOnInteraction: false,
                 }}
                 breakpoints={{
+                  // Mobile: show 1 slide, centered, with peeking neighbors
                   320: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
+                    slidesPerView: 2,
+                    spaceBetween: 10,
                   },
+                  // Tablet: show 1 slide, centered (or adjust as needed)
                   640: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                  },
+                  // Desktop: show 4 slides
+                  768: { 
                     slidesPerView: 4,
                     spaceBetween: 30,
                   },
@@ -225,12 +232,13 @@ export default function Home() {
                 className="sponsors-swiper"
                 loop={true}
                 modules={[Autoplay]}
-                slidesPerView={4}
-                spaceBetween={40}
+                // Default slidesPerView for smallest screens, will be overridden by breakpoints
+                slidesPerView={1.2} 
+                spaceBetween={10} // Default spaceBetween for smallest screens
               >
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -241,49 +249,50 @@ export default function Home() {
                       alt="KTU Startup Space"
                       height={30}
                       src={ktustartupspace}
+                      className="object-contain" // Ensures image scales nicely
                     />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
                     data-aos-delay={isClientMobile ? 0 : 1400}
                   >
-                    <Image alt="LT Armed Forces" height={30} src={ltarmedforces} />
+                    <Image alt="LT Armed Forces" height={30} src={ltarmedforces} className="object-contain" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
                     data-aos-delay={isClientMobile ? 0 : 1600}
                   >
-                    <Image alt="PCBWay" height={30} src={pcbway} />
+                    <Image alt="PCBWay" height={30} src={pcbway} className="object-contain" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
                     data-aos-delay={isClientMobile ? 0 : 1200}
                   >
-                    <Image alt="Makerspace" height={30} src={makerspace} />
+                    <Image alt="Makerspace" height={30} src={makerspace} className="object-contain" />
                   </div>
                 </SwiperSlide>
                 {/* Duplicate slides for better loop effect */}
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -294,43 +303,44 @@ export default function Home() {
                       alt="KTU Startup Space"
                       height={30}
                       src={ktustartupspace}
+                      className="object-contain"
                     />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
                     data-aos-delay={isClientMobile ? 0 : 1400}
                   >
-                    <Image alt="LT Armed Forces" height={30} src={ltarmedforces} />
+                    <Image alt="LT Armed Forces" height={30} src={ltarmedforces} className="object-contain" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
                     data-aos-delay={isClientMobile ? 0 : 1600}
                   >
-                    <Image alt="PCBWay" height={30} src={pcbway} />
+                    <Image alt="PCBWay" height={30} src={pcbway} className="object-contain" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center max-w-48 mx-auto"
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
                     data-aos-delay={isClientMobile ? 0 : 1200}
                   >
-                    <Image alt="Kaunas Makerspace" height={30} src={makerspace} />
+                    <Image alt="Kaunas Makerspace" height={30} src={makerspace} className="object-contain" />
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -808,255 +818,177 @@ export default function Home() {
           id="thunderbee-section"
         >
           <div className="container max-w-7xl mx-auto px-4">
-            <div
-              className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#thunderbee-section" }
-                : {})}
-            >
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
-                data-aos="fade-up"
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-center">
+              <Image
+                alt="ThunderBee Drone Concept"
+                data-aos="zoom-in"
+                src={dronewireframe}
                 {...(isClientMobile === false
                   ? { "data-aos-anchor": "#thunderbee-section" }
                   : {})}
-                data-aos-delay={isClientMobile ? "0" : "100"}
-              >
-                ThunderBee: The Micro-Interceptor Drone
-              </h2>
-              <p
-                className="text-lg md:text-xl text-neutral-300"
-                data-aos="fade-up"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#thunderbee-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "200"}
-              >
-                An EUDIS hackathon winner - trusted by the Lithuanian Armed
-                Forces, ThunderBee is a novel, cost-effective countermeasure
-                responding to the challenge posed by jamming-resistant
-                fiber-optic drones.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4 md:gap-6 items-start">
-              <div
-                data-aos="fade-right"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#thunderbee-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "300"}
-              >
-                <Image
-                  alt="ThunderBee Drone Concept"
-                  className="mx-auto w-full h-auto object-contain"
-                  data-aos="zoom-in"
-                  src={dronewireframe}
-                  {...(isClientMobile === false
-                    ? { "data-aos-anchor": "#thunderbee-section" }
-                    : {})}
-                  data-aos-delay={isClientMobile ? "0" : "400"}
-                />
-                <p
-                  className="text-center mt-4 text-sm text-neutral-400"
+                data-aos-delay={isClientMobile ? "0" : "400"}
+              />
+              <div>
+                <div
                   data-aos="fade-up"
                   {...(isClientMobile === false
                     ? { "data-aos-anchor": "#thunderbee-section" }
                     : {})}
-                  data-aos-delay={isClientMobile ? "0" : "450"}
                 >
-                  Conceptual design of the ThunderBee micro-interceptor.
-                </p>
-                <div
-                  className="featured-card white-feature bg-neutral-800 p-[2px] mt-8 rounded-lg"
-                  data-aos="fade-up"
-                  {...(isClientMobile === false
-                    ? { "data-aos-anchor": "#thunderbee-section" }
-                    : {})}
-                  data-aos-delay={isClientMobile ? "0" : "500"}
-                >
-                  <div className="bg-black p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-3 text-neutral-100 text-center">
-                      Development Progress & Recognition
-                    </h3>
-                    <p className="text-neutral-300 text-center md:text-base">
-                      During intensive hackathon efforts, Team Thunderclap has
-                      conducted extensive research, identified optimal
-                      components, and designed an accurate 3D model of the
-                      ThunderBee. This project was recognized as an EUDIS
-                      hackathon winner, highlighting its innovative approach and
-                      potential, and has garnered trust from the{" "}
-                      <Link
-                        isExternal
-                        className="text-blue-400"
-                        href="https://kariuomene.lt/en"
-                      >
-                        Lithuanian Armed Forces
-                      </Link>
-                      .
-                    </p>
-                  </div>
+                  <h3
+                    className="text-3xl font-bold tracking-tight text-primary-600"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#thunderbee-section" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? "0" : "100"}
+                  >
+                    ThunderBee: The Micro-Interceptor Drone
+                  </h3>
+                  <p
+                    className="text-lg my-4 text-neutral-300"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#thunderbee-section" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? "0" : "200"}
+                  >
+                    European Union Defence Innovation Scheme (EUDIS) hackathon winner - trusted by the Lithuanian Armed Forces, ThunderBee is a novel, cost-effective countermeasure responding to the challenge posed by jamming-resistant fiber-optic drones.
+                  </p>
                 </div>
-              </div>
-
-              <div
-                className="space-y-6"
-                data-aos="fade-left"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#thunderbee-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "300"}
-              >
                 <div
-                  className="featured-card bg-neutral-800 white-feature p-[2px] rounded-lg"
                   data-aos="fade-left"
                   {...(isClientMobile === false
                     ? { "data-aos-anchor": "#thunderbee-section" }
                     : {})}
-                  data-aos-delay={isClientMobile ? "0" : "350"}
+                  data-aos-delay={isClientMobile ? "0" : "300"}
                 >
-                  <div className="bg-black p-6 rounded-lg">
-                    <h3 className="text-2xl font-semibold mb-4 text-neutral-100">
-                      Key Features
-                    </h3>
-                    <ul className="list-disc list-inside space-y-3 text-neutral-300">
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "400"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          Jamming-Immune Countermeasure:
+                  <ul className="space-y-4 text-neutral-300">
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#thunderbee-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "350"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0 mb-1">
+                        <FontAwesomeIcon 
+                          icon={faBullseye} 
+                          className="text-lg flex-shrink-0 text-primary-600" 
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600">
+                          Jamming-Immune Countermeasure<br/>
                         </span>{" "}
-                        Physically intercepts and neutralizes targets, bypassing
-                        electronic warfare limitations.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "450"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          Simple, Effective Detection:
+                        Physically intercepts and neutralizes targets, bypassing electronic warfare limitations.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#thunderbee-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "400"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faSatelliteDish}
+                          className="text-lg flex-shrink-0 text-primary-600"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          IR Detection System<br/>
                         </span>{" "}
-                        Utilizes an IR camera and a straightforward algorithm to
-                        reliably track enemy drones, even in challenging
-                        conditions like dusk or fog.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "500"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          Rapid Interception Capability:
+                        Utilizes an IR camera and straightforward algorithm to reliably track enemy drones, effective in low light conditions.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#thunderbee-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "450"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faBolt}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1" >
+                          Extreme Acceleration<br/>
                         </span>{" "}
-                        Its compact design and exceptional acceleration allow
-                        for swift response and target engagement.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  className="featured-card bg-neutral-800 white-feature p-[2px] rounded-lg"
-                  data-aos="fade-left"
-                  {...(isClientMobile === false
-                    ? { "data-aos-anchor": "#thunderbee-section" }
-                    : {})}
-                  data-aos-delay={isClientMobile ? "0" : "550"}
-                >
-                  <div className="bg-black p-6 rounded-lg">
-                    <h3 className="text-2xl font-semibold mb-4 text-neutral-100">
-                      Technical Capabilities
-                    </h3>
-                    <ul className="list-disc list-inside space-y-3 text-neutral-300">
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "600"}
-                      >
-                        <span className="font-semibold">
-                          Extreme Acceleration:
+                        Capable of very high acceleration for rapid target interception with exceptional thrust-to-weight ratio.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#thunderbee-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "500"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faRocket}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Compact & Agile Design<br/>
                         </span>{" "}
-                        Capable of very high acceleration for rapid target
-                        interception.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "650"}
-                      >
-                        <span className="font-semibold">IR Detection:</span>{" "}
-                        Reliable enemy drone detection, effective in low light
-                        or at night.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "700"}
-                      >
-                        <span className="font-semibold">Compact & Agile:</span>{" "}
-                        Highly compact and maneuverable design, with a low
-                        overall weight and significant thrust.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "750"}
-                      >
-                        <span className="font-semibold">
-                          Short-Burst Endurance:
+                        Highly compact and maneuverable design with low overall weight for swift response capability.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#thunderbee-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "550"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faBatteryHalf}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Short-Burst Endurance<br/>
                         </span>{" "}
-                        Battery optimized for high-current discharge for
-                        focused, short-duration intercept missions.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#thunderbee-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "800"}
-                      >
-                        <span className="font-semibold">
-                          High Thrust-to-Weight Ratio:
-                        </span>{" "}
-                        Enables rapid acceleration and agile flight dynamics.
-                      </li>
-                    </ul>
-                  </div>
+                        Battery optimized for high-current discharge for focused, short-duration intercept missions.
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-
-            <div
-              className="mt-16 md:mt-20 text-center"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#thunderbee-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "850"}
-            >
-              <p className="text-xl text-neutral-300 mb-6">
-                Neutralizing aerial threats with precision and speed.
-              </p>
             </div>
           </div>
         </section>
+        <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full">
+          <Button
+            as={Link}
+            className="bg-black/15 text-white shadow-xl"
+            href="/projects"
+            variant="bordered"
+            data-aos="fade-up"
+            {...(isClientMobile === false
+              ? { "data-aos-anchor": "#partner-section" }
+              : {})}
+          >
+            See All Projects <FontAwesomeIcon icon={faArrowRight} />
+          </Button>
+        </div>
       </div>
       <section
         className="py-20 bg-neutral-800 text-neutral-100"
