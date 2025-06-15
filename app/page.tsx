@@ -10,7 +10,7 @@ import "aos/dist/aos.css";
 // Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle } from "@fortawesome/free-solid-svg-icons";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
@@ -21,10 +21,13 @@ import rockettop from "../components/images/rockettop.png";
 import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
 import cansatwireframe from "../components/images/cansatwireframe.png";
+import makerspace from "../components/images/makerspace.png";
 
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card"; // Import the new hook
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 import "./styles/hero.css";
 
@@ -193,40 +196,144 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-4 mx-6 left-0 right-0 flex justify-center items-center p-4">
-          <div className="flex justify-evenly w-full gap-4 opacity-60 ">
-            <div
-              className="flex items-center justify-center max-w-48 w-full"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#Hero" }
-                : {})}
-              data-aos-delay={isClientMobile ? 0 : 1200}
-            >
-              <Image
-                alt="KTU Startup Space"
-                height={30}
-                src={ktustartupspace}
-              />
-            </div>
-            <div
-              className="flex items-center justify-center max-w-48 w-full"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#Hero" }
-                : {})}
-              data-aos-delay={isClientMobile ? 0 : 1400}
-            >
-              <Image alt="LT Armed Forces" height={30} src={ltarmedforces} />
-            </div>
-            <div
-              className="flex items-center justify-center max-w-48 w-full"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#Hero" }
-                : {})}
-              data-aos-delay={isClientMobile ? 0 : 1600}
-            >
-              <Image alt="PCBWay" height={30} src={pcbway} />
+          <div className="w-full max-w-7xl opacity-60 relative">
+            <div className="relative overflow-hidden">
+              {/* Fade overlay masks */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+              <Swiper
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                  },
+                  640: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                  },
+                }}
+                centeredSlides={true}
+                className="sponsors-swiper"
+                loop={true}
+                modules={[Autoplay]}
+                slidesPerView={4}
+                spaceBetween={40}
+              >
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1200}
+                  >
+                    <Image
+                      alt="KTU Startup Space"
+                      height={30}
+                      src={ktustartupspace}
+                    />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1400}
+                  >
+                    <Image alt="LT Armed Forces" height={30} src={ltarmedforces} />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1600}
+                  >
+                    <Image alt="PCBWay" height={30} src={pcbway} />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1200}
+                  >
+                    <Image alt="Makerspace" height={30} src={makerspace} />
+                  </div>
+                </SwiperSlide>
+                {/* Duplicate slides for better loop effect */}
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1200}
+                  >
+                    <Image
+                      alt="KTU Startup Space"
+                      height={30}
+                      src={ktustartupspace}
+                    />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1400}
+                  >
+                    <Image alt="LT Armed Forces" height={30} src={ltarmedforces} />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1600}
+                  >
+                    <Image alt="PCBWay" height={30} src={pcbway} />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center max-w-48 mx-auto"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1200}
+                  >
+                    <Image alt="Kaunas Makerspace" height={30} src={makerspace} />
+                  </div>
+                </SwiperSlide>
+              </Swiper>
             </div>
           </div>
         </div>
@@ -360,129 +467,16 @@ export default function Home() {
           id="propulsion-section"
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            {" "}
-            {/* Ensure content is above swirl */}
-            <div
-              className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#propulsion-section" }
-                : {})}
-            >
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
-                data-aos="fade-up"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#propulsion-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "100"}
-              >
-                Next-Generation Propulsion & Launch Systems
-              </h2>
-              <p
-                className="text-lg md:text-xl text-neutral-300"
-                data-aos="fade-up"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#propulsion-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "200"}
-              >
-                Redefining access to the skies with advanced rocket and
-                propulsion systems.
-              </p>
-            </div>
             <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-start">
-              <div className="flex flex-col h-full justify-between rounded">
-                <div
-                  data-aos="fade-left"
-                  {...(isClientMobile === false
-                    ? { "data-aos-anchor": "#propulsion-section" }
-                    : {})}
-                  className="featured-card white-feature bg-neutral-800 p-[2px] rounded-lg"
-                  data-aos-delay={isClientMobile ? "0" : "300"}
-                >
-                  <div className="p-6 shadow-xl bg-black rounded-lg">
-                    <h3 className="text-2xl font-semibold mb-4 text-neutral-100">
-                      Key Innovations:
-                    </h3>
-                    <ul className="list-disc list-inside space-y-3 text-neutral-300">
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#propulsion-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "350"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          Modular Rocket Architecture:
-                        </span>{" "}
-                        Easily configurable for diverse mission profiles.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#propulsion-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "400"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          Advanced Propellant Technologies:
-                        </span>{" "}
-                        Researching high-performance, eco-friendly propellants
-                        for increased efficiency and reduced environmental
-                        impact.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#propulsion-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "450"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          AI-Driven Launch Operations:
-                        </span>{" "}
-                        Autonomous systems for pre-flight checks, trajectory
-                        optimization, and in-flight anomaly detection.
-                      </li>
-                      <li
-                        data-aos="fade-left"
-                        {...(isClientMobile === false
-                          ? { "data-aos-anchor": "#propulsion-section" }
-                          : {})}
-                        data-aos-delay={isClientMobile ? "0" : "500"}
-                      >
-                        <span className="font-semibold text-blue-300">
-                          Rapid Reusability:
-                        </span>{" "}
-                        Designing for quick turnaround and refurbishment,
-                        significantly lowering launch costs.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  className="xl:block hidden text-center"
-                  data-aos="zoom-in"
-                  {...(isClientMobile === false
-                    ? { "data-aos-anchor": "#propulsion-section" }
-                    : {})}
-                  data-aos-delay={isClientMobile ? "0" : "600"}
-                >
-                  <p className="text-xl text-neutral-300">
-                    Powering the next leap in aerospace accessibility.
-                  </p>
-                </div>
-              </div>
               <div
                 data-aos="fade-right"
                 {...(isClientMobile === false
                   ? { "data-aos-anchor": "#propulsion-section" }
                   : {})}
-                className="featured-card w-fit h-min white-feature bg-neutral-800 p-[2px] rounded-lg"
+                className="featured-card w-fit h-min white-feature bg-neutral-800 p-[1px]"
                 data-aos-delay={isClientMobile ? "0" : "300"}
               >
-                <div className="shadow-xl rounded-lg overflow-hidden">
+                <div className="shadow-xl overflow-hidden">
                   <Image
                     alt="FWD"
                     data-aos="zoom-in"
@@ -492,6 +486,143 @@ export default function Home() {
                       : {})}
                     data-aos-delay={isClientMobile ? "0" : "400"}
                   />
+                </div>
+              </div>
+              <div>
+                <div
+                  data-aos="fade-up"
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#propulsion-section" }
+                    : {})}
+                >
+                  <h3
+                    className="text-3xl font-bold tracking-tight text-primary-600"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#propulsion-section" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? "0" : "100"}
+                  >
+                    Next-Generation Propulsion Systems
+                  </h3>
+                  <p
+                    className="text-lg my-4 text-neutral-300"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#propulsion-section" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? "0" : "200"}
+                  >
+                    Redefining access to the skies with advanced rocket and
+                    propulsion systems.
+                  </p>
+                </div>
+                <div
+                  data-aos="fade-left"
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#propulsion-section" }
+                    : {})}
+                  data-aos-delay={isClientMobile ? "0" : "300"}
+                >
+                  <ul className="space-y-4 text-neutral-300">
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#propulsion-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "350"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0 mb-1">
+                        <FontAwesomeIcon 
+                          icon={faCogs} 
+                          className="text-lg flex-shrink-0 text-primary-600" 
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600">
+                          Modular Rocket Architecture<br/>
+                        </span>{" "}
+                        Easily configurable for diverse mission profiles.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#propulsion-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "400"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faFlask}
+                          className="text-lg flex-shrink-0 text-primary-600"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Advanced Propellant Technologies<br/>
+                        </span>{" "}
+                        Researching high-performance, eco-friendly propellants
+                        for increased efficiency and reduced environmental
+                        impact.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#propulsion-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "450"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faRobot}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1" >
+                          AI-Driven Launch Operations<br/>
+                        </span>{" "}
+                        Autonomous systems for pre-flight checks, trajectory
+                        optimization, and in-flight anomaly detection.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#propulsion-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "500"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faRecycle}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Rapid Reusability<br/>
+                        </span>{" "}
+                        Designing for quick turnaround and refurbishment,
+                        significantly lowering launch costs.
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  className="xl:block hidden text-center mt-6"
+                  data-aos="zoom-in"
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#propulsion-section" }
+                    : {})}
+                  data-aos-delay={isClientMobile ? "0" : "600"}
+                >
                 </div>
               </div>
             </div>
