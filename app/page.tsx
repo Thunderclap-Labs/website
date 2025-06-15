@@ -10,7 +10,7 @@ import "aos/dist/aos.css";
 // Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle, faCloudRain, faShieldAlt, faEye, faSeedling, faTint, faSmog } from "@fortawesome/free-solid-svg-icons";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
@@ -467,7 +467,7 @@ export default function Home() {
           id="propulsion-section"
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-start">
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-center">
               <div
                 data-aos="fade-right"
                 {...(isClientMobile === false
@@ -634,159 +634,171 @@ export default function Home() {
           id="cloud-seeding-section"
         >
           <div className="container max-w-7xl mx-auto px-4">
-            <div
-              className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#cloud-seeding-section" }
-                : {})}
-            >
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
-                data-aos="fade-up"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#cloud-seeding-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "100"}
-              >
-                Advanced Cloud Seeding: Drone/Rocket-Powered Weather
-                Modification
-              </h2>
-              <p
-                className="text-lg md:text-xl text-neutral-300"
-                data-aos="fade-up"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#cloud-seeding-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "200"}
-              >
-                Pioneering solutions to global water scarcity and
-                weather-related agricultural damage through advanced atmospheric
-                technology.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-              <div
-                className="featured-card white-feature p-[2px] bg-neutral-800 rounded-lg"
-                data-aos="fade-right"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#cloud-seeding-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "300"}
-              >
-                <div className="bg-black p-6 rounded-lg">
-                  <h3 className="text-2xl font-semibold mb-4 text-neutral-100">
-                    Primary Applications
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-8 items-center">
+              <div>
+                <div
+                  data-aos="fade-up"
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#cloud-seeding-section" }
+                    : {})}
+                >
+                  <h3
+                    className="text-3xl font-bold tracking-tight text-primary-600"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#cloud-seeding-section" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? "0" : "100"}
+                  >
+                    Advanced Cloud Seeding: Drone/Rocket-Powered Weather Modification
                   </h3>
-                  <ul className="list-disc list-inside space-y-3 text-neutral-300">
+                  <p
+                    className="text-lg mt-4 mb-6 text-white"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#cloud-seeding-section" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? "0" : "200"}
+                  >
+                    Pioneering solutions to global water scarcity and weather-related agricultural damage through advanced atmospheric technology.
+                  </p>
+                </div>
+                <div
+                  data-aos="fade-left"
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#cloud-seeding-section" }
+                    : {})}
+                  data-aos-delay={isClientMobile ? "0" : "300"}
+                >
+                  <ul className="space-y-4 text-neutral-300">
                     <li
-                      data-aos="fade-right"
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
                       {...(isClientMobile === false
                         ? { "data-aos-anchor": "#cloud-seeding-section" }
                         : {})}
                       data-aos-delay={isClientMobile ? "0" : "350"}
                     >
-                      <span className="font-semibold text-blue-300">
-                        Enhanced Precipitation:
-                      </span>{" "}
-                      Augmenting rainfall in drought-prone areas.
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0 mb-1">
+                        <FontAwesomeIcon 
+                          icon={faCloudRain} 
+                          className="text-lg flex-shrink-0 text-primary-600" 
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600">
+                          Enhanced Precipitation<br/>
+                        </span>{" "}
+                        Augmenting rainfall in drought-prone areas for improved water resources.
+                      </div>
                     </li>
                     <li
-                      data-aos="fade-right"
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
                       {...(isClientMobile === false
                         ? { "data-aos-anchor": "#cloud-seeding-section" }
                         : {})}
                       data-aos-delay={isClientMobile ? "0" : "400"}
                     >
-                      <span className="font-semibold text-blue-300">
-                        Hail Suppression:
-                      </span>{" "}
-                      Protecting crops and property from hail damage.
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faShieldAlt}
+                          className="text-lg flex-shrink-0 text-primary-600"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Hail Suppression<br/>
+                        </span>{" "}
+                        Protecting crops and property from hail damage through targeted atmospheric intervention.
+                      </div>
                     </li>
                     <li
-                      data-aos="fade-right"
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
                       {...(isClientMobile === false
                         ? { "data-aos-anchor": "#cloud-seeding-section" }
                         : {})}
                       data-aos-delay={isClientMobile ? "0" : "450"}
                     >
-                      <span className="font-semibold text-blue-300">
-                        Fog Alleviation/Dispersal:
-                      </span>{" "}
-                      Improving visibility for transport and operations.
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faEye}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1" >
+                          Fog Alleviation/Dispersal<br/>
+                        </span>{" "}
+                        Improving visibility for transport and operations through precision atmospheric control.
+                      </div>
                     </li>
                     <li
-                      data-aos="fade-right"
-                      {...(isClientMobile === false
-                        ? { "data-aos-anchor": "#cloud-seeding-section" }
-                        : {})}
-                      data-aos-delay={isClientMobile ? "0" : "500"}
-                    >
-                      <span className="font-semibold text-blue-300">
-                        Pollution Reduction:
-                      </span>{" "}
-                      Aiding in the dispersal of atmospheric pollutants.
-                    </li>
-                    <li
-                      data-aos="fade-right"
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
                       {...(isClientMobile === false
                         ? { "data-aos-anchor": "#cloud-seeding-section" }
                         : {})}
                       data-aos-delay={isClientMobile ? "0" : "550"}
                     >
-                      <span className="font-semibold text-blue-300">
-                        Agricultural Support:
-                      </span>{" "}
-                      Optimizing water resources for farming.
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faSeedling}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Agricultural Support<br/>
+                        </span>{" "}
+                        Optimizing water resources for farming and crop yield enhancement.
+                      </div>
                     </li>
                     <li
-                      data-aos="fade-right"
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
                       {...(isClientMobile === false
                         ? { "data-aos-anchor": "#cloud-seeding-section" }
                         : {})}
                       data-aos-delay={isClientMobile ? "0" : "600"}
                     >
-                      <span className="font-semibold text-blue-300">
-                        Water Resource Management:
-                      </span>{" "}
-                      Enhancing water supply for various needs.
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faTint}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Water Resource Management<br/>
+                        </span>{" "}
+                        Enhancing water supply for various industrial and municipal needs.
+                      </div>
                     </li>
                   </ul>
                 </div>
-              </div>
-              <div
-                data-aos="fade-left"
-                {...(isClientMobile === false
-                  ? { "data-aos-anchor": "#cloud-seeding-section" }
-                  : {})}
-                data-aos-delay={isClientMobile ? "0" : "300"}
-              >
-                <div className="p-6 flex items-center justify-center">
-                  <Image
-                    alt="Cloud Seeding Rocket System"
-                    className="mx-auto rounded-xl overflow-hidden"
-                    data-aos="zoom-in"
-                    src={cloudseeding}
-                    {...(isClientMobile === false
-                      ? { "data-aos-anchor": "#cloud-seeding-section" }
-                      : {})}
-                    data-aos-delay={isClientMobile ? "0" : "400"}
-                  />
+                <div
+                  className="xl:block hidden text-center mt-6"
+                  data-aos="zoom-in"
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#cloud-seeding-section" }
+                    : {})}
+                  data-aos-delay={isClientMobile ? "0" : "700"}
+                >
                 </div>
               </div>
-            </div>
-            <div
-              className="mt-16 md:mt-20 text-center"
-              data-aos="zoom-in"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#cloud-seeding-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "700"}
-            >
-              <p className="text-xl text-neutral-300 mb-6">
-                Innovating for a sustainable atmospheric future.
-              </p>
+              <div className="overflow-hidden">
+                <Image
+                  alt="Cloud Seeding Rocket System"
+                  data-aos="zoom-in"
+                  src={cloudseeding}
+                  {...(isClientMobile === false
+                    ? { "data-aos-anchor": "#cloud-seeding-section" }
+                    : {})}
+                  data-aos-delay={isClientMobile ? "0" : "400"}
+                />
+              </div>
             </div>
           </div>
         </section>
