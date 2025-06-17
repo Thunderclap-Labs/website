@@ -36,3 +36,286 @@
     opacity: 0;
   }
 }
+
+.sponsors-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.sponsors-swiper .swiper-slide-active {
+  opacity: 1;
+}
+
+/* Added styles for the animated lines */
+.lines-container {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  right: 0;
+  height: calc(100% + 300px);
+  opacity: 0.5;
+  pointer-events: none; /* So it doesn't interfere with content */
+  z-index: 0; /* Ensure it's behind the content which will have z-[1] */
+  overflow: hidden; /* Ensure gradients don't cause scrollbars if slightly off */
+}
+
+.lines-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px; /* Height of the top fade */
+  background: linear-gradient(to bottom, black 40%, transparent 100%); /* bg-neutral-900 to transparent */
+  z-index: 1; /* Above lines, below content */
+}
+
+.lines-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px; /* Height of the bottom fade */
+  background: linear-gradient(to top, black 40%, transparent 100%); /* bg-neutral-900 to transparent */
+  z-index: 1; /* Above lines, below content */
+}
+
+.lines-container .line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  background: rgba(255, 255, 255, 0.07); /* Subtle line color */
+  overflow: hidden;
+}
+
+.lines-container .line::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%; /* Start above the viewport */
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 25%, rgba(255, 255, 255, 0.8) 75%, rgba(255, 255, 255, 0) 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}
+
+/* Positioning the three lines */
+.lines-container .line:nth-child(1) {
+  left: 327px; /* 5% from the left edge of .lines-container */
+}
+
+.lines-container .line:nth-child(1)::after {
+  animation-delay: 1s; /* Stagger animation start */
+}
+
+.lines-container .line:nth-child(2) {
+  left: 50%; /* Centered */
+  transform: translateX(-50%);
+}
+
+.lines-container .line:nth-child(2)::after {
+  animation-delay: 0s; /* Original animation start for center line */
+}
+
+.lines-container .line:nth-child(3) {
+  right: 328px; /* 5% from the right edge of .lines-container */
+}
+
+.lines-container .line:nth-child(3)::after {
+  animation-delay: 1.7s; /* Stagger animation start */
+}
+
+@keyframes drop {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 110%; /* End below the viewport */
+  }
+}
+
+/* Timeline Styles */
+.timeline-container {
+  width: 100%;
+  padding: 0 20px; /* Add some padding so dots aren't at the very edge */
+  position: relative; /* For vertical line positioning on mobile */
+}
+
+.timeline-item {
+  position: relative;
+  /* flex: 1; remove this if causing issues with spacing, handled by justify-between and flex-1 on item */
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #555; /* Default dot color (grey) */
+  border-radius: 50%;
+  z-index: 1;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-dot.active {
+  background-color: #8A2BE2; /* Active dot color (purple) */
+  width: 16px; /* Slightly larger active dot */
+  height: 16px;
+}
+
+.timeline-item:hover .timeline-dot {
+  background-color: #8A2BE2; /* Purple on hover */
+  transform: scale(1.1); /* Slightly enlarge dot on hover */
+}
+.timeline-item.active .timeline-dot { /* Ensure active dot stays prominent even if not hovered if it's the first one */
+  background-color: #8A2BE2;
+  transform: scale(1.1);
+}
+
+
+.timeline-line {
+  height: 2px;
+  background-color: #555; /* Line color (grey) */
+  /* flex-grow: 1;  Ensures line fills space between dots */
+}
+
+.timeline-item:last-child .timeline-line {
+  display: none; /* No line after the last dot */
+}
+
+.timeline-content {
+  /* max-width: 150px; /* Adjust as needed */
+  color: #aaa; /* Default text color (light grey) */
+  transition: color 0.3s ease;
+}
+
+.timeline-content .timeline-title {
+  color: #CCCCCC; /* Default title color */
+  font-weight: 500; /* Medium weight for title */
+  transition: color 0.3s ease;
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+}
+.timeline-content .timeline-description {
+  color: #888888; /* Default description color */
+  font-size: 0.75rem; /* text-xs */
+  line-height: 1rem;
+  margin-top: 0.25rem; /* mt-1 */
+  transition: color 0.3s ease;
+  min-height: 3rem; /* Ensure roughly same space for descriptions */
+}
+
+.timeline-content.active .timeline-title,
+.timeline-item:hover .timeline-content .timeline-title {
+  color: #FFFFFF; /* White for active/hover title */
+}
+.timeline-content.active .timeline-description,
+.timeline-item:hover .timeline-content .timeline-description {
+  color: #E0E0E0; /* Light grey for active/hover description */
+}
+
+.timeline-content p {
+  margin: 0;
+}
+
+/* Tablet Optimizations */
+@media (max-width: 1024px) {
+  .timeline-content .timeline-title {
+    font-size: 0.8rem; /* Slightly smaller title for tablets */
+    line-height: 1.15rem;
+  }
+  .timeline-content .timeline-description {
+    font-size: 0.7rem; /* Slightly smaller description for tablets */
+    line-height: 0.9rem;
+    min-height: 2.5rem; /* Adjust min-height */
+  }
+  .timeline-container {
+    padding: 0 10px; /* Reduce horizontal padding */
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 767px) {
+  .timeline-container {
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    padding-left: 25px; /* Space for the vertical line and dots */
+  }
+
+  .timeline-container::before { /* The main vertical line */
+    content: '';
+    position: absolute;
+    left: 10px; /* Position of the vertical line */
+    top: 8px;   /* Align with the center of the first dot */
+    bottom: 8px;
+    width: 2px;
+    background-color: #555; /* Vertical line color */
+    z-index: 0;
+  }
+
+  .timeline-item {
+    flex-direction: row; /* Dot and content side-by-side */
+    align-items: flex-start; /* Align items to the top */
+    width: 100%;
+    margin-bottom: 20px; /* Space between vertical items */
+    padding-left: 25px; /* Space for dot to be offset from content */
+    flex: none; /* Override flex-1 */
+  }
+
+  .timeline-item .flex.items-center.w-full {
+    /* This div wraps dot and horizontal line. We need to adjust it for vertical. */
+    width: auto; /* Let it shrink to dot size */
+    position: absolute; /* Position dot relative to timeline-item's padding */
+    left: -20px; /* (padding-left of timeline-item - half of dot width) approx. to center on line */
+    top: 0;
+  }
+  
+  .timeline-dot {
+    /* Dot is already styled, ensure it's above the vertical line */
+    z-index: 1;
+  }
+  .timeline-dot.active {
+     /* Ensure active dot is still larger */
+    position: relative;
+    left: -2px;
+    width: 16px;
+    height: 16px;
+  }
+   .timeline-item:hover .timeline-dot {
+    transform: scale(1.1); 
+  }
+
+
+  .timeline-line {
+    display: none; /* Hide horizontal lines */
+  }
+
+  .timeline-content {
+    text-align: left; /* Align text to the left */
+    margin-top: 0;
+    margin-left: 10px; /* Space between dot and content */
+    padding-right: 10px; /* Ensure content doesn't overflow */
+  }
+
+  .timeline-content .timeline-title {
+    font-size: 0.875rem; /* text-sm, can be adjusted */
+    line-height: 1.25rem;
+  }
+
+  .timeline-content .timeline-description {
+    font-size: 0.75rem; /* text-xs, can be adjusted */
+    line-height: 1rem;
+    min-height: auto; /* Remove fixed min-height for mobile */
+    margin-top: 2px;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+}

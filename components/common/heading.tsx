@@ -5,12 +5,21 @@ import {
   subtitle as subtitleStyle,
 } from "@/components/primitives";
 import logo from "@/components/images/logo.png";
+import { StatsGrid } from "./stats-grid";
+
+interface StatItem {
+  value: string;
+  title: string;
+  description: string;
+  delay?: number;
+}
 
 interface HeadingProps {
   title: string;
   subtitle: string;
   showLogo?: boolean;
   className?: string;
+  statsData?: StatItem[];
 }
 
 export const Heading: React.FC<HeadingProps> = ({
@@ -18,6 +27,7 @@ export const Heading: React.FC<HeadingProps> = ({
   subtitle,
   showLogo = true,
   className = "",
+  statsData,
 }) => {
   return (
     <div
@@ -48,6 +58,11 @@ export const Heading: React.FC<HeadingProps> = ({
       >
         {subtitle}
       </p>
+      {statsData && (
+        <div className="mt-16">
+          <StatsGrid stats={statsData} />
+        </div>
+      )}
     </div>
   );
 };

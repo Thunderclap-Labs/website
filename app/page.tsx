@@ -22,6 +22,7 @@ import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
 import cansatwireframe from "../components/images/cansatwireframe.png";
 import makerspace from "../components/images/makerspace.png";
+import logo from "../components/images/logo.png";
 
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card"; // Import the new hook
 import { ShootingStars } from "@/components/ui/shooting-stars";
@@ -30,6 +31,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
 import "./styles/hero.css";
+import { StatsGrid } from "@/components/common/stats-grid";
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -59,6 +61,52 @@ const focus_areas = [
     description:
       "Developing advanced satellite constellations for global coverage and real-time data analytics.",
     image: cansatwireframe,
+  },
+];
+
+const propulsionTimelineItems = [
+  {
+    title: "Advanced Propellant Technologies",
+    description:
+      "Researching high-performance, eco-friendly propellants for increased efficiency and reduced environmental impact.",
+  },
+  {
+    title: "Sustainable Manufacturing",
+    description:
+      "Developing eco-conscious manufacturing processes and minimizing environmental impact of launch activities.",
+  },
+  {
+    title: "AI-Driven Launch Operations",
+    description:
+      "Autonomous systems for pre-flight checks, trajectory optimization, and in-flight anomaly detection.",
+  },
+  {
+    title: "Rapid Reusability",
+    description:
+      "Designing for quick turnaround and refurbishment, significantly lowering launch costs.",
+  },
+  {
+    title: "Next-Gen Avionics & Control",
+    description:
+      "Developing sophisticated, fault-tolerant avionics for precise control and real-time data telemetry.",
+  },
+];
+
+const statsData = [
+  {
+    value: "5+",
+    title: "Valued Partners",
+    description: "Trusted by industry leaders and government bodies.",
+  },
+  {
+    value: "9",
+    title: "Industry Experts", 
+    description: "A dedicated team of the best and brightest minds.",
+  },
+  {
+    value: "∞",
+    title: "Infinite Passion",
+    description: "Fueled by a relentless drive for innovation.",
   },
 ];
 
@@ -348,102 +396,39 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section
-        className="py-20 bg-neutral-900 text-neutral-100"
+      
+      <div className="relative">
+        <StarsBackground className="z-0" />
+        <ShootingStars className="z-0" />
+         <section
+        className="py-32 text-neutral-100 relative"
         data-aos="fade-up"
         id="about-us-section"
       >
-        <div className="container max-w-7xl mx-auto px-4">
-          <div
-            className="max-w-3xl mx-auto text-center mb-12 md:mb-16"
-            data-aos="fade-up"
-            {...(isClientMobile === false
-              ? { "data-aos-anchor": "#about-us-section" }
-              : {})}
-          >
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#about-us-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "100"}
-            >
-              Engineering the Future of Atmospheric and Aerospace Systems
-            </h2>
-            <p
-              className="text-lg md:text-xl text-neutral-300"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#about_us_section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "200"}
-            >
-              Thunderclap Labs is at the forefront of innovation, developing
-              critical technologies to solve complex global challenges. We build
-              the platforms and systems that will define the next era of
-              atmospheric management, aerospace capability, and beyond.
-            </p>
+        <div className="container max-w-7xl mx-auto px-4 relative z-[1]">
+          <div>
+            <h1 className="text-7xl font-semibold">Engineering the Future of Atmospheric and Aerospace Systems</h1>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div
-              data-aos="fade-right"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#about_us_section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "300"}
-            >
-              <h3 className="text-2xl font-semibold mb-3 text-primary-600">
-                Our Mission
-              </h3>
-              <p className="text-neutral-300 mb-4">
-                We are committed to pioneering solutions that enhance global
-                stability, environmental resilience, and technological
-                advancement. From advanced satellite constellations and
-                atmospheric modification techniques to cutting-edge aerospace
-                components, our work is designed to provide actionable
-                intelligence and impactful interventions.
-              </p>
-              <p className="text-neutral-300">
-                Our interdisciplinary team of scientists and engineers thrives
-                on tackling the hardest problems, transforming ambitious ideas
-                into operational realities.
-              </p>
+          <div className="flex justify-end w-full text-lg my-8 mb-16">
+            <div className="max-w-3xl text-2xl md:text-3xl font-normal leading-relaxed">
+              <span className="font-semibold text-accent-600">Thunderclap Labs</span> is at the forefront of{" "}
+              <span className="font-semibold text-primary-600">innovation</span>, developing critical{" "}
+              <span className="font-semibold text-primary-600">technologies</span> to solve complex global challenges. We build the{" "}
+              <span className="font-semibold text-primary-600">platforms</span> and systems that will define the next era of{" "}
+              <span className="font-semibold text-primary-600">atmospheric management</span>,{" "}
+              <span className="font-semibold text-primary-600">aerospace capability</span>, and beyond.
             </div>
-            <div
-              data-aos="fade-left"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#about_us_section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "400"}
-            >
-              <div className="featured-card white-feature bg-neutral-900 p-[1px] rounded-xl">
-                <div className="bg-neutral-800 p-6 shadow-xl rounded-xl">
-                  <h4 className="text-xl font-semibold mb-3 text-neutral-100">
-                    Core Focus Areas:
-                  </h4>
-                  <ul className="list-disc list-inside space-y-2 text-neutral-300">
-                    <li>Next-Generation Satellite Systems</li>
-                    <li>Advanced Atmospheric Technologies</li>
-                    <li>Aerospace Systems & Propulsion</li>
-                    <li>Proprietary Rocket Fuel & Chemical Synthesis</li>
-                    <li>Rapid Aerospace Prototyping</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
           <div
             ref={cardGridRef}
-            className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card white-feature gap-[1px] bg-neutral-800 p-[1px]"
+            className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card bg-neutral-600 bg-opacity-55 white-feature gap-[1px] p-[1px]"
             data-aos="fade-up"
             id="focus-areas"
           >
             {focus_areas.map((area, i) => (
               <div
                 key={area.title}
-                className="flex p-4 flex-col h-full bg-neutral-900 hover:bg-primary-100 !transition-all duration-300"
+                className="flex p-4 flex-col h-full bg-black bg-opacity-95 !transition-all duration-300"
                 data-aos="fade-up"
                 data-aos-anchor={
                   isClientMobile === false ? "#focus-areas" : undefined
@@ -466,11 +451,82 @@ export default function Home() {
               </div>
             ))}
           </div>
+            <div
+            className="mt-12"
+            data-aos="fade-up"
+            >
+            <StatsGrid stats={statsData} />
+            </div>
         </div>
       </section>
-      <div className="relative">
-        <StarsBackground className="z-0" />
-        <ShootingStars className="z-0" />
+        <section
+          className="relative py-20 bg-transparent text-white overflow-hidden"
+          data-aos="fade-up"
+          id="propulsion-section-new"
+        >
+          <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div className="pb-12">
+              <h1 className="text-7xl font-semibold">Next-Generation Propulsion Systems</h1>
+            </div>
+            <div className="flex justify-end w-full text-lg my-4 ">
+                <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed">
+                Pioneering the next era of aerospace with a focus on{" "}
+                <span className="font-semibold text-primary-600">
+                  rocket propulsion technologies
+                </span>
+                ,{" "}
+                <span className="font-semibold text-primary-600">
+                  advanced launch systems
+                </span>
+                , and sustainable{" "}
+                <span className="font-semibold text-primary-600">
+                  aerospace solutions
+                </span>
+                .
+                </div>
+            </div>
+            {/* Timeline Start */}
+            <div className="mt-28 mb-8">
+              <div className="timeline-container flex items-start justify-between">
+                {propulsionTimelineItems.map((item, index) => (
+                  <div key={item.title} className={`timeline-item flex flex-col items-center ${index === 0 ? 'active' : ''} flex-1`}>
+                    <div className="flex items-center w-full">
+                      <div className={`timeline-dot ${index === 0 ? 'active' : ''}`}></div>
+                      {index < propulsionTimelineItems.length - 1 && (
+                        <div className="timeline-line flex-grow"></div>
+                      )}
+                    </div>
+                    <div className={`timeline-content mt-3 px-2 ${index === 0 ? 'active' : ''}`}>
+                      <p className="text-xs md:text-sm font-medium timeline-title">{item.title}</p>
+                      <p className="text-xs mt-1 timeline-description">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Timeline End */}
+          </div>
+        </section>
+
+                <section
+          className="relative py-20 bg-transparent text-white overflow-hidden"
+          data-aos="fade-up"
+          id="propulsion-section-new"
+        >
+          <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div className="pb-12 text-center">
+              <h1 className="text-7xl font-semibold">Manufacturing Excellence</h1>
+            </div>
+            <div className="flex justify-center text-center w-full text-lg my-4 ">
+              <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed">
+              We are pioneering manufacturing by developing our own{" "}
+              <span className="font-semibold text-primary-600">
+                production systems
+              </span>
+              </div>
+            </div>
+          </div>
+        </section>
         <section
           className="relative py-20 bg-transparent text-neutral-100 overflow-hidden"
           data-aos="fade-up"
@@ -621,6 +677,48 @@ export default function Home() {
                         </span>{" "}
                         Designing for quick turnaround and refurbishment,
                         significantly lowering launch costs.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#propulsion-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "600"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faSatelliteDish}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Next-Gen Avionics & Control<br/>
+                        </span>{" "}
+                        Developing sophisticated, fault-tolerant avionics for precise control and real-time data telemetry.
+                      </div>
+                    </li>
+                    <li
+                      className="flex items-start gap-3"
+                      data-aos="fade-left"
+                      {...(isClientMobile === false
+                        ? { "data-aos-anchor": "#propulsion-section" }
+                        : {})}
+                      data-aos-delay={isClientMobile ? "0" : "700"}
+                    >
+                      <div className="flex items-center justify-center bg-neutral-800 w-10 h-10 rounded-md flex-shrink-0">
+                        <FontAwesomeIcon
+                          icon={faBatteryHalf}
+                          className="text-primary-600 text-lg flex-shrink-0"
+                        />
+                      </div>
+                      <div>
+                        <span className="font-semibold text-primary-600 mb-1">
+                          Sustainable Manufacturing & Launch<br/>
+                        </span>{" "}
+                        Implementing eco-conscious manufacturing processes and minimizing environmental impact of launch activities.
                       </div>
                     </li>
                   </ul>
