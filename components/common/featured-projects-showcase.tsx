@@ -44,7 +44,7 @@ export const FeaturedProjectsShowcase = () => {
                       src={project.image}
                       alt={project.name}
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-lg"
                     />
                     {project.link && (
                       <Link
