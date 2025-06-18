@@ -3,11 +3,10 @@
 import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import { useEffect, useState, useRef } from "react";
+import { Chart } from 'chart.js/auto';
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-// Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
@@ -27,6 +26,8 @@ import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 
 import "./styles/hero.css";
+
+import FundingChartSection from '@/components/FundingChartSection';
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -62,6 +63,68 @@ const focus_areas = [
 export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
   const [isClientMobile, setIsClientMobile] = useState<boolean | null>(null);
+  const chartRef = useRef<HTMLCanvasElement>(null);
+  const chartInstance = useRef<Chart<'doughnut'> | null>(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      // Clean up previous chart instance to prevent memory leaks
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+
+      const ctx = chartRef.current.getContext('2d');
+      if (ctx) {
+        chartInstance.current = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: [
+              'Rocket Assembly & Testing (50%)',
+              'Fuel Manufacturing System (20%)',
+              'Payload Integration (10%)',
+              'Operational Infrastructure (10%)',
+              'Pilot Programs & Market (5%)',
+              'Unallocated (5%)' // Added to make percentages sum to 100
+            ],
+            datasets: [{
+              label: 'Funding Allocation %',
+              data: [50, 20, 10, 10, 5, 5],
+              backgroundColor: [
+                'rgba(56, 189, 248, 0.8)',   // Sky Blue
+                'rgba(59, 130, 246, 0.8)',   // Standard Blue
+                'rgba(99, 102, 241, 0.8)',   // Indigo
+                'rgba(139, 92, 246, 0.8)',   // Violet
+                'rgba(168, 85, 247, 0.8)',   // Purple
+                'rgba(217, 70, 239, 0.8)'    // Fuchsia/Magenta
+              ],
+              borderColor: '#171717', // bg-neutral-900
+              borderWidth: 3,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false // We show the details in the text, so legend is not needed
+              },
+              title: {
+                display: false // Title is also in the text
+              }
+            }
+          }
+        });
+      }
+
+      // Cleanup function
+      return () => {
+        if (chartInstance.current) {
+          chartInstance.current.destroy();
+        }
+      };
+    }
+  }, []); // Empty dependency array ensures this runs only once
 
   useFeaturedCardMouseEffect(); // Call the custom hook
 
@@ -915,66 +978,83 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <section
-        className="py-20 bg-neutral-800 text-neutral-100"
-        data-aos="fade-up"
-        id="partner-section"
-      >
-        <div className="container max-w-7xl mx-auto px-4">
-          <div
-            className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
-            data-aos="fade-up"
-            {...(isClientMobile === false
-              ? { "data-aos-anchor": "#partner-section" }
-              : {})}
-          >
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "100"}
-            >
-              Partner with Us: Investing in a High-Impact Future
-            </h2>
-            <p
-              className="text-lg md:text-xl text-neutral-300"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "200"}
-            >
-              Thunderclap Labs is at a pivotal stage of growth, with
-              groundbreaking projects like the ThunderBee interceptor and our
-              advanced Cloud Seeding technology poised for significant
-              advancement. We are seeking strategic investors to help us scale
-              operations, finalize critical R&D, and bring these transformative
-              solutions to the global market.
-            </p>
-          </div>
-          <div className="flex gap-4 justify-center" data-aos="fade-up">
-            <Button
-              as={Link}
-              className=" bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl"
-              href="/contact"
-              variant="bordered"
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              Contact Us
-            </Button>
-            <Button
-              as={Link}
-              className=" bg-secondary/50 text-white border-gray-800 shadow-xl"
-              href="/team"
-              variant="bordered"
-            >
-              Our Team
-            </Button>
-          </div>
-        </div>
-      </section>
+      
+    <section id="partner-section" className="py-20 bg-neutral-900 text-neutral-100" data-aos="fade-up">
+  <div className="container max-w-7xl mx-auto px-4">
+    <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16" data-aos="fade-up">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400" data-aos-delay={isClientMobile ? "0" : "100"}>
+        Partner with Us: Investing in a High-Impact Future
+      </h2>
+      <p className="text-lg md:text-xl text-neutral-300" data-aos-delay={isClientMobile ? "0" : "200"}>
+        Thunderclap Labs is at a pivotal stage of growth. We are seeking strategic investors to help us scale operations, finalize critical R&D, and bring our transformative solutions to the global market.
+      </p>
+    </div>
+
+    {/* Layout with Text/Chart */}
+    <div className="grid md:grid-cols-5 gap-8 md:gap-12 items-center mb-12 md:mb-16">
+      {/* LEFT COLUMN: Use of Funds & Milestones */}
+      <div className="md:col-span-3 bg-neutral-800 p-8 rounded-xl shadow-xl h-full" data-aos="fade-right" data-aos-delay={isClientMobile ? "0" : "300"}>
+        <h3 className="text-2xl font-semibold mb-3 text-neutral-100">Use of Funds</h3>
+        <p className="text-neutral-300 mb-6">We are seeking <span className="font-bold text-blue-300">8000 EUR</span> to achieve key milestones within 4-6 months:</p>
+        <ul className="list-none space-y-3 text-neutral-300 mb-8">
+          <li><span className="font-semibold text-blue-400">Fuel Manufacturing System (20%):</span> Finalize proprietary rocket fuel production.</li>
+          <li><span className="font-semibold text-blue-400">Rocket Assembly & Testing (50%):</span> Assemble fleet, conduct testing, and obtain certifications.</li>
+          <li><span className="font-semibold text-blue-400">Payload Integration (10%):</span> Refine and scale silver iodide dispersal systems.</li>
+          <li><span className="font-semibold text-blue-400">Operational Infrastructure (10%):</span> Establish initial operational bases.</li>
+          <li><span className="font-semibold text-blue-400">Pilot Programs & Market (5%):</span> Launch pilot programs and secure initial contracts.</li>
+        </ul>
+        <hr className="border-neutral-700 my-8" />
+        <h3 className="text-2xl font-semibold mb-4 text-neutral-100">Expected Milestones</h3>
+        <ul className="space-y-4 text-neutral-200">
+          <li className="flex items-start">
+            <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-sm flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
+            <span><strong className="font-semibold">Fully Operational System:</strong> Complete and launch our proprietary fuel manufacturing system.</span>
+          </li>
+          <li className="flex items-start">
+            <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-sm flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
+            <span><strong className="font-semibold">Successful Test Flights:</strong> Conduct rigorous test flights to validate performance and safety.</span>
+          </li>
+          <li className="flex items-start">
+            <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-sm flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
+            <span><strong className="font-semibold">First Commercial Deployment:</strong> Secure and execute our first pilot program.</span>
+          </li>
+        </ul>
+      </div>
+      {/* RIGHT COLUMN: Chart */}
+      <div className="md:col-span-2 w-full h-[400px] md:h-[500px]" data-aos="fade-left" data-aos-delay={isClientMobile ? "0" : "400"}>
+        <canvas ref={chartRef}></canvas>
+      </div>
+    </div>
+    
+    {/* FINAL CALL TO ACTION WITH ALL BUTTONS RESTORED */}
+    <div className="text-center" data-aos="zoom-in" data-aos-delay={isClientMobile ? "0" : "600"}>
+      <p className="text-xl text-neutral-300 mb-8">
+        Join us in shaping the future of atmospheric and aerospace technology.
+      </p>
+      <div className="flex flex-wrap gap-4 justify-center items-center">
+        {/* Contact Button */}
+        <Button
+          as={Link}
+          href="mailto:thunderclaplabs@gmail.com" 
+          variant="bordered"
+          className="text-neutral-300 hover:bg-neutral-700 hover:border-neutral-700 border-neutral-600"
+        >
+          <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+          Contact Us
+        </Button>
+        {/* Team Button */}
+        <Button
+          as={Link}
+          href="/team"
+          variant="bordered"
+          className="text-neutral-300 hover:bg-neutral-700 hover:border-neutral-700 border-neutral-600"
+        >
+          Our Team
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
     </div>
   );
-}
+}         
