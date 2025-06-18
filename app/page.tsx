@@ -22,6 +22,8 @@ import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
 import cansatwireframe from "../components/images/cansatwireframe.png";
 import makerspace from "../components/images/makerspace.png";
+import dryerwireframe from "../components/images/dryerwireframe.png";
+import ballmill from "../components/images/ballmill.png";
 import logo from "../components/images/logo.png";
 
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card"; // Import the new hook
@@ -32,6 +34,9 @@ import { Autoplay } from "swiper/modules";
 
 import "./styles/hero.css";
 import { StatsGrid } from "@/components/common/stats-grid";
+import { ManufacturingFeatureCard } from "@/components/common/manufacturing-feature-card";
+import { TeamSwiper } from "@/components/common/team-swiper";
+import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -107,6 +112,25 @@ const statsData = [
     value: "∞",
     title: "Infinite Passion",
     description: "Fueled by a relentless drive for innovation.",
+  },
+];
+
+// Add this array for manufacturing features
+const manufacturingFeatures = [
+  {
+    image: dryerwireframe,
+    title: "Material Dryer",
+    description: "Efficiently dries a wide range of materials, ensuring optimal moisture content for further processing, currently being used for our propellant production.",
+  },
+  {
+    image: conveyorwireframe,
+    title: "Precision Screw Conveyor",
+    description: "A robust, zero-tolerance screw conveyor engineered from standard components for reliable, high-quality material transport.",
+  },
+  {
+    image: ballmill,
+    title: "Planetary Ball Mill",
+    description: "Ultra-fine milling system capable of reducing materials to particle sizes as small as 50μm for advanced applications.",
   },
 ];
 
@@ -508,7 +532,7 @@ export default function Home() {
           </div>
         </section>
 
-                <section
+        <section
           className="relative py-20 bg-transparent text-white overflow-hidden"
           data-aos="fade-up"
           id="propulsion-section-new"
@@ -524,6 +548,78 @@ export default function Home() {
                 production systems
               </span>
               </div>
+            </div>
+          </div>
+          <div className="container max-w-7xl mx-auto px-4 mt-12 overflow-visible">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 overflow-visible">
+              {manufacturingFeatures.map((feature) => (
+                <ManufacturingFeatureCard
+                  key={feature.title}
+                  image={feature.image}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+        <section
+          className="relative py-20 bg-transparent text-white overflow-hidden"
+          data-aos="fade-up"
+          id="propulsion-section-new"
+        >
+          <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div className="pb-12">
+              <h1 className="text-7xl font-semibold text-center">Projects and Innovations</h1>
+            </div>
+            <div className="flex justify-center w-full text-lg my-4 ">
+                <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed text-center ">
+                  Explore our groundbreaking projects that are shaping the future of <span className="font-semibold text-primary-600">aerospace technology</span>.
+                </div>
+            </div>
+            <div className="my-12">
+              <FeaturedProjectsShowcase />
+            </div>
+            <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full">
+              <Button
+                as={Link}
+                className="bg-black/15 text-white shadow-xl"
+                href="/projects"
+                variant="bordered"
+                data-aos="fade-up"
+              >
+                See All Projects <FontAwesomeIcon icon={faArrowRight} />
+              </Button>
+            </div>
+          </div>
+        </section>
+        <section
+          className="relative py-20 bg-transparent text-white overflow-hidden"
+          data-aos="fade-up"
+          id="propulsion-section-new"
+        >
+          <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div className="pb-12">
+              <h1 className="text-7xl font-semibold text-center">The Greatest Team Ever Assembled</h1>
+            </div>
+            <div className="flex justify-end w-full text-lg my-4 ">
+                <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed">
+                  <span className="font-semibold text-accent-600">Thunderclap Labs</span> is fueled by <span className="font-semibold text-primary-600">passion</span>, <span className="font-semibold text-primary-600">curiosity</span>, and a relentless drive to innovate. Our team brings together the brightest minds in engineering, science, and technology to build the future—one breakthrough at a time.
+                </div>
+            </div>
+            <div className="my-12">
+              <TeamSwiper />
+            </div>
+                        <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full">
+              <Button
+                as={Link}
+                className="bg-black/15 text-white shadow-xl"
+                href="/team"
+                variant="bordered"
+                data-aos="fade-up"
+              >
+                More About The Team <FontAwesomeIcon icon={faArrowRight} />
+              </Button>
             </div>
           </div>
         </section>
@@ -1073,20 +1169,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full">
-          <Button
-            as={Link}
-            className="bg-black/15 text-white shadow-xl"
-            href="/projects"
-            variant="bordered"
-            data-aos="fade-up"
-            {...(isClientMobile === false
-              ? { "data-aos-anchor": "#partner-section" }
-              : {})}
-          >
-            See All Projects <FontAwesomeIcon icon={faArrowRight} />
-          </Button>
-        </div>
+
       </div>
       <section
         className="py-20 bg-neutral-800 text-neutral-100"
