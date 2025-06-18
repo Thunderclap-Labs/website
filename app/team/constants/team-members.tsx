@@ -42,7 +42,7 @@ export const teamMembers = [
       "CNC machining",
       "Propulsion Systems",
       "Aerodynamics",
-      "3D Modeling (Fusion 360)",
+      "3D Modeling (Fusion 360, AutoCAD)",
       "Chemistry",
       "Electrical Engineering",
       "Material Science",

@@ -18,22 +18,24 @@ export const TeamSwiper: React.FC = () => (
       }}
       loop={true}
       modules={[Autoplay]}
-      slidesPerView={1.2}
+      slidesPerView={1.6}
       breakpoints={{
-        640: { slidesPerView: 2.2, spaceBetween: 24 },
-        1024: { slidesPerView: 3.2, spaceBetween: 32 },
-        1280: { slidesPerView: 4.2, spaceBetween: 40 },
+        640: { slidesPerView: 2.2, spaceBetween: 16 },
+        1024: { slidesPerView: 3.2, spaceBetween: 24 },
+        1280: { slidesPerView: 4.2, spaceBetween: 32 },
       }}
-      spaceBetween={16}
+      spaceBetween={12}
       className="py-8"
       centeredSlides={true}
       style={{ minHeight: 0 }}
     >
-      {teamMembers.map((member) => (
+      {teamMembers.map((member, i) => (
         <SwiperSlide key={member.name} style={{ width: "auto", height: "100%" }}>
           <div
-            className="flex flex-col items-center bg-black bg-opacity-95 border border-neutral-900 rounded-xl p-6 shadow-lg min-h-[340px] h-full max-w-xs mx-auto"
+            className="flex flex-col items-center bg-black bg-opacity-95 border border-neutral-900 rounded-lg p-6 shadow-lg min-h-[340px] h-full max-w-xs mx-auto"
             style={{ height: "340px" }}
+            data-aos="fade-up"
+            data-aos-delay={i * 100}
           >
             <div className="relative w-24 h-24 mb-3 rounded-full overflow-hidden border-2 border-primary-500">
               <Image

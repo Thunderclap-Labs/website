@@ -104,7 +104,7 @@ const statsData = [
     description: "Trusted by industry leaders and government bodies.",
   },
   {
-    value: "9",
+    value: "7",
     title: "Industry Experts", 
     description: "A dedicated team of the best and brightest minds.",
   },
@@ -232,7 +232,7 @@ export default function Home() {
     <div className="relative">
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black">
         <div
-          className="relative md:mx-6 h-[calc(100vh-170px)] w-full md:rounded-xl overflow-hidden"
+          className="relative md:mx-6 h-[calc(100vh-170px)] w-full md:rounded-lg overflow-hidden"
           id="Hero"
         >
           {isClientMobile === null ? (
@@ -249,6 +249,7 @@ export default function Home() {
             <div
               className="flex flex-col items-center justify-center drop-shadow-sm "
               id="Title"
+              data-aos="fade-down"
             >
               <span className="main md:text-4xl text-3xl">THUNDERCLAP</span>
               <p className="sub md:text-md text-sm">LABS</p>
@@ -280,37 +281,33 @@ export default function Home() {
                   disableOnInteraction: false,
                 }}
                 breakpoints={{
-                  // Mobile: show 1 slide, centered, with peeking neighbors
                   320: {
                     slidesPerView: 2,
                     spaceBetween: 10,
                   },
-                  // Tablet: show 1 slide, centered (or adjust as needed)
                   640: {
                     slidesPerView: 2,
                     spaceBetween: 15,
                   },
-                  // Desktop: show 4 slides
                   768: { 
                     slidesPerView: 4,
-                    spaceBetween: 30,
+                    spaceBetween: 24,
                   },
                   1024: {
                     slidesPerView: 4,
-                    spaceBetween: 40,
+                    spaceBetween: 32,
                   },
                 }}
                 centeredSlides={true}
                 className="sponsors-swiper"
                 loop={true}
                 modules={[Autoplay]}
-                // Default slidesPerView for smallest screens, will be overridden by breakpoints
                 slidesPerView={1.2} 
-                spaceBetween={10} // Default spaceBetween for smallest screens
+                spaceBetween={10}
               >
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2" // Added rounded-lg and bg-black/60 for consistency
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -327,7 +324,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -339,7 +336,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -351,7 +348,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -364,7 +361,7 @@ export default function Home() {
                 {/* Duplicate slides for better loop effect */}
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -381,7 +378,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -393,7 +390,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -405,7 +402,7 @@ export default function Home() {
                 </SwiperSlide>
                 <SwiperSlide>
                   <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto" // Added h-16 for vertical centering
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
                     data-aos="fade-up"
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
@@ -426,15 +423,14 @@ export default function Home() {
         <ShootingStars className="z-0" />
          <section
         className="py-32 text-neutral-100 relative"
-        data-aos="fade-up"
         id="about-us-section"
       >
         <div className="container max-w-7xl mx-auto px-4 relative z-[1]">
           <div>
-            <h1 className="text-7xl font-semibold">Engineering the Future of Atmospheric and Aerospace Systems</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
           </div>
           <div className="flex justify-end w-full text-lg my-8 mb-16">
-            <div className="max-w-3xl text-2xl md:text-3xl font-normal leading-relaxed">
+            <div className="max-w-3xl text-lg md:text-3xl font-normal leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               <span className="font-semibold text-accent-600">Thunderclap Labs</span> is at the forefront of{" "}
               <span className="font-semibold text-primary-600">innovation</span>, developing critical{" "}
               <span className="font-semibold text-primary-600">technologies</span> to solve complex global challenges. We build the{" "}
@@ -445,15 +441,16 @@ export default function Home() {
         </div>
           <div
             ref={cardGridRef}
-            className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card bg-neutral-600 bg-opacity-55 white-feature gap-[1px] p-[1px]"
+            className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card rounded-lg bg-neutral-600 bg-opacity-55 white-feature gap-[1px] p-[1px]"
             data-aos="fade-up"
             id="focus-areas"
           >
             {focus_areas.map((area, i) => (
               <div
                 key={area.title}
-                className="flex p-4 flex-col h-full bg-black bg-opacity-95 !transition-all duration-300"
+                className="flex p-4 flex-col h-full bg-black bg-opacity-95 rounded-lg"
                 data-aos="fade-up"
+                data-aos-delay={i * 100}
                 data-aos-anchor={
                   isClientMobile === false ? "#focus-areas" : undefined
                 }
@@ -479,21 +476,22 @@ export default function Home() {
             className="mt-12"
             data-aos="fade-up"
             >
-            <StatsGrid stats={statsData} />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-neutral-100">
+                <StatsGrid stats={statsData} />
+              </div>
             </div>
         </div>
       </section>
         <section
           className="relative py-20 bg-transparent text-white overflow-hidden"
-          data-aos="fade-up"
           id="propulsion-section-new"
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
             <div className="pb-12">
-              <h1 className="text-7xl font-semibold">Next-Generation Propulsion Systems</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Next-Generation Propulsion Systems</h1>
             </div>
             <div className="flex justify-end w-full text-lg my-4 ">
-                <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed">
+                <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
                 Pioneering the next era of aerospace with a focus on{" "}
                 <span className="font-semibold text-primary-600">
                   rocket propulsion technologies
@@ -510,8 +508,8 @@ export default function Home() {
                 </div>
             </div>
             {/* Timeline Start */}
-            <div className="mt-28 mb-8">
-              <div className="timeline-container flex items-start justify-between">
+            <div className="mt-28 mb-8" data-aos="fade-up" data-aos-delay="200">
+              <div className="timeline-container flex flex-col md:flex-row items-start justify-between">
                 {propulsionTimelineItems.map((item, index) => (
                   <div key={item.title} className={`timeline-item flex flex-col items-center ${index === 0 ? 'active' : ''} flex-1`}>
                     <div className="flex items-center w-full">
@@ -534,15 +532,14 @@ export default function Home() {
 
         <section
           className="relative py-20 bg-transparent text-white overflow-hidden"
-          data-aos="fade-up"
-          id="propulsion-section-new"
+          id="manufacturing-section"
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
             <div className="pb-12 text-center">
-              <h1 className="text-7xl font-semibold">Manufacturing Excellence</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Manufacturing Excellence</h1>
             </div>
             <div className="flex justify-center text-center w-full text-lg my-4 ">
-              <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed">
+              <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               We are pioneering manufacturing by developing our own{" "}
               <span className="font-semibold text-primary-600">
                 production systems
@@ -551,42 +548,41 @@ export default function Home() {
             </div>
           </div>
           <div className="container max-w-7xl mx-auto px-4 mt-12 overflow-visible">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 overflow-visible">
-              {manufacturingFeatures.map((feature) => (
-                <ManufacturingFeatureCard
-                  key={feature.title}
-                  image={feature.image}
-                  title={feature.title}
-                  description={feature.description}
-                />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 overflow-visible">
+              {manufacturingFeatures.map((feature, i) => (
+                <div data-aos="fade-up" data-aos-delay={i * 100} key={feature.title}>
+                  <ManufacturingFeatureCard
+                    image={feature.image}
+                    title={feature.title}
+                    description={feature.description}
+                  />
+                </div>
               ))}
             </div>
           </div>
         </section>
         <section
           className="relative py-20 bg-transparent text-white overflow-hidden"
-          data-aos="fade-up"
-          id="propulsion-section-new"
+          id="projects-section"
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
             <div className="pb-12">
-              <h1 className="text-7xl font-semibold text-center">Projects and Innovations</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center" data-aos="fade-up">Projects and Innovations</h1>
             </div>
             <div className="flex justify-center w-full text-lg my-4 ">
-                <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed text-center ">
+                <div className="max-w-3xl text-lg md:text-3xl leading-relaxed text-center " data-aos="fade-up" data-aos-delay="100">
                   Explore our groundbreaking projects that are shaping the future of <span className="font-semibold text-primary-600">aerospace technology</span>.
                 </div>
             </div>
-            <div className="my-12">
+            <div className="my-12" data-aos="fade-up" data-aos-delay="200">
               <FeaturedProjectsShowcase />
             </div>
-            <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full">
+            <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
               <Button
                 as={Link}
-                className="bg-black/15 text-white shadow-xl"
+                className="bg-black/15 text-white shadow-xl rounded-lg"
                 href="/projects"
                 variant="bordered"
-                data-aos="fade-up"
               >
                 See All Projects <FontAwesomeIcon icon={faArrowRight} />
               </Button>
@@ -595,28 +591,26 @@ export default function Home() {
         </section>
         <section
           className="relative py-20 bg-transparent text-white overflow-hidden"
-          data-aos="fade-up"
-          id="propulsion-section-new"
+          id="team-section"
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
             <div className="pb-12">
-              <h1 className="text-7xl font-semibold text-center">The Greatest Team Ever Assembled</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center" data-aos="fade-up">The Greatest Team Ever Assembled</h1>
             </div>
             <div className="flex justify-end w-full text-lg my-4 ">
-                <div className="max-w-3xl text-2xl md:text-3xl leading-relaxed">
+                <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
                   <span className="font-semibold text-accent-600">Thunderclap Labs</span> is fueled by <span className="font-semibold text-primary-600">passion</span>, <span className="font-semibold text-primary-600">curiosity</span>, and a relentless drive to innovate. Our team brings together the brightest minds in engineering, science, and technology to build the future—one breakthrough at a time.
                 </div>
             </div>
-            <div className="my-12">
+            <div className="my-12" data-aos="fade-up" data-aos-delay="200">
               <TeamSwiper />
             </div>
-                        <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full">
+            <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
               <Button
                 as={Link}
-                className="bg-black/15 text-white shadow-xl"
+                className="bg-black/15 text-white shadow-xl rounded-lg"
                 href="/team"
                 variant="bordered"
-                data-aos="fade-up"
               >
                 More About The Team <FontAwesomeIcon icon={faArrowRight} />
               </Button>
@@ -666,7 +660,7 @@ export default function Home() {
           <div className="flex gap-4 justify-center" data-aos="fade-up">
             <Button
               as={Link}
-              className=" bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl"
+              className=" bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl rounded-lg"
               href="/contact"
               variant="bordered"
             >
@@ -675,7 +669,7 @@ export default function Home() {
             </Button>
             <Button
               as={Link}
-              className=" bg-secondary/50 text-white border-gray-800 shadow-xl"
+              className=" bg-secondary/50 text-white border-gray-800 shadow-xl rounded-lg"
               href="/team"
               variant="bordered"
             >

@@ -34,9 +34,9 @@ export const FeaturedProjectsShowcase = () => {
   return (
     <section className="bg-transparent text-white overflow-hidden" id="featured-projects-showcase">
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {selected.map((project) => (
-            <div className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg" key={project.id}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {selected.map((project, i) => (
+            <div className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg" key={project.id} data-aos="fade-up" data-aos-delay={i * 100}>
               <div className={`flex flex-col bg-black bg-opacity-95 p-1 rounded-lg h-full`}>
                 {project.image && (
                   <div className="relative h-48 w-full">
