@@ -9,6 +9,7 @@ import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 
 import "./styles/globals.css";
+import "swiper/css";
 
 export const metadata: Metadata = {
   title: {

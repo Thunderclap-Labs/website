@@ -29,6 +29,7 @@ export interface Project {
     | "AI"
   )[];
   image?: StaticImageData; // Add image field
+  featured?: boolean; // Add featured flag
 }
 
 export const projects: Project[] = [
@@ -82,6 +83,7 @@ export const projects: Project[] = [
     status: "Active",
     categories: ["Aerospace", "Research"],
     image: fwd,
+    featured: true, // <-- Mark as featured
   },
   {
     id: "rocketfuel",
@@ -126,6 +128,7 @@ export const projects: Project[] = [
     status: "Active",
     image: dronewireframe,
     categories: ["Aerospace", "Hardware", "Software"],
+    featured: true, // <-- Mark as featured
   },
   {
     id: "cloudseeding",
@@ -150,6 +153,7 @@ export const projects: Project[] = [
     status: "Active",
     image: cloudseeding,
     categories: ["Research", "Aerospace"],
+        featured: true,
   },
   {
     id: "cansat1",
