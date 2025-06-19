@@ -619,9 +619,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </section>
-      </div>
-      <section
+          <section
         className="py-20 bg-neutral-800 text-neutral-100"
         data-aos="fade-up"
         id="partner-section"
@@ -682,6 +680,8 @@ export default function Home() {
         </div>
       </section>
       <FundingChartSection />
+        </section>
+      </div> 
     </div>
   );
 }

@@ -3,6 +3,14 @@
 import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle, faCloudRain, faShieldAlt, faEye, faSeedling, faTint, faSmog, faBullseye, faBolt, faBatteryHalf, faRocket, faSatelliteDish, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+import { StarsBackground } from "@/components/ui/stars-background";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+
 const FundingChartSection = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null); // To hold the chart instance for cleanup
@@ -66,19 +74,6 @@ const FundingChartSection = () => {
               align: 'start',   // Align text to the start
               maxWidth: 2,    // Maximum width of the legend
             },
-            title: {
-              display: true,
-              text: 'Funding Ask: 8000 EUR - Allocation Breakdown',
-              position: 'top',
-              color: '#ffffff', // text-white
-              font: {
-                size: 30,
-                weight: 'bold',
-              },
-              padding: {
-                bottom: 30
-              }
-            },
           },
         },
       });
@@ -93,40 +88,80 @@ const FundingChartSection = () => {
   }}, []); // Empty dependency array ensures this effect runs only once
 
   return (
-    <section id="funding-section" className="py-20 bg-neutral-900 text-neutral-100">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section id="funding-section" className="py-20 text-neutral-100 relative overflow-hidden">
+      {/* Star background, behind content */}
+      <div className="container max-w-7xl mx-auto px-4 relative z-10">
+        {/* Add chart title as h3 above the grid */}
+        <h3 className="text-3xl font-bold mb-10 tracking-tight text-white text-center pb-8">
+          Funding Ask: <span className="text-blue-400">8000 EUR</span> - Allocation Breakdown
+        </h3>
         <div className="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
-          
           {/* Chart Column */}
-          <div className="md:col-span-3 w-full h-[400px] md:h-[500px]" data-aos="fade-right">
-            <canvas ref={chartRef}></canvas>
+          <div
+            className="md:col-span-3 w-full h-[400px] md:h-[500px] bg-transparent relative z-10 flex items-center justify-center"
+            data-aos="fade-right"
+          >
+            <div className="w-full h-full flex items-center justify-center relative">
+              <canvas
+                ref={chartRef}
+                className="!bg-transparent relative z-10"
+                style={{ background: "transparent" }}
+                width={500}
+                height={500}
+              ></canvas>
+            </div>
           </div>
-          
           {/* Milestones Column */}
           <div className="md:col-span-2" data-aos="fade-left" data-aos-delay="200">
-            <h3 className="text-3xl font-bold mb-6 tracking-tight text-blue-400">
+            <h3 className="text-3xl font-bold mb-6 tracking-tight text-blue-400 text-left">
               Expected Milestones
             </h3>
-            <p className="text-lg text-neutral-400 mb-6">
+            <p className="text-lg text-neutral-400 mb-6 text-left">
               With funding, we will achieve these critical milestones within 4-6 months:
             </p>
-            <ul className="space-y-4 text-neutral-200">
+            <ul className="space-y-4 text-neutral-200 text-left pl-0">
               <li className="flex items-start">
                 <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
-                <span><strong className="font-semibold">Fully Operational System:</strong> Complete and launch our proprietary fuel manufacturing system.</span>
+                <span>
+                  <strong className="font-semibold">Fully Operational System:</strong> Complete and launch our proprietary fuel manufacturing system.
+                </span>
               </li>
               <li className="flex items-start">
                 <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
-                <span><strong className="font-semibold">Successful Test Flights:</strong> Conduct rigorous test flights to validate performance and safety.</span>
+                <span>
+                  <strong className="font-semibold">Successful Test Flights:</strong> Conduct rigorous test flights to validate performance and safety.
+                </span>
               </li>
               <li className="flex items-start">
                 <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
-                <span><strong className="font-semibold">First Commercial Deployment:</strong> Secure and execute our first pilot program with a key partner.</span>
+                <span>
+                  <strong className="font-semibold">First Commercial Deployment:</strong> Secure and execute our first pilot program with a key partner.
+                </span>
               </li>
             </ul>
           </div>
-
+          
         </div>
+        <div className="flex gap-4 justify-center" data-aos="fade-up">
+                      <Button
+                        as={Link}
+                        className="mt-4 bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl"
+                        href="mailto:thunderclaplabs@gmail.com"
+                        target="_blank"
+                        variant="bordered"
+                      >
+                        <FontAwesomeIcon icon={faPaperPlane} />
+                        Contact Us
+                      </Button>
+                      <Button
+                        as={Link}
+                        className="mt-4 bg-secondary/50 text-white border-gray-800 shadow-xl"
+                        href="/team"
+                        variant="bordered"
+                      >
+                        Our Team
+                      </Button>
+                    </div>
       </div>
     </section>
   );
