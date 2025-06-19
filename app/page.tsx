@@ -3,6 +3,7 @@
 import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import { useEffect, useState, useRef } from "react";
+import Chart from 'chart.js/auto';
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -37,6 +38,8 @@ import { StatsGrid } from "@/components/common/stats-grid";
 import { ManufacturingFeatureCard } from "@/components/common/manufacturing-feature-card";
 import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
+
+import FundingChartSection from "@/components/FundingChartSection";
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -678,6 +681,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <FundingChartSection />
     </div>
   );
 }
