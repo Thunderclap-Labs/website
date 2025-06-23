@@ -624,7 +624,7 @@ export default function Home() {
             </div>
           </div>
           <section
-        className="py-20 bg-neutral-800 text-neutral-100"
+        className="py-20 text-neutral-100"
         data-aos="fade-up"
         id="partner-section"
       >
@@ -637,7 +637,7 @@ export default function Home() {
               : {})}
           >
             <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
+              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white-400"
               data-aos="fade-up"
               {...(isClientMobile === false
                 ? { "data-aos-anchor": "#partner-section" }
