@@ -142,26 +142,26 @@ const FundingChartSection = () => {
           </div>
           
         </div>
-        <div className="flex gap-4 justify-center" data-aos="fade-up">
-                      <Button
-                        as={Link}
-                        className="mt-4 bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl"
-                        href="mailto:thunderclaplabs@gmail.com"
-                        target="_blank"
-                        variant="bordered"
-                      >
-                        <FontAwesomeIcon icon={faPaperPlane} />
-                        Contact Us
-                      </Button>
-                      <Button
-                        as={Link}
-                        className="mt-4 bg-secondary/50 text-white border-gray-800 shadow-xl"
-                        href="/team"
-                        variant="bordered"
-                      >
-                        Our Team
-                      </Button>
-                    </div>
+        <div className="flex gap-4 justify-center mt-8" data-aos="fade-up">
+          <Button
+            as={Link}
+            className="bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl rounded-lg"
+            href="mailto:thunderclaplabs@gmail.com"
+            target="_blank"
+            variant="bordered"
+          >
+            <FontAwesomeIcon icon={faPaperPlane} />
+            Contact Us
+          </Button>
+          <Button
+            as={Link}
+            className="bg-secondary/50 text-white border-gray-800 shadow-xl rounded-lg"
+            href="/team"
+            variant="bordered"
+          >
+            Our Team
+          </Button>
+        </div>
       </div>
     </section>
   );

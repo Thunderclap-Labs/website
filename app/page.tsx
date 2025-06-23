@@ -541,8 +541,12 @@ export default function Home() {
             <div className="pb-12 text-center">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Manufacturing Excellence</h1>
             </div>
-            <div className="flex justify-center text-center w-full text-lg my-4 ">
-              <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <div className="flex justify-center text-center w-full text-lg my-4 bg-transparent">
+              <div
+                className="max-w-3xl text-lg md:text-3xl leading-relaxed bg-transparent"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
               We are pioneering manufacturing by developing our own{" "}
               <span className="font-semibold text-primary-600">
                 production systems
@@ -657,25 +661,6 @@ export default function Home() {
               operations, finalize critical R&D, and bring these transformative
               solutions to the global market.
             </p>
-          </div>
-          <div className="flex gap-4 justify-center" data-aos="fade-up">
-            <Button
-              as={Link}
-              className=" bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl rounded-lg"
-              href="/contact"
-              variant="bordered"
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              Contact Us
-            </Button>
-            <Button
-              as={Link}
-              className=" bg-secondary/50 text-white border-gray-800 shadow-xl rounded-lg"
-              href="/team"
-              variant="bordered"
-            >
-              Our Team
-            </Button>
           </div>
         </div>
       </section>
