@@ -637,7 +637,7 @@ export default function Home() {
               : {})}
           >
             <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white-400"
+              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white-500 pb-8"
               data-aos="fade-up"
               {...(isClientMobile === false
                 ? { "data-aos-anchor": "#partner-section" }

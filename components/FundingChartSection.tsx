@@ -18,12 +18,11 @@ const FundingChartSection = () => {
         labels: [
           'Rocket Assembly & Testing (50%)',
           'Complete Fuel Manufacturing System (20%)',
+          'Operational Infrastructure (15%)',
           'Scale-Up Silver Iodide Payload Integration (10%)',
-          'Operational Infrastructure (10%)',
-          'Pilot Programs & Market Development (5%)',
-          'Unallocated (5%)'
+          'Pilot Programs & Market Development (5%)'
         ],
-        data: [50, 20, 10, 10, 5, 5],
+        data: [50, 20, 15, 10, 5],
       };
 
       const ctx = chartRef.current.getContext('2d');
@@ -93,20 +92,20 @@ const FundingChartSection = () => {
   }}, []); // Empty dependency array ensures this effect runs only once
 
   return (
-    <section id="funding-section" className="py-20  text-neutral-100">
-      <div className="container max-w-7xl mx-auto px-4">
+    <section id="funding-section" className="pt-8 text-neutral-100">
+      <div className="container max-w-7xl mx-auto px-6 md:px-12">
         {/* Add chart title as h3 above the grid */}
         <h3 className="text-3xl font-bold mb-10 tracking-tight text-white text-center pb-8">
           Funding Ask: <span className="text-blue-400">8000 EUR</span> - Allocation Breakdown
         </h3>
-        <div className="pb-6"></div>
+        <div className="pb-4"></div>
         <div className="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
           {/* Chart Column */}
           <div className="md:col-span-3 w-full h-[400px] md:h-[500px]" data-aos="fade-right">
             <canvas ref={chartRef}></canvas>
           </div>
           {/* Milestones Column */}
-          <div className="md:col-span-2" data-aos="fade-left" data-aos-delay="200">
+          <div className="md:col-span-2 bg-neutral-800/60 rounded-xl px-8 py-10" data-aos="fade-left" data-aos-delay="200">
             <h3 className="text-3xl font-bold mb-6 tracking-tight text-blue-400">
               Expected Milestones
             </h3>
