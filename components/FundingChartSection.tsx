@@ -105,7 +105,7 @@ const FundingChartSection = () => {
             <canvas ref={chartRef}></canvas>
           </div>
           {/* Milestones Column */}
-          <div className="md:col-span-2 bg-neutral-800/60 rounded-xl px-8 py-10" data-aos="fade-left" data-aos-delay="200">
+          <div className="md:col-span-2 bg-neutral-800/60 rounded-xl px-8 py-10 mx-auto mb-8" data-aos="fade-left" data-aos-delay="200">
             <h3 className="text-3xl font-bold mb-6 tracking-tight text-blue-400">
               Expected Milestones
             </h3>

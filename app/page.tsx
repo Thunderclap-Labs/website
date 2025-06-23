@@ -628,39 +628,27 @@ export default function Home() {
         data-aos="fade-up"
         id="partner-section"
       >
-        <div className="container max-w-7xl mx-auto px-4">
+        <div className=" container max-w-7xl mx-auto px-4">
           <div
-            className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
+            className="mx-auto text-center mb-12 md:mb-16"
             data-aos="fade-up"
             {...(isClientMobile === false
               ? { "data-aos-anchor": "#partner-section" }
               : {})}
           >
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-white-500 pb-8"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "100"}
-            >
+            <h1 className="text-4xl sm:text-5xl md:text-7xl md:mb-12 font-semibold text-center " data-aos="fade-up">
               Partner with Us: Investing in a High-Impact Future
-            </h2>
-            <p
-              className="text-lg md:text-xl text-neutral-300"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "200"}
-            >
+            </h1>
+            <div className= "flex justify-end w-full">
+            <div className="max-w-3xl text-lg md:text-3xl text-left leading-relaxed" data-aos="fade-up" data-aos-delay="100">
               Thunderclap Labs is at a pivotal stage of growth, with
-              groundbreaking projects like the ThunderBee interceptor and our
-              advanced Cloud Seeding technology poised for significant
+              groundbreaking projects like the <span className="font-semibold text-primary-600">ThunderBee interceptor</span> and our
+              advanced <span className="font-semibold text-primary-600">Cloud Seeding technology</span> poised for significant
               advancement. We are seeking strategic investors to help us scale
               operations, finalize critical R&D, and bring these transformative
               solutions to the global market.
-            </p>
+            </div>
+            </div>
           </div>
         </div>
       </section>
