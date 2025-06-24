@@ -628,27 +628,28 @@ export default function Home() {
         data-aos="fade-up"
         id="partner-section"
       >
-        <div className=" container max-w-7xl mx-auto px-4">
-          <div
-            className="mx-auto text-center mb-12 md:mb-16"
-            data-aos="fade-up"
-            {...(isClientMobile === false
-              ? { "data-aos-anchor": "#partner-section" }
-              : {})}
-          >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl md:mb-12 font-semibold text-center " data-aos="fade-up">
-              Partner with Us: Investing in a High-Impact Future
-            </h1>
-            <div className= "flex justify-end w-full">
-            <div className="max-w-3xl text-lg md:text-3xl text-left leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-              Thunderclap Labs is at a pivotal stage of growth, with
-              groundbreaking projects like the <span className="font-semibold text-primary-600">ThunderBee interceptor</span> and our
-              advanced <span className="font-semibold text-primary-600">Cloud Seeding technology</span> poised for significant
-              advancement. We are seeking strategic investors to help us scale
-              operations, finalize critical R&D, and bring these transformative
-              solutions to the global market.
-            </div>
-            </div>
+        <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div
+              className="mx-auto text-center"
+              data-aos="fade-up"
+              {...(isClientMobile === false
+                ? { "data-aos-anchor": "#partner-section" }
+                : {})}
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-7xl font-semibold text-left mb-12" data-aos="fade-up">
+                Partner with Us:<br/>
+                Investing in a High-Impact Future
+              </h1>
+              <div className="flex justify-end w-full sm:justify-end">
+                <div className="max-w-3xl text-base sm:text-lg md:text-3xl text-left leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                  Thunderclap Labs is at a pivotal stage of growth, with
+                  groundbreaking projects like the <span className="font-semibold text-primary-600">ThunderBee interceptor</span> and our
+                  advanced <span className="font-semibold text-primary-600">Cloud Seeding technology</span> poised for significant
+                  advancement. We are seeking strategic investors to help us scale
+                  operations, finalize critical R&D, and bring these transformative
+                  solutions to the global market.
+                </div>
+              </div>
           </div>
         </div>
       </section>
