@@ -45,15 +45,32 @@ const FundingChartSection = () => {
                 backgroundColor: fundingData.colors,
                 borderColor: '#171717',
                 borderWidth: 2,
+                
               },
             ],
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
+            // START: Added section to create space between chart and legend
+            layout: {
+              padding: {
+                bottom: 30 // This adds 30px of space at the bottom of the chart area
+              }
+            },
+            // END: Added section
             plugins: {
               legend: {
-                display: false, // Disable Chart.js legend (no doubling)
+                position: 'bottom',
+                labels: {
+                  color: '#d4d4d4', // text-neutral-300
+                  font: {
+                    size: 14,
+                  },
+                  boxWidth: 15,
+                  padding: 20
+                },
+                align: 'start',   // Align text to the start
               },
             },
           },
@@ -88,47 +105,24 @@ const FundingChartSection = () => {
             }}
             data-aos="fade-right"
           >
+            {/* Pie chart */}
             <div className="w-full flex items-center justify-center">
               <canvas
                 ref={chartRef}
-                width={400}
-                height={400}
+                width={500}
+                height={500}
                 style={{
-                  width: 'min(90vw, 400px)',
-                  height: 'min(90vw, 400px)',
-                  maxWidth: '400px',
-                  maxHeight: '400px',
+                  width: 'min(95vw, 500px)',
+                  height: 'min(95vw, 500px)',
+                  maxWidth: '500px',
+                  maxHeight: '500px',
                   display: 'block',
                   background: 'transparent',
                 }}
               ></canvas>
             </div>
-            {/* Custom Legend */}
-            <div
-              className="w-full flex flex-col items-start gap-4"
-              style={{
-                marginTop: 64,
-                paddingLeft: '12%',
-                maxWidth: 540,
-              }}
-            >
-              {fundingData.labels.map((label, i) => (
-                <div key={label} className="flex items-center gap-3">
-                  <span
-                    className="inline-block rounded-sm"
-                    style={{
-                      width: 20,
-                      height: 20,
-                      backgroundColor: fundingData.colors[i],
-                      border: '2px solid #171717',
-                      marginRight: 12,
-                      flexShrink: 0,
-                    }}
-                  ></span>
-                  <span className="text-base md:text-lg text-neutral-200">{label}</span>
-                </div>
-              ))}
-            </div>
+            {/* Spacer for legend */}
+            <div style={{ height: 40 }} />
           </div>
           {/* Milestones Column */}
           <div className="w-full md:col-span-3 bg-neutral-800/60 rounded-xl px-4 py-6 md:px-8 md:py-10 mx-auto mb-8">
