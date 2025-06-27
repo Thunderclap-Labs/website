@@ -3,6 +3,7 @@
 import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import { useEffect, useState, useRef } from "react";
+import Chart from 'chart.js/auto';
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -37,6 +38,8 @@ import { StatsGrid } from "@/components/common/stats-grid";
 import { ManufacturingFeatureCard } from "@/components/common/manufacturing-feature-card";
 import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
+
+import FundingChartSection from "@/components/FundingChartSection";
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -538,8 +541,12 @@ export default function Home() {
             <div className="pb-12 text-center">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Manufacturing Excellence</h1>
             </div>
-            <div className="flex justify-center text-center w-full text-lg my-4 ">
-              <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <div className="flex justify-center text-center w-full text-lg my-4 bg-transparent">
+              <div
+                className="max-w-3xl text-lg md:text-3xl leading-relaxed bg-transparent"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
               We are pioneering manufacturing by developing our own{" "}
               <span className="font-semibold text-primary-600">
                 production systems
@@ -616,68 +623,39 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </section>
-      </div>
-      <section
-        className="py-20 bg-neutral-800 text-neutral-100"
+          <section
+        className="py-20 text-neutral-100"
         data-aos="fade-up"
         id="partner-section"
       >
-        <div className="container max-w-7xl mx-auto px-4">
-          <div
-            className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
-            data-aos="fade-up"
-            {...(isClientMobile === false
-              ? { "data-aos-anchor": "#partner-section" }
-              : {})}
-          >
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
+        <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div
+              className="mx-auto text-center"
               data-aos="fade-up"
               {...(isClientMobile === false
                 ? { "data-aos-anchor": "#partner-section" }
                 : {})}
-              data-aos-delay={isClientMobile ? "0" : "100"}
             >
-              Partner with Us: Investing in a High-Impact Future
-            </h2>
-            <p
-              className="text-lg md:text-xl text-neutral-300"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "200"}
-            >
-              Thunderclap Labs is at a pivotal stage of growth, with
-              groundbreaking projects like the ThunderBee interceptor and our
-              advanced Cloud Seeding technology poised for significant
-              advancement. We are seeking strategic investors to help us scale
-              operations, finalize critical R&D, and bring these transformative
-              solutions to the global market.
-            </p>
-          </div>
-          <div className="flex gap-4 justify-center" data-aos="fade-up">
-            <Button
-              as={Link}
-              className=" bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl rounded-lg"
-              href="/contact"
-              variant="bordered"
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              Contact Us
-            </Button>
-            <Button
-              as={Link}
-              className=" bg-secondary/50 text-white border-gray-800 shadow-xl rounded-lg"
-              href="/team"
-              variant="bordered"
-            >
-              Our Team
-            </Button>
+              <h1 className="text-3xl sm:text-4xl md:text-7xl font-semibold text-left mb-12" data-aos="fade-up">
+                Partner with Us:<br/>
+                Investing in a High-Impact Future
+              </h1>
+              <div className="flex justify-end w-full sm:justify-end">
+                <div className="max-w-3xl text-base sm:text-lg md:text-3xl text-left leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                  Thunderclap Labs is at a pivotal stage of growth, with
+                  groundbreaking projects like the <span className="font-semibold text-primary-600">ThunderBee interceptor</span> and our
+                  advanced <span className="font-semibold text-primary-600">Cloud Seeding technology</span> poised for significant
+                  advancement. We are seeking strategic investors to help us scale
+                  operations, finalize critical R&D, and bring these transformative
+                  solutions to the global market.
+                </div>
+              </div>
           </div>
         </div>
       </section>
+      <FundingChartSection />
+        </section>
+      </div> 
     </div>
   );
 }
