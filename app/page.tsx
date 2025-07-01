@@ -3,6 +3,7 @@
 import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import { useEffect, useState, useRef } from "react";
+import Chart from 'chart.js/auto';
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -37,6 +38,8 @@ import { StatsGrid } from "@/components/common/stats-grid";
 import { ManufacturingFeatureCard } from "@/components/common/manufacturing-feature-card";
 import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
+
+import FundingChartSection from "@/components/FundingChartSection";
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -427,7 +430,7 @@ export default function Home() {
       >
         <div className="container max-w-7xl mx-auto px-4 relative z-[1]">
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
           </div>
           <div className="flex justify-end w-full text-lg my-8 mb-16">
             <div className="max-w-3xl text-lg md:text-3xl font-normal leading-relaxed" data-aos="fade-up" data-aos-delay="100">
@@ -488,7 +491,7 @@ export default function Home() {
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
             <div className="pb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Next-Generation Propulsion Systems</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Next-Generation Propulsion Systems</h1>
             </div>
             <div className="flex justify-end w-full text-lg my-4 ">
                 <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
@@ -538,8 +541,12 @@ export default function Home() {
             <div className="pb-12 text-center">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Manufacturing Excellence</h1>
             </div>
-            <div className="flex justify-center text-center w-full text-lg my-4 ">
-              <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <div className="flex justify-center text-center w-full text-lg my-4 bg-transparent">
+              <div
+                className="max-w-3xl text-lg md:text-3xl leading-relaxed bg-transparent"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
               We are pioneering manufacturing by developing our own{" "}
               <span className="font-semibold text-primary-600">
                 production systems
@@ -616,68 +623,38 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </section>
-      </div>
-      <section
-        className="py-20 bg-neutral-800 text-neutral-100"
-        data-aos="fade-up"
-        id="partner-section"
-      >
-        <div className="container max-w-7xl mx-auto px-4">
-          <div
-            className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
+          <section
+            className="pt-20 pb-6 text-neutral-100"
+            id="partner-section"
             data-aos="fade-up"
-            {...(isClientMobile === false
-              ? { "data-aos-anchor": "#partner-section" }
-              : {})}
           >
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-blue-400"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "100"}
-            >
-              Partner with Us: Investing in a High-Impact Future
-            </h2>
-            <p
-              className="text-lg md:text-xl text-neutral-300"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-              data-aos-delay={isClientMobile ? "0" : "200"}
-            >
-              Thunderclap Labs is at a pivotal stage of growth, with
-              groundbreaking projects like the ThunderBee interceptor and our
-              advanced Cloud Seeding technology poised for significant
-              advancement. We are seeking strategic investors to help us scale
-              operations, finalize critical R&D, and bring these transformative
-              solutions to the global market.
-            </p>
-          </div>
-          <div className="flex gap-4 justify-center" data-aos="fade-up">
-            <Button
-              as={Link}
-              className=" bg-secondary/5 text-secondary hover:bg-secondary/10 border-gray-800 shadow-xl rounded-lg"
-              href="/contact"
-              variant="bordered"
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              Contact Us
-            </Button>
-            <Button
-              as={Link}
-              className=" bg-secondary/50 text-white border-gray-800 shadow-xl rounded-lg"
-              href="/team"
-              variant="bordered"
-            >
-              Our Team
-            </Button>
-          </div>
-        </div>
-      </section>
+            <div className="relative z-10 container max-w-7xl mx-auto px-4">
+              <div
+                className="mx-auto text-center"
+                data-aos-anchor="#partner-section"
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
+                  Partner with Us:<br/>
+                  Investing in a High-Impact Future
+                </h1>
+              </div>
+            </div>
+            <div className="px-4 mt-12">
+              <FundingChartSection />
+            </div>
+            <div className="flex pt-8 md:pt-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
+              <Button
+                as={Link}
+                className="bg-black/15 text-white shadow-xl rounded-lg"
+                href="/contact"
+                variant="bordered"
+              >
+                Contact Us <FontAwesomeIcon icon={faArrowRight} />
+              </Button>
+            </div>
+          </section>
+        </section>
+      </div> 
     </div>
   );
 }
