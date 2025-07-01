@@ -2,10 +2,21 @@
 
 import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { Progress } from '@heroui/react';
 
 const FundingChartSection = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null); // To hold the chart instance for cleanup
+
+  // Funding variables
+  const targetAmount = 8000;
+  const raisedAmount = 1000;
+  const fundingPercentage = Math.round((raisedAmount / targetAmount) * 100);
+
+  // Simple number formatter to avoid hydration issues
+  const formatNumber = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 
   const fundingData = {
     labels: [
@@ -58,19 +69,17 @@ const FundingChartSection = () => {
                 bottom: 30 // This adds 30px of space at the bottom of the chart area
               }
             },
-            // END: Added section
             plugins: {
               legend: {
                 position: 'bottom',
                 labels: {
                   color: '#d4d4d4', // text-neutral-300
                   font: {
-                    size: 14,
+                    size: 12, // smaller font for mobile
                   },
                   boxWidth: 15,
-                  padding: 20
+                  padding: 10, // less padding for mobile
                 },
-                align: 'start',   // Align text to the start
               },
             },
           },
@@ -87,17 +96,12 @@ const FundingChartSection = () => {
   }, []); // Empty dependency array ensures this effect runs only once
 
   return (
-    <section id="funding-section" className="pt-8 text-neutral-100">
-      <div className="container max-w-2xl md:max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        {/* Add chart title as h3 above the grid */}
-        <h3 className="text-3xl font-bold mb-10 tracking-tight text-white text-center pb-8">
-          Funding Ask: <span className="text-blue-400">8000 EUR</span> - Allocation Breakdown
-        </h3>
-        <div className="pb-4"></div>
-        <div className="flex flex-col md:grid md:grid-cols-7 gap-8 md:gap-16 items-center md:pb-16">
+    <section id="funding-section" className="text-neutral-100">
+      <div className="container max-w-2xl md:max-w-7xl mx-auto ">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center md:pb-16">
           {/* Chart Column */}
           <div
-            className="w-full flex flex-col items-center justify-center mb-8 md:mb-0 md:col-span-4"
+            className="w-full flex flex-col items-center justify-center md:mb-0 md:col-span-4"
             style={{
               minHeight: 320,
               height: 'auto',
@@ -105,47 +109,73 @@ const FundingChartSection = () => {
             }}
             data-aos="fade-right"
           >
-            {/* Pie chart */}
-            <div className="w-full flex items-center justify-center">
+          {/* Pie chart */}
+            <div className="relative w-full">
               <canvas
                 ref={chartRef}
                 width={500}
-                height={500}
-                style={{
-                  width: 'min(95vw, 500px)',
-                  height: 'min(95vw, 500px)',
-                  maxWidth: '500px',
-                  maxHeight: '500px',
-                  display: 'block',
-                  background: 'transparent',
-                }}
+                className="block bg-transparent"
               ></canvas>
             </div>
-            {/* Spacer for legend */}
-            <div style={{ height: 40 }} />
           </div>
           {/* Milestones Column */}
-          <div className="w-full md:col-span-3 bg-neutral-800/60 rounded-xl px-4 py-6 md:px-8 md:py-10 mx-auto mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight text-blue-400">
-              Expected Milestones
+          <div className="w-full px-4 md:px-8 mb-8 md:mb-0">
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight text-blue-400" data-aos="fade-up">
+              Seeking Strategic Investors
             </h3>
-            <p className="text-base md:text-lg text-neutral-400 mb-6">
+            <div className="text-base md:text-lg text-neutral-400 mb-4" data-aos="fade-up" data-aos-delay="100">
+              We are seeking strategic investors to help us scale
+              operations, finalize critical R&D, and bring these transformative
+              solutions to the global market.
+            </div>
+            <p className="text-base md:text-lg text-neutral-400 mb-6" data-aos="fade-up" data-aos-delay="200">
               With funding, we will achieve these critical milestones within 4-6 months:
             </p>
             <ul className="space-y-4 text-neutral-200">
-              <li className="flex items-start">
+              <li className="flex items-start" data-aos="fade-up" data-aos-delay="300">
                 <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
                 <span><strong className="font-semibold">Fully Operational System:</strong> Complete and launch our proprietary fuel manufacturing system.</span>
               </li>
-              <li className="flex items-start">
+              <li className="flex items-start" data-aos="fade-up" data-aos-delay="400">
                 <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
                 <span><strong className="font-semibold">Successful Test Flights:</strong> Conduct rigorous test flights to validate performance and safety.</span>
               </li>
-              <li className="flex items-start">
+              <li className="flex items-start" data-aos="fade-up" data-aos-delay="500">
                 <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
                 <span><strong className="font-semibold">First Commercial Deployment:</strong> Secure and execute our first pilot program with a key partner.</span>
               </li>
             </ul>
+          </div>
+        </div>
+        
+        {/* Funding Progress Section */}
+        <div className="pt-8 border-t border-neutral-700" data-aos="fade-up" data-aos-delay="200">
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight text-white text-center">
+            Funding Progress
+          </h3>
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-between gap-2 items-center mb-4">
+              <span className="text-lg font-semibold text-neutral-300">€{formatNumber(raisedAmount)} Raised - <span className="text-sm text-neutral-600">By Lithuanian Armed Forces & European Union (EUDIS)</span></span>
+              <span className="text-lg text-nowrap font-semibold text-blue-400">Target: €{formatNumber(targetAmount)}</span>
+            </div>
+            <Progress
+              size="lg"
+              value={fundingPercentage}
+              maxValue={100}
+              color="primary"
+              className="mb-4"
+              classNames={{
+                base: "max-w-full",
+                track: "drop-shadow-md border border-default",
+                indicator: "bg-gradient-to-r from-blue-500 to-blue-600",
+                label: "tracking-wider font-medium text-default-600",
+                value: "text-foreground/60",
+              }}
+            />
+            <div className="flex justify-between items-center text-sm text-neutral-400">
+              <span>€0</span>
+              <span>{fundingPercentage}% funded</span>
+            </div>
           </div>
         </div>
       </div>

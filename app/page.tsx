@@ -430,7 +430,7 @@ export default function Home() {
       >
         <div className="container max-w-7xl mx-auto px-4 relative z-[1]">
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
           </div>
           <div className="flex justify-end w-full text-lg my-8 mb-16">
             <div className="max-w-3xl text-lg md:text-3xl font-normal leading-relaxed" data-aos="fade-up" data-aos-delay="100">
@@ -491,7 +491,7 @@ export default function Home() {
         >
           <div className="relative z-10 container max-w-7xl mx-auto px-4">
             <div className="pb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Next-Generation Propulsion Systems</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Next-Generation Propulsion Systems</h1>
             </div>
             <div className="flex justify-end w-full text-lg my-4 ">
                 <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
@@ -624,36 +624,35 @@ export default function Home() {
             </div>
           </div>
           <section
-        className="py-20 text-neutral-100"
-        data-aos="fade-up"
-        id="partner-section"
-      >
-        <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div
-              className="mx-auto text-center"
-              data-aos="fade-up"
-              {...(isClientMobile === false
-                ? { "data-aos-anchor": "#partner-section" }
-                : {})}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-7xl font-semibold text-left mb-12" data-aos="fade-up">
-                Partner with Us:<br/>
-                Investing in a High-Impact Future
-              </h1>
-              <div className="flex justify-end w-full sm:justify-end">
-                <div className="max-w-3xl text-base sm:text-lg md:text-3xl text-left leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                  Thunderclap Labs is at a pivotal stage of growth, with
-                  groundbreaking projects like the <span className="font-semibold text-primary-600">ThunderBee interceptor</span> and our
-                  advanced <span className="font-semibold text-primary-600">Cloud Seeding technology</span> poised for significant
-                  advancement. We are seeking strategic investors to help us scale
-                  operations, finalize critical R&D, and bring these transformative
-                  solutions to the global market.
-                </div>
+            className="pt-20 pb-6 text-neutral-100"
+            id="partner-section"
+            data-aos="fade-up"
+          >
+            <div className="relative z-10 container max-w-7xl mx-auto px-4">
+              <div
+                className="mx-auto text-center"
+                data-aos-anchor="#partner-section"
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
+                  Partner with Us:<br/>
+                  Investing in a High-Impact Future
+                </h1>
               </div>
-          </div>
-        </div>
-      </section>
-      <FundingChartSection />
+            </div>
+            <div className="px-4 mt-12">
+              <FundingChartSection />
+            </div>
+            <div className="flex pt-8 md:pt-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
+              <Button
+                as={Link}
+                className="bg-black/15 text-white shadow-xl rounded-lg"
+                href="/contact"
+                variant="bordered"
+              >
+                Contact Us <FontAwesomeIcon icon={faArrowRight} />
+              </Button>
+            </div>
+          </section>
         </section>
       </div> 
     </div>

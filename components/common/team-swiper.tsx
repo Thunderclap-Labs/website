@@ -37,7 +37,7 @@ export const TeamSwiper: React.FC = () => (
             data-aos="fade-up"
             data-aos-delay={i * 100}
           >
-            <div className="relative w-24 h-24 mb-3 rounded-full overflow-hidden border-2 border-primary-500">
+            <div className="relative w-24 min-h-24 mb-3 rounded-full overflow-hidden border-2 border-primary-500">
               <Image
                 alt={member.name}
                 src={member.image}
