@@ -6,12 +6,16 @@ import fidiBadge from "../images/icons/Fidi.png";
 import ORBadge from "../images/icons/OR.png";
 import VUBadge from "../images/icons/VU.png";
 import makerspaceBadge from "../images/icons/makerspace.png";
+import esaBadge from "../images/icons/ESA.png";
+import ILBadge from "../images/icons/IL.png";
+import grabcadBadge from "../images/icons/grabcad.png";
 import ignasImage from "../images/members/ignas.png";
 import simonasImage from "../images/members/simonas.png";
 import migleImage from "../images/members/migle.png";
 import dominykasImage from "../images/members/dominykas.jpg";
 import dominykaslImage from "../images/members/dominykasl.png";
 import juliusImage from "../images/members/julius.png";
+import dominykasnImage from "../images/members/dominykasn.jpeg";
 
 export const teamMembers = [
   {
@@ -135,6 +139,52 @@ export const teamMembers = [
         link: "https://nukestore.vercel.app/",
       },
     ],
+  },
+    {
+    name: "Dominykas Remeika",
+    role: "Engineering & Product Development Specialist",
+    email: "dominykasremeika27@gmail.com",
+    image: dominykasnImage,
+    social: {
+      linkedin:
+        "https://www.linkedin.com/in/dominykas-remeika/",
+      facebook: "https://www.facebook.com/Unavailable.Nickname",
+    },
+    badges: [
+      {
+        label: "ESA - European Space Agency",
+        image: esaBadge,
+        link: "https://www.esa.int/",
+      },
+      {
+        label: "GrabCAD",
+        image: grabcadBadge,
+        link: "https://grabcad.com/dominykas.remeika-2",
+      },
+      {
+        label: "Kaunas Makerspace",
+        image: makerspaceBadge,
+        link: "https://makerspace.lt/",
+      },
+      {
+        label: "KTU Engineering Lyceum",
+        image: ILBadge,
+        link: "https://inzinerijoslicejus.ktu.edu/",
+      },
+    ],
+
+    description:
+      "Dominykas is contributing to engineering-focused product development and prototyping. With a strong interest in manufacturing, digital design, and data analysis, he bridges the gap between concept and execution—supporting both early-stage idea development and practical implementation.",
+    skills: [
+      "3D Modeling",
+      "Manufacturing Planning",
+      "Data Analysis",
+      "Communication",
+      "3D Printing",
+      "Fusion 360",
+      "Autodesk Inventor",
+    ],
+    personalProjects: [],
   },
   {
     name: "Miglė Cirtautaitė",

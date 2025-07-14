@@ -52,6 +52,7 @@ export const projects: Project[] = [
       "Ignas Mikolaitis",
       "Miglė Cirtautaitė",
       "Julius Barauskas",
+      "Dominykas Remeika",
       "Dominykas Leknickas",
     ],
     startDate: "2024-12",
@@ -78,6 +79,7 @@ export const projects: Project[] = [
       "Ignas Mikolaitis",
       "Miglė Cirtautaitė",
       "Julius Barauskas",
+      "Dominykas Remeika"
     ],
     startDate: "2024-12",
     status: "Active",
@@ -148,6 +150,7 @@ export const projects: Project[] = [
       "Simonas Aukštuolis",
       "Miglė Cirtautaitė",
       "Julius Barauskas",
+      "Dominykas Remeika",
     ],
     startDate: "2025-05",
     status: "Active",
