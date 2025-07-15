@@ -44,6 +44,7 @@ export const config = {
 // Global state
 export const elements = {
   globe: null as THREE.Mesh | null,
+  innerGlow: null as THREE.Mesh | null,
   atmosphere: null as THREE.Mesh | null,
   globePoints: null as THREE.Points | null,
   lineDots: [] as Dot[],

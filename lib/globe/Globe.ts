@@ -33,6 +33,24 @@ export class Globe {
 
     groups.map.add(this.globe);
     groups.globe!.add(groups.map);
+
+    const atmosphere = this.createAtmosphere();
+    groups.globe!.add(atmosphere);
+  }
+
+  createAtmosphere() {
+    const atmosphereGeometry = new THREE.SphereGeometry(this.radius, 64, 64);
+    const atmosphereMaterial = new THREE.ShaderMaterial({
+      vertexShader: shaders.atmosphere.vertexShader,
+      fragmentShader: shaders.atmosphere.fragmentShader,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
+      side: THREE.BackSide,
+    });
+
+    const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+    atmosphere.scale.set(1.1, 1.1, 1.1);
+    return atmosphere;
   }
 
   createGlobeMaterial() {
@@ -51,25 +69,12 @@ export class Globe {
     context.fillStyle = gradient;
     context.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Add some noise for texture
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-    for (let i = 0; i < data.length; i += 4) {
-      const noise = Math.random() * 50;
-      data[i] += noise;     // Red
-      data[i + 1] += noise; // Green
-      data[i + 2] += noise; // Blue
-    }
-    context.putImageData(imageData, 0, 0);
-
     const texture = new THREE.CanvasTexture(canvas);
 
     return new THREE.ShaderMaterial({
-      uniforms: { texture: { value: texture } },
+      uniforms: { globeTexture: { value: texture } },
       vertexShader: shaders.globe.vertexShader,
       fragmentShader: shaders.globe.fragmentShader,
-      blending: THREE.AdditiveBlending,
-      transparent: true,
     });
   }
 }
