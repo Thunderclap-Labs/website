@@ -79,14 +79,12 @@ export default function GlobePage() {
       }
 
       // Update markers
-      if (elements.markers) {
+      /*if (elements.markers) {
         for (let i = 0; i < elements.markers.length; i++) {
           const marker = elements.markers[i];
-          (marker.point.material as THREE.MeshBasicMaterial).color.set(config.colors.globeMarkerColor);
-          (marker.glow.material as THREE.MeshBasicMaterial).color.set(config.colors.globeMarkerGlow);
           marker.animateGlow();
         }
-      }
+      }*/
 
       // Update lines
       if (elements.lines) {
@@ -98,7 +96,7 @@ export default function GlobePage() {
 
       // Auto-rotate globe
       if (animations.rotateGlobe && groups.globe) {
-        groups.globe.rotation.y -= 0.0025;
+        groups.globe.rotation.y -= config.rotation.globe;
       }
 
       // Update visibility
@@ -166,36 +164,6 @@ export default function GlobePage() {
           <p className="text-sm">• Drag to rotate</p>
           <p className="text-sm">• Scroll to zoom</p>
           <p className="text-sm">• Lines animate automatically</p>
-          
-          <div className="space-y-1 mt-4">
-            <button
-              onClick={toggleRotation}
-              className="block w-full text-left text-sm hover:text-blue-300"
-            >
-              Auto-rotation: {rotation ? 'On' : 'Off'}
-            </button>
-            
-            <button
-              onClick={() => toggleDisplay('points')}
-              className="block w-full text-left text-sm hover:text-blue-300"
-            >
-              Points: {display.points ? 'On' : 'Off'}
-            </button>
-            
-            <button
-              onClick={() => toggleDisplay('markers')}
-              className="block w-full text-left text-sm hover:text-blue-300"
-            >
-              Markers: {display.markers ? 'On' : 'Off'}
-            </button>
-            
-            <button
-              onClick={() => toggleDisplay('lines')}
-              className="block w-full text-left text-sm hover:text-blue-300"
-            >
-              Lines: {display.lines ? 'On' : 'Off'}
-            </button>
-          </div>
         </div>
       </div>
 

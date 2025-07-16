@@ -62,7 +62,7 @@ export class Lines {
       this.select();
     }
 
-    this.interval = setInterval(() => this.changeCountry(), countries.interval);
+    //this.interval = setInterval(() => this.changeCountry(), countries.interval);
   }
 
   select() {

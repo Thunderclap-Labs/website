@@ -8,9 +8,10 @@ export class Dot {
   mesh: THREE.Mesh;
   _path: THREE.Vector3[] | null;
   _pathIndex: number;
+  isStatic: boolean;
 
-  constructor() {
-    this.radius = 2;
+  constructor(isStatic = false) {
+    this.radius = config.sizes.globeLineDotSize;
     this.geometry = new THREE.SphereGeometry(this.radius, 32, 32);
     this.material = new THREE.MeshBasicMaterial({ color: config.colors.globeLinesDots });
     this.material.transparent = true;
@@ -21,6 +22,7 @@ export class Dot {
 
     this._path = null;
     this._pathIndex = 0;
+    this.isStatic = isStatic;
   }
 
   assignToLine() {
@@ -30,11 +32,20 @@ export class Dot {
         const index = Math.floor(Math.random() * lines.length);
         const line = lines[index];
         this._path = (line as any)._path;
+
+        if (this.isStatic && this._path) {
+          const { x, y, z } = this._path[0];
+          this.mesh.position.set(x, y, z);
+          this.mesh.visible = true;
+        }
       }
     }
   }
 
   animate() {
+    if (this.isStatic) {
+      return;
+    }
     if (!this._path) {
       if (Math.random() > 0.99) {
         this.assignToLine();

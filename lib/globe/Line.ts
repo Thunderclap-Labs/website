@@ -33,13 +33,22 @@ export class Line {
   }
 
   createCurve() {
-    const { start, end, mid1, mid2 } = getSplineFromCoords(
+    const { start, end } = getSplineFromCoords(
       +this.start.latitude,
       +this.start.longitude,
       +this.end.latitude,
       +this.end.longitude,
       this.radius
     );
+
+    const distance = start.distanceTo(end);
+    const mid = start.clone().lerp(end, 0.5);
+    const midLength = mid.length();
+    mid.normalize();
+    mid.multiplyScalar(midLength + distance * 0.5);
+
+    const mid1 = start.clone().lerp(mid, 0.5);
+    const mid2 = mid.clone().lerp(end, 0.5);
 
     return new THREE.CubicBezierCurve3(start, mid1, mid2, end);
   }

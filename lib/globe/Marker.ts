@@ -7,6 +7,8 @@ export class Marker {
   labelText: string;
   cords: { x: number; y: number; z: number };
   isAnimating: boolean;
+  isAnimated: boolean;
+  isSpecial: boolean;
   pointColor: THREE.Color;
   glowColor: THREE.Color;
   group: THREE.Group;
@@ -14,14 +16,17 @@ export class Marker {
   point!: THREE.Mesh;
   glow!: THREE.Mesh;
 
-  constructor(material: THREE.MeshBasicMaterial, geometry: THREE.SphereGeometry, label: string, cords: { x: number; y: number; z: number }) {
+  constructor(material: THREE.MeshBasicMaterial, geometry: THREE.SphereGeometry, specialGeometry: THREE.SphereGeometry, label: string, cords: { x: number; y: number; z: number }, isAnimated = false, isSpecial = false) {
     this.material = material;
-    this.geometry = geometry;
+    this.geometry = isSpecial ? specialGeometry : geometry;
     this.labelText = label;
     this.cords = cords;
     this.isAnimating = false;
-    this.pointColor = new THREE.Color(config.colors.globeMarkerColor);
+    this.isAnimated = isAnimated;
+    this.isSpecial = isSpecial;
+    this.pointColor = new THREE.Color(isSpecial ? config.colors.globeMarkerSpecialColor : config.colors.globeMarkerColor);
     this.glowColor = new THREE.Color(config.colors.globeMarkerGlow);
+    
 
     this.group = new THREE.Group();
     this.group.name = 'Marker';
@@ -49,6 +54,7 @@ export class Marker {
 
     const material = new THREE.SpriteMaterial({ map: texture });
     this.label = new THREE.Sprite(material);
+    this.label.renderOrder = 1;
     this.label.scale.set(40, 20, 1);
     this.label.center.set(0.25, 0.5);
     this.label.translateY(2);
@@ -58,7 +64,7 @@ export class Marker {
   }
 
   createPoint() {
-    this.point = new THREE.Mesh(this.geometry, this.material);
+    this.point = new THREE.Mesh(this.geometry, this.material.clone());
     (this.point.material as THREE.MeshBasicMaterial).color.set(this.pointColor);
     this.group.add(this.point);
     elements.markerPoint.push(this.point);
@@ -66,13 +72,17 @@ export class Marker {
 
   createGlow() {
     this.glow = new THREE.Mesh(this.geometry, this.material.clone());
-    (this.glow.material as THREE.MeshBasicMaterial).color.set(this.glowColor);
-    (this.glow.material as THREE.MeshBasicMaterial).opacity = 0.6;
-    this.group.add(this.glow);
-    elements.markerPoint.push(this.glow);
+    //(this.glow.material as THREE.MeshBasicMaterial).color.set(this.glowColor);
+    //(this.glow.material as THREE.MeshBasicMaterial).opacity = 0; 
+    //this.group.add(this.glow);
+    //elements.markerPoint.push(this.glow);
   }
 
   animateGlow() {
+    return;
+    if (!this.isAnimated) {
+      return;
+    }
     if (!this.isAnimating) {
       if (Math.random() > 0.99) {
         this.isAnimating = true;

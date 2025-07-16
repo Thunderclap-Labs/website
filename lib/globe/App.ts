@@ -11,6 +11,9 @@ export class App {
   setup: (app: App) => void;
   container!: HTMLElement;
   lines: Lines | null = null;
+  targetRotationX = 0;
+  targetRotationY = 0;
+  dampingFactor = 0.05;
 
   constructor({ animate, setup }: { animate: (app: App) => void; setup: (app: App) => void }) {
     this.animate = animate;
@@ -70,8 +73,8 @@ export class App {
       const deltaY = event.clientY - mouseY;
 
       if (groups.main) {
-        groups.main.rotation.y += deltaX * 0.01;
-        groups.main.rotation.x += deltaY * 0.01;
+        this.targetRotationY += deltaX * 0.005;
+        this.targetRotationX += deltaY * 0.005;
       }
 
       mouseX = event.clientX;
@@ -95,6 +98,10 @@ export class App {
   }
 
   update = () => {
+    if (groups.main) {
+      groups.main.rotation.y += (this.targetRotationY - groups.main.rotation.y) * this.dampingFactor;
+      groups.main.rotation.x += (this.targetRotationX - groups.main.rotation.x) * this.dampingFactor;
+    }
     this.animate(this);
     this.renderer.render(this.scene, this.camera);
     requestAnimationFrame(this.update);
