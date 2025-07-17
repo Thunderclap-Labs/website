@@ -7,6 +7,7 @@ import Chart from 'chart.js/auto';
 import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import * as THREE from 'three';
 
 // Assuming these paths are correct for your project structure
 
@@ -16,8 +17,6 @@ import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle, faCloudRain, faShiel
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
 import pcbway from "../components/images/pcbway.png";
-import fwd from "../components/images/fwd.png";
-import cloudseeding from "../components/images/cloudseeding.png";
 import rockettop from "../components/images/rockettop.png";
 import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
@@ -25,7 +24,6 @@ import cansatwireframe from "../components/images/cansatwireframe.png";
 import makerspace from "../components/images/makerspace.png";
 import dryerwireframe from "../components/images/dryerwireframe.png";
 import ballmill from "../components/images/ballmill.png";
-import logo from "../components/images/logo.png";
 
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card"; // Import the new hook
 import { ShootingStars } from "@/components/ui/shooting-stars";
@@ -40,6 +38,15 @@ import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
 
 import FundingChartSection from "@/components/FundingChartSection";
+
+// Globe imports
+import { App } from '@/lib/globe/App';
+import { Globe } from '@/lib/globe/Globe';
+import { Points } from '@/lib/globe/Points';
+import { Markers } from '@/lib/globe/Markers';
+import { Lines } from '@/lib/globe/Lines';
+import { config, elements, groups, animations, sampleCountries } from '@/lib/globe/config';
+import grid from '@/components/globe/data/grid.json';
 
 // Constants for globe and satellites
 const EARTH_RADIUS_KM = 6371; // km
@@ -140,6 +147,14 @@ const manufacturingFeatures = [
 export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
   const [isClientMobile, setIsClientMobile] = useState<boolean | null>(null);
+  
+  // Globe state
+  const globeContainerRef = useRef<HTMLDivElement>(null);
+  const appRef = useRef<App | null>(null);
+  const [isGlobeLoading, setIsGlobeLoading] = useState(true);
+  const [isGlobeVisible, setIsGlobeVisible] = useState(false);
+  const [rotation, setRotation] = useState(animations.rotateGlobe);
+  const [display, setDisplay] = useState(config.display);
 
   useFeaturedCardMouseEffect(); // Call the custom hook
 
@@ -152,7 +167,6 @@ export default function Home() {
 
       const handleResize = () => {
         const mobileCheck = window.innerWidth < 768;
-
         setIsClientMobile(mobileCheck);
       };
 
@@ -163,54 +177,169 @@ export default function Home() {
     }
   }, []);
 
+  // Globe setup effect
   useEffect(() => {
-    if (isClientMobile === null) return; // Don't do anything until mobile status is known
+    if (!globeContainerRef.current || isClientMobile) return;
 
-    if (!isClientMobile) {
-      // Desktop-only logic (Globe initialization)
-      const globeVizElement = document.getElementById("globeViz");
+    const setup = async (app: App) => {
+      app.camera.position.z = config.sizes.globe * 2.85;
+      app.camera.position.y = config.sizes.globe * 0;
+      app.camera.updateProjectionMatrix();
 
-      if (!globeVizElement) {
-        // console.error("Globe container 'globeViz' not found for desktop.");
-        return;
+      groups.main = new THREE.Group();
+      groups.main.name = 'Main';
+
+      const globe = new Globe();
+      groups.main.add(globe as any);
+
+      // Fetch country data and create points
+      try {
+        const countriesData = grid;
+        new Points(countriesData);
+        if (groups.points) {
+          groups.globe!.add(groups.points);
+        }
+      } catch (error) {
+        console.error("Failed to load country data for points:", error);
       }
 
-      // Check if globe is already initialized to prevent re-initialization on resize
-      if (globeVizElement.childElementCount > 0) {
-        // Simple check, might need refinement
-        // console.log("Globe already initialized or being initialized.");
-        // Ensure pointer events are correct for desktop
-        globeVizElement.style.pointerEvents = "auto";
+      const markers = new Markers(sampleCountries);
+      groups.globe!.add(groups.markers!);
 
-        return;
-      }
+      const lines = new Lines();
+      app.lines = lines;
+      groups.globe!.add(groups.lines!);
 
-      import("globe.gl")
-        .then((globeModule) => {
-          const GlobeGl = globeModule.default;
-          const Globe = new GlobeGl(globeVizElement);
+      app.scene.add(groups.main);
+      setIsGlobeLoading(false);
+      
+      // Start fade-in animation after a short delay
+      setTimeout(() => {
+        setIsGlobeVisible(true);
+      }, 100);
+    };
 
-          Globe.globeImageUrl(
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/The_earth_at_night.jpg/2560px-The_earth_at_night.jpg",
-          )
-            .bumpImageUrl(
-              "//unpkg.com/three-globe/example/img/earth-topology.png",
-            )
-            .backgroundImageUrl(
-              "//unpkg.com/three-globe/example/img/night-sky.png",
-            );
-
-          Globe.pointOfView({ lat: 30, lng: 26, altitude: 2.3 });
-
-          Globe.controls().autoRotate = true;
-          Globe.controls().autoRotateSpeed = 0.2;
-          Globe.controls().enableZoom = false;
-          globeVizElement.style.pointerEvents = "auto";
-        })
-        .catch((error) => {
-          console.error("Failed to load globe.gl module", error);
+    const animate = (app: App) => {
+      // Animate globe fade-in
+      if (isGlobeVisible && elements.globeOpacity < 1) {
+        elements.globeOpacity = Math.min(elements.globeOpacity + 0.02, 1);
+        
+        // Update globe opacity
+        if (elements.globe && elements.globe.material instanceof THREE.ShaderMaterial) {
+          elements.globe.material.uniforms.opacity.value = elements.globeOpacity;
+        }
+        
+        // Update atmosphere opacity
+        if (elements.atmosphere && elements.atmosphere.material instanceof THREE.ShaderMaterial) {
+          elements.atmosphere.material.uniforms.opacity.value = elements.globeOpacity * 0.6;
+        }
+        
+        // Update points opacity
+        if (elements.globePoints) {
+          (elements.globePoints.material as THREE.PointsMaterial).opacity = elements.globeOpacity * 0.8;
+        }
+        
+        // Update markers opacity
+        elements.markerLabel.forEach(label => {
+          if (label.material instanceof THREE.SpriteMaterial) {
+            label.material.opacity = elements.globeOpacity;
+          }
         });
-    }
+        
+        elements.markerPoint.forEach(point => {
+          if (point.material instanceof THREE.MeshBasicMaterial) {
+            point.material.opacity = elements.globeOpacity * 0.8;
+          }
+        });
+        
+        // Update lines opacity
+        elements.lines.forEach(line => {
+          if (line.material instanceof THREE.LineBasicMaterial) {
+            line.material.opacity = elements.globeOpacity * 0.45;
+          }
+        });
+      }
+
+      // Update points
+      if (elements.globePoints) {
+        (elements.globePoints.material as THREE.PointsMaterial).size = config.sizes.globeDotSize;
+        (elements.globePoints.material as THREE.PointsMaterial).color.set(config.colors.globeDotColor);
+      }
+
+      // Update globe scale
+      if (elements.globe) {
+        elements.globe.scale.set(
+          config.scale.globeScale,
+          config.scale.globeScale,
+          config.scale.globeScale
+        );
+      }
+
+      // Update line dots
+      if (elements.lineDots) {
+        for (let i = 0; i < elements.lineDots.length; i++) {
+          const dot = elements.lineDots[i];
+          dot.material.color.set(config.colors.globeLinesDots);
+          dot.animate();
+        }
+      }
+
+      // Update lines
+      if (elements.lines) {
+        for (let i = 0; i < elements.lines.length; i++) {
+          const line = elements.lines[i];
+          (line.material as THREE.LineBasicMaterial).color.set(config.colors.globeLines);
+        }
+      }
+
+      // Auto-rotate globe
+      if (animations.rotateGlobe && groups.globe) {
+        groups.globe.rotation.y -= config.rotation.globe;
+      }
+
+      // Update visibility
+      if (groups.map) groups.map.visible = config.display.map;
+      if (groups.markers) groups.markers.visible = config.display.markers;
+      if (groups.points) groups.points.visible = config.display.points;
+      if (groups.lines) groups.lines.visible = config.display.lines;
+
+      // Update marker labels and points
+      for (let i = 0; i < elements.markerLabel.length; i++) {
+        const label = elements.markerLabel[i];
+        label.visible = config.display.markerLabel;
+      }
+
+      for (let i = 0; i < elements.markerPoint.length; i++) {
+        const point = elements.markerPoint[i];
+        point.visible = config.display.markerPoint;
+      }
+    };
+
+    const lithuania = sampleCountries.find(c => c.name === 'Lithuania');
+    const initialRotationX = lithuania ? (+lithuania.latitude * Math.PI / 180) - 0.4 : 0;
+    const initialRotationY = lithuania ? (-lithuania.longitude * Math.PI / 180) - 0.6: 0;
+
+    const app = new App({ setup, animate, initialRotationX, initialRotationY });
+    appRef.current = app;
+    
+    app.init(globeContainerRef.current);
+
+    const handleResize = () => {
+      app.handleResize();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      app.destroy();
+      if (globeContainerRef.current && app.renderer) {
+        globeContainerRef.current.removeChild(app.renderer.domElement);
+      }
+    };
+  }, [isClientMobile]);
+
+  useEffect(() => {
     // Refresh AOS when mobile status changes, to apply/remove anchors and delays
     if (typeof window !== "undefined") {
       AOS.refreshHard();
@@ -246,11 +375,13 @@ export default function Home() {
               <ShootingStars className="z-0" />
             </>
           ) : (
-            <div className="absolute -top-24 md:-left-10 z-0" id="globeViz" />
+            <div className={`absolute -top-24 md:-left-10 z-0 w-[1200px] h-[1200px] ${isGlobeVisible ? 'globe-container' : 'opacity-0'}`}>
+              <div ref={globeContainerRef} />
+            </div>
           )}
           <div className="z-10 flex h-full items-center justify-center">
             <div
-              className="flex flex-col items-center justify-center drop-shadow-sm "
+              className="flex flex-col items-center justify-center drop-shadow-sm"
               id="Title"
               data-aos="fade-down"
             >

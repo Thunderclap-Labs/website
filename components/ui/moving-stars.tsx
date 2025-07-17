@@ -204,20 +204,21 @@ const MovingStars: React.FC = () => {
     };
 
     resize(); // Initial setup
-    step(); // Start animation
+    animationFrameIdRef.current = requestAnimationFrame(step); // Store the initial animation frame ID
 
     window.addEventListener("resize", resize);
     if (canvas) {
       canvas.addEventListener("mousemove", onMouseMove);
       canvas.addEventListener("touchmove", onTouchMove, { passive: false });
-      canvas.addEventListener("touchend", onMouseLeave); // Also reset on touchend
+      canvas.addEventListener("touchend", onMouseLeave);
     }
     document.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
-      // Cleanup
+      // Cleanup - Cancel the animation frame first
       if (animationFrameIdRef.current) {
         cancelAnimationFrame(animationFrameIdRef.current);
+        animationFrameIdRef.current = null;
       }
       window.removeEventListener("resize", resize);
       if (canvas) {

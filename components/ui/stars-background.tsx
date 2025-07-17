@@ -132,13 +132,18 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
         }
       });
 
-      animationFrameId = requestAnimationFrame(render);
+      // Only continue animation if canvas still exists
+      if (canvas && ctx) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
     render();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [stars]);
 
