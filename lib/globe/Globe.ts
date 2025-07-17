@@ -26,6 +26,13 @@ export class Globe {
     this.globeMaterial = this.createGlobeMaterial();
     this.globe = new THREE.Mesh(this.geometry, this.globeMaterial);
     this.globe.scale.set(scale, scale, scale);
+    
+    // Set initial opacity to 0 for fade-in effect
+    if (this.globeMaterial instanceof THREE.ShaderMaterial) {
+      this.globeMaterial.transparent = true;
+      this.globeMaterial.uniforms.opacity = { value: 0 };
+    }
+    
     elements.globe = this.globe;
     
     groups.map = new THREE.Group();
@@ -35,6 +42,7 @@ export class Globe {
     groups.globe!.add(groups.map);
 
     const atmosphere = this.createAtmosphere();
+    elements.atmosphere = atmosphere; // Store reference to atmosphere
     groups.globe!.add(atmosphere);
   }
 
@@ -46,6 +54,9 @@ export class Globe {
       blending: THREE.AdditiveBlending,
       transparent: true,
       side: THREE.BackSide,
+      uniforms: {
+        opacity: { value: 0 }
+      }
     });
 
     const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
@@ -72,9 +83,13 @@ export class Globe {
     const texture = new THREE.CanvasTexture(canvas);
 
     return new THREE.ShaderMaterial({
-      uniforms: { globeTexture: { value: texture } },
+      uniforms: { 
+        globeTexture: { value: texture },
+        opacity: { value: 0 }
+      },
       vertexShader: shaders.globe.vertexShader,
       fragmentShader: shaders.globe.fragmentShader,
+      transparent: true
     });
   }
 }

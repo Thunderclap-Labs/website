@@ -38,7 +38,7 @@ export const config = {
     markerPoint: true
   },
   dots: {
-    total: 30,
+    total: 10,
     animate: false
   }
 };
@@ -53,7 +53,8 @@ export const elements = {
   markers: [] as Marker[],
   markerLabel: [] as THREE.Sprite[],
   markerPoint: [] as THREE.Mesh[],
-  lines: [] as THREE.Line[]
+  lines: [] as THREE.Line[],
+  globeOpacity: 0 as number
 };
 
 export const groups = {

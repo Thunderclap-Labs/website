@@ -14,10 +14,13 @@ export class App {
   targetRotationX = 0;
   targetRotationY = 0;
   dampingFactor = 0.05;
+  animationFrameId: number | null = null; // Add animation frame ID property
 
-  constructor({ animate, setup }: { animate: (app: App) => void; setup: (app: App) => void }) {
+  constructor({ animate, setup, initialRotationX = 0, initialRotationY = 0 }: { animate: (app: App) => void; setup: (app: App) => void, initialRotationX?: number, initialRotationY?: number }) {
     this.animate = animate;
     this.setup = setup;
+    this.targetRotationX = initialRotationX;
+    this.targetRotationY = initialRotationY;
   }
 
   async init(container: HTMLElement) {
@@ -28,6 +31,11 @@ export class App {
     this.initControls();
 
     this.render();
+    this.setup(this); // Call setup after render to ensure groups.main exists
+    if (groups.main) {
+      groups.main.rotation.y = this.targetRotationY;
+      groups.main.rotation.x = this.targetRotationX;
+    }
     this.update();
   }
 
@@ -81,19 +89,13 @@ export class App {
       mouseY = event.clientY;
     };
 
-    const onWheel = (event: WheelEvent) => {
-      const scale = event.deltaY > 0 ? 1.1 : 0.9;
-      this.camera.position.multiplyScalar(scale);
-    };
-
     this.container.addEventListener('mousedown', onMouseDown);
     this.container.addEventListener('mouseup', onMouseUp);
     this.container.addEventListener('mousemove', onMouseMove);
-    this.container.addEventListener('wheel', onWheel);
+    // Removed wheel event listener to disable zoom
   }
 
   render() {
-    this.setup(this);
     this.container.appendChild(this.renderer.domElement);
   }
 
@@ -104,7 +106,8 @@ export class App {
     }
     this.animate(this);
     this.renderer.render(this.scene, this.camera);
-    requestAnimationFrame(this.update);
+    // Store the animation frame ID so it can be cancelled
+    this.animationFrameId = requestAnimationFrame(this.update);
   }
 
   handleResize = () => {
@@ -114,6 +117,11 @@ export class App {
   }
 
   destroy() {
+    // Cancel animation frame first
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
     if (this.lines) {
       this.lines.destroy();
     }

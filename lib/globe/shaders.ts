@@ -11,13 +11,14 @@ export const shaders = {
 `,
     fragmentShader: `
 	uniform sampler2D globeTexture;
+	uniform float opacity;
 	varying vec3 vNormal;
 	varying vec2 vUv;
 	void main() {
 		vec3 diffuse = texture2D( globeTexture, vUv ).xyz;
 		float intensity = 1.05 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) );
 		vec3 atmosphere = vec3( 0.3, 0.6, 1.0 ) * pow( intensity, 2.0 );
-		gl_FragColor = vec4( diffuse + atmosphere, 1.0 );
+		gl_FragColor = vec4( diffuse + atmosphere, opacity );
 	}
 `
   },
@@ -30,11 +31,12 @@ export const shaders = {
 	}
 `,
     fragmentShader: `
+	uniform float opacity;
 	varying vec3 vNormal;
 	void main() 
 	{
 		float intensity = pow( 1.0 - abs(dot( vNormal, vec3( 0.0, 0.0, 1.0 ) )), 4.0 ); 
-	    gl_FragColor = vec4( 0.3, 0.6, 1.0, 1.0 ) * intensity;
+	    gl_FragColor = vec4( 0.3, 0.6, 1.0, intensity * opacity );
 	}
 `
   },

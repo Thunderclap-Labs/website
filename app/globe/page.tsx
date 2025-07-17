@@ -24,6 +24,7 @@ export default function GlobePage() {
     const setup = async (app: App) => {
       app.camera.position.z = config.sizes.globe * 2.85;
       app.camera.position.y = config.sizes.globe * 0;
+      app.camera.updateProjectionMatrix();
 
       groups.main = new THREE.Group();
       groups.main.name = 'Main';
@@ -117,7 +118,11 @@ export default function GlobePage() {
       }
     };
 
-    const app = new App({ setup, animate });
+    const lithuania = sampleCountries.find(c => c.name === 'Lithuania');
+    const initialRotationX = lithuania ? (+lithuania.latitude * Math.PI / 180) - 0.4 : 0;
+    const initialRotationY = lithuania ? (-lithuania.longitude * Math.PI / 180) - 0.6: 0;
+
+    const app = new App({ setup, animate, initialRotationX, initialRotationY });
     appRef.current = app;
     
     app.init(containerRef.current);
@@ -148,38 +153,6 @@ export default function GlobePage() {
   };
 
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden">
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="text-white text-xl">Loading Globe...</div>
-        </div>
-      )}
-      
-      <div ref={containerRef} className="w-full h-full" />
-      
-      {/* Controls overlay */}
-      <div className="absolute top-4 left-4 text-white z-10">
-        <div className="bg-black bg-opacity-50 p-4 rounded-lg space-y-2">
-          <h2 className="text-lg font-bold mb-2">Globe Controls</h2>
-          <p className="text-sm">• Drag to rotate</p>
-          <p className="text-sm">• Scroll to zoom</p>
-          <p className="text-sm">• Lines animate automatically</p>
-        </div>
-      </div>
-
-      {/* Info panel */}
-      <div className="absolute bottom-4 right-4 text-white z-10">
-        <div className="bg-black bg-opacity-50 p-4 rounded-lg">
-          <h3 className="text-md font-bold mb-2">Features</h3>
-          <ul className="text-sm space-y-1">
-            <li>• Interactive 3D Globe</li>
-            <li>• Animated connection lines</li>
-            <li>• City markers with labels</li>
-            <li>• Flowing dot animations</li>
-            <li>• Auto-rotating globe</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <div ref={containerRef} />
   );
 }

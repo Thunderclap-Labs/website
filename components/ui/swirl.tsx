@@ -198,8 +198,10 @@ export const Swirl: React.FC<{ className?: string }> = ({ className }) => {
       !ctxRef.current.a ||
       !ctxRef.current.b
     ) {
-      animationFrameIdRef.current = requestAnimationFrame(draw);
-
+      // Only continue animation if components still exist
+      if (canvasRef.current.a && canvasRef.current.b) {
+        animationFrameIdRef.current = requestAnimationFrame(draw);
+      }
       return;
     }
 
@@ -282,10 +284,12 @@ export const Swirl: React.FC<{ className?: string }> = ({ className }) => {
     animationFrameIdRef.current = requestAnimationFrame(draw);
 
     return () => {
-      window.removeEventListener("resize", resizeHandler);
+      // Cleanup animation frame first
       if (animationFrameIdRef.current) {
         cancelAnimationFrame(animationFrameIdRef.current);
+        animationFrameIdRef.current = null;
       }
+      window.removeEventListener("resize", resizeHandler);
       if (
         canvasRef.current.b &&
         containerRef.current &&

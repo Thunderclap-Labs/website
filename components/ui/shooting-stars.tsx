@@ -189,86 +189,13 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     if (containerSize.width === 0 || containerSize.height === 0) return;
 
     let animationFrameId: number;
-    const lastFrameTime = performance.now();
 
-    const animate = (currentTime: number) => {
-      const deltaTime = currentTime - lastFrameTime; // Typically around 16.6ms for 60FPS
-
-      setStars((prevStars) =>
-        prevStars.map((star) => {
-          if (!star.isActive) {
-            const newDelay = star.delayUntilActive - deltaTime;
-
-            if (newDelay <= 0) {
-              const { x, y, angle } = getRandomStartPoint(
-                containerSize.width,
-                containerSize.height,
-              );
-
-              return {
-                ...star,
-                x,
-                y,
-                angle,
-                speed: Math.random() * (maxSpeed - minSpeed) + minSpeed,
-                scale: 1,
-                distance: 0,
-                isActive: true,
-                delayUntilActive: 0,
-              };
-            }
-
-            return { ...star, delayUntilActive: newDelay };
-          }
-
-          const newX =
-            star.x +
-            star.speed *
-              Math.cos((star.angle * Math.PI) / 180) *
-              (deltaTime / 16.66); // Normalize speed to ~60fps
-          const newY =
-            star.y +
-            star.speed *
-              Math.sin((star.angle * Math.PI) / 180) *
-              (deltaTime / 16.66);
-          const newDistance = star.distance + star.speed * (deltaTime / 16.66);
-          const newScale = 1 + newDistance / 200; // Adjust scaling factor as needed
-
-          const buffer = starWidth * newScale * 1.5; // Buffer to ensure it's fully off-screen
-
-          if (
-            newX < -buffer ||
-            newX > containerSize.width + buffer ||
-            newY < -buffer ||
-            newY > containerSize.height + buffer
-          ) {
-            return {
-              ...star,
-              isActive: false,
-              delayUntilActive:
-                Math.random() * (maxDelay - minDelay) + minDelay,
-            };
-          }
-
-          return {
-            ...star,
-            x: newX,
-            y: newY,
-            scale: newScale,
-            distance: newDistance,
-          };
-        }),
-      );
-      // lastFrameTime = currentTime; // This should be outside setStars to avoid stale closure
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    // Correct way to update lastFrameTime for requestAnimationFrame loop
+    // Correct way to update frameTime for requestAnimationFrame loop
     let frameTime = performance.now();
     const loop = (currentTime: number) => {
       const deltaTime = currentTime - frameTime;
-
       frameTime = currentTime;
+
       // Call the main animation logic with deltaTime
       setStars((prevStars) =>
         prevStars.map((star) => {
@@ -337,12 +264,19 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
           };
         }),
       );
-      animationFrameId = requestAnimationFrame(loop);
+      // Only continue if component is still mounted
+      if (containerSize.width > 0 && containerSize.height > 0) {
+        animationFrameId = requestAnimationFrame(loop);
+      }
     };
 
     animationFrameId = requestAnimationFrame(loop);
 
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [
     containerSize,
     minSpeed,

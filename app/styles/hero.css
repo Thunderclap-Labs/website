@@ -319,3 +319,20 @@
     margin-bottom: 0;
   }
 }
+
+/* Globe fade-in animation */
+.globe-container {
+  opacity: 0;
+  animation: globeFadeIn 2s ease-in-out 0.5s forwards;
+}
+
+@keyframes globeFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
