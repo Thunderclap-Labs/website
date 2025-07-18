@@ -12,7 +12,7 @@ import * as THREE from 'three';
 // Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faCogs, faFlask, faRobot, faRecycle, faCloudRain, faShieldAlt, faEye, faSeedling, faTint, faSmog, faBullseye, faBolt, faBatteryHalf, faRocket, faSatelliteDish, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faShield, faLayerGroup, faCloudRain, faRocket, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
@@ -38,6 +38,7 @@ import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
 
 import FundingChartSection from "@/components/FundingChartSection";
+import { SatelliteInfoOverlay } from "@/components/common/satellite-info-overlay";
 
 // Globe imports
 import { App } from '@/lib/globe/App';
@@ -143,6 +144,8 @@ const manufacturingFeatures = [
     description: "Ultra-fine milling system capable of reducing materials to particle sizes as small as 50μm for advanced applications.",
   },
 ];
+
+import { SectionLayout } from "@/components/common/section-layout";
 
 export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
@@ -362,6 +365,7 @@ export default function Home() {
 
   return (
     <div className="relative">
+      {/* Hero section - keep as is, too unique */}
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden bg-black">
         <div
           className="relative md:mx-6 h-[calc(100vh-170px)] w-full md:rounded-lg overflow-hidden"
@@ -375,9 +379,40 @@ export default function Home() {
               <ShootingStars className="z-0" />
             </>
           ) : (
-            <div className={`absolute -top-24 md:-left-10 z-0 w-[1200px] h-[1200px] ${isGlobeVisible ? 'globe-container' : 'opacity-0'}`}>
-              <div ref={globeContainerRef} />
-            </div>
+            <>
+              <div className={`absolute -top-24 md:-left-10 z-0 w-[1200px] h-[1200px] ${isGlobeVisible ? 'globe-container' : 'opacity-0'}`}>
+                <div ref={globeContainerRef} />
+              </div>
+              {/* Satellite Info Overlay */}
+              <SatelliteInfoOverlay
+                corner="bottom-right"
+                icon={faShield}
+                isVisible={isGlobeVisible}
+                subtitle="2025"
+                title="Defence Systems"
+              />
+              <SatelliteInfoOverlay
+                corner="top-left"
+                icon={faRocket}
+                isVisible={isGlobeVisible}
+                subtitle="2025"
+                title="Propulsion"
+              />
+              <SatelliteInfoOverlay
+                corner="top-right"
+                icon={faLayerGroup}
+                isVisible={isGlobeVisible}
+                subtitle="2026"
+                title="Digital Twin Technology"
+              />
+              <SatelliteInfoOverlay
+                corner="bottom-left"
+                icon={faCloudRain}
+                isVisible={isGlobeVisible}
+                subtitle="2025"
+                title="Cloud Seeding"
+              />
+            </>
           )}
           <div className="z-10 flex h-full items-center justify-center">
             <div
@@ -555,57 +590,56 @@ export default function Home() {
       <div className="relative">
         <StarsBackground className="z-0" />
         <ShootingStars className="z-0" />
-         <section
-        className="py-32 text-neutral-100 relative"
-        id="about-us-section"
-      >
-        <div className="container max-w-7xl mx-auto px-4 relative z-[1]">
-          <div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
-          </div>
-          <div className="flex justify-end w-full text-lg my-8 mb-16">
-            <div className="max-w-3xl text-lg md:text-3xl font-normal leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-              <span className="font-semibold text-accent-600">Thunderclap Labs</span> is at the forefront of{" "}
-              <span className="font-semibold text-primary-600">innovation</span>, developing critical{" "}
-              <span className="font-semibold text-primary-600">technologies</span> to solve complex global challenges. We build the{" "}
-              <span className="font-semibold text-primary-600">platforms</span> and systems that will define the next era of{" "}
-              <span className="font-semibold text-primary-600">atmospheric management</span>,{" "}
-              <span className="font-semibold text-primary-600">aerospace capability</span>, and beyond.
+        
+        {/* About section - keep as is, has custom layout */}
+        <section className="py-32 text-neutral-100 relative" id="about-us-section">
+          <div className="container max-w-7xl mx-auto px-4 relative z-[1]">
+            <div>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Engineering the Future of Atmospheric and Aerospace Systems</h1>
             </div>
-        </div>
-          <div
-            ref={cardGridRef}
-            className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card rounded-lg bg-neutral-600 bg-opacity-55 white-feature gap-[1px] p-[1px]"
-            data-aos="fade-up"
-            id="focus-areas"
-          >
-            {focus_areas.map((area, i) => (
-              <div
-                key={area.title}
-                className="flex p-4 flex-col h-full bg-black bg-opacity-95 rounded-lg"
-                data-aos="fade-up"
-                data-aos-delay={i * 100}
-                data-aos-anchor={
-                  isClientMobile === false ? "#focus-areas" : undefined
-                }
-              >
-                <h5 className="text-lg font-semibold text-neutral-100 mb-4">
-                  {area.title}
-                </h5>
-                <p className="text-sm text-neutral-300">{area.description}</p>
-                <div className="flex h-full justify-center items-center">
-                  {area.image && (
-                    <Image
-                      alt={area.title}
-                      className="mt-4 rounded-lg"
-                      height={200}
-                      src={area.image}
-                    />
-                  )}
-                </div>
+            <div className="flex justify-end w-full text-lg my-8 mb-16">
+              <div className="max-w-3xl text-lg md:text-3xl font-normal leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                <span className="font-semibold text-accent-600">Thunderclap Labs</span> is at the forefront of{" "}
+                <span className="font-semibold text-primary-600">innovation</span>, developing critical{" "}
+                <span className="font-semibold text-primary-600">technologies</span> to solve complex global challenges. We build the{" "}
+                <span className="font-semibold text-primary-600">platforms</span> and systems that will define the next era of{" "}
+                <span className="font-semibold text-primary-600">atmospheric management</span>,{" "}
+                <span className="font-semibold text-primary-600">aerospace capability</span>, and beyond.
               </div>
-            ))}
           </div>
+            <div
+              ref={cardGridRef}
+              className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card rounded-lg bg-neutral-600 bg-opacity-55 white-feature gap-[1px] p-[1px]"
+              data-aos="fade-up"
+              id="focus-areas"
+            >
+              {focus_areas.map((area, i) => (
+                <div
+                  key={area.title}
+                  className="flex p-4 flex-col h-full bg-black bg-opacity-95 rounded-lg"
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
+                  data-aos-anchor={
+                    isClientMobile === false ? "#focus-areas" : undefined
+                  }
+                >
+                  <h5 className="text-lg font-semibold text-neutral-100 mb-4">
+                    {area.title}
+                  </h5>
+                  <p className="text-sm text-neutral-300">{area.description}</p>
+                  <div className="flex h-full justify-center items-center">
+                    {area.image && (
+                      <Image
+                        alt={area.title}
+                        className="mt-4 rounded-lg"
+                        height={200}
+                        src={area.image}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
             <div
             className="mt-12"
             data-aos="fade-up"
@@ -616,174 +650,164 @@ export default function Home() {
             </div>
         </div>
       </section>
-        <section
-          className="relative py-20 bg-transparent text-white overflow-hidden"
-          id="propulsion-section-new"
-        >
-          <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div className="pb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left" data-aos="fade-up">Next-Generation Propulsion Systems</h1>
-            </div>
-            <div className="flex justify-end w-full text-lg my-4 ">
-                <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                Pioneering the next era of aerospace with a focus on{" "}
-                <span className="font-semibold text-primary-600">
-                  rocket propulsion technologies
-                </span>
-                ,{" "}
-                <span className="font-semibold text-primary-600">
-                  advanced launch systems
-                </span>
-                , and sustainable{" "}
-                <span className="font-semibold text-primary-600">
-                  aerospace solutions
-                </span>
-                .
-                </div>
-            </div>
-            {/* Timeline Start */}
-            <div className="mt-28 mb-8" data-aos="fade-up" data-aos-delay="200">
-              <div className="timeline-container flex flex-col md:flex-row items-start justify-between">
-                {propulsionTimelineItems.map((item, index) => (
-                  <div key={item.title} className={`timeline-item flex flex-col items-center ${index === 0 ? 'active' : ''} flex-1`}>
-                    <div className="flex items-center w-full">
-                      <div className={`timeline-dot ${index === 0 ? 'active' : ''}`}></div>
-                      {index < propulsionTimelineItems.length - 1 && (
-                        <div className="timeline-line flex-grow"></div>
-                      )}
-                    </div>
-                    <div className={`timeline-content mt-3 px-2 ${index === 0 ? 'active' : ''}`}>
-                      <p className="text-xs md:text-sm font-medium timeline-title">{item.title}</p>
-                      <p className="text-xs mt-1 timeline-description">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Timeline End */}
-          </div>
-        </section>
 
-        <section
-          className="relative py-20 bg-transparent text-white overflow-hidden"
-          id="manufacturing-section"
-        >
-          <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div className="pb-12 text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold" data-aos="fade-up">Manufacturing Excellence</h1>
-            </div>
-            <div className="flex justify-center text-center w-full text-lg my-4 bg-transparent">
-              <div
-                className="max-w-3xl text-lg md:text-3xl leading-relaxed bg-transparent"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-              We are pioneering manufacturing by developing our own{" "}
+        {/* Propulsion section - convert to SectionLayout */}
+        <SectionLayout
+          id="propulsion-section-new"
+          title="Next-Generation Propulsion Systems"
+          description={
+            <>
+              Pioneering the next era of aerospace with a focus on{" "}
               <span className="font-semibold text-primary-600">
-                production systems
+                rocket propulsion technologies
               </span>
-              </div>
-            </div>
-          </div>
-          <div className="container max-w-7xl mx-auto px-4 mt-12 overflow-visible">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 overflow-visible">
-              {manufacturingFeatures.map((feature, i) => (
-                <div data-aos="fade-up" data-aos-delay={i * 100} key={feature.title}>
-                  <ManufacturingFeatureCard
-                    image={feature.image}
-                    title={feature.title}
-                    description={feature.description}
-                  />
+              ,{" "}
+              <span className="font-semibold text-primary-600">
+                advanced launch systems
+              </span>
+              , and sustainable{" "}
+              <span className="font-semibold text-primary-600">
+                aerospace solutions
+              </span>
+              .
+            </>
+          }
+          titleAlignment="left"
+          descriptionAlignment="right"
+        >
+          {/* Timeline Start */}
+          <div className="mt-16">
+            <div className="timeline-container flex flex-col md:flex-row items-start justify-between">
+              {propulsionTimelineItems.map((item, index) => (
+                <div key={item.title} className={`timeline-item flex flex-col items-center ${index === 0 ? 'active' : ''} flex-1`}>
+                  <div className="flex items-center w-full">
+                    <div className={`timeline-dot ${index === 0 ? 'active' : ''}`}></div>
+                    {index < propulsionTimelineItems.length - 1 && (
+                      <div className="timeline-line flex-grow"></div>
+                    )}
+                  </div>
+                  <div className={`timeline-content mt-3 px-2 ${index === 0 ? 'active' : ''}`}>
+                    <p className="text-xs md:text-sm font-medium timeline-title">{item.title}</p>
+                    <p className="text-xs mt-1 timeline-description">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        </section>
-        <section
-          className="relative py-20 bg-transparent text-white overflow-hidden"
-          id="projects-section"
+          {/* Timeline End */}
+        </SectionLayout>
+
+        {/* Manufacturing section - convert to SectionLayout */}
+        <SectionLayout
+          id="manufacturing-section"
+          title="Manufacturing Excellence"
+          description={
+            <>
+              We are pioneering manufacturing by developing our own{" "}
+              <span className="font-semibold text-primary-600">
+                production systems
+              </span>
+            </>
+          }
+          titleAlignment="center"
+          descriptionAlignment="center"
         >
-          <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div className="pb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center" data-aos="fade-up">Projects and Innovations</h1>
-            </div>
-            <div className="flex justify-center w-full text-lg my-4 ">
-                <div className="max-w-3xl text-lg md:text-3xl leading-relaxed text-center " data-aos="fade-up" data-aos-delay="100">
-                  Explore our groundbreaking projects that are shaping the future of <span className="font-semibold text-primary-600">aerospace technology</span>.
-                </div>
-            </div>
-            <div className="my-12" data-aos="fade-up" data-aos-delay="200">
-              <FeaturedProjectsShowcase />
-            </div>
-            <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
-              <Button
-                as={Link}
-                className="bg-black/15 text-white shadow-xl rounded-lg"
-                href="/projects"
-                variant="bordered"
-              >
-                See All Projects <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </div>
-          </div>
-        </section>
-        <section
-          className="relative py-20 bg-transparent text-white overflow-hidden"
-          id="team-section"
-        >
-          <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div className="pb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center" data-aos="fade-up">The Greatest Team Ever Assembled</h1>
-            </div>
-            <div className="flex justify-end w-full text-lg my-4 ">
-                <div className="max-w-3xl text-lg md:text-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                  <span className="font-semibold text-accent-600">Thunderclap Labs</span> is fueled by <span className="font-semibold text-primary-600">passion</span>, <span className="font-semibold text-primary-600">curiosity</span>, and a relentless drive to innovate. Our team brings together the brightest minds in engineering, science, and technology to build the future—one breakthrough at a time.
-                </div>
-            </div>
-            <div className="my-12" data-aos="fade-up" data-aos-delay="200">
-              <TeamSwiper />
-            </div>
-            <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
-              <Button
-                as={Link}
-                className="bg-black/15 text-white shadow-xl rounded-lg"
-                href="/team"
-                variant="bordered"
-              >
-                More About The Team <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </div>
-          </div>
-          <section
-            className="pt-20 pb-6 text-neutral-100"
-            id="partner-section"
-            data-aos="fade-up"
-          >
-            <div className="relative z-10 container max-w-7xl mx-auto px-4">
-              <div
-                className="mx-auto text-center"
-                data-aos-anchor="#partner-section"
-              >
-                <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
-                  Partner with Us:<br/>
-                  Investing in a High-Impact Future
-                </h1>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 overflow-visible">
+            {manufacturingFeatures.map((feature, i) => (
+              <div data-aos="fade-up" data-aos-delay={i * 100} key={feature.title}>
+                <ManufacturingFeatureCard
+                  image={feature.image}
+                  title={feature.title}
+                  description={feature.description}
+                />
               </div>
+            ))}
+          </div>
+        </SectionLayout>
+
+        {/* Projects section - convert to SectionLayout */}
+        <SectionLayout
+          id="projects-section"
+          title="Projects and Innovations"
+          description={
+            <>
+              Explore our groundbreaking projects that are shaping the future of{" "}
+              <span className="font-semibold text-primary-600">aerospace technology</span>.
+            </>
+          }
+          titleAlignment="center"
+          descriptionAlignment="center"
+        >
+          <FeaturedProjectsShowcase />
+          <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full mt-8" data-aos="fade-up" data-aos-delay="300">
+            <Button
+              as={Link}
+              className="bg-black/15 text-white shadow-xl rounded-lg"
+              href="/projects"
+              variant="bordered"
+            >
+              See All Projects <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+          </div>
+        </SectionLayout>
+
+        {/* Team section - convert to SectionLayout */}
+        <SectionLayout
+          id="team-section"
+          title="The Greatest Team Ever Assembled"
+          description={
+            <>
+              <span className="font-semibold text-accent-600">Thunderclap Labs</span> is fueled by{" "}
+              <span className="font-semibold text-primary-600">passion</span>,{" "}
+              <span className="font-semibold text-primary-600">curiosity</span>, and a relentless drive to innovate. Our team brings together the brightest minds in engineering, science, and technology to build the future—one breakthrough at a time.
+            </>
+          }
+          titleAlignment="center"
+          descriptionAlignment="right"
+        >
+          <TeamSwiper />
+          <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full mt-8" data-aos="fade-up" data-aos-delay="300">
+            <Button
+              as={Link}
+              className="bg-black/15 text-white shadow-xl rounded-lg"
+              href="/team"
+              variant="bordered"
+            >
+              More About The Team <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+          </div>
+        </SectionLayout>
+
+        {/* Partner section - keep as is, has unique layout */}
+        <section
+          className="pt-20 pb-6 text-neutral-100"
+          id="partner-section"
+          data-aos="fade-up"
+        >
+          <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            <div
+              className="mx-auto text-center"
+              data-aos-anchor="#partner-section"
+            >
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
+                Partner with Us:<br/>
+                Investing in a High-Impact Future
+              </h1>
             </div>
-            <div className="px-4 mt-12">
-              <FundingChartSection />
-            </div>
-            <div className="flex pt-8 md:pt-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
-              <Button
-                as={Link}
-                className="bg-black/15 text-white shadow-xl rounded-lg"
-                href="/contact"
-                variant="bordered"
-              >
-                Contact Us <FontAwesomeIcon icon={faArrowRight} />
-              </Button>
-            </div>
-          </section>
+          </div>
+          <div className="px-4 mt-12">
+            <FundingChartSection />
+          </div>
+          <div className="flex pt-8 md:pt-12 justify-center items-center relative w-full" data-aos="fade-up" data-aos-delay="300">
+            <Button
+              as={Link}
+              className="bg-black/15 text-white shadow-xl rounded-lg"
+              href="/contact"
+              variant="bordered"
+            >
+              Contact Us <FontAwesomeIcon icon={faArrowRight} />
+            </Button>
+          </div>
         </section>
       </div> 
     </div>
