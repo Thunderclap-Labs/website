@@ -149,7 +149,7 @@ const FundingChartSection = () => {
         </div>
         
         {/* Funding Progress Section */}
-        <div className="pt-8 border-t border-neutral-700" data-aos="fade-up" data-aos-delay="200">
+        <div className="pt-8 border-t border-neutral-700 px-4" data-aos="fade-up" data-aos-delay="200">
           <h3 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight text-white text-center">
             Funding Progress
           </h3>
@@ -173,7 +173,7 @@ const FundingChartSection = () => {
               }}
             />
             <div className="flex justify-between items-center text-sm text-neutral-400">
-              <span>€0</span>
+              <span>Currently Building: Rocket Fuel Automation</span>
               <span>{fundingPercentage}% funded</span>
             </div>
           </div>

@@ -22,6 +22,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
+import { Divider } from "@heroui/react";
 
 import logo from "@/components/images/logo.png";
 import { siteConfig } from "@/config/site";
@@ -48,9 +49,12 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">Thunderclap Labs</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden sm:flex gap-4 justify-start ml-2">
+        <ul className="hidden sm:flex gap-4 justify-start ml-12">
           {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
+            <NavbarItem key={item.href} className="flex items-center gap-4">
+              {item.label === "Cloud Seeding" && (
+                <Divider orientation="vertical" className="h-6" />
+              )}
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
@@ -61,6 +65,9 @@ export const Navbar = () => {
               >
                 {item.label}
               </NextLink>
+              {item.label === "Projects" && (
+                <Divider orientation="vertical" className="h-6"/>
+              )}
             </NavbarItem>
           ))}
         </ul>
@@ -121,18 +128,23 @@ export const Navbar = () => {
       <NavbarMenu className="overflow-hidden">
         <div className="mx-4 mt-2 flex flex-col gap-4">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "text-xl py-3 px-4 rounded-lg hover:bg-neutral-800 transition-colors block w-full",
-                )}
-                href={item.href}
-                onClick={handleMenuItemClick}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarMenuItem>
+            <>
+              <NavbarMenuItem key={`${item}-${index}`}>
+                <NextLink
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "text-xl py-3 px-4 rounded-lg hover:bg-neutral-800 transition-colors block w-full",
+                  )}
+                  href={item.href}
+                  onClick={handleMenuItemClick}
+                >
+                  {item.label}
+                </NextLink>
+              </NavbarMenuItem>
+              {item.label === "Cloud Seeding" && (
+                <Divider className="h-6" key={`${item.href}-divider-after`} />
+              )}
+            </>
           ))}
         </div>
       </NavbarMenu>
