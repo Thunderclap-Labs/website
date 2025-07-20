@@ -135,9 +135,16 @@ export default function GlobePage() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      app.destroy();
-      if (containerRef.current && app.renderer) {
-        containerRef.current.removeChild(app.renderer.domElement);
+      if (appRef.current) {
+        appRef.current.destroy();
+        if (appRef.current.renderer) {
+          appRef.current.renderer.dispose();
+          appRef.current.renderer.forceContextLoss();
+        }
+        if (containerRef.current && appRef.current.renderer) {
+          containerRef.current.removeChild(appRef.current.renderer.domElement);
+        }
+        appRef.current = null;
       }
     };
   }, []);
