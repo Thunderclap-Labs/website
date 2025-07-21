@@ -36,6 +36,10 @@ export const siteConfig = {
       href: "/team",
     },
     {
+      label: "Cloud Seeding",
+      href: "/cloud-seeding",
+    },
+    {
       label: "Projects",
       href: "/projects",
     },
