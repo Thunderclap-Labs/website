@@ -764,6 +764,7 @@ export default function Home() {
           }
           titleAlignment="center"
           descriptionAlignment="right"
+          isColumnLayout={false}
         >
           <TeamSwiper />
           <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full mt-8" data-aos="fade-up" data-aos-delay="300">

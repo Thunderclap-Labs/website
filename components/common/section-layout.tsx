@@ -14,6 +14,7 @@ interface SectionLayoutProps {
   descriptionClassName?: string;
   contentClassName?: string;
   showBackground?: boolean;
+  isColumnLayout?: boolean; // New prop to control flex-col
 }
 
 export const SectionLayout: React.FC<SectionLayoutProps> = ({
@@ -30,6 +31,7 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
   descriptionClassName = "",
   contentClassName = "",
   showBackground = true,
+  isColumnLayout = true, // Default value for the new prop
 }) => {
   const getAlignmentClass = (
     alignment: "left" | "center" | "right" | undefined,
@@ -87,7 +89,7 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
           </div>
         )}
         <div
-          className={`flex flex-col w-full ${getContentAlignmentClass(contentAlignment)}`}
+          className={`${isColumnLayout ? "flex flex-col" : ""} w-full ${getContentAlignmentClass(contentAlignment)}`}
           data-aos="fade-up"
           data-aos-delay="200"
         >

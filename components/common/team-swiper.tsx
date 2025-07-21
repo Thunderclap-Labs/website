@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-
 import { teamMembers } from "@/app/team/constants/team-members";
 
 export const TeamSwiper: React.FC = () => (

@@ -42,14 +42,14 @@ export const Navbar = () => {
       maxWidth="xl"
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent className="basis-1/5 lg:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-4" href="/">
             <Image alt="Thunderclap Labs" height={32} src={logo} />
             <p className="font-bold text-inherit">Thunderclap Labs</p>
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden sm:flex gap-4 justify-start ml-12">
+        <ul className="hidden lg:flex gap-4 justify-start ml-12">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href} className="flex items-center gap-4">
               {item.label === "Cloud Seeding" && (
@@ -74,10 +74,10 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex basis-1/3 sm:basis-full"
+        className="hidden lg:flex basis-1/3 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden sm:flex gap-4">
+        <NavbarItem className="hidden lg:flex gap-4">
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
             <FontAwesomeIcon
               className="text-default-500 text-lg md:text-xl"
@@ -115,7 +115,7 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="lg:hidden basis-1 pl-4" justify="end">
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <FontAwesomeIcon
             className="text-default-500 text-lg md:text-xl"
@@ -128,8 +128,10 @@ export const Navbar = () => {
       <NavbarMenu className="overflow-hidden">
         <div className="mx-4 mt-2 flex flex-col gap-4">
           {siteConfig.navMenuItems.map((item, index) => (
-            <>
               <NavbarMenuItem key={`${item}-${index}`}>
+                {item.label === "Cloud Seeding" && (
+                  <Divider className="w-full mb-2" key={`${item.href}-divider-after`} />
+                )}
                 <NextLink
                   className={clsx(
                     linkStyles({ color: "foreground" }),
@@ -140,11 +142,10 @@ export const Navbar = () => {
                 >
                   {item.label}
                 </NextLink>
+                {item.label === "Projects" && (
+                  <Divider className="w-full mt-2" key={`${item.href}-divider-after`} />
+                )}
               </NavbarMenuItem>
-              {item.label === "Cloud Seeding" && (
-                <Divider className="h-6" key={`${item.href}-divider-after`} />
-              )}
-            </>
           ))}
         </div>
       </NavbarMenu>
