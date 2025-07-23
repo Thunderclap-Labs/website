@@ -20,8 +20,6 @@ import { Autoplay } from "swiper/modules"; // Import Autoplay module
 import { projects as definedProjectsList } from "../projects/constants/projects"; // Import project definitions
 
 import { teamMembers } from "./constants/team-members";
-
-import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
 import { Heading } from "@/components/common/heading";
 
 import "swiper/css";
@@ -29,7 +27,6 @@ import "swiper/css";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 
 export default function DocsPage() {
-  useFeaturedCardMouseEffect();
 
   // Function to create anchor ID from member name
   const createAnchorId = (memberName: string) => {

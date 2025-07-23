@@ -609,14 +609,15 @@ export default function Home() {
           </div>
             <div
               ref={cardGridRef}
-              className="grid grid-cols-1 md:grid-cols-4 mt-8 featured-card rounded-lg bg-neutral-600 bg-opacity-55 white-feature gap-[1px] p-[1px]"
+              className={`grid grid-cols-1 md:grid-cols-4 mt-8 rounded-lg bg-neutral-600 ${isClientMobile ? "bg-opacity-0" : "bg-opacity-55 featured-card white-feature gap-[1px]"} p-[1px]`}
               data-aos="fade-up"
+              data-aos-delay="500"
               id="focus-areas"
             >
               {focus_areas.map((area, i) => (
                 <div
                   key={area.title}
-                  className="flex p-4 flex-col h-full bg-black bg-opacity-95 rounded-lg"
+                  className={`flex p-4 flex-col h-full bg-black bg-opacity-95 ${isClientMobile ? "border border-neutral-700" : "rounded-lg"}`}
                   data-aos="fade-up"
                   data-aos-delay={i * 100}
                   data-aos-anchor={

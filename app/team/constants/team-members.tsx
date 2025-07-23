@@ -142,7 +142,7 @@ export const teamMembers = [
   },
     {
     name: "Dominykas Remeika",
-    role: "Engineering & Product Development Specialist",
+    role: "Engineering & Product Development & Marketing Specialist",
     email: "dominykasremeika27@gmail.com",
     image: dominykasnImage,
     social: {

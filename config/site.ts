@@ -22,6 +22,10 @@ export const siteConfig = {
       href: "/team",
     },
     {
+      label: "Gallery",
+      href: "/gallery",
+    },
+    {
       label: "Contact",
       href: "/contact",
     },
@@ -32,16 +36,20 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Team",
-      href: "/team",
-    },
-    {
       label: "Cloud Seeding",
       href: "/cloud-seeding",
     },
     {
       label: "Projects",
       href: "/projects",
+    },
+    {
+      label: "Team",
+      href: "/team",
+    },
+    {
+      label: "Gallery",
+      href: "/gallery",
     },
     {
       label: "Contact",

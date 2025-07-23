@@ -43,7 +43,7 @@ import fwd from "@/components/images/fwd.png";
 const applications = [
   { icon: faTint, title: "Enhanced Precipitation" },
   { icon: faLeaf, title: "Agriculture" },
-  { icon: faSmog, title: "Fog Alleviation/Dispersal" },
+  { icon: faSmog, title: "Fog Alleviation / Dispersal" },
   { icon: faFireExtinguisher, title: "Suppressed Heatwaves and Wildfires" },
   { icon: faCloudShowersHeavy, title: "Hail Suppression" },
   { icon: faIndustry, title: "Water Resource Management" },

@@ -97,3 +97,45 @@ body {
       transform: translate3d(85px,0,0);
     }
   }
+
+.pswp__dynamic-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 10px;
+  bottom: 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.pswp__dynamic-caption .caption-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.pswp__dynamic-caption .caption-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.pswp__dynamic-caption .caption-date {
+  font-size: 12px;
+  color: #ccc;
+  font-style: italic;
+}
+
+.pswp__dynamic-caption b {
+  font-weight: bold;
+}
