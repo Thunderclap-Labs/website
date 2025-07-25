@@ -16,7 +16,6 @@ import { faShield, faLayerGroup, faCloudRain, faRocket, faArrowRight } from "@fo
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
-import pcbway from "../components/images/pcbway.png";
 import rockettop from "../components/images/rockettop.png";
 import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
@@ -510,18 +509,6 @@ export default function Home() {
                     {...(isClientMobile === false
                       ? { "data-aos-anchor": "#Hero" }
                       : {})}
-                    data-aos-delay={isClientMobile ? 0 : 1600}
-                  >
-                    <Image alt="PCBWay" height={30} src={pcbway} className="object-contain" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
-                    data-aos="fade-up"
-                    {...(isClientMobile === false
-                      ? { "data-aos-anchor": "#Hero" }
-                      : {})}
                     data-aos-delay={isClientMobile ? 0 : 1200}
                   >
                     <Image alt="Makerspace" height={30} src={makerspace} className="object-contain" />
@@ -555,18 +542,6 @@ export default function Home() {
                     data-aos-delay={isClientMobile ? 0 : 1400}
                   >
                     <Image alt="LT Armed Forces" height={30} src={ltarmedforces} className="object-contain" />
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
-                    data-aos="fade-up"
-                    {...(isClientMobile === false
-                      ? { "data-aos-anchor": "#Hero" }
-                      : {})}
-                    data-aos-delay={isClientMobile ? 0 : 1600}
-                  >
-                    <Image alt="PCBWay" height={30} src={pcbway} className="object-contain" />
                   </div>
                 </SwiperSlide>
                 <SwiperSlide>
