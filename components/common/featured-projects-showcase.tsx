@@ -74,7 +74,10 @@ export const FeaturedProjectsShowcase = () => {
                       </span>
                     ))}
                   </div>
-                  <p className="text-neutral-200 text-sm mb-4 flex-grow">{project.description}</p>
+                  <div 
+                    className="text-neutral-200 text-sm mb-4 flex-grow" 
+                    dangerouslySetInnerHTML={{ __html: project.description }}
+                  />
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags &&
                       project.tags.slice(0, 5).map((tag) => (

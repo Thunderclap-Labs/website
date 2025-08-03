@@ -16,6 +16,7 @@ import { faShield, faLayerGroup, faCloudRain, faRocket, faArrowRight } from "@fo
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
+import jlcpcb from "../components/images/jlc.png";
 import rockettop from "../components/images/rockettop.png";
 import dronewireframe from "../components/images/dronewireframe.png";
 import conveyorwireframe from "../components/images/conveyorwireframe.png";
@@ -514,6 +515,18 @@ export default function Home() {
                     <Image alt="Makerspace" height={30} src={makerspace} className="object-contain" />
                   </div>
                 </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1000}
+                  >
+                    <Image alt="JLCPCB" height={30} src={jlcpcb} className="object-contain" />
+                  </div>
+                </SwiperSlide>
                 {/* Duplicate slides for better loop effect */}
                 <SwiperSlide>
                   <div
@@ -554,6 +567,18 @@ export default function Home() {
                     data-aos-delay={isClientMobile ? 0 : 1200}
                   >
                     <Image alt="Kaunas Makerspace" height={30} src={makerspace} className="object-contain" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div
+                    className="flex items-center justify-center h-16 max-w-48 mx-auto rounded-lg bg-black/60 p-2"
+                    data-aos="fade-up"
+                    {...(isClientMobile === false
+                      ? { "data-aos-anchor": "#Hero" }
+                      : {})}
+                    data-aos-delay={isClientMobile ? 0 : 1000}
+                  >
+                    <Image alt="JLCPCB" height={30} src={jlcpcb} className="object-contain" />
                   </div>
                 </SwiperSlide>
               </Swiper>
