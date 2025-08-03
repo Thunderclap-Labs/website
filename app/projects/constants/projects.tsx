@@ -3,12 +3,30 @@ import { StaticImageData } from "next/image";
 import cloudseeding from "../images/cloudseeding.png";
 import fwd from "../images/fwd.png";
 import cansat from "../images/cansat.png";
-import fuel from "../images/fuel.png";
-import lanedetection from "../images/lanedetection.png";
 import dronedetection from "../images/dronedetection.png";
 
 import dronewireframe from "@/components/images/dronewireframe.png";
 import conveyorwireframe from "@/components/images/conveyorwireframe.png";
+import cansatinz from "../images/cansatinz.jpg";
+import cansatwireframe from "../images/cansatwireframe.png";
+import cansatweb from "../images/cansatweb.png";
+import dryer1 from "../images/dryer1.jpg";
+import dryer2 from "../images/dryer2.jpg";
+import dryer3 from "../images/dryer3.jpg";
+import rocket1 from "../images/rocket1.jpg";
+import rocket2 from "../images/rocket2.jpg";
+import rocket3 from "../images/rocket3.jpg";
+import cloudseeding2 from "../images/cloudseeding2.png";
+import cloudseeding3 from "../images/cloudseeding3.png";
+import cloudseeding4 from "../images/cloudseeding4.png";
+import drone1 from "../images/drone1.png";
+import drone2 from "../images/drone2.png";
+import drone3 from "../images/drone3.jpg";
+
+export interface Partner {
+  name: string;
+  link?: string;
+}
 
 export interface Project {
   id: string;
@@ -28,16 +46,59 @@ export interface Project {
     | "Chemistry"
     | "AI"
   )[];
-  image?: StaticImageData; // Add image field
-  featured?: boolean; // Add featured flag
+  image?: StaticImageData;
+  featured?: boolean;
+  galleryImages?: { src: StaticImageData; alt: string }[];
+  partners?: string[];
 }
 
+const availablePartners: Partner[] = [
+  { name: "KTU Startup Space", link: "https://startupspace.lt" },
+  { name: "Lithuanian Armed Forces" },
+  { name: "Kaunas Makerspace" },
+  { name: "Defense Innovation Unit" },
+  { name: "ESA BIC Lithuania" },
+  { name: "Vilnius Tech Park" },
+  { name: "Baltic Aerospace" },
+  { name: "NATO Innovation Hub" },
+  { name: "European Space Agency" },
+  { name: "Lithuanian Space Association" },
+];
+
 export const projects: Project[] = [
+  {
+    id: "cloudseeding",
+    name: "Cloud Seeding",
+    description:
+      "This project explores <strong>innovative weather modification techniques</strong> through advanced cloud seeding. We are developing and testing:<br/><br/>• <em>Drone-based systems</em> for precise delivery of seeding agents<br/>• <em>Rocket-based systems</em> for atmospheric layer targeting<br/>• <em>Atmospheric science applications</em><br/><br/>Our aim is to create effective solutions for <strong>enhancing precipitation, combating drought, and managing water resources</strong>.",
+    link: "/cloud-seeding",
+    active: true,
+    tags: [
+      "Aerospace Engineering",
+      "Weather Modification",
+      "Atmospheric Science",
+      "Drone Technology",
+    ],
+    teamMembers: [
+      "Ignas Mikolaitis",
+      "Simonas Aukštuolis",
+      "Miglė Cirtautaitė",
+      "Julius Barauskas",
+      "Dominykas Remeika",
+    ],
+    startDate: "2025-05",
+    status: "Active",
+    image: cloudseeding,
+    categories: ["Hardware", "Aerospace", "Chemistry", "Software"],
+        featured: true,
+    galleryImages: [{ src: cloudseeding2, alt: "Cloud Seeding 2" }, { src: cloudseeding3, alt: "Cloud Seeding 3" }, { src: cloudseeding4, alt: "Cloud Seeding 4" }],
+      partners: ["JLCPCB", "Kaunas Makerspace", "KTU Startup Space"],
+  },
   {
     id: "rocketfuelautomation",
     name: "Rocket Fuel Automation",
     description:
-      "Development of automated systems for rocket fuel production and testing, including quality control and safety monitoring.",
+      "This project focuses on the <strong>complete automation of rocket fuel production</strong>. We are engineering a sophisticated system that integrates:<br/><br/>• <em>Industrial IoT sensors</em> for real-time monitoring<br/>• <em>Automated quality control checkpoints</em> to ensure fuel consistency<br/>• <em>Redundant safety systems</em> to manage hazardous materials<br/><br/>The goal is to create a scalable, efficient, and safe manufacturing process for next-generation propellants.",
     link: "",
     active: true,
     tags: [
@@ -58,13 +119,15 @@ export const projects: Project[] = [
     startDate: "2024-12",
     status: "Active",
     categories: ["Hardware", "Software", "Research"],
-    image: conveyorwireframe,
+    image: dryer1,
+    galleryImages: [{ src: dryer2, alt: "Rocket Fuel Dryer" }, { src: conveyorwireframe, alt: "Conveyor" }, { src: dryer3, alt: "Rocket Fuel Dryer" }],
+    partners: ["JLCPCB", "Kaunas Makerspace"],
   },
   {
     id: "rocket",
-    name: "Rocket Development",
+    name: "Propulsion & Rocket Fuel Development",
     description:
-      "Design and development of advanced rocket systems, including propulsion, avionics, and structural components.",
+      "Our <strong>flagship rocket development program</strong> involves the end-to-end design, simulation, and manufacturing of advanced, reusable rocket systems. We are pushing the boundaries of aerospace engineering with:<br/><br/>• <em>Innovative propulsion technologies</em><br/>• <em>Lightweight and durable structural components</em><br/>• <em>Sophisticated avionics</em> for precise control and telemetry<br/><br/>This project aims to make space access more <strong>affordable and sustainable</strong>.",
     link: "",
     active: true,
     tags: [
@@ -86,31 +149,17 @@ export const projects: Project[] = [
     categories: ["Aerospace", "Research"],
     image: fwd,
     featured: true, // <-- Mark as featured
-  },
-  {
-    id: "rocketfuel",
-    name: "Rocket Fuel Development",
-    description:
-      "Research and development of advanced rocket fuel technologies to enhance propulsion systems with focus on eco-friendly and high-performance compounds.",
-    link: "",
-    active: true,
-    tags: [
-      "Aerospace Engineering",
-      "Chemistry",
-      "Materials Science",
-      "Propulsion",
+    galleryImages: [
+      { src: rocket1, alt: "Rocket" },
+      { src: rocket3, alt: "Rocket" },
+      { src: rocket2, alt: "Rocket" },
     ],
-    teamMembers: ["Simonas Aukštuolis"],
-    startDate: "2024-12",
-    status: "Active",
-    image: fuel,
-    categories: ["Aerospace", "Research", "Chemistry"],
   },
   {
     id: "thunderbee",
     name: "Thunderbee Drone Interceptor",
     description:
-      "EUDIS hackathon winner - A drone project focused on developing advanced UAV interception technologies for defense applications.",
+      "<strong>Winner of the EUDIS hackathon</strong>, the Thunderbee is a state-of-the-art drone interceptor designed for defense and security applications. It combines:<br/><br/>• <em>Rapid prototyping</em> with advanced AI-driven target recognition<br/>• <em>Autonomous flight capabilities</em><br/>• <em>Hardware, software, and AI integration</em><br/><br/>The system is engineered to neutralize aerial threats <strong>swiftly and effectively</strong>.",
     link: "https://www.facebook.com/StartupSpace/posts/pfbid02mLauF3Y4Hw9NvUvJfX7XYknY64QBvZZXeirur3b2MbcnL2nDdnpww7FwD7yrvq5Vl?rdid=39SG0WNmrs4JbR1J#",
     active: true,
     tags: [
@@ -128,41 +177,17 @@ export const projects: Project[] = [
     ],
     startDate: "2025-05",
     status: "Active",
-    image: dronewireframe,
+    image: drone2,
     categories: ["Aerospace", "Hardware", "Software"],
     featured: true, // <-- Mark as featured
-  },
-  {
-    id: "cloudseeding",
-    name: "Cloud Seeding",
-    description:
-      "Research and development of cloud seeding technologies to enhance precipitation using drone and rocket-based delivery systems.",
-    link: "",
-    active: true,
-    tags: [
-      "Aerospace Engineering",
-      "Weather Modification",
-      "Atmospheric Science",
-      "Drone Technology",
-    ],
-    teamMembers: [
-      "Ignas Mikolaitis",
-      "Simonas Aukštuolis",
-      "Miglė Cirtautaitė",
-      "Julius Barauskas",
-      "Dominykas Remeika",
-    ],
-    startDate: "2025-05",
-    status: "Active",
-    image: cloudseeding,
-    categories: ["Research", "Aerospace"],
-        featured: true,
+    galleryImages: [{ src: drone3, alt: "Thunderbee Drone" }, { src: dronewireframe, alt: "Thunderbee" }, { src: drone1, alt: "Thunderbee Drone" }],
+    partners: ["Lithuanian Armed Forces"],
   },
   {
     id: "cansat1",
     name: "Thunderclap Cansat v1 (Satellite Project)",
     description:
-      "A miniature satellite project designed to demonstrate the principles of space technology and engineering with telemetry systems.",
+      "Our <strong>first foray into satellite technology</strong>, the Cansat v1 was a miniature satellite built to fit inside a standard soda can. This project featured:<br/><br/>• <em>Electronic systems and telemetry</em><br/>• <em>3D-modeled structural design</em><br/>• <em>Successful data transmission</em> during mission<br/><br/>Providing invaluable experience for our <strong>future satellite endeavors</strong>.",
     link: "https://www.youtube.com/watch?v=AwtJzvZ51m0",
     active: false,
     tags: [
@@ -182,12 +207,13 @@ export const projects: Project[] = [
     image: cansat,
     status: "Completed",
     categories: ["Aerospace", "Hardware", "Software"],
+    galleryImages: [{ src: cansatweb, alt: "Cansat Web" }, { src: cansatwireframe, alt: "Cansat Wireframe" }, { src: cansatinz, alt: "Cansat v1", }],
   },
   {
     id: "dronedetection",
-    name: "Drone Detection System",
+    name: "Drone Detection",
     description:
-      "Creation of a sophisticated drone detection system using advanced sensors, radar technology, and AI-powered recognition algorithms.",
+      "To counter the growing challenge of <strong>unauthorized drone activity</strong>, we are creating a multi-layered detection system. This project integrates:<br/><br/>• <em>Advanced radar and acoustic sensors</em><br/>• <em>High-resolution optical cameras</em><br/>• <em>AI-powered recognition engine</em><br/><br/>The system identifies, classifies, and tracks multiple drones in <strong>real-time</strong>, providing comprehensive aerial security.",
     link: "",
     active: true,
     tags: [
@@ -206,29 +232,6 @@ export const projects: Project[] = [
     status: "Active",
     image: dronedetection,
     categories: ["AI", "Software"],
-  },
-  {
-    id: "fullselfdriving",
-    name: "Full Self-Driving Algorithm",
-    description:
-      "Development of advanced algorithms for autonomous driving systems using computer vision and machine learning.",
-    link: "",
-    active: true,
-    tags: [
-      "AI",
-      "Machine Learning",
-      "Computer Vision",
-      "Autonomous Systems",
-      "Software Development",
-    ],
-    teamMembers: [
-      "Ignas Mikolaitis",
-      "Miglė Cirtautaitė",
-      "Dominykas Mačiulaitis",
-    ],
-    startDate: "2025-06",
-    status: "Active",
-    categories: ["AI", "Software", "Research"],
-    image: lanedetection,
+    partners: ["Lithuanian Armed Forces"],
   },
 ];
