@@ -11,21 +11,14 @@ export function useFeaturedCardMouseEffect() {
     const cards = document.querySelectorAll(".featured-card");
     let eventCounter = 0;
     const BOUNDARY_OFFSET = 250;
+    let lastMousePosition = { x: 0, y: 0 };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      // Throttle: only process every second event
-      eventCounter++;
-      if (eventCounter % 3 !== 0) {
-        return;
-      }
-
+    const updateCards = (mouseX: number, mouseY: number) => {
       for (const card of Array.from(cards)) {
         if (card instanceof HTMLElement) {
           const rect = card.getBoundingClientRect();
 
           // Check if mouse is within 200px boundary of the card
-          const mouseX = e.clientX;
-          const mouseY = e.clientY;
           const isWithinBoundary =
             mouseX >= rect.left - BOUNDARY_OFFSET &&
             mouseX <= rect.right + BOUNDARY_OFFSET &&
@@ -45,10 +38,26 @@ export function useFeaturedCardMouseEffect() {
       }
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      lastMousePosition = { x: e.clientX, y: e.clientY };
+      // Throttle: only process every second event
+      eventCounter++;
+      if (eventCounter % 3 !== 0) {
+        return;
+      }
+      updateCards(e.clientX, e.clientY);
+    };
+
+    const handleScroll = () => {
+      updateCards(lastMousePosition.x, lastMousePosition.y);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 }

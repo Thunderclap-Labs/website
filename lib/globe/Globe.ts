@@ -18,7 +18,6 @@ export class Globe {
     groups.globe.name = 'Globe';
 
     this.initGlobe();
-    return groups.globe as any;
   }
 
   initGlobe() {

@@ -192,8 +192,8 @@ export default function Home() {
       groups.main = new THREE.Group();
       groups.main.name = 'Main';
 
-      const globe = new Globe();
-      groups.main.add(globe as any);
+      new Globe();
+      groups.main.add(groups.globe!);
 
       // Fetch country data and create points
       try {
@@ -232,9 +232,13 @@ export default function Home() {
           elements.globe.material.uniforms.opacity.value = elements.globeOpacity;
         }
         
-        // Update atmosphere opacity
-        if (elements.atmosphere && elements.atmosphere.material instanceof THREE.ShaderMaterial) {
-          elements.atmosphere.material.uniforms.opacity.value = elements.globeOpacity * 0.6;
+        // Update atmosphere opacity with debugging
+        if (elements.atmosphere) {
+          if (elements.atmosphere.material instanceof THREE.ShaderMaterial) {
+            elements.atmosphere.material.uniforms.opacity.value = elements.globeOpacity * 0.6;
+          }
+        } else {
+          console.log('Atmosphere not found in elements:', elements.atmosphere);
         }
         
         // Update points opacity
@@ -675,6 +679,7 @@ export default function Home() {
           }
           titleAlignment="left"
           descriptionAlignment="right"
+          descriptionAlignmentMobile="left"
         >
           {/* Timeline Start */}
           <div className="mt-16">
@@ -712,6 +717,7 @@ export default function Home() {
           }
           titleAlignment="center"
           descriptionAlignment="center"
+          descriptionAlignmentMobile="center"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 overflow-visible">
             {manufacturingFeatures.map((feature, i) => (
@@ -738,6 +744,7 @@ export default function Home() {
           }
           titleAlignment="center"
           descriptionAlignment="center"
+          descriptionAlignmentMobile="center"
         >
           <FeaturedProjectsShowcase />
           <div className="flex pb-8 md:pb-12 justify-center items-center relative w-full mt-8" data-aos="fade-up" data-aos-delay="300">

@@ -6,6 +6,7 @@ interface SectionLayoutProps {
   description?: ReactNode;
   titleAlignment?: "left" | "center" | "right";
   descriptionAlignment?: "left" | "center" | "right";
+  descriptionAlignmentMobile?: "left" | "center" | "right";
   contentAlignment?: "left" | "center" | "right";
   descriptionMaxWidth?: string;
   children: ReactNode;
@@ -23,6 +24,7 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
   description,
   titleAlignment = "center",
   descriptionAlignment = "center",
+  descriptionAlignmentMobile = "left",
   contentAlignment = "center",
   descriptionMaxWidth = "max-w-3xl",
   children,
@@ -46,6 +48,31 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
       default:
         return "text-left";
     }
+  };
+
+  const getJustifyClass = (alignment: "left" | "center" | "right" | undefined) => {
+    switch (alignment) {
+      case "left":
+        return "justify-start";
+      case "center":
+        return "justify-center";
+      case "right":
+        return "justify-end";
+      default:
+        return "justify-start";
+    }
+  };
+
+  const getResponsiveJustifyClass = (
+    mobile: "left" | "center" | "right",
+    desktop: "left" | "center" | "right",
+  ) => {
+    const mobileClass = getJustifyClass(mobile);
+    const desktopClass = getJustifyClass(desktop);
+    if (mobileClass === desktopClass) {
+      return mobileClass;
+    }
+    return `${mobileClass} md:${desktopClass}`;
   };
 
   const getContentAlignmentClass = (
@@ -78,9 +105,9 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
           </h1>
         </div>
         {description && (
-          <div className={`flex w-full text-lg my-4 ${descriptionAlignment === "right" ? "justify-end" : descriptionAlignment === "center" ? "justify-center" : "justify-start"}`}>
+          <div className={`flex w-full text-lg my-4 pb-12 ${getResponsiveJustifyClass(descriptionAlignmentMobile, descriptionAlignment)}`}>
             <div
-              className={`max-w-3xl text-lg md:text-3xl font-normal leading-relaxed ${getAlignmentClass(descriptionAlignment)} ${descriptionClassName}`}
+              className={`max-w-3xl text-lg md:text-3xl font-normal leading-relaxed ${getAlignmentClass(descriptionAlignmentMobile)} md:${getAlignmentClass(descriptionAlignment)} ${descriptionClassName}`}
               data-aos="fade-up"
               data-aos-delay="100"
             >
