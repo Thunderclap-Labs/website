@@ -51,6 +51,8 @@ export const teamMembers = [
       "Chemistry",
       "Electrical Engineering",
       "Material Science",
+      "Laser Cutting",
+      "Milling"
     ],
     personalProjects: [
       {
@@ -239,13 +241,13 @@ export const teamMembers = [
     description:
       "Dovydas is a talented aerospace engineer with a strong foundation in Engineering. He is a skilled specialist in 3D modeling, with a keen eye for detail and design.",
     skills: [
-      "Electrical Engineering",
-      "C++",
-      "Data Analysis",
-      "Python",
-      "SOLIDWORKS",
+      "Milling",
+      "SolidWorks",
+      "Freecad",
+      "Electronics",
       "robotics",
       "3D modeling",
+      "3D Printing",
     ],
     personalProjects: [],
   },
