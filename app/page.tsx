@@ -798,10 +798,10 @@ export default function Home() {
               className="mx-auto text-center"
               data-aos-anchor="#partner-section"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
                 Partner with Us:<br/>
                 Investing in a High-Impact Future
-              </h1>
+              </h2>
             </div>
           </div>
           <div className="px-4 mt-12">

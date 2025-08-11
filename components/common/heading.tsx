@@ -4,7 +4,7 @@ import {
   title as titleStyle,
   subtitle as subtitleStyle,
 } from "@/components/primitives";
-import logo from "@/components/images/logo.png";
+import logo from "@/components/images/icon.png";
 import { StatsGrid } from "./stats-grid";
 
 interface StatItem {
@@ -36,7 +36,7 @@ export const Heading: React.FC<HeadingProps> = ({
       {showLogo && (
         <Image
           alt="Thunderclap Logo"
-          className="glow mx-auto mb-4 h-12 w-12"
+          className="glow mx-auto mb-4 h-8 w-auto"
           data-aos="zoom-in"
           src={logo}
         />

@@ -16,6 +16,7 @@ import dominykasImage from "../images/members/dominykas.jpg";
 import dominykaslImage from "../images/members/dominykasl.png";
 import juliusImage from "../images/members/julius.png";
 import dominykasnImage from "../images/members/dominykasn.jpeg";
+import dovydasImage from "../images/members/dovydas.jpg";
 
 export const teamMembers = [
   {
@@ -215,6 +216,36 @@ export const teamMembers = [
       "Client Communication",
       "Research",
       "Data Analysis",
+    ],
+    personalProjects: [],
+  },
+  {
+    name: "Dovydas Jusevičius",
+    role: "3D Modeling, Engineering & Product Development Specialist",
+    image: dovydasImage,
+    social: {
+      linkedin:
+        "https://www.linkedin.com/in/dovydas-jusevi%C4%8Dius-8a4575337/",
+      facebook: "https://www.facebook.com/dovydas.jusevicius",
+    },
+    badges: [
+      {
+        label: "Kaunas Makerspace",
+        image: makerspaceBadge,
+        link: "https://makerspace.lt/",
+      },
+    ],
+
+    description:
+      "Dovydas is a talented aerospace engineer with a strong foundation in Engineering. He is a skilled specialist in 3D modeling, with a keen eye for detail and design.",
+    skills: [
+      "Electrical Engineering",
+      "C++",
+      "Data Analysis",
+      "Python",
+      "SOLIDWORKS",
+      "robotics",
+      "3D modeling",
     ],
     personalProjects: [],
   },

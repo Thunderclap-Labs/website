@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Thunderclap Labs",
+  name: "Thunderclap Labs | Aerospace & Defense",
   description:
-    "Developing critical technologies to solve complex global challenges.",
+    "Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems.",
   navItems: [
     {
       label: "Home",

@@ -43,13 +43,12 @@ export const Navbar = () => {
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent className="basis-1/5 lg:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-4" href="/">
-            <Image alt="Thunderclap Labs" height={32} src={logo} />
-            <p className="font-bold text-inherit">Thunderclap Labs</p>
+        <NavbarBrand>
+          <NextLink href="/">
+            <Image alt="Thunderclap Labs" className="max-w-none" height={36} src={logo} />
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-12">
+        <ul className="hidden lg:flex gap-4 justify-start">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href} className="flex items-center gap-4">
               {item.label === "Cloud Seeding" && (
