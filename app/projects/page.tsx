@@ -15,10 +15,10 @@ import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useEffect } from "react";
 import { Button } from "@heroui/react";
-import PhotoSwipeLightbox from "photoswipe/lightbox";
-import type Slide from "photoswipe/dist/types/slide/slide";
-//@ts-ignore
-import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
+
+
+// //@ts-ignore
+// import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
 
 import { projects } from "./constants/projects";
 import { ShootingStars } from "@/components/ui/shooting-stars";
@@ -26,7 +26,7 @@ import { Heading } from "@/components/common/heading";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import "photoswipe/style.css";
+//import "photoswipe/style.css";
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -69,26 +69,26 @@ const createTeamMemberLink = (memberName: string) => {
 };
 
 export default function ProjectsPage() {
-  useEffect(() => {
-    let lightbox = new PhotoSwipeLightbox({
-      gallery: "#projects-gallery",
-      children: "a.pswp-gallery-item",
-      pswpModule: () => import("photoswipe"),
-    });
-    const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
-      type: "caption",
-      captionContent: (slide: Slide) => {
-        return slide.data.element?.querySelector("img")?.getAttribute("alt") || "";
-      },
-    });
-
-    lightbox.init();
-
-    return () => {
-      lightbox.destroy();
-      lightbox.pswp?.destroy();
-    };
-  }, []);
+  // useEffect(() => {
+  //   let lightbox = new PhotoSwipeLightbox({
+  //     gallery: "#projects-gallery",
+  //     children: "a.pswp-gallery-item",
+  //     pswpModule: () => import("photoswipe"),
+  //   });
+  //   // const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
+  //   //   type: "caption",
+  //   //   captionContent: (slide) => {
+  //   //     return slide.data.element?.querySelector("img")?.getAttribute("alt") || "";
+  //   //   },
+  //   // });
+  //
+  //   lightbox.init();
+  //
+  //   return () => {
+  //     lightbox.destroy();
+  //     lightbox.pswp?.destroy();
+  //   };
+  // }, []);
 
   return (
     <div className="flex flex-col items-center justify-start text-center min-h-screen">

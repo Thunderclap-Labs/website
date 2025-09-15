@@ -66,6 +66,7 @@ const availablePartners: Partner[] = [
 ];
 
 export const projects: Project[] = [
+  /*
   {
     id: "cloudseeding",
     name: "Cloud Seeding",
@@ -95,6 +96,7 @@ export const projects: Project[] = [
     galleryImages: [{ src: cloudseeding2, alt: "Cloud Seeding 2" }, { src: cloudseeding3, alt: "Cloud Seeding 3" }, { src: cloudseeding4, alt: "Cloud Seeding 4" }],
       partners: ["JLCPCB", "Kaunas Makerspace", "KTU Startup Space"],
   },
+  */
   {
     id: "rocketfuelautomation",
     name: "Rocket Fuel Automation",

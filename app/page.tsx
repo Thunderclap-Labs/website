@@ -409,6 +409,7 @@ export default function Home() {
                 subtitle="2026"
                 title="Digital Twin Technology"
               />
+              {/*
               <SatelliteInfoOverlay
                 corner="bottom-left"
                 icon={faCloudRain}
@@ -416,6 +417,7 @@ export default function Home() {
                 subtitle="2025"
                 title="Cloud Seeding"
               />
+              */}
             </>
           )}
           <div className="z-10 flex h-full items-center justify-center">
