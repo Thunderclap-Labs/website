@@ -12,7 +12,7 @@ import * as THREE from 'three';
 // Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShield, faLayerGroup, faCloudRain, faRocket, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faShield, faLayerGroup, faLocationArrow , faRocket, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
@@ -409,6 +409,15 @@ export default function Home() {
                 subtitle="2026"
                 title="Digital Twin Technology"
               />
+              {
+              <SatelliteInfoOverlay
+                corner="bottom-left"
+                icon={faLocationArrow}
+                isVisible={isGlobeVisible}
+                subtitle="2025"
+                title="Drone tracking"
+              />
+              }
               {/*
               <SatelliteInfoOverlay
                 corner="bottom-left"
@@ -620,7 +629,7 @@ export default function Home() {
               data-aos-delay="500"
               id="focus-areas"
             >
-              {focus_areas.map((area, i) => (
+              {focus_areas.filter(area => area.title !== "Cloud Seeding").map((area, i) => (
                 <div
                   key={area.title}
                   className={`flex p-4 flex-col h-full bg-black bg-opacity-95 ${isClientMobile ? "border border-neutral-700" : "rounded-lg"}`}

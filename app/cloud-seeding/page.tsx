@@ -22,10 +22,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
-
-// import * as THREE from "three"; // Ensure three.js is imported
-// //@ts-ignore
-// import CLOUDS from "vanta/dist/vanta.clouds.min";
+import * as THREE from "three"; // Ensure three.js is imported
+//@ts-ignore
+import CLOUDS from "vanta/dist/vanta.clouds.min";
 
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
@@ -116,34 +115,34 @@ export default function CloudSeedingPage() {
         sunlightColor: 0xfe32ff,
       });
     }
-    // useEffect(() => {
-    //   let vantaEffect: any = null;
-    //   if (typeof window !== "undefined" && vantaRef.current) {
-    //     AOS.init({
-    //       duration: 800,
-    //       once: true,
-    //     });
-    //
-    //     vantaEffect = CLOUDS({
-    //       el: vantaRef.current,
-    //       THREE, /* Lines 104-105 omitted */
-    //       mouseControls: true,
-    //       touchControls: true,
-    //       gyroControls: false,
-    //       minHeight: 200.0,
-    //       minWidth: 200.0,
-    //       backgroundColor: 0xfcfcfc,
-    //       skyColor: 0x0,
-    //       cloudShadowColor: 0x7ff4,
-    //       sunColor: 0x2318ff,
-    //       sunGlareColor: 0x4630ff,
-    //       sunlightColor: 0xfe32ff,
-    //     });
-    //   }
-    //   return () => {
-    //     if (vantaEffect) {/* Lines 120-121 omitted */}
-    //   };
-    // }, []);
+    return () => {
+      if (vantaEffect) {
+        vantaEffect.destroy();
+      }
+    };
+  }, []);
+
+  return (
+    <div className="relative text-neutral-100">
+      <StarsBackground />
+      <ShootingStars />
+
+      {/* Hero Section */}
+      <section className="relative flex justify-center items-center min-h-screen overflow-hidden">
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <Heading
+            title="Cloud Seeding"
+            subtitle="Pioneering atmospheric technology to address global water scarcity and protect against weather-related crop damage."
+          />
+        </div>
+
+        <div  ref={vantaRef} className="absolute inset-0"> </div>
+        <svg className="waves" xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18
+              88-18 58 18 88 18 v44h-352z" />
           </defs>
           <g className="parallax">
             <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(0,0,0,0.7)" />

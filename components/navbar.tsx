@@ -70,7 +70,7 @@ export const Navbar = () => {
             </NavbarItem>
           ))} */}
           {/* Cloud Seeding nav item commented out for future revival */}
-          {siteConfig.navItems.filter(item => item.label !== "Cloud Seeding").map((item) => (
+          {siteConfig.navItems.filter(item => item.label !== "Cloud Seeding").map((item, idx, arr) => (
             <NavbarItem key={item.href} className="flex items-center gap-4">
               <NextLink
                 className={clsx(
@@ -82,7 +82,7 @@ export const Navbar = () => {
               >
                 {item.label}
               </NextLink>
-              {item.label === "Projects" && (
+              {item.label === "Home" && (
                 <span className="mx-2 text-gray-400 select-none">|</span>
               )}
             </NavbarItem>
