@@ -10,6 +10,7 @@ import conveyorwireframe from "@/components/images/conveyorwireframe.png";
 import cansatinz from "../images/cansatinz.jpg";
 import cansatwireframe from "../images/cansatwireframe.png";
 import cansatweb from "../images/cansatweb.png";
+//import thundereye from "../images/thundereye.png";
 import dryer1 from "../images/dryer1.jpg";
 import dryer2 from "../images/dryer2.jpg";
 import dryer3 from "../images/dryer3.jpg";
