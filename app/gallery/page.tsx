@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import type Slide from "photoswipe/dist/types/slide/slide";
+import type Slide from "photoswipe";
 import Link from "next/link";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 //@ts-ignore
@@ -67,9 +67,9 @@ export default function GalleryPage() {
     const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
       type: "caption",
       captionContent: (slide: Slide) => {
-        const date = slide.data.element?.getAttribute('data-pswp-date');
-        const title = slide.data.element?.querySelector('img')?.getAttribute('alt') || '';
-        const description = slide.data.element?.getAttribute('data-pswp-description');
+        const date = slide.element?.getAttribute('data-pswp-date');
+        const title = slide.element?.querySelector('img')?.getAttribute('alt') || '';
+        const description = slide.element?.getAttribute('data-pswp-description');
         if (!description) {
           return title;
         }

@@ -42,14 +42,14 @@ export const Navbar = () => {
       maxWidth="xl"
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="basis-1/5 lg:basis-full" justify="start">
+  <NavbarContent className="basis-1/5 lg:basis-full" justify="start">
         <NavbarBrand>
           <NextLink href="/">
             <Image alt="Thunderclap Labs" className="max-w-none" height={36} src={logo} />
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start">
-          {siteConfig.navItems.map((item) => (
+  <ul className="hidden lg:flex gap-4 justify-start">
+          {/* {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href} className="flex items-center gap-4">
               {item.label === "Cloud Seeding" && (
                 <Divider orientation="vertical" className="h-6" />
@@ -66,6 +66,24 @@ export const Navbar = () => {
               </NextLink>
               {item.label === "Projects" && (
                 <Divider orientation="vertical" className="h-6"/>
+              )}
+            </NavbarItem>
+          ))} */}
+          {/* Cloud Seeding nav item commented out for future revival */}
+          {siteConfig.navItems.filter(item => item.label !== "Cloud Seeding").map((item, idx, arr) => (
+            <NavbarItem key={item.href} className="flex items-center gap-4">
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                )}
+                color="foreground"
+                href={item.href}
+              >
+                {item.label}
+              </NextLink>
+              {item.label === "Home" && (
+                <span className="mx-2 text-gray-400 select-none">|</span>
               )}
             </NavbarItem>
           ))}
@@ -126,11 +144,29 @@ export const Navbar = () => {
 
       <NavbarMenu className="overflow-hidden">
         <div className="mx-4 mt-2 flex flex-col gap-4">
-          {siteConfig.navMenuItems.map((item, index) => (
+          {/* {siteConfig.navMenuItems.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>
                 {item.label === "Cloud Seeding" && (
                   <Divider className="w-full mb-2" key={`${item.href}-divider-after`} />
                 )}
+                <NextLink
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "text-xl py-3 px-4 rounded-lg hover:bg-neutral-800 transition-colors block w-full",
+                  )}
+                  href={item.href}
+                  onClick={handleMenuItemClick}
+                >
+                  {item.label}
+                </NextLink>
+                {item.label === "Projects" && (
+                  <Divider className="w-full mt-2" key={`${item.href}-divider-after`} />
+                )}
+              </NavbarMenuItem>
+          ))} */}
+          {/* Cloud Seeding nav menu item commented out for future revival */}
+          {siteConfig.navMenuItems.filter(item => item.label !== "Cloud Seeding").map((item, index) => (
+              <NavbarMenuItem key={`${item}-${index}`}>
                 <NextLink
                   className={clsx(
                     linkStyles({ color: "foreground" }),
