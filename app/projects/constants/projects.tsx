@@ -100,12 +100,10 @@ export const projects: Project[] = [
    
   {
     id: "thundereye",
-    name: "Thunder Eye",
-    description:
-    `
-    
-    Thunder Eye is a next-generation, low-cost optical drone detection system. Using high-speed cameras and AI, it provides real-time 3D tracking of drones for military and civilian airspace protection. Scalable, stealthy, and fully autonomous, Thunder EYE outperforms radar and acoustic sensors in challenging environments.<br/><br/>
-    <em>• Optical voxel projection for accurate 3D tracking</em><br/>
+    name: "Thunder Eye - Real time drone tracking",
+  description:
+  `Thunder Eye is a next-generation, low-cost optical drone detection system. Using high-speed cameras and AI, it provides real-time 3D tracking of drones for military and civilian airspace protection. Scalable, stealthy, and fully autonomous, Thunder EYE outperforms radar and acoustic sensors in challenging environments.<br/><br/>
+  <em>• Optical voxel projection for accurate 3D tracking</em><br/
     <em>• ≥300 FPS global shutter, IR + visible light</em><br/>
     <em>• Modular, scalable camera network</em><br/>
     <em>• Outputs to GIS/military maps in real time</em>`,
