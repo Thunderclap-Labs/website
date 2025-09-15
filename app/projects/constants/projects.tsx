@@ -97,6 +97,48 @@ export const projects: Project[] = [
       partners: ["JLCPCB", "Kaunas Makerspace", "KTU Startup Space"],
   },
   */
+   
+  {
+    id: "thundereye",
+    name: "Thunder Eye",
+    description:
+    `
+    
+    Thunder Eye is a next-generation, low-cost optical drone detection system. Using high-speed cameras and AI, it provides real-time 3D tracking of drones for military and civilian airspace protection. Scalable, stealthy, and fully autonomous, Thunder EYE outperforms radar and acoustic sensors in challenging environments.<br/><br/>
+    <em>• Optical voxel projection for accurate 3D tracking</em><br/>
+    <em>• ≥300 FPS global shutter, IR + visible light</em><br/>
+    <em>• Modular, scalable camera network</em><br/>
+    <em>• Outputs to GIS/military maps in real time</em>`,
+    link: "",
+    active: true,
+    tags: [
+      "Miltech",
+      "Drone Detection",
+      "Optical Tracking",
+      "AI",
+      "Aerospace",
+      "Defense Systems",
+    ],
+    teamMembers: [
+      "Simonas Aukštuolis",
+      "Ignas Mikolaitis",
+      "Miglė Cirtautaitė",
+      "Julius Barauskas",
+      "Dominykas Remeika"
+    ],
+    startDate: "2025-01",
+    status: "Active",
+    image: dronewireframe,
+  categories: ["Aerospace", "Hardware", "Software", "AI"],
+    featured: true,
+    galleryImages: [
+      { src: drone1, alt: "Thunder EYE Node" },
+      { src: drone2, alt: "Thunder EYE Camera" },
+      { src: drone3, alt: "Thunder EYE System" }
+    ],
+    partners: ["Lithuanian Armed Forces", "MAKERSPACE.LT"],
+  },
+  
   {
     id: "rocketfuelautomation",
     name: "Rocket Fuel Automation",
