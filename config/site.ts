@@ -10,10 +10,6 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Cloud Seeding",
-      href: "/cloud-seeding",
-    },
-    {
       label: "Projects",
       href: "/projects",
     },
@@ -34,10 +30,6 @@ export const siteConfig = {
     {
       label: "Home",
       href: "/",
-    },
-    {
-      label: "Cloud Seeding",
-      href: "/cloud-seeding",
     },
     {
       label: "Projects",

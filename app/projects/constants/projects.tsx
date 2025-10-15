@@ -71,7 +71,7 @@ export const projects: Project[] = [
     name: "Cloud Seeding",
     description:
       "This project explores <strong>innovative weather modification techniques</strong> through advanced cloud seeding. We are developing and testing:<br/><br/>• <em>Drone-based systems</em> for precise delivery of seeding agents<br/>• <em>Rocket-based systems</em> for atmospheric layer targeting<br/>• <em>Atmospheric science applications</em><br/><br/>Our aim is to create effective solutions for <strong>enhancing precipitation, combating drought, and managing water resources</strong>.",
-    link: "/cloud-seeding",
+    link: undefined,
     active: true,
     tags: [
       "Aerospace Engineering",

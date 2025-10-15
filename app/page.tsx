@@ -12,7 +12,7 @@ import * as THREE from 'three';
 // Assuming these paths are correct for your project structure
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShield, faLayerGroup, faCloudRain, faRocket, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faShield, faLayerGroup, faRocket, faArrowRight, faSatelliteDish } from "@fortawesome/free-solid-svg-icons";
 
 import ltarmedforces from "../components/images/ltarmedforces.png";
 import ktustartupspace from "../components/images/ktustartupspace.png";
@@ -150,6 +150,7 @@ import { SectionLayout } from "@/components/common/section-layout";
 export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
   const [isClientMobile, setIsClientMobile] = useState<boolean | null>(null);
+  const [shouldShowOverlays, setShouldShowOverlays] = useState(true);
   
   // Globe state
   const globeContainerRef = useRef<HTMLDivElement>(null);
@@ -171,6 +172,10 @@ export default function Home() {
       const handleResize = () => {
         const mobileCheck = window.innerWidth < 768;
         setIsClientMobile(mobileCheck);
+        
+        // Hide overlays if height is less than 800px to prevent overlapping
+        const heightCheck = window.innerHeight >= 800;
+        setShouldShowOverlays(heightCheck);
       };
 
       handleResize(); // Initial check
@@ -387,35 +392,39 @@ export default function Home() {
               <div className={`absolute -top-24 md:-left-10 z-0 w-[1200px] h-[1200px] ${isGlobeVisible ? 'globe-container' : 'opacity-0'}`}>
                 <div ref={globeContainerRef} />
               </div>
-              {/* Satellite Info Overlay */}
-              <SatelliteInfoOverlay
-                corner="bottom-right"
-                icon={faShield}
-                isVisible={isGlobeVisible}
-                subtitle="2025"
-                title="Defence Systems"
-              />
-              <SatelliteInfoOverlay
-                corner="top-left"
-                icon={faRocket}
-                isVisible={isGlobeVisible}
-                subtitle="2025"
-                title="Propulsion"
-              />
-              <SatelliteInfoOverlay
-                corner="top-right"
-                icon={faLayerGroup}
-                isVisible={isGlobeVisible}
-                subtitle="2026"
-                title="Digital Twin Technology"
-              />
-              <SatelliteInfoOverlay
-                corner="bottom-left"
-                icon={faCloudRain}
-                isVisible={isGlobeVisible}
-                subtitle="2025"
-                title="Cloud Seeding"
-              />
+              {/* Satellite Info Overlay - Only show if height is sufficient */}
+              {shouldShowOverlays && (
+                <>
+                  <SatelliteInfoOverlay
+                    corner="bottom-right"
+                    icon={faShield}
+                    isVisible={isGlobeVisible}
+                    subtitle="2025"
+                    title="Defence Systems"
+                  />
+                  <SatelliteInfoOverlay
+                    corner="top-left"
+                    icon={faRocket}
+                    isVisible={isGlobeVisible}
+                    subtitle="2025"
+                    title="Propulsion"
+                  />
+                  <SatelliteInfoOverlay
+                    corner="top-right"
+                    icon={faLayerGroup}
+                    isVisible={isGlobeVisible}
+                    subtitle="2026"
+                    title="Digital Twin Technology"
+                  />
+                  <SatelliteInfoOverlay
+                    corner="bottom-left"
+                    icon={faSatelliteDish}
+                    isVisible={isGlobeVisible}
+                    subtitle="2025"
+                    title="Drone Detection"
+                  />
+                </>
+              )}
             </>
           )}
           <div className="z-10 flex h-full items-center justify-center">

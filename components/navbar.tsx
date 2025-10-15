@@ -51,9 +51,6 @@ export const Navbar = () => {
         <ul className="hidden lg:flex gap-4 justify-start">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href} className="flex items-center gap-4">
-              {item.label === "Cloud Seeding" && (
-                <Divider orientation="vertical" className="h-6" />
-              )}
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
@@ -128,9 +125,6 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-4">
           {siteConfig.navMenuItems.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>
-                {item.label === "Cloud Seeding" && (
-                  <Divider className="w-full mb-2" key={`${item.href}-divider-after`} />
-                )}
                 <NextLink
                   className={clsx(
                     linkStyles({ color: "foreground" }),
