@@ -330,28 +330,4 @@ export const teamMembers = [
       "Embedded Systems",
     ],
   },
-  {
-    name: "Dominykas Leknickas",
-    role: "3D Modeling & Mechanics Specialist",
-    email: "dominykasleknickas@gmail.com",
-    image: dominykaslImage,
-    social: {
-      facebook: "https://www.facebook.com/dominykas.leknickas",
-    },
-    badges: [
-      {
-        label: "KTU",
-        image: ktuBadge,
-        link: "https://admissions.ktu.edu/programme/b-software-engineering/",
-      },
-    ],
-    description:
-      "Dominykas Leknickas is a talented 3D modeling and mechanics specialist with a strong background in engineering. His hands-on experience and creative approach make him a valuable asset to any project.",
-    skills: [
-      "3D Modeling (Fusion 360, AutoCad)",
-      "Mechanics",
-      "Material Science",
-      "3D Printing",
-    ],
-  },
 ];
