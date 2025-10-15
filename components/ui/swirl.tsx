@@ -202,6 +202,7 @@ export const Swirl: React.FC<{ className?: string }> = ({ className }) => {
       if (canvasRef.current.a && canvasRef.current.b) {
         animationFrameIdRef.current = requestAnimationFrame(draw);
       }
+
       return;
     }
 

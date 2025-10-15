@@ -1,11 +1,12 @@
 import Image from "next/image";
 
+import { StatsGrid } from "./stats-grid";
+
 import {
   title as titleStyle,
   subtitle as subtitleStyle,
 } from "@/components/primitives";
 import logo from "@/components/images/icon.png";
-import { StatsGrid } from "./stats-grid";
 
 interface StatItem {
   value: string;

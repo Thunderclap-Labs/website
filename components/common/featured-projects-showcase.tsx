@@ -1,9 +1,10 @@
-import { projects } from "@/app/projects/constants/projects";
 import Image from "next/image";
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { useMemo } from "react";
+
+import { projects } from "@/app/projects/constants/projects";
 
 const getCategoryColor = (category: string) => {
   switch (category) {
@@ -28,23 +29,33 @@ export const FeaturedProjectsShowcase = () => {
   // Always show the first 3 featured projects in order
   const selected = useMemo(
     () => projects.filter((p) => p.featured).slice(0, 3),
-    []
+    [],
   );
 
   return (
-    <section className="bg-transparent text-white overflow-hidden" id="featured-projects-showcase">
+    <section
+      className="bg-transparent text-white overflow-hidden"
+      id="featured-projects-showcase"
+    >
       <div className="container max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {selected.map((project, i) => (
-            <div className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg" key={project.id} data-aos="fade-up" data-aos-delay={i * 100}>
-              <div className={`flex flex-col bg-black bg-opacity-95 p-1 rounded-lg h-full`}>
+            <div
+              key={project.id}
+              className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg"
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
+            >
+              <div
+                className={`flex flex-col bg-black bg-opacity-95 p-1 rounded-lg h-full`}
+              >
                 {project.image && (
                   <div className="relative h-48 w-full">
                     <Image
-                      src={project.image}
-                      alt={project.name}
                       fill
+                      alt={project.name}
                       className="object-cover rounded-lg"
+                      src={project.image}
                     />
                     {project.link && (
                       <Link
@@ -59,24 +70,32 @@ export const FeaturedProjectsShowcase = () => {
                 )}
                 <div className="p-4 flex flex-col flex-grow">
                   <div className="flex items-center mb-2 gap-2">
-                    <h2 className="text-xl font-bold text-neutral-100">{project.name}</h2>
+                    <h2 className="text-xl font-bold text-neutral-100">
+                      {project.name}
+                    </h2>
                     {project.active && (
                       <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-green-500/20 text-green-400 rounded-full border border-green-500/30 ml-2">
-                        <FontAwesomeIcon icon={faCheckCircle} className="mr-1" />
+                        <FontAwesomeIcon
+                          className="mr-1"
+                          icon={faCheckCircle}
+                        />
                         Active
                       </span>
                     )}
                   </div>
                   <div className="flex flex-wrap gap-2 mb-2">
                     {project.categories.map((cat) => (
-                      <span key={cat} className={`px-2 py-1 text-xs rounded-md font-semibold ${getCategoryColor(cat)}`}>
+                      <span
+                        key={cat}
+                        className={`px-2 py-1 text-xs rounded-md font-semibold ${getCategoryColor(cat)}`}
+                      >
                         {cat}
                       </span>
                     ))}
                   </div>
-                  <div 
-                    className="text-neutral-200 text-sm mb-4 flex-grow" 
+                  <div
                     dangerouslySetInnerHTML={{ __html: project.description }}
+                    className="text-neutral-200 text-sm mb-4 flex-grow"
                   />
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags &&
@@ -89,7 +108,9 @@ export const FeaturedProjectsShowcase = () => {
                         </span>
                       ))}
                     {project.tags && project.tags.length > 5 && (
-                      <span className="text-xs text-neutral-400">+{project.tags.length - 5} more</span>
+                      <span className="text-xs text-neutral-400">
+                        +{project.tags.length - 5} more
+                      </span>
                     )}
                   </div>
                 </div>

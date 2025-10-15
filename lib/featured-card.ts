@@ -4,6 +4,7 @@ export function useFeaturedCardMouseEffect() {
   useEffect(() => {
     // Check if device supports hover (desktop/laptop)
     const supportsHover = window.matchMedia("(hover: hover)").matches;
+
     if (!supportsHover) {
       return; // Don't add mouse effect on mobile devices
     }

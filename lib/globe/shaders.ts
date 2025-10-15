@@ -20,7 +20,7 @@ export const shaders = {
 		vec3 atmosphere = vec3( 0.3, 0.6, 1.0 ) * pow( intensity, 2.0 );
 		gl_FragColor = vec4( diffuse + atmosphere, opacity );
 	}
-`
+`,
   },
   atmosphere: {
     vertexShader: `
@@ -38,7 +38,7 @@ export const shaders = {
 		float intensity = pow( 1.0 - abs(dot( vNormal, vec3( 0.0, 0.0, 1.0 ) )), 4.0 ); 
 	    gl_FragColor = vec4( 0.3, 0.6, 1.0, intensity * opacity );
 	}
-`
+`,
   },
   dot: {
     vertexShader: `
@@ -61,6 +61,6 @@ export const shaders = {
 		gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
 		if ( gl_FragColor.a < ALPHATEST ) discard;
 	}
-`
-  }
+`,
+  },
 };

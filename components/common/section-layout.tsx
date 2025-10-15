@@ -50,7 +50,9 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
     }
   };
 
-  const getJustifyClass = (alignment: "left" | "center" | "right" | undefined) => {
+  const getJustifyClass = (
+    alignment: "left" | "center" | "right" | undefined,
+  ) => {
     switch (alignment) {
       case "left":
         return "justify-start";
@@ -69,9 +71,11 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
   ) => {
     const mobileClass = getJustifyClass(mobile);
     const desktopClass = getJustifyClass(desktop);
+
     if (mobileClass === desktopClass) {
       return mobileClass;
     }
+
     return `${mobileClass} md:${desktopClass}`;
   };
 
@@ -92,20 +96,22 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
 
   return (
     <section
-      className={`relative py-20 ${showBackground ? 'bg-transparent text-white' : ''} overflow-hidden ${className}`}
+      className={`relative py-20 ${showBackground ? "bg-transparent text-white" : ""} overflow-hidden ${className}`}
       id={id}
     >
       <div className="relative z-10 container max-w-7xl mx-auto px-4">
         <div className="pb-12">
-          <h1 
-            className={`text-4xl sm:text-5xl md:text-7xl font-semibold ${getAlignmentClass(titleAlignment)} ${titleClassName}`} 
+          <h1
+            className={`text-4xl sm:text-5xl md:text-7xl font-semibold ${getAlignmentClass(titleAlignment)} ${titleClassName}`}
             data-aos="fade-up"
           >
             {title}
           </h1>
         </div>
         {description && (
-          <div className={`flex w-full text-lg my-4 pb-12 ${getResponsiveJustifyClass(descriptionAlignmentMobile, descriptionAlignment)}`}>
+          <div
+            className={`flex w-full text-lg my-4 pb-12 ${getResponsiveJustifyClass(descriptionAlignmentMobile, descriptionAlignment)}`}
+          >
             <div
               className={`max-w-3xl text-lg md:text-3xl font-normal leading-relaxed ${getAlignmentClass(descriptionAlignmentMobile)} md:${getAlignmentClass(descriptionAlignment)} ${descriptionClassName}`}
               data-aos="fade-up"

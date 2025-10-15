@@ -1,4 +1,4 @@
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 import { Link } from "@heroui/link";
 import clsx from "clsx";
 
@@ -29,22 +29,34 @@ export default function RootLayout({
     <html suppressHydrationWarning className="overflow-x-hidden" lang="en">
       <head>
         <link
-          rel="icon"
           href="/icon?<generated>"
-          type="image/<generated>"
+          rel="icon"
           sizes="<generated>"
+          type="image/<generated>"
         />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://thunderclaplabs.com/" />
-        <meta property="og:title" content="Thunderclap Labs | Aerospace & Defense" />
-        <meta property="og:description" content="Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems." />
-        <meta property="og:image" content={bannersmall.src} />
+        <meta content="website" property="og:type" />
+        <meta content="https://thunderclaplabs.com/" property="og:url" />
+        <meta
+          content="Thunderclap Labs | Aerospace & Defense"
+          property="og:title"
+        />
+        <meta
+          content="Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems."
+          property="og:description"
+        />
+        <meta content={bannersmall.src} property="og:image" />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://thunderclaplabs.com/" />
-        <meta property="twitter:title" content="Thunderclap Labs | Aerospace & Defense" />
-        <meta property="twitter:description" content="Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems." />
-        <meta property="twitter:image" content={bannersmall.src} />
+        <meta content="summary_large_image" property="twitter:card" />
+        <meta content="https://thunderclaplabs.com/" property="twitter:url" />
+        <meta
+          content="Thunderclap Labs | Aerospace & Defense"
+          property="twitter:title"
+        />
+        <meta
+          content="Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems."
+          property="twitter:description"
+        />
+        <meta content={bannersmall.src} property="twitter:image" />
       </head>
       <body
         className={clsx(

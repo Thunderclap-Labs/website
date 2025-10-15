@@ -52,7 +52,7 @@ export const teamMembers = [
       "Electrical Engineering",
       "Material Science",
       "Laser Cutting",
-      "Milling"
+      "Milling",
     ],
     personalProjects: [
       {
@@ -143,14 +143,13 @@ export const teamMembers = [
       },
     ],
   },
-    {
+  {
     name: "Dominykas Remeika",
     role: "Engineering & Product Development & Marketing Specialist",
     email: "dominykasremeika27@gmail.com",
     image: dominykasnImage,
     social: {
-      linkedin:
-        "https://www.linkedin.com/in/dominykas-remeika/",
+      linkedin: "https://www.linkedin.com/in/dominykas-remeika/",
       facebook: "https://www.facebook.com/Unavailable.Nickname",
     },
     badges: [

@@ -1,5 +1,6 @@
-import * as THREE from 'three';
-import { config, elements, groups } from './config';
+import * as THREE from "three";
+
+import { config, elements, groups } from "./config";
 
 export class Marker {
   material: THREE.MeshBasicMaterial;
@@ -16,7 +17,15 @@ export class Marker {
   point!: THREE.Mesh;
   glow!: THREE.Mesh;
 
-  constructor(material: THREE.MeshBasicMaterial, geometry: THREE.SphereGeometry, specialGeometry: THREE.SphereGeometry, label: string, cords: { x: number; y: number; z: number }, isAnimated = false, isSpecial = false) {
+  constructor(
+    material: THREE.MeshBasicMaterial,
+    geometry: THREE.SphereGeometry,
+    specialGeometry: THREE.SphereGeometry,
+    label: string,
+    cords: { x: number; y: number; z: number },
+    isAnimated = false,
+    isSpecial = false,
+  ) {
     this.material = material;
     this.geometry = isSpecial ? specialGeometry : geometry;
     this.labelText = label;
@@ -24,12 +33,15 @@ export class Marker {
     this.isAnimating = false;
     this.isAnimated = isAnimated;
     this.isSpecial = isSpecial;
-    this.pointColor = new THREE.Color(isSpecial ? config.colors.globeMarkerSpecialColor : config.colors.globeMarkerColor);
+    this.pointColor = new THREE.Color(
+      isSpecial
+        ? config.colors.globeMarkerSpecialColor
+        : config.colors.globeMarkerColor,
+    );
     this.glowColor = new THREE.Color(config.colors.globeMarkerGlow);
-    
 
     this.group = new THREE.Group();
-    this.group.name = 'Marker';
+    this.group.name = "Marker";
 
     this.createLabel();
     this.createPoint();
@@ -40,19 +52,22 @@ export class Marker {
   }
 
   createLabel() {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d')!;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d")!;
+
     canvas.width = 256;
     canvas.height = 128;
-    context.font = '20px Arial';
-    context.fillStyle = 'white';
-    context.textAlign = 'center';
+    context.font = "20px Arial";
+    context.fillStyle = "white";
+    context.textAlign = "center";
     context.fillText(this.labelText, 128, 64);
 
     const texture = new THREE.CanvasTexture(canvas);
+
     texture.minFilter = THREE.LinearFilter;
 
     const material = new THREE.SpriteMaterial({ map: texture });
+
     this.label = new THREE.Sprite(material);
     this.label.renderOrder = 1;
     this.label.scale.set(40, 20, 1);
@@ -73,7 +88,7 @@ export class Marker {
   createGlow() {
     this.glow = new THREE.Mesh(this.geometry, this.material.clone());
     //(this.glow.material as THREE.MeshBasicMaterial).color.set(this.glowColor);
-    //(this.glow.material as THREE.MeshBasicMaterial).opacity = 0; 
+    //(this.glow.material as THREE.MeshBasicMaterial).opacity = 0;
     //this.group.add(this.glow);
     //elements.markerPoint.push(this.glow);
   }
@@ -103,6 +118,7 @@ export class Marker {
 
   setPosition() {
     const { x, y, z } = this.cords;
+
     this.group.position.set(-x, y, -z);
   }
 }

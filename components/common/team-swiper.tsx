@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+
 import "swiper/css";
 import { teamMembers } from "@/app/team/constants/team-members";
 
@@ -15,38 +16,47 @@ export const TeamSwiper: React.FC = () => (
         delay: 4000,
         disableOnInteraction: false,
       }}
-      loop={true}
-      modules={[Autoplay]}
-      slidesPerView={1.6}
       breakpoints={{
         640: { slidesPerView: 2.2, spaceBetween: 16 },
         1024: { slidesPerView: 3.2, spaceBetween: 24 },
         1280: { slidesPerView: 4.2, spaceBetween: 32 },
       }}
-      spaceBetween={12}
-      className="py-8"
       centeredSlides={true}
+      className="py-8"
+      loop={true}
+      modules={[Autoplay]}
+      slidesPerView={1.6}
+      spaceBetween={12}
       style={{ minHeight: 0 }}
     >
       {teamMembers.map((member, i) => (
-        <SwiperSlide key={member.name} style={{ width: "auto", height: "100%" }}>
+        <SwiperSlide
+          key={member.name}
+          style={{ width: "auto", height: "100%" }}
+        >
           <div
             className="flex flex-col items-center bg-black bg-opacity-95 border border-neutral-900 rounded-lg p-6 shadow-lg min-h-[340px] h-full max-w-xs mx-auto"
-            style={{ height: "340px" }}
             data-aos="fade-up"
             data-aos-delay={i * 100}
+            style={{ height: "340px" }}
           >
             <div className="relative w-24 min-h-24 mb-3 rounded-full overflow-hidden border-2 border-primary-500">
               <Image
-                alt={member.name}
-                src={member.image}
                 fill
+                alt={member.name}
                 className="object-cover"
+                src={member.image}
               />
             </div>
-            <h3 className="text-lg font-bold text-neutral-100 text-center">{member.name}</h3>
-            <p className="text-primary-400 text-xs text-center mb-2">{member.role}</p>
-            <p className="text-neutral-300 text-xs text-center line-clamp-3 mb-2">{member.description}</p>
+            <h3 className="text-lg font-bold text-neutral-100 text-center">
+              {member.name}
+            </h3>
+            <p className="text-primary-400 text-xs text-center mb-2">
+              {member.role}
+            </p>
+            <p className="text-neutral-300 text-xs text-center line-clamp-3 mb-2">
+              {member.description}
+            </p>
             <div className="flex flex-wrap gap-1 justify-center mt-auto">
               {member.skills?.slice(0, 3).map((skill) => (
                 <span
@@ -57,7 +67,9 @@ export const TeamSwiper: React.FC = () => (
                 </span>
               ))}
               {member.skills && member.skills.length > 3 && (
-                <span className="text-xs text-neutral-400">+{member.skills.length - 3} more</span>
+                <span className="text-xs text-neutral-400">
+                  +{member.skills.length - 3} more
+                </span>
               )}
             </div>
           </div>

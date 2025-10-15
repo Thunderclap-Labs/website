@@ -1,5 +1,6 @@
-import * as THREE from 'three';
-import { config, countries } from './config';
+import * as THREE from "three";
+
+import { config, countries } from "./config";
 
 export class Dot {
   radius: number;
@@ -13,7 +14,9 @@ export class Dot {
   constructor(isStatic = false) {
     this.radius = config.sizes.globeLineDotSize;
     this.geometry = new THREE.SphereGeometry(this.radius, 32, 32);
-    this.material = new THREE.MeshBasicMaterial({ color: config.colors.globeLinesDots });
+    this.material = new THREE.MeshBasicMaterial({
+      color: config.colors.globeLinesDots,
+    });
     this.material.transparent = true;
     this.material.opacity = 0.65;
 
@@ -28,13 +31,16 @@ export class Dot {
   assignToLine() {
     if (countries.selected) {
       const lines = countries.selected.children;
+
       if (lines.length > 0) {
         const index = Math.floor(Math.random() * lines.length);
         const line = lines[index];
+
         this._path = (line as any)._path;
 
         if (this.isStatic && this._path) {
           const { x, y, z } = this._path[0];
+
           this.mesh.position.set(x, y, z);
           this.mesh.visible = true;
         }
@@ -57,6 +63,7 @@ export class Dot {
       }
 
       const { x, y, z } = this._path[this._pathIndex];
+
       this.mesh.position.set(x, y, z);
       this._pathIndex++;
     } else {

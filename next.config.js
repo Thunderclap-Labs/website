@@ -12,11 +12,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'assets.example.com',
-        pathname: '/account123/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'upload.wikimedia.org',
         pathname: '/**',
       },
@@ -25,11 +20,6 @@ const nextConfig = {
         hostname: 'unpkg.com',
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: 'placekitten.com', // From previous version of team-members.jsx, good to keep if still used elsewhere or for testing
-        pathname: '/**',
-      }
     ],
   },
 };

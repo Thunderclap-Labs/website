@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,7 +35,7 @@ import { StatsGrid } from "@/components/common/stats-grid";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import cloudseeding from "@/components/images/cloudseeding.png"
+import cloudseeding from "@/components/images/cloudseeding.png";
 import dronewireframe from "@/components/images/dronewireframe.png";
 import fwd from "@/components/images/fwd.png";
 
@@ -68,18 +67,60 @@ const marketTargets = [
 ];
 
 const marketStats = [
-  { value: "$684M", title: "Market by 2032", description: "Projected global cloud seeding market size." },
-  { value: "6.7%", title: "CAGR", description: "Compound Annual Growth Rate during the forecast period." },
-  { value: "78%", title: "Asia Pacific Share", description: "Market share dominated by the Asia Pacific region in 2023." },
+  {
+    value: "$684M",
+    title: "Market by 2032",
+    description: "Projected global cloud seeding market size.",
+  },
+  {
+    value: "6.7%",
+    title: "CAGR",
+    description: "Compound Annual Growth Rate during the forecast period.",
+  },
+  {
+    value: "78%",
+    title: "Asia Pacific Share",
+    description: "Market share dominated by the Asia Pacific region in 2023.",
+  },
 ];
 
 const whyTrustUsItems = [
-    { icon: faHandshake, title: "Strong Strategic Partnerships", description: "Collaborations with European defense agencies, research institutions, and recognized by the European Union." },
-    { icon: faShieldHalved, title: "Dual-Use Applications", description: "Technology designed for both civilian and defense sectors, expanding market potential and long-term viability." },
-    { icon: faLightbulb, title: "Demonstrated Innovation", description: "Acclaimed initiatives, including the EUDIS-awarded ThunderBee drone." },
-    { icon: faSeedling, title: "Sustainable Technology Focus", description: "Emphasis on reusability, energy-efficient propulsion, and eco-compatible materials." },
-    { icon: faChartLine, title: "Tangible Advancements", description: "Consistent technical progress towards a fully functional prototype." },
-    { icon: faBolt, title: "Rapid Prototyping", description: "Agile development methodology ensures swift response to user needs and evolving demands." },
+  {
+    icon: faHandshake,
+    title: "Strong Strategic Partnerships",
+    description:
+      "Collaborations with European defense agencies, research institutions, and recognized by the European Union.",
+  },
+  {
+    icon: faShieldHalved,
+    title: "Dual-Use Applications",
+    description:
+      "Technology designed for both civilian and defense sectors, expanding market potential and long-term viability.",
+  },
+  {
+    icon: faLightbulb,
+    title: "Demonstrated Innovation",
+    description:
+      "Acclaimed initiatives, including the EUDIS-awarded ThunderBee drone.",
+  },
+  {
+    icon: faSeedling,
+    title: "Sustainable Technology Focus",
+    description:
+      "Emphasis on reusability, energy-efficient propulsion, and eco-compatible materials.",
+  },
+  {
+    icon: faChartLine,
+    title: "Tangible Advancements",
+    description:
+      "Consistent technical progress towards a fully functional prototype.",
+  },
+  {
+    icon: faBolt,
+    title: "Rapid Prototyping",
+    description:
+      "Agile development methodology ensures swift response to user needs and evolving demands.",
+  },
 ];
 
 const crisisGalleryImages = [
@@ -93,6 +134,7 @@ export default function CloudSeedingPage() {
 
   useEffect(() => {
     let vantaEffect: any = null;
+
     if (typeof window !== "undefined" && vantaRef.current) {
       AOS.init({
         duration: 800,
@@ -115,6 +157,7 @@ export default function CloudSeedingPage() {
         sunlightColor: 0xfe32ff,
       });
     }
+
     return () => {
       if (vantaEffect) {
         vantaEffect.destroy();
@@ -131,58 +174,87 @@ export default function CloudSeedingPage() {
       <section className="relative flex justify-center items-center min-h-screen overflow-hidden">
         <div className="relative z-10 container mx-auto px-4 text-center">
           <Heading
-            title="Cloud Seeding"
             subtitle="Pioneering atmospheric technology to address global water scarcity and protect against weather-related crop damage."
+            title="Cloud Seeding"
           />
         </div>
 
-        <div  ref={vantaRef} className="absolute inset-0"> </div>
-        <svg className="waves" xmlns="http://www.w3.org/2000/svg"
+        <div ref={vantaRef} className="absolute inset-0">
+          {" "}
+        </div>
+        <svg
+          className="waves"
+          preserveAspectRatio="none"
+          shapeRendering="auto"
+          viewBox="0 24 150 28"
+          xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28" preserveAspectRatio="none" shapeRendering="auto">
+        >
           <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18
-              88-18 58 18 88 18 v44h-352z" />
+            <path
+              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18
+              88-18 58 18 88 18 v44h-352z"
+              id="gentle-wave"
+            />
           </defs>
           <g className="parallax">
-            <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(0,0,0,0.7)" />
-            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(0,0,0,0.5)"
-              />
-            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(0,0,0,0.3)"
-                />
-            <use xlinkHref="#gentle-wave" x="48" y="7" fill="#000" />
+            <use fill="rgba(0,0,0,0.7)" x="48" xlinkHref="#gentle-wave" y="0" />
+            <use fill="rgba(0,0,0,0.5)" x="48" xlinkHref="#gentle-wave" y="3" />
+            <use fill="rgba(0,0,0,0.3)" x="48" xlinkHref="#gentle-wave" y="5" />
+            <use fill="#000" x="48" xlinkHref="#gentle-wave" y="7" />
           </g>
         </svg>
       </section>
 
       {/* The Crisis Section */}
       <SectionLayout
+        description="Water scarcity and destructive weather events pose significant threats to global food security and economic stability."
         id="crisis-section"
         title="A Growing Global Crisis"
-        description="Water scarcity and destructive weather events pose significant threats to global food security and economic stability."
       >
         <div className="grid md:grid-cols-2 gap-8 text-lg text-neutral-300 mt-6">
           <div data-aos="fade-right">
-            <h3 className="text-2xl font-bold text-blue-400 mb-4">The Challenge</h3>
+            <h3 className="text-2xl font-bold text-blue-400 mb-4">
+              The Challenge
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
-                <span>Severe droughts lead to massive economic losses in agriculture.</span>
+                <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  ✓
+                </span>
+                <span>
+                  Severe droughts lead to massive economic losses in
+                  agriculture.
+                </span>
               </li>
               <li className="flex items-start">
-                <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
-                <span>Destructive hailstorms cause billions in damage to crops and property annually.</span>
+                <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  ✓
+                </span>
+                <span>
+                  Destructive hailstorms cause billions in damage to crops and
+                  property annually.
+                </span>
               </li>
               <li className="flex items-start">
-                <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</span>
-                <span>Current solutions are often costly, complex, or ineffective.</span>
+                <span className="bg-blue-500/20 text-blue-400 rounded-full h-6 w-6 text-xs flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  ✓
+                </span>
+                <span>
+                  Current solutions are often costly, complex, or ineffective.
+                </span>
               </li>
             </ul>
           </div>
           <div data-aos="fade-left">
-            <h3 className="text-2xl font-bold text-green-400 mb-4">Our Solution</h3>
+            <h3 className="text-2xl font-bold text-green-400 mb-4">
+              Our Solution
+            </h3>
             <p>
-              We are developing a specialized Intelligent Aerial Vehicle (IAV) - Rocket and Drone based cloud seeding system for precise, efficient, and reliable delivery of silver iodide and potassium chloride to enhance precipitation and suppress hail.
+              We are developing a specialized Intelligent Aerial Vehicle (IAV) -
+              Rocket and Drone based cloud seeding system for precise,
+              efficient, and reliable delivery of silver iodide and potassium
+              chloride to enhance precipitation and suppress hail.
             </p>
           </div>
         </div>
@@ -190,9 +262,9 @@ export default function CloudSeedingPage() {
 
       {/* Applications Section */}
       <SectionLayout
+        description="Our technology offers a wide range of applications to address various environmental and economic challenges."
         id="applications-section"
         title="Primary Applications"
-        description="Our technology offers a wide range of applications to address various environmental and economic challenges."
         titleAlignment="center"
       >
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -204,39 +276,54 @@ export default function CloudSeedingPage() {
               data-aos-delay={index * 100}
             >
               <FontAwesomeIcon
-                icon={app.icon}
                 className="text-4xl text-primary-400 mb-4"
+                icon={app.icon}
               />
               <h3 className="text-lg font-semibold">{app.title}</h3>
             </div>
           ))}
         </div>
       </SectionLayout>
-      
+
       {/* Market Section */}
       <SectionLayout
+        description="The demand for effective weather modification is rapidly expanding as climate change impacts water resources and agricultural stability."
         id="market-section"
         title="Addressing a Multi-Billion Dollar Global Market"
-        description="The demand for effective weather modification is rapidly expanding as climate change impacts water resources and agricultural stability."
       >
         <div className="grid md:grid-cols-3 gap-8 mb-12 mt-4">
           {marketTargets.map((target, index) => (
-            <div key={index} className="bg-neutral-800/50 p-6 rounded-lg flex flex-col" data-aos="fade-up" data-aos-delay={index * 100}>
-              <h3 className="text-xl font-bold text-blue-400 mb-2">{target.title}</h3>
+            <div
+              key={index}
+              className="bg-neutral-800/50 p-6 rounded-lg flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <h3 className="text-xl font-bold text-blue-400 mb-2">
+                {target.title}
+              </h3>
               <p className="text-neutral-400 flex-grow">{target.description}</p>
             </div>
           ))}
         </div>
-        <div data-aos="fade-up" data-aos-delay="300" className="grid md:grid-cols-2 lg:grid-cols-3">
-            <StatsGrid stats={marketStats} />
+        <div
+          className="grid md:grid-cols-2 lg:grid-cols-3"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <StatsGrid stats={marketStats} />
         </div>
         {/* Source link for market data */}
-        <div className="mt-4 text-sm text-neutral-400 text-center" data-aos="fade-up" data-aos-delay="350">
+        <div
+          className="mt-4 text-sm text-neutral-400 text-center"
+          data-aos="fade-up"
+          data-aos-delay="350"
+        >
           Source:&nbsp;
           <Link
             isExternal
-            href="https://www.fortunebusinessinsights.com/cloud-seeding-market-104073"
             className="text-blue-400 hover:text-blue-300"
+            href="https://www.fortunebusinessinsights.com/cloud-seeding-market-104073"
           >
             Fortune Business Insights: Cloud Seeding Market
           </Link>
@@ -250,23 +337,33 @@ export default function CloudSeedingPage() {
 
       {/* Why Trust Us Section */}
       <SectionLayout
+        description="Our strength lies in our innovative approach, strategic partnerships, and a dedicated team committed to excellence."
         id="why-trust-us"
         title="Why Trust Us"
-        description="Our strength lies in our innovative approach, strategic partnerships, and a dedicated team committed to excellence."
         titleAlignment="center"
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {whyTrustUsItems.map((item, index) => (
-            <div key={index} className="bg-neutral-800/50 p-6 rounded-lg flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div
+              key={index}
+              className="bg-neutral-800/50 p-6 rounded-lg flex flex-col items-center text-center"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
               <div className="w-16 h-16 rounded-full bg-primary-500/20 flex items-center justify-center mb-4">
-                <FontAwesomeIcon icon={item.icon} className="text-2xl text-primary-400" />
+                <FontAwesomeIcon
+                  className="text-2xl text-primary-400"
+                  icon={item.icon}
+                />
               </div>
-              <h3 className="text-xl font-semibold text-primary-400 mb-3">{item.title}</h3>
+              <h3 className="text-xl font-semibold text-primary-400 mb-3">
+                {item.title}
+              </h3>
               <p className="text-neutral-300 flex-grow">{item.description}</p>
             </div>
           ))}
         </div>
-        
+
         <Button
           as={Link}
           className="bg-black/15 text-white shadow-xl rounded-lg mt-8"

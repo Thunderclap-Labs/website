@@ -1,14 +1,21 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { App } from '@/lib/globe/App';
-import { Globe } from '@/lib/globe/Globe';
-import { Points } from '@/lib/globe/Points';
-import { Markers } from '@/lib/globe/Markers';
-import { Lines } from '@/lib/globe/Lines';
-import { config, elements, groups, animations, sampleCountries } from '@/lib/globe/config';
-import grid from '@/components/globe/data/grid.json';
+import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+
+import { App } from "@/lib/globe/App";
+import { Globe } from "@/lib/globe/Globe";
+import { Points } from "@/lib/globe/Points";
+import { Markers } from "@/lib/globe/Markers";
+import { Lines } from "@/lib/globe/Lines";
+import {
+  config,
+  elements,
+  groups,
+  animations,
+  sampleCountries,
+} from "@/lib/globe/config";
+import grid from "@/components/globe/data/grid.json";
 
 // Main component
 export default function GlobePage() {
@@ -27,14 +34,16 @@ export default function GlobePage() {
       app.camera.updateProjectionMatrix();
 
       groups.main = new THREE.Group();
-      groups.main.name = 'Main';
+      groups.main.name = "Main";
 
       const globe = new Globe();
+
       groups.main.add(globe as any);
 
       // Fetch country data and create points
       try {
         const countriesData = grid;
+
         new Points(countriesData);
         if (groups.points) {
           groups.globe!.add(groups.points);
@@ -44,9 +53,11 @@ export default function GlobePage() {
       }
 
       const markers = new Markers(sampleCountries);
+
       groups.globe!.add(groups.markers!);
 
       const lines = new Lines();
+
       app.lines = lines;
       groups.globe!.add(groups.lines!);
 
@@ -57,8 +68,11 @@ export default function GlobePage() {
     const animate = (app: App) => {
       // Update points
       if (elements.globePoints) {
-        (elements.globePoints.material as THREE.PointsMaterial).size = config.sizes.globeDotSize;
-        (elements.globePoints.material as THREE.PointsMaterial).color.set(config.colors.globeDotColor);
+        (elements.globePoints.material as THREE.PointsMaterial).size =
+          config.sizes.globeDotSize;
+        (elements.globePoints.material as THREE.PointsMaterial).color.set(
+          config.colors.globeDotColor,
+        );
       }
 
       // Update globe scale
@@ -66,7 +80,7 @@ export default function GlobePage() {
         elements.globe.scale.set(
           config.scale.globeScale,
           config.scale.globeScale,
-          config.scale.globeScale
+          config.scale.globeScale,
         );
       }
 
@@ -74,6 +88,7 @@ export default function GlobePage() {
       if (elements.lineDots) {
         for (let i = 0; i < elements.lineDots.length; i++) {
           const dot = elements.lineDots[i];
+
           dot.material.color.set(config.colors.globeLinesDots);
           dot.animate();
         }
@@ -91,7 +106,10 @@ export default function GlobePage() {
       if (elements.lines) {
         for (let i = 0; i < elements.lines.length; i++) {
           const line = elements.lines[i];
-          (line.material as THREE.LineBasicMaterial).color.set(config.colors.globeLines);
+
+          (line.material as THREE.LineBasicMaterial).color.set(
+            config.colors.globeLines,
+          );
         }
       }
 
@@ -109,32 +127,39 @@ export default function GlobePage() {
       // Update marker labels and points
       for (let i = 0; i < elements.markerLabel.length; i++) {
         const label = elements.markerLabel[i];
+
         label.visible = config.display.markerLabel;
       }
 
       for (let i = 0; i < elements.markerPoint.length; i++) {
         const point = elements.markerPoint[i];
+
         point.visible = config.display.markerPoint;
       }
     };
 
-    const lithuania = sampleCountries.find(c => c.name === 'Lithuania');
-    const initialRotationX = lithuania ? (+lithuania.latitude * Math.PI / 180) - 0.4 : 0;
-    const initialRotationY = lithuania ? (-lithuania.longitude * Math.PI / 180) - 0.6: 0;
+    const lithuania = sampleCountries.find((c) => c.name === "Lithuania");
+    const initialRotationX = lithuania
+      ? (+lithuania.latitude * Math.PI) / 180 - 0.4
+      : 0;
+    const initialRotationY = lithuania
+      ? (-lithuania.longitude * Math.PI) / 180 - 0.6
+      : 0;
 
     const app = new App({ setup, animate, initialRotationX, initialRotationY });
+
     appRef.current = app;
-    
+
     app.init(containerRef.current);
 
     const handleResize = () => {
       app.handleResize();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if (appRef.current) {
         appRef.current.destroy();
         if (appRef.current.renderer) {
@@ -159,7 +184,5 @@ export default function GlobePage() {
     setDisplay({ ...config.display });
   };
 
-  return (
-    <div ref={containerRef} />
-  );
+  return <div ref={containerRef} />;
 }

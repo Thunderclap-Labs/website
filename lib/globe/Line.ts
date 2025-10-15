@@ -1,7 +1,8 @@
-import * as THREE from 'three';
-import { config } from './config';
-import { Country } from './types';
-import { getSplineFromCoords } from './utils';
+import * as THREE from "three";
+
+import { config } from "./config";
+import { Country } from "./types";
+import { getSplineFromCoords } from "./utils";
 
 export class Line {
   start: Country;
@@ -15,17 +16,19 @@ export class Line {
   constructor(start: Country, end: Country) {
     this.start = start;
     this.end = end;
-    this.radius = config.sizes.globe + config.sizes.globe * config.scale.markers;
-    
+    this.radius =
+      config.sizes.globe + config.sizes.globe * config.scale.markers;
+
     this.curve = this.createCurve();
     this.geometry = new THREE.BufferGeometry();
     const points = this.curve.getPoints(50);
+
     this.geometry.setFromPoints(points);
-    
+
     this.material = new THREE.LineBasicMaterial({
       color: config.colors.globeLines,
       transparent: true,
-      opacity: 0.45
+      opacity: 0.45,
     });
 
     this.mesh = new THREE.Line(this.geometry, this.material);
@@ -38,12 +41,13 @@ export class Line {
       +this.start.longitude,
       +this.end.latitude,
       +this.end.longitude,
-      this.radius
+      this.radius,
     );
 
     const distance = start.distanceTo(end);
     const mid = start.clone().lerp(end, 0.5);
     const midLength = mid.length();
+
     mid.normalize();
     mid.multiplyScalar(midLength + distance * 0.5);
 

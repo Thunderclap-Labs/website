@@ -1,6 +1,7 @@
-import * as THREE from 'three';
-import { groups } from './config';
-import { Lines } from './Lines';
+import * as THREE from "three";
+
+import { groups } from "./config";
+import { Lines } from "./Lines";
 
 export class App {
   scene!: THREE.Scene;
@@ -16,7 +17,17 @@ export class App {
   dampingFactor = 0.05;
   animationFrameId: number | null = null; // Add animation frame ID property
 
-  constructor({ animate, setup, initialRotationX = 0, initialRotationY = 0 }: { animate: (app: App) => void; setup: (app: App) => void, initialRotationX?: number, initialRotationY?: number }) {
+  constructor({
+    animate,
+    setup,
+    initialRotationX = 0,
+    initialRotationY = 0,
+  }: {
+    animate: (app: App) => void;
+    setup: (app: App) => void;
+    initialRotationX?: number;
+    initialRotationY?: number;
+  }) {
     this.animate = animate;
     this.setup = setup;
     this.targetRotationX = initialRotationX;
@@ -53,6 +64,7 @@ export class App {
 
   initCamera() {
     const ratio = window.innerWidth / window.innerHeight;
+
     this.camera = new THREE.PerspectiveCamera(60, ratio, 0.1, 10000);
     this.camera.lookAt(this.scene.position);
     this.camera.position.set(0, 15, 30);
@@ -89,9 +101,9 @@ export class App {
       mouseY = event.clientY;
     };
 
-    this.container.addEventListener('mousedown', onMouseDown);
-    this.container.addEventListener('mouseup', onMouseUp);
-    this.container.addEventListener('mousemove', onMouseMove);
+    this.container.addEventListener("mousedown", onMouseDown);
+    this.container.addEventListener("mouseup", onMouseUp);
+    this.container.addEventListener("mousemove", onMouseMove);
     // Removed wheel event listener to disable zoom
   }
 
@@ -101,20 +113,22 @@ export class App {
 
   update = () => {
     if (groups.main) {
-      groups.main.rotation.y += (this.targetRotationY - groups.main.rotation.y) * this.dampingFactor;
-      groups.main.rotation.x += (this.targetRotationX - groups.main.rotation.x) * this.dampingFactor;
+      groups.main.rotation.y +=
+        (this.targetRotationY - groups.main.rotation.y) * this.dampingFactor;
+      groups.main.rotation.x +=
+        (this.targetRotationX - groups.main.rotation.x) * this.dampingFactor;
     }
     this.animate(this);
     this.renderer.render(this.scene, this.camera);
     // Store the animation frame ID so it can be cancelled
     this.animationFrameId = requestAnimationFrame(this.update);
-  }
+  };
 
   handleResize = () => {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-  }
+  };
 
   destroy() {
     // Cancel animation frame first

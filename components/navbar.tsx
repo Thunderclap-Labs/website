@@ -45,7 +45,12 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 lg:basis-full" justify="start">
         <NavbarBrand>
           <NextLink href="/">
-            <Image alt="Thunderclap Labs" className="max-w-none" height={36} src={logo} />
+            <Image
+              alt="Thunderclap Labs"
+              className="max-w-none"
+              height={36}
+              src={logo}
+            />
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start">
@@ -62,7 +67,7 @@ export const Navbar = () => {
                 {item.label}
               </NextLink>
               {item.label === "Projects" && (
-                <Divider orientation="vertical" className="h-6"/>
+                <Divider className="h-6" orientation="vertical" />
               )}
             </NavbarItem>
           ))}
@@ -124,21 +129,24 @@ export const Navbar = () => {
       <NavbarMenu className="overflow-hidden">
         <div className="mx-4 mt-2 flex flex-col gap-4">
           {siteConfig.navMenuItems.map((item, index) => (
-              <NavbarMenuItem key={`${item}-${index}`}>
-                <NextLink
-                  className={clsx(
-                    linkStyles({ color: "foreground" }),
-                    "text-xl py-3 px-4 rounded-lg hover:bg-neutral-800 transition-colors block w-full",
-                  )}
-                  href={item.href}
-                  onClick={handleMenuItemClick}
-                >
-                  {item.label}
-                </NextLink>
-                {item.label === "Projects" && (
-                  <Divider className="w-full mt-2" key={`${item.href}-divider-after`} />
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "text-xl py-3 px-4 rounded-lg hover:bg-neutral-800 transition-colors block w-full",
                 )}
-              </NavbarMenuItem>
+                href={item.href}
+                onClick={handleMenuItemClick}
+              >
+                {item.label}
+              </NextLink>
+              {item.label === "Projects" && (
+                <Divider
+                  key={`${item.href}-divider-after`}
+                  className="w-full mt-2"
+                />
+              )}
+            </NavbarMenuItem>
           ))}
         </div>
       </NavbarMenu>

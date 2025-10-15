@@ -56,15 +56,15 @@ export const SatelliteInfoOverlay: React.FC<SatelliteInfoOverlayProps> = ({
         <svg
           className={`absolute top-1/2 left-0 w-full h-[101px] ${styles.svgTransform}`}
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
             <linearGradient
               id="line-fade-gradient"
               x1="0"
-              y1="0.5"
               x2="1"
+              y1="0.5"
               y2="0.5"
             >
               <stop offset="0%" stopColor="#404040" />
@@ -93,7 +93,7 @@ export const SatelliteInfoOverlay: React.FC<SatelliteInfoOverlayProps> = ({
                 corner.includes("top") ? "bottom-14" : "top-full"
               }`}
             >
-              <FontAwesomeIcon icon={icon} className="text-white text-xl" />
+              <FontAwesomeIcon className="text-white text-xl" icon={icon} />
             </div>
           </div>
         </div>

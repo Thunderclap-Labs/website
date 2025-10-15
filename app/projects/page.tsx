@@ -1,9 +1,10 @@
 "use client";
 
+import type Slide from "photoswipe/dist/types/slide/slide";
+
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLink,
   faUsers,
   faCalendar,
   faCheckCircle,
@@ -11,16 +12,16 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { useEffect } from "react";
 import { Button } from "@heroui/react";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
-import type Slide from "photoswipe/dist/types/slide/slide";
 //@ts-ignore
 import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
 
 import { projects } from "./constants/projects";
+
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { Heading } from "@/components/common/heading";
 
@@ -65,6 +66,7 @@ const createTeamMemberLink = (memberName: string) => {
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^\w-]/g, "");
+
   return `/team#${anchor}`;
 };
 
@@ -78,7 +80,9 @@ export default function ProjectsPage() {
     const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
       type: "caption",
       captionContent: (slide: Slide) => {
-        return slide.data.element?.querySelector("img")?.getAttribute("alt") || "";
+        return (
+          slide.data.element?.querySelector("img")?.getAttribute("alt") || ""
+        );
       },
     });
 
@@ -99,7 +103,7 @@ export default function ProjectsPage() {
           title="Our Projects"
         />
 
-        <div id="projects-gallery" className="space-y-24 mt-16">
+        <div className="space-y-24 mt-16" id="projects-gallery">
           {projects.map((project, index) => (
             <section
               key={project.id}
@@ -112,9 +116,9 @@ export default function ProjectsPage() {
                 <h2 className="text-4xl md:text-5xl font-bold text-neutral-100 mb-4">
                   {project.name}
                 </h2>
-                <div 
-                  className="text-neutral-300 text-lg mb-6 flex-grow"
+                <div
                   dangerouslySetInnerHTML={{ __html: project.description }}
+                  className="text-neutral-300 text-lg mb-6 flex-grow"
                 />
 
                 <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -130,7 +134,7 @@ export default function ProjectsPage() {
                       </span>
                     ))}
                   </div>
-                  
+
                   <div className="flex items-center gap-4 text-sm text-neutral-400">
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon
@@ -145,7 +149,10 @@ export default function ProjectsPage() {
                     </div>
                     {project.startDate && (
                       <div className="flex items-center gap-2">
-                        <FontAwesomeIcon className="w-4 h-4" icon={faCalendar} />
+                        <FontAwesomeIcon
+                          className="w-4 h-4"
+                          icon={faCalendar}
+                        />
                         <span>
                           {new Date(project.startDate).toLocaleDateString(
                             "en-US",
@@ -203,8 +210,8 @@ export default function ProjectsPage() {
                         {project.teamMembers.map((member) => (
                           <SwiperSlide key={member} style={{ width: "auto" }}>
                             <Link
-                              href={createTeamMemberLink(member)}
                               className="bg-secondary-500/20 text-secondary-400 px-2 py-1 text-xs rounded-md hover:bg-secondary-500/40 transition-colors whitespace-nowrap"
+                              href={createTeamMemberLink(member)}
                             >
                               {member}
                             </Link>
@@ -217,12 +224,12 @@ export default function ProjectsPage() {
 
                 {project.link && (
                   <Button
-                    as={Link}
-                    href={project.link}
-                    isExternal
-                    variant="bordered"
-                    className="self-start bg-black/15 text-white shadow-xl rounded-lg"
                     data-pswp-ignore
+                    isExternal
+                    as={Link}
+                    className="self-start bg-black/15 text-white shadow-xl rounded-lg"
+                    href={project.link}
+                    variant="bordered"
                   >
                     Read More <FontAwesomeIcon icon={faArrowRight} />
                   </Button>
@@ -233,18 +240,20 @@ export default function ProjectsPage() {
               <div className="flex flex-col gap-6">
                 {project.image && (
                   <a
-                    href={project.image.src}
-                    data-pswp-width={project.image.width}
-                    data-pswp-height={project.image.height}
-                    target="_blank"
-                    rel="noreferrer"
+                    aria-label={`View full size image of ${project.name}`}
                     className="pswp-gallery-item block rounded-xl overflow-hidden group"
+                    data-pswp-height={project.image.height}
+                    data-pswp-width={project.image.width}
+                    href={project.image.src}
+                    rel="noreferrer"
+                    target="_blank"
+                    title={`View ${project.name} image`}
                   >
                     <Image
-                      src={project.image}
                       alt={project.name}
                       className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                       priority={index < 2}
+                      src={project.image}
                     />
                   </a>
                 )}
@@ -254,18 +263,18 @@ export default function ProjectsPage() {
                     {project.galleryImages.map((img, i) => (
                       <Link
                         key={i}
-                        href={img.src.src}
-                        data-pswp-width={img.src.width}
-                        data-pswp-height={img.src.height}
-                        target="_blank"
-                        rel="noreferrer"
                         className="pswp-gallery-item block overflow-hidden group rounded-lg"
+                        data-pswp-height={img.src.height}
+                        data-pswp-width={img.src.width}
+                        href={img.src.src}
+                        rel="noreferrer"
+                        target="_blank"
                       >
                         <Image
-                          src={img.src}
                           alt={img.alt}
-                          height={320}
                           className="object-cover transition-transform duration-300  rounded-lg group-hover:scale-105"
+                          height={320}
+                          src={img.src}
                         />
                       </Link>
                     ))}
@@ -279,7 +288,6 @@ export default function ProjectsPage() {
                   </div>
                 )}
               </div>
-              
             </section>
           ))}
         </div>

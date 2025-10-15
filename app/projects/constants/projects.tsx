@@ -4,9 +4,6 @@ import cloudseeding from "../images/cloudseeding.png";
 import fwd from "../images/fwd.png";
 import cansat from "../images/cansat.png";
 import dronedetection from "../images/dronedetection.png";
-
-import dronewireframe from "@/components/images/dronewireframe.png";
-import conveyorwireframe from "@/components/images/conveyorwireframe.png";
 import cansatinz from "../images/cansatinz.jpg";
 import cansatwireframe from "../images/cansatwireframe.png";
 import cansatweb from "../images/cansatweb.png";
@@ -22,6 +19,9 @@ import cloudseeding4 from "../images/cloudseeding4.png";
 import drone1 from "../images/drone1.png";
 import drone2 from "../images/drone2.png";
 import drone3 from "../images/drone3.jpg";
+
+import conveyorwireframe from "@/components/images/conveyorwireframe.png";
+import dronewireframe from "@/components/images/dronewireframe.png";
 
 export interface Partner {
   name: string;
@@ -85,15 +85,19 @@ export const projects: Project[] = [
       "Miglė Cirtautaitė",
       "Julius Barauskas",
       "Dominykas Remeika",
-      "Dovydas Jusevičius"
+      "Dovydas Jusevičius",
     ],
     startDate: "2025-05",
     status: "Active",
     image: cloudseeding,
     categories: ["Hardware", "Aerospace", "Chemistry", "Software"],
-        featured: true,
-    galleryImages: [{ src: cloudseeding2, alt: "Cloud Seeding 2" }, { src: cloudseeding3, alt: "Cloud Seeding 3" }, { src: cloudseeding4, alt: "Cloud Seeding 4" }],
-      partners: ["JLCPCB", "Kaunas Makerspace", "KTU Startup Space"],
+    featured: true,
+    galleryImages: [
+      { src: cloudseeding2, alt: "Cloud Seeding 2" },
+      { src: cloudseeding3, alt: "Cloud Seeding 3" },
+      { src: cloudseeding4, alt: "Cloud Seeding 4" },
+    ],
+    partners: ["JLCPCB", "Kaunas Makerspace", "KTU Startup Space"],
   },
   {
     id: "rocketfuelautomation",
@@ -122,7 +126,11 @@ export const projects: Project[] = [
     status: "Active",
     categories: ["Hardware", "Software", "Research"],
     image: dryer1,
-    galleryImages: [{ src: dryer2, alt: "Rocket Fuel Dryer" }, { src: conveyorwireframe, alt: "Conveyor" }, { src: dryer3, alt: "Rocket Fuel Dryer" }],
+    galleryImages: [
+      { src: dryer2, alt: "Rocket Fuel Dryer" },
+      { src: conveyorwireframe, alt: "Conveyor" },
+      { src: dryer3, alt: "Rocket Fuel Dryer" },
+    ],
     partners: ["JLCPCB", "Kaunas Makerspace"],
   },
   {
@@ -145,7 +153,7 @@ export const projects: Project[] = [
       "Miglė Cirtautaitė",
       "Julius Barauskas",
       "Dominykas Remeika",
-      "Dovydas Jusevičius"
+      "Dovydas Jusevičius",
     ],
     startDate: "2024-12",
     status: "Active",
@@ -183,7 +191,11 @@ export const projects: Project[] = [
     image: drone2,
     categories: ["Aerospace", "Hardware", "Software"],
     featured: true, // <-- Mark as featured
-    galleryImages: [{ src: drone3, alt: "Thunderbee Drone" }, { src: dronewireframe, alt: "Thunderbee" }, { src: drone1, alt: "Thunderbee Drone" }],
+    galleryImages: [
+      { src: drone3, alt: "Thunderbee Drone" },
+      { src: dronewireframe, alt: "Thunderbee" },
+      { src: drone1, alt: "Thunderbee Drone" },
+    ],
     partners: ["Lithuanian Armed Forces"],
   },
   {
@@ -210,7 +222,11 @@ export const projects: Project[] = [
     image: cansat,
     status: "Completed",
     categories: ["Aerospace", "Hardware", "Software"],
-    galleryImages: [{ src: cansatweb, alt: "Cansat Web" }, { src: cansatwireframe, alt: "Cansat Wireframe" }, { src: cansatinz, alt: "Cansat v1", }],
+    galleryImages: [
+      { src: cansatweb, alt: "Cansat Web" },
+      { src: cansatwireframe, alt: "Cansat Wireframe" },
+      { src: cansatinz, alt: "Cansat v1" },
+    ],
   },
   {
     id: "dronedetection",

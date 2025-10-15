@@ -194,6 +194,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     let frameTime = performance.now();
     const loop = (currentTime: number) => {
       const deltaTime = currentTime - frameTime;
+
       frameTime = currentTime;
 
       // Call the main animation logic with deltaTime
