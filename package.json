@@ -29,6 +29,7 @@
     "@heroui/theme": "2.4.15",
     "@react-aria/ssr": "3.9.8",
     "@react-aria/visually-hidden": "3.8.22",
+    "@supabase/supabase-js": "^2.75.0",
     "@types/aos": "^3.0.7",
     "@types/chart.js": "^2.9.41",
     "aos": "^2.3.4",
