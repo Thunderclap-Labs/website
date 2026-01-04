@@ -37,7 +37,7 @@ export const Heading: React.FC<HeadingProps> = ({
       {showLogo && (
         <Image
           alt="Thunderclap Logo"
-          className="glow mx-auto mb-4 h-8 w-auto"
+          className="mx-auto mb-4 h-8 w-auto"
           data-aos="zoom-in"
           src={logo}
         />

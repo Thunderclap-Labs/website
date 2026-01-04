@@ -254,6 +254,7 @@ export default function ProjectsPage() {
                       className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                       priority={index < 2}
                       src={project.image}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   </a>
                 )}
@@ -275,6 +276,7 @@ export default function ProjectsPage() {
                           className="object-cover transition-transform duration-300  rounded-lg group-hover:scale-105"
                           height={320}
                           src={img.src}
+                          sizes="(max-width: 768px) 33vw, 15vw"
                         />
                       </Link>
                     ))}

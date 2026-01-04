@@ -194,7 +194,7 @@ export const teamMembers = [
     email: "migle.cirtautaite@gmail.com",
     image: migleImage,
     social: {
-      linkedin: "https://www.linkedin.com/in/migle-cirtautaite/",
+      linkedin: "https://www.linkedin.com/in/migl%C4%97-cirtautait%C4%97/",
       github: "https://github.com/cmigle",
     },
     badges: [

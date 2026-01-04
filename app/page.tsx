@@ -465,6 +465,7 @@ export default function Home() {
                         className="mt-4 rounded-lg"
                         height={200}
                         src={area.image}
+                        sizes="(max-width: 768px) 100vw, 25vw"
                       />
                     )}
                   </div>

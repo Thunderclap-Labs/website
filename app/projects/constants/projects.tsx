@@ -20,6 +20,14 @@ import drone1 from "../images/drone1.png";
 import drone2 from "../images/drone2.png";
 import drone3 from "../images/drone3.jpg";
 
+import dronegif from "../images/tcl.gif";
+import thundereye1 from "../images/thundereye1.png";
+import thundereye2 from "../images/thundereye2.png";
+import thundereye3 from "../images/thundereye3.png";
+import thundereye4 from "../images/thundereye4.png";
+import thundereye5 from "../images/thundereye5.png";
+import thundereye6 from "../images/thundereye6.png";
+
 import conveyorwireframe from "@/components/images/conveyorwireframe.png";
 import dronewireframe from "@/components/images/dronewireframe.png";
 
@@ -54,7 +62,6 @@ export interface Project {
 
 const availablePartners: Partner[] = [
   { name: "KTU Startup Space", link: "https://startupspace.lt" },
-  { name: "Lithuanian Armed Forces" },
   { name: "Kaunas Makerspace" },
   { name: "Defense Innovation Unit" },
   { name: "ESA BIC Lithuania" },
@@ -66,6 +73,43 @@ const availablePartners: Partner[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    id: "thundereye",
+    name: "Thunder Eye",
+    description:
+      "<strong>Optical Voxel Tracking for Real-Time 3D Airspace Intelligence</strong>. Thunder Eye uses multi-camera voxel projection instead of radar to build a 3D 'voxel map' of the sky. Key features include:<br/><br/>• <em>Passive & Stealthy:</em> No active emissions, undetectable by enemy EW.<br/>• <em>GPS-Independent:</em> Functions in contested, GPS-denied environments.<br/>• <em>Sub-meter Accuracy:</em> Provides precise visual identification (PID) and 3D tracking.<br/>• <em>Seamless Integration:</em> Connects directly to military GIS and C2 dashboards.<br/><br/>Designed for the modern battlefield to counter swarms of loitering munitions like Shahed/Geran drones.",
+    link: "",
+    active: true,
+    tags: [
+      "AI",
+      "Computer Vision",
+      "Defense Systems",
+      "Voxel Tracking",
+      "Optical Intelligence",
+      "Electronics",
+    ],
+    teamMembers: [
+      "Ignas Mikolaitis",
+      "Simonas Aukštuolis",
+      "Miglė Cirtautaitė",
+      "Dominykas Remeika",
+      "Dovydas Jusevičius",
+    ],
+    startDate: "2025-05",
+    status: "Active",
+    image: dronegif,
+    galleryImages: [
+      { src: thundereye1, alt: "Thunder Eye 1" },
+      { src: thundereye2, alt: "Thunder Eye 2" },
+      { src: thundereye3, alt: "Thunder Eye 3" },
+      { src: thundereye4, alt: "Thunder Eye 4" },
+      { src: thundereye6, alt: "Thunder Eye 6" },
+      { src: thundereye5, alt: "Thunder Eye 5" },
+    ],
+    categories: ["AI", "Software", "Hardware", "Research"],
+    featured: true,
+    partners: ["Lithuanian Riflemen's Union"],
+  },
   {
     id: "cloudseeding",
     name: "Cloud Seeding",
@@ -194,8 +238,7 @@ export const projects: Project[] = [
       { src: drone3, alt: "Thunderbee Drone" },
       { src: dronewireframe, alt: "Thunderbee" },
       { src: drone1, alt: "Thunderbee Drone" },
-    ],
-    partners: ["Lithuanian Armed Forces"],
+    ]
   },
   {
     id: "cansat1",
@@ -226,29 +269,5 @@ export const projects: Project[] = [
       { src: cansatinz, alt: "Cansat v1" },
     ],
   },
-  {
-    id: "dronedetection",
-    name: "Drone Detection",
-    description:
-      "To counter the growing challenge of <strong>unauthorized drone activity</strong>, we are creating a multi-layered detection system. This project integrates:<br/><br/>• <em>Advanced radar and acoustic sensors</em><br/>• <em>High-resolution optical cameras</em><br/>• <em>AI-powered recognition engine</em><br/><br/>The system identifies, classifies, and tracks multiple drones in <strong>real-time</strong>, providing comprehensive aerial security.",
-    link: "",
-    active: true,
-    tags: [
-      "AI",
-      "Computer Vision",
-      "Radar Technology",
-      "Defense Systems",
-      "Electronics",
-    ],
-    teamMembers: [
-      "Ignas Mikolaitis",
-      "Simonas Aukštuolis",
-      "Miglė Cirtautaitė",
-    ],
-    startDate: "2025-05",
-    status: "Active",
-    image: dronedetection,
-    categories: ["AI", "Software"],
-    partners: ["Lithuanian Armed Forces"],
-  },
+
 ];

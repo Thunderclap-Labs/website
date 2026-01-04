@@ -49,8 +49,18 @@ const faqItems = [
   {
     key: "1",
     title: "Are you an official business?",
-    content:
-      "We are a dedicated team of students, primarily from Kaunas University of Technology in Lithuania. While we are not yet a registered business entity, we are actively seeking initial funding to establish one and transition into a formal organization.",
+    content: (
+      <>
+        Yes, we are, you can find our registration details here:{" "}
+        <Link
+          isExternal
+          className="text-secondary font-medium text-sm hover:underline"
+          href="https://rekvizitai.vz.lt/en/company/thunderclap/"
+        >
+          https://rekvizitai.vz.lt/en/company/thunderclap/
+        </Link>
+      </>
+    ),
   },
   {
     key: "2",
