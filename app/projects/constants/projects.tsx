@@ -3,7 +3,6 @@ import { StaticImageData } from "next/image";
 import cloudseeding from "../images/cloudseeding.png";
 import fwd from "../images/fwd.png";
 import cansat from "../images/cansat.png";
-import dronedetection from "../images/dronedetection.png";
 import cansatinz from "../images/cansatinz.jpg";
 import cansatwireframe from "../images/cansatwireframe.png";
 import cansatweb from "../images/cansatweb.png";
@@ -19,7 +18,6 @@ import cloudseeding4 from "../images/cloudseeding4.png";
 import drone1 from "../images/drone1.png";
 import drone2 from "../images/drone2.png";
 import drone3 from "../images/drone3.jpg";
-
 import dronegif from "../images/tcl.gif";
 import thundereye1 from "../images/thundereye1.png";
 import thundereye2 from "../images/thundereye2.png";
@@ -60,7 +58,8 @@ export interface Project {
   partners?: string[];
 }
 
-const availablePartners: Partner[] = [
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _availablePartners: Partner[] = [
   { name: "KTU Startup Space", link: "https://startupspace.lt" },
   { name: "Kaunas Makerspace" },
   { name: "Defense Innovation Unit" },
@@ -238,7 +237,7 @@ export const projects: Project[] = [
       { src: drone3, alt: "Thunderbee Drone" },
       { src: dronewireframe, alt: "Thunderbee" },
       { src: drone1, alt: "Thunderbee Drone" },
-    ]
+    ],
   },
   {
     id: "cansat1",
@@ -269,5 +268,4 @@ export const projects: Project[] = [
       { src: cansatinz, alt: "Cansat v1" },
     ],
   },
-
 ];

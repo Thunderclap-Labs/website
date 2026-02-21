@@ -26,12 +26,12 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
   descriptionAlignment = "center",
   descriptionAlignmentMobile = "left",
   contentAlignment = "center",
-  descriptionMaxWidth = "max-w-3xl",
+  descriptionMaxWidth: _descriptionMaxWidth = "max-w-3xl",
   children,
   className = "",
   titleClassName = "",
   descriptionClassName = "",
-  contentClassName = "",
+  contentClassName: _contentClassName = "",
   showBackground = true,
   isColumnLayout = true, // Default value for the new prop
 }) => {

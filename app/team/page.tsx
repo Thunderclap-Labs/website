@@ -13,19 +13,16 @@ import {
   faPhone,
   faGlobe,
   faLink,
-} from "@fortawesome/free-solid-svg-icons"; // Added faLink
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules"; // Import Autoplay module
+} from "@fortawesome/free-solid-svg-icons";
 
-import { projects as definedProjectsList } from "../projects/constants/projects"; // Import project definitions
+import { projects as definedProjectsList } from "../projects/constants/projects";
 
 import { teamMembers } from "./constants/team-members";
 
 import { Heading } from "@/components/common/heading";
+import { ShootingStars } from "@/components/ui/shooting-stars";
 
 import "swiper/css";
-
-import { ShootingStars } from "@/components/ui/shooting-stars";
 
 export default function DocsPage() {
   // Function to create anchor ID from member name
@@ -70,15 +67,15 @@ export default function DocsPage() {
                   <div className="lg:col-span-1 flex flex-col gap-6 lg:max-w-xs">
                     <div className="relative w-full aspect-square rounded-2xl overflow-hidden border border-primary-500/20 shadow-xl group">
                       <Image
+                        fill
                         alt={member.name}
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        fill
                         priority={index < 2}
                         src={member.image}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                       {member.social.linkedin && (
                         <Link
@@ -143,7 +140,10 @@ export default function DocsPage() {
                       <div className="space-y-2 bg-neutral-800/30 rounded-xl p-4 border border-neutral-700/30">
                         {member.email && (
                           <p className="text-xs text-neutral-400 flex items-center gap-2">
-                            <FontAwesomeIcon className="w-4" icon={faEnvelope} />
+                            <FontAwesomeIcon
+                              className="w-4"
+                              icon={faEnvelope}
+                            />
                             <span className="break-all">{member.email}</span>
                           </p>
                         )}
@@ -176,7 +176,7 @@ export default function DocsPage() {
                       {/* Skills */}
                       <div className="bg-gradient-to-br from-neutral-800/50 to-neutral-800/30 border border-neutral-700/50 rounded-xl p-6 backdrop-blur-sm">
                         <h3 className="font-semibold text-neutral-100 mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
-                          <span className="w-1 h-4 bg-primary-500 rounded-full"></span>
+                          <span className="w-1 h-4 bg-primary-500 rounded-full" />
                           Skills ({member.skills.length})
                         </h3>
                         <div className="flex flex-wrap gap-2">
@@ -195,16 +195,16 @@ export default function DocsPage() {
                       {memberProjects.length > 0 && (
                         <div className="bg-gradient-to-br from-neutral-800/50 to-neutral-800/30 border border-neutral-700/50 rounded-xl p-6 backdrop-blur-sm">
                           <h3 className="font-semibold text-neutral-100 mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
-                            <span className="w-1 h-4 bg-secondary-500 rounded-full"></span>
+                            <span className="w-1 h-4 bg-secondary-500 rounded-full" />
                             Thunderclap Labs Projects ({memberProjects.length})
                           </h3>
                           <div className="flex flex-wrap gap-2">
                             {memberProjects.map((project) => (
                               <Link
                                 key={project.id}
-                                isExternal={!!project.link}
                                 className={`flex items-center gap-2 bg-secondary-500/10 border border-secondary-500/20 text-secondary-400 px-3 py-1.5 text-xs rounded-lg ${project.link ? "hover:bg-secondary-500/20 transition-colors cursor-pointer" : ""}`}
                                 href={project.link || "#"}
+                                isExternal={!!project.link}
                               >
                                 {project.active && (
                                   <span
@@ -230,16 +230,23 @@ export default function DocsPage() {
                         member.personalProjects.length > 0 && (
                           <div className="bg-gradient-to-br from-neutral-800/50 to-neutral-800/30 border border-neutral-700/50 rounded-xl p-6 backdrop-blur-sm">
                             <h3 className="font-semibold text-neutral-100 mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
-                              <span className="w-1 h-4 bg-accent-500 rounded-full"></span>
-                              Personal Projects ({member.personalProjects.length})
+                              <span className="w-1 h-4 bg-accent-500 rounded-full" />
+                              Personal Projects (
+                              {member.personalProjects.length})
                             </h3>
                             <div className="flex flex-wrap gap-2">
                               {member.personalProjects.map((project, i) => (
                                 <Link
                                   key={i}
-                                  isExternal={"link" in project && !!project.link}
                                   className={`bg-accent-500/10 border border-accent-500/20 text-accent-400 px-3 py-1.5 text-xs rounded-lg ${"link" in project && project.link ? "hover:bg-accent-500/20 transition-colors cursor-pointer" : ""}`}
-                                  href={("link" in project && project.link) ? (project.link as string) : "#"}
+                                  href={
+                                    "link" in project && project.link
+                                      ? (project.link as string)
+                                      : "#"
+                                  }
+                                  isExternal={
+                                    "link" in project && !!project.link
+                                  }
                                 >
                                   {project.name}
                                 </Link>

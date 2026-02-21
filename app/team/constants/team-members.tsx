@@ -13,7 +13,6 @@ import ignasImage from "../images/members/ignas.png";
 import simonasImage from "../images/members/simonas.png";
 import migleImage from "../images/members/migle.png";
 import dominykasImage from "../images/members/dominykas.jpg";
-import dominykaslImage from "../images/members/dominykasl.png";
 import juliusImage from "../images/members/julius.png";
 import dominykasnImage from "../images/members/dominykasn.jpeg";
 import dovydasImage from "../images/members/dovydas.jpg";

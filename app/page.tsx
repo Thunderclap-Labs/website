@@ -19,18 +19,14 @@ import {
 import { useFeaturedCardMouseEffect } from "@/lib/featured-card";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
-
-import "./styles/hero.css";
 import { StatsGrid } from "@/components/common/stats-grid";
 import { ManufacturingFeatureCard } from "@/components/common/manufacturing-feature-card";
 import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
-import FundingChartSection from "@/components/FundingChartSection";
+import { Swirl } from "@/components/ui/swirl";
 import { SatelliteInfoOverlay } from "@/components/common/satellite-info-overlay";
 import { SectionLayout } from "@/components/common/section-layout";
 import { SponsorsSwiper } from "@/components/common/sponsors-swiper";
-
-// Globe imports
 import { App } from "@/lib/globe/App";
 import { Globe } from "@/lib/globe/Globe";
 import { Points } from "@/lib/globe/Points";
@@ -44,8 +40,6 @@ import {
   sampleCountries,
 } from "@/lib/globe/config";
 import grid from "@/components/globe/data/grid.json";
-
-// Constants
 import {
   focusAreas,
   propulsionTimelineItems,
@@ -53,6 +47,8 @@ import {
   manufacturingFeatures,
 } from "@/constants/home-page";
 import { sponsors } from "@/constants/sponsors";
+
+import "./styles/hero.css";
 
 export default function Home() {
   const cardGridRef = useRef<HTMLDivElement>(null); // Ref for the card grid
@@ -62,10 +58,7 @@ export default function Home() {
   // Globe state
   const globeContainerRef = useRef<HTMLDivElement>(null);
   const appRef = useRef<App | null>(null);
-  const [isGlobeLoading, setIsGlobeLoading] = useState(true);
   const [isGlobeVisible, setIsGlobeVisible] = useState(false);
-  const [rotation, setRotation] = useState(animations.rotateGlobe);
-  const [display, setDisplay] = useState(config.display);
 
   useFeaturedCardMouseEffect(); // Call the custom hook
 
@@ -118,10 +111,11 @@ export default function Home() {
           groups.globe!.add(groups.points);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("Failed to load country data for points:", error);
       }
 
-      const markers = new Markers(sampleCountries);
+      new Markers(sampleCountries);
 
       groups.globe!.add(groups.markers!);
 
@@ -131,7 +125,6 @@ export default function Home() {
       groups.globe!.add(groups.lines!);
 
       app.scene.add(groups.main);
-      setIsGlobeLoading(false);
 
       // Start fade-in animation after a short delay
       setTimeout(() => {
@@ -139,7 +132,7 @@ export default function Home() {
       }, 100);
     };
 
-    const animate = (app: App) => {
+    const animate = (_app: App) => {
       // Animate globe fade-in
       if (isGlobeVisible && elements.globeOpacity < 1) {
         elements.globeOpacity = Math.min(elements.globeOpacity + 0.02, 1);
@@ -160,6 +153,7 @@ export default function Home() {
               elements.globeOpacity * 0.6;
           }
         } else {
+          // eslint-disable-next-line no-console
           console.log("Atmosphere not found in elements:", elements.atmosphere);
         }
 
@@ -464,8 +458,8 @@ export default function Home() {
                         alt={area.title}
                         className="mt-4 rounded-lg"
                         height={200}
-                        src={area.image}
                         sizes="(max-width: 768px) 100vw, 25vw"
+                        src={area.image}
                       />
                     )}
                   </div>
@@ -643,31 +637,92 @@ export default function Home() {
           </div>
         </SectionLayout>
 
-        {/* Partner section - keep as is, has unique layout */}
-        <section
-          className="pt-20 pb-6 text-neutral-100"
-          data-aos="fade-up"
-          id="partner-section"
+        {/* R&D Partner section */}
+        <SectionLayout
+          description={
+            <>
+              We leverage our cutting-edge technology and world-class
+              engineering team to conduct specialized{" "}
+              <span className="font-semibold text-primary-600">
+                Research and Development
+              </span>{" "}
+              for our partners. From conceptualization to prototyping and
+              testing, we turn complex challenges into innovative solutions.
+            </>
+          }
+          descriptionAlignment="center"
+          descriptionAlignmentMobile="center"
+          id="rnd-partner-section"
+          title="Research & Development For Our Partners"
+          titleAlignment="center"
         >
-          <div className="relative z-10 container max-w-7xl mx-auto px-4">
-            <div
-              className="mx-auto text-center"
-              data-aos-anchor="#partner-section"
-            >
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-semibold text-center lg:text-left pb-4">
-                Partner with Us:
-                <br />
-                Investing in a High-Impact Future
-              </h2>
+          <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+            <Swirl />
+          </div>
+
+          <div className="relative z-10 container max-w-5xl mx-auto px-4 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div
+                className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg h-full"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <div className="flex flex-col bg-black bg-opacity-95 p-8 rounded-lg h-full items-center justify-center">
+                  <div className="text-primary-500 mb-4">
+                    <FontAwesomeIcon icon={faRocket} size="3x" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-center">
+                    Rapid Prototyping
+                  </h3>
+                  <p className="text-neutral-400 text-sm text-center">
+                    Accelerate your innovation cycle with our advanced
+                    manufacturing and testing facilities.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg h-full"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div className="flex flex-col bg-black bg-opacity-95 p-8 rounded-lg h-full items-center justify-center">
+                  <div className="text-primary-500 mb-4">
+                    <FontAwesomeIcon icon={faLayerGroup} size="3x" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-center">
+                    Systems Engineering
+                  </h3>
+                  <p className="text-neutral-400 text-sm text-center">
+                    Comprehensive design and integration of complex aerospace
+                    and atmospheric systems.
+                  </p>
+                </div>
+              </div>
+              <div
+                className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg h-full"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <div className="flex flex-col bg-black bg-opacity-95 p-8 rounded-lg h-full items-center justify-center">
+                  <div className="text-primary-500 mb-4">
+                    <FontAwesomeIcon icon={faShield} size="3x" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-center">
+                    Testing & Validation
+                  </h3>
+                  <p className="text-neutral-400 text-sm text-center">
+                    Rigorous testing protocols to ensure reliability and
+                    performance in extreme environments.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="px-4 mt-12">
-            <FundingChartSection />
-          </div>
+
           <div
-            className="flex pt-8 md:pt-12 justify-center items-center relative w-full"
+            className="flex pt-16 justify-center items-center relative w-full z-10"
             data-aos="fade-up"
-            data-aos-delay="300"
+            data-aos-delay="400"
           >
             <Button
               as={Link}
@@ -675,10 +730,11 @@ export default function Home() {
               href="/contact"
               variant="bordered"
             >
-              Contact Us <FontAwesomeIcon icon={faArrowRight} />
+              Partner With Us{" "}
+              <FontAwesomeIcon className="ml-2" icon={faArrowRight} />
             </Button>
           </div>
-        </section>
+        </SectionLayout>
       </div>
     </div>
   );

@@ -77,7 +77,8 @@ export default function ProjectsPage() {
       children: "a.pswp-gallery-item",
       pswpModule: () => import("photoswipe"),
     });
-    const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
+
+    new PhotoSwipeDynamicCaption(lightbox, {
       type: "caption",
       captionContent: (slide: Slide) => {
         return (
@@ -253,8 +254,8 @@ export default function ProjectsPage() {
                       alt={project.name}
                       className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                       priority={index < 2}
-                      src={project.image}
                       sizes="(max-width: 1024px) 100vw, 50vw"
+                      src={project.image}
                     />
                   </a>
                 )}
@@ -275,8 +276,8 @@ export default function ProjectsPage() {
                           alt={img.alt}
                           className="object-cover transition-transform duration-300  rounded-lg group-hover:scale-105"
                           height={320}
-                          src={img.src}
                           sizes="(max-width: 768px) 33vw, 15vw"
+                          src={img.src}
                         />
                       </Link>
                     ))}

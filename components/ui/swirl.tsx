@@ -6,7 +6,8 @@ import { createNoise3D } from "simplex-noise";
 // Helper Functions (commonly used in canvas animations)
 const TAU = Math.PI * 2;
 const rand = (max: number) => Math.random() * max;
-const randRange = (range: number) => (Math.random() - 0.5) * range * 2; // Returns a value between -range and +range
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _randRange = (range: number) => (Math.random() - 0.5) * range * 2; // Returns a value between -range and +range
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const fadeInOut = (t: number, m: number) => {
   const hm = 0.5 * m;
@@ -17,7 +18,8 @@ const fadeInOut = (t: number, m: number) => {
 const particleCount = 300;
 const particlePropCount = 9;
 const particlePropsLength = particleCount * particlePropCount;
-const rangeY = 100; // Initial Y range for particles around center - will be changed in initParticle
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _rangeY = 100; // Initial Y range for particles around center - will be changed in initParticle
 const baseTTL = 50;
 const rangeTTL = 150;
 const baseSpeed = 0.001; // Slower base speed

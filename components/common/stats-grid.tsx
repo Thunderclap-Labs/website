@@ -12,7 +12,7 @@ interface StatsGridProps {
 
 export const StatsGrid: React.FC<StatsGridProps> = ({
   stats,
-  className = "",
+  className: _className = "",
 }) => {
   return (
     <>

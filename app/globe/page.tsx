@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 import { App } from "@/lib/globe/App";
@@ -21,9 +21,6 @@ import grid from "@/components/globe/data/grid.json";
 export default function GlobePage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const appRef = useRef<App | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [rotation, setRotation] = useState(animations.rotateGlobe);
-  const [display, setDisplay] = useState(config.display);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -49,10 +46,11 @@ export default function GlobePage() {
           groups.globe!.add(groups.points);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error("Failed to load country data for points:", error);
       }
 
-      const markers = new Markers(sampleCountries);
+      new Markers(sampleCountries);
 
       groups.globe!.add(groups.markers!);
 
@@ -62,10 +60,9 @@ export default function GlobePage() {
       groups.globe!.add(groups.lines!);
 
       app.scene.add(groups.main);
-      setIsLoading(false);
     };
 
-    const animate = (app: App) => {
+    const animate = (_app: App) => {
       // Update points
       if (elements.globePoints) {
         (elements.globePoints.material as THREE.PointsMaterial).size =
@@ -173,16 +170,6 @@ export default function GlobePage() {
       }
     };
   }, []);
-
-  const toggleRotation = () => {
-    animations.rotateGlobe = !animations.rotateGlobe;
-    setRotation(animations.rotateGlobe);
-  };
-
-  const toggleDisplay = (key: keyof typeof config.display) => {
-    config.display[key] = !config.display[key];
-    setDisplay({ ...config.display });
-  };
 
   return <div ref={containerRef} />;
 }

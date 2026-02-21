@@ -55,8 +55,8 @@ export const FeaturedProjectsShowcase = () => {
                       fill
                       alt={project.name}
                       className="object-cover rounded-lg"
-                      src={project.image}
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      src={project.image}
                     />
                     {project.link && (
                       <Link

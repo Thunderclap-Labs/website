@@ -25,16 +25,15 @@ import * as THREE from "three"; // Ensure three.js is imported
 //@ts-ignore
 import CLOUDS from "vanta/dist/vanta.clouds.min";
 
+import "swiper/css";
+import "swiper/css/pagination";
+
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { Heading } from "@/components/common/heading";
 import { SectionLayout } from "@/components/common/section-layout";
 import FundingChartSection from "@/components/FundingChartSection";
 import { StatsGrid } from "@/components/common/stats-grid";
-
-import "swiper/css";
-import "swiper/css/pagination";
-
 import cloudseeding from "@/components/images/cloudseeding.png";
 import dronewireframe from "@/components/images/dronewireframe.png";
 import fwd from "@/components/images/fwd.png";
@@ -123,7 +122,8 @@ const whyTrustUsItems = [
   },
 ];
 
-const crisisGalleryImages = [
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _crisisGalleryImages = [
   { src: cloudseeding, alt: "Drought Impact" },
   { src: fwd, alt: "Hail Damage" },
   { src: dronewireframe, alt: "Agricultural Losses" },
