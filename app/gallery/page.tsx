@@ -53,11 +53,27 @@ import ElectroOctipus from "./images/ElectroOctipus.jpg";
 import Drone1 from "./images/Drone1.jpg";
 import RecycledDrone from "./images/RecycledDrone.jpg";
 import phone from "./images/phone.png";
+import thundereye1 from "./images/thundereye1.jpg";
+import thundereye2 from "./images/thundereye2.jpg";
 
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { Heading } from "@/components/common/heading";
 
 const galleryImages = [
+  {
+    src: thundereye1,
+    alt: "Thundereye Prototype",
+    date: "2026-02-15",
+    description:
+      "Thundereye, our innovative drone detection system, designed to provide real-time monitoring and threat detection capabilities.",
+  },
+  {
+    src: thundereye2,
+    alt: "Thundereye Prototype",
+    date: "2026-02-15",
+    description:
+      "Thundereye, our innovative drone detection system, designed to provide real-time monitoring and threat detection capabilities.",
+  },
   {
     src: phone,
     alt: "Thinnest Phone ",
