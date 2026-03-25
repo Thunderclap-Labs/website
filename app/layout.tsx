@@ -13,11 +13,44 @@ import "./styles/globals.css";
 import "swiper/css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thunderclaplabs.com"),
   title: {
     default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    template: `%s | Thunderclap Labs`,
   },
   description: siteConfig.description,
+  keywords: [
+    "aerospace",
+    "defense",
+    "propulsion systems",
+    "cloud seeding",
+    "atmospheric technology",
+    "autonomous systems",
+    "Thunderclap Labs",
+  ],
+  openGraph: {
+    type: "website",
+    url: "https://thunderclaplabs.com/",
+    siteName: "Thunderclap Labs",
+    title: "Thunderclap Labs | R&D, Aerospace & Defense",
+    description:
+      "Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems.",
+    images: [
+      {
+        url: bannersmall.src,
+        width: bannersmall.width,
+        height: bannersmall.height,
+        alt: "Thunderclap Labs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Thunderclap Labs | R&D, Aerospace & Defense",
+    description:
+      "Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems.",
+    images: [bannersmall.src],
+  },
 };
 
 export default function RootLayout({
@@ -25,38 +58,32 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Thunderclap Labs",
+    url: "https://thunderclaplabs.com",
+    description: siteConfig.description,
+    logo: "https://thunderclaplabs.com" + bannersmall.src,
+    sameAs: [
+      siteConfig.links.github,
+      siteConfig.links.youtube,
+      siteConfig.links.instagram,
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "thunderclaplabs@gmail.com",
+      contactType: "customer support",
+    },
+  };
+
   return (
     <html suppressHydrationWarning className="overflow-x-hidden" lang="en">
       <head>
-        <link
-          href="/icon?<generated>"
-          rel="icon"
-          sizes="<generated>"
-          type="image/<generated>"
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          type="application/ld+json"
         />
-        <meta content="website" property="og:type" />
-        <meta content="https://thunderclaplabs.com/" property="og:url" />
-        <meta
-          content="Thunderclap Labs | Aerospace & Defense"
-          property="og:title"
-        />
-        <meta
-          content="Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems."
-          property="og:description"
-        />
-        <meta content={bannersmall.src} property="og:image" />
-
-        <meta content="summary_large_image" property="twitter:card" />
-        <meta content="https://thunderclaplabs.com/" property="twitter:url" />
-        <meta
-          content="Thunderclap Labs | Aerospace & Defense"
-          property="twitter:title"
-        />
-        <meta
-          content="Pioneering next-generation aerospace and atmospheric technologies. We specialize in advanced propulsion & defense systems."
-          property="twitter:description"
-        />
-        <meta content={bannersmall.src} property="twitter:image" />
       </head>
       <body
         className={clsx(

@@ -23,7 +23,6 @@ import { StatsGrid } from "@/components/common/stats-grid";
 import { ManufacturingFeatureCard } from "@/components/common/manufacturing-feature-card";
 import { TeamSwiper } from "@/components/common/team-swiper";
 import { FeaturedProjectsShowcase } from "@/components/common/featured-projects-showcase";
-import { Swirl } from "@/components/ui/swirl";
 import { SatelliteInfoOverlay } from "@/components/common/satellite-info-overlay";
 import { SectionLayout } from "@/components/common/section-layout";
 import { SponsorsSwiper } from "@/components/common/sponsors-swiper";
@@ -637,104 +636,185 @@ export default function Home() {
           </div>
         </SectionLayout>
 
-        {/* R&D Partner section */}
-        <SectionLayout
-          description={
-            <>
-              We leverage our cutting-edge technology and world-class
-              engineering team to conduct specialized{" "}
-              <span className="font-semibold text-primary-600">
-                Research and Development
-              </span>{" "}
-              for our partners. From conceptualization to prototyping and
-              testing, we turn complex challenges into innovative solutions.
-            </>
-          }
-          descriptionAlignment="center"
-          descriptionAlignmentMobile="center"
+        {/* R&D Partner section - redesigned */}
+        <section
+          className="relative py-32 z-10 border-t border-white/10 overflow-hidden"
           id="rnd-partner-section"
-          title="Research & Development For Our Partners"
-          titleAlignment="center"
         >
-          <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-            <Swirl />
-          </div>
+          {/* Subtle radial accent */}
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_60%,_rgba(121,68,154,0.07),transparent_55%)] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_80%_30%,_rgba(41,196,255,0.04),transparent_50%)] pointer-events-none" />
 
-          <div className="relative z-10 container max-w-5xl mx-auto px-4 mt-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div
-                className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg h-full"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <div className="flex flex-col bg-black bg-opacity-95 p-8 rounded-lg h-full items-center justify-center">
-                  <div className="text-primary-500 mb-4">
-                    <FontAwesomeIcon icon={faRocket} size="3x" />
+          <div className="relative z-10 container max-w-7xl mx-auto px-4">
+            {/* Section header */}
+            <div
+              className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8"
+              data-aos="fade-up"
+            >
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="h-[1px] w-12 bg-primary-500" />
+                  <span className="font-mono text-xs uppercase tracking-widest text-primary-400">
+                    B2B R&amp;D Services
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-6xl font-bold tracking-tight uppercase leading-[0.9]">
+                  Research &amp; Development
+                  <br />
+                  <span className="text-neutral-500">For Our Partners</span>
+                </h2>
+              </div>
+              <p className="max-w-md text-neutral-400 text-sm md:text-base leading-relaxed">
+                We leverage our cutting-edge technology and world-class
+                engineering team to conduct specialized R&amp;D for our
+                partners. From conceptualization to prototyping and testing, we
+                turn complex challenges into innovative solutions.
+              </p>
+            </div>
+
+            {/* Capability cards */}
+            <div
+              className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-xl overflow-hidden mb-20"
+              data-aos="fade-up"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-white/10 w-full h-full rounded-xl overflow-hidden">
+                {[
+                  {
+                    id: "01",
+                    title: "RAPID PROTOTYPING",
+                    description:
+                      "Accelerate your innovation cycle with our advanced manufacturing and testing facilities. From concept to working prototype in weeks, not months.",
+                  },
+                  {
+                    id: "02",
+                    title: "SYSTEMS ENGINEERING",
+                    description:
+                      "Comprehensive design and full-stack integration of complex aerospace and atmospheric systems. Hardware-software co-design from day one.",
+                  },
+                  {
+                    id: "03",
+                    title: "TESTING & VALIDATION",
+                    description:
+                      "Rigorous testing protocols to ensure reliability and performance in extreme environments. Digital twin simulation before real-world deployment.",
+                  },
+                ].map((cap) => (
+                  <div
+                    key={cap.id}
+                    className="bg-black/95 p-10 group flex flex-col h-full w-full"
+                  >
+                    <div className="font-mono text-sm text-neutral-600 mb-8 border-b border-white/5 pb-4 group-hover:text-primary-500 transition-colors duration-500">
+                      {"// "}
+                      {cap.id}
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold uppercase tracking-wide mb-4 text-neutral-100 group-hover:text-white transition-colors duration-500">
+                      {cap.title}
+                    </h3>
+                    <p className="text-neutral-400 text-sm leading-relaxed mt-auto">
+                      {cap.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-center">
-                    Rapid Prototyping
-                  </h3>
-                  <p className="text-neutral-400 text-sm text-center">
-                    Accelerate your innovation cycle with our advanced
-                    manufacturing and testing facilities.
-                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* Pipeline steps + CTA */}
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+              {/* Pipeline */}
+              <div className="lg:col-span-3" data-aos="fade-right">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-[1px] w-12 bg-primary-500" />
+                  <span className="font-mono text-xs uppercase tracking-widest text-primary-400">
+                    Our Pipeline
+                  </span>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-none mb-10">
+                  RAPID.
+                  <br />
+                  <span className="text-neutral-600">ITERATIVE.</span>
+                  <br />
+                  LETHAL.
+                </h3>
+                <div className="space-y-0">
+                  {[
+                    {
+                      step: "01",
+                      name: "Conceptualization & Physics Simulation",
+                    },
+                    { step: "02", name: "Hardware & Software Co-design" },
+                    { step: "03", name: "Rapid Machining & PCB Fabrication" },
+                    { step: "04", name: "Field Testing & System Hardening" },
+                  ].map((item, i) => (
+                    <div
+                      key={item.step}
+                      className="flex items-center gap-6 group cursor-default border-b border-white/5 py-5 first:border-t first:border-white/5"
+                      data-aos="fade-up"
+                      data-aos-delay={i * 75}
+                    >
+                      <span className="font-mono text-sm text-neutral-600 group-hover:text-primary-500 transition-colors shrink-0">
+                        [{item.step}]
+                      </span>
+                      <span className="text-neutral-300 uppercase tracking-wider text-sm font-semibold group-hover:text-white transition-colors">
+                        {item.name}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div
-                className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg h-full"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <div className="flex flex-col bg-black bg-opacity-95 p-8 rounded-lg h-full items-center justify-center">
-                  <div className="text-primary-500 mb-4">
-                    <FontAwesomeIcon icon={faLayerGroup} size="3x" />
+
+              {/* CTA card */}
+              <div className="lg:col-span-2" data-aos="fade-left">
+                <div className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-xl overflow-hidden">
+                  <div className="bg-black/95 p-8 rounded-xl flex flex-col gap-6">
+                    <div className="flex items-center gap-3">
+                      <span className="block w-2 h-2 bg-primary-500 rounded-full animate-pulse" />
+                      <span className="font-mono text-xs uppercase tracking-widest text-primary-400">
+                        Secure Channel Open
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-3xl md:text-4xl font-bold uppercase tracking-tight leading-none mb-4">
+                        BUILD THE{" "}
+                        <span className="text-neutral-600">IMPOSSIBLE.</span>
+                      </p>
+                      <p className="text-neutral-400 text-sm leading-relaxed">
+                        Engage our engineering skunkworks. From theoretical
+                        concept to field-ready hardware, we accelerate your
+                        mission-critical timelines.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 font-mono text-[10px] text-neutral-500 uppercase tracking-widest text-center">
+                      <div className="border border-white/5 p-3 rounded-lg bg-white/5 flex flex-col gap-1">
+                        <span className="text-primary-500/50">Response</span>
+                        <span className="text-white">&lt; 24 Hours</span>
+                      </div>
+                      <div className="border border-white/5 p-3 rounded-lg bg-white/5 flex flex-col gap-1">
+                        <span className="text-primary-500/50">Security</span>
+                        <span className="text-white">NDA Ready</span>
+                      </div>
+                    </div>
+                    <Button
+                      as={Link}
+                      className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary-500/50 text-white font-mono text-xs uppercase tracking-wider rounded-lg justify-between"
+                      href="/rnd"
+                      variant="bordered"
+                    >
+                      Explore Capabilities{" "}
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </Button>
+                    <Button
+                      as={Link}
+                      className="bg-black/15 text-neutral-400 rounded-lg font-mono text-xs uppercase tracking-wider"
+                      href="/contact"
+                      variant="bordered"
+                    >
+                      Partner With Us <FontAwesomeIcon icon={faArrowRight} />
+                    </Button>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-center">
-                    Systems Engineering
-                  </h3>
-                  <p className="text-neutral-400 text-sm text-center">
-                    Comprehensive design and integration of complex aerospace
-                    and atmospheric systems.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="featured-card white-feature bg-neutral-600 bg-opacity-55 p-[1px] rounded-lg h-full"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <div className="flex flex-col bg-black bg-opacity-95 p-8 rounded-lg h-full items-center justify-center">
-                  <div className="text-primary-500 mb-4">
-                    <FontAwesomeIcon icon={faShield} size="3x" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-center">
-                    Testing & Validation
-                  </h3>
-                  <p className="text-neutral-400 text-sm text-center">
-                    Rigorous testing protocols to ensure reliability and
-                    performance in extreme environments.
-                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          <div
-            className="flex pt-16 justify-center items-center relative w-full z-10"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <Button
-              as={Link}
-              className="bg-black/15 text-white shadow-xl rounded-lg"
-              href="/contact"
-              variant="bordered"
-            >
-              Partner With Us{" "}
-              <FontAwesomeIcon className="ml-2" icon={faArrowRight} />
-            </Button>
-          </div>
-        </SectionLayout>
+        </section>
       </div>
     </div>
   );

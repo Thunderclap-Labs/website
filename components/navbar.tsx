@@ -22,6 +22,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Divider } from "@heroui/react";
 
 import logo from "@/components/images/logo.png";
@@ -30,6 +31,7 @@ import { HeartFilledIcon } from "@/components/icons";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleMenuItemClick = () => {
     setIsMenuOpen(false);
@@ -38,8 +40,11 @@ export const Navbar = () => {
   return (
     <HeroUINavbar
       className="fixed z-50"
+      classNames={{
+        wrapper: `transition-[max-width,padding] duration-700 ease-in-out ${pathname === "/rnd" ? "px-6 md:px-12" : ""}`,
+      }}
       isMenuOpen={isMenuOpen}
-      maxWidth="xl"
+      maxWidth={pathname === "/rnd" ? "2xl" : "xl"}
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent className="basis-1/5 lg:basis-full" justify="start">
@@ -62,6 +67,7 @@ export const Navbar = () => {
                   "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 color="foreground"
+                data-active={pathname === item.href}
                 href={item.href}
               >
                 {item.label}
