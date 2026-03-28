@@ -1,38 +1,40 @@
-@import url('https://fonts.cdnfonts.com/css/anurati');
+@import url("https://fonts.cdnfonts.com/css/anurati");
 
-#Title{
+#Title {
   text-shadow: 0px 0px 10px #fff;
-  font-family: 'Anurati', sans-serif;
+  font-family: "Anurati", sans-serif;
 }
-  #Title .main{
-    opacity: 0;
-    animation: opacity1 1s 1s forwards ease, titleAnim 1s 1.5s forwards ease ;
-  }
-  #Title .sub{
-    position: absolute;
-    opacity: 0;
-    animation: subAnim 1s 1.5s forwards ease;
-  }
+#Title .main {
+  opacity: 0;
+  animation:
+    opacity1 1s 1s forwards ease,
+    titleAnim 1s 1.5s forwards ease;
+}
+#Title .sub {
+  position: absolute;
+  opacity: 0;
+  animation: subAnim 1s 1.5s forwards ease;
+}
 
-@keyframes subAnim{
-  100%{
+@keyframes subAnim {
+  100% {
     transform: translateY(20px);
     opacity: 1;
   }
 }
-@keyframes titleAnim{
-  100%{
+@keyframes titleAnim {
+  100% {
     transform: translateY(-20px);
     opacity: 1;
   }
 }
-@keyframes opacity1{
-  100%{
+@keyframes opacity1 {
+  100% {
     opacity: 1;
   }
 }
-@keyframes opacity0{
-  100%{
+@keyframes opacity0 {
+  100% {
     opacity: 0;
   }
 }
@@ -63,24 +65,32 @@
 }
 
 .lines-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 150px; /* Height of the top fade */
-  background: linear-gradient(to bottom, black 40%, transparent 100%); /* bg-neutral-900 to transparent */
+  background: linear-gradient(
+    to bottom,
+    black 40%,
+    transparent 100%
+  ); /* bg-neutral-900 to transparent */
   z-index: 1; /* Above lines, below content */
 }
 
 .lines-container::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 150px; /* Height of the bottom fade */
-  background: linear-gradient(to top, black 40%, transparent 100%); /* bg-neutral-900 to transparent */
+  background: linear-gradient(
+    to top,
+    black 40%,
+    transparent 100%
+  ); /* bg-neutral-900 to transparent */
   z-index: 1; /* Above lines, below content */
 }
 
@@ -94,14 +104,20 @@
 }
 
 .lines-container .line::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   height: 15vh;
   width: 100%;
   top: -50%; /* Start above the viewport */
   left: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 25%, rgba(255, 255, 255, 0.8) 75%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 25%,
+    rgba(255, 255, 255, 0.8) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
@@ -160,24 +176,26 @@
   background-color: #555; /* Default dot color (grey) */
   border-radius: 50%;
   z-index: 1;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .timeline-dot.active {
-  background-color: #8A2BE2; /* Active dot color (purple) */
+  background-color: #8a2be2; /* Active dot color (purple) */
   width: 16px; /* Slightly larger active dot */
   height: 16px;
 }
 
 .timeline-item:hover .timeline-dot {
-  background-color: #8A2BE2; /* Purple on hover */
+  background-color: #8a2be2; /* Purple on hover */
   transform: scale(1.1); /* Slightly enlarge dot on hover */
 }
-.timeline-item.active .timeline-dot { /* Ensure active dot stays prominent even if not hovered if it's the first one */
-  background-color: #8A2BE2;
+.timeline-item.active .timeline-dot {
+  /* Ensure active dot stays prominent even if not hovered if it's the first one */
+  background-color: #8a2be2;
   transform: scale(1.1);
 }
-
 
 .timeline-line {
   height: 2px;
@@ -196,7 +214,7 @@
 }
 
 .timeline-content .timeline-title {
-  color: #CCCCCC; /* Default title color */
+  color: #cccccc; /* Default title color */
   font-weight: 500; /* Medium weight for title */
   transition: color 0.3s ease;
   font-size: 0.875rem; /* text-sm */
@@ -213,11 +231,11 @@
 
 .timeline-content.active .timeline-title,
 .timeline-item:hover .timeline-content .timeline-title {
-  color: #FFFFFF; /* White for active/hover title */
+  color: #ffffff; /* White for active/hover title */
 }
 .timeline-content.active .timeline-description,
 .timeline-item:hover .timeline-content .timeline-description {
-  color: #E0E0E0; /* Light grey for active/hover description */
+  color: #e0e0e0; /* Light grey for active/hover description */
 }
 
 .timeline-content p {
@@ -248,11 +266,12 @@
     padding-left: 25px; /* Space for the vertical line and dots */
   }
 
-  .timeline-container::before { /* The main vertical line */
-    content: '';
+  .timeline-container::before {
+    /* The main vertical line */
+    content: "";
     position: absolute;
     left: 10px; /* Position of the vertical line */
-    top: 8px;   /* Align with the center of the first dot */
+    top: 8px; /* Align with the center of the first dot */
     bottom: 8px;
     width: 2px;
     background-color: #555; /* Vertical line color */
@@ -275,22 +294,21 @@
     left: -20px; /* (padding-left of timeline-item - half of dot width) approx. to center on line */
     top: 0;
   }
-  
+
   .timeline-dot {
     /* Dot is already styled, ensure it's above the vertical line */
     z-index: 1;
   }
   .timeline-dot.active {
-     /* Ensure active dot is still larger */
+    /* Ensure active dot is still larger */
     position: relative;
     left: -2px;
     width: 16px;
     height: 16px;
   }
-   .timeline-item:hover .timeline-dot {
-    transform: scale(1.1); 
+  .timeline-item:hover .timeline-dot {
+    transform: scale(1.1);
   }
-
 
   .timeline-line {
     display: none; /* Hide horizontal lines */

@@ -4,21 +4,21 @@ const nextConfig = {
     // Important: return the modified config
     config.module.rules.push({
       test: /\.txt$/,
-      use: 'raw-loader',
+      use: "raw-loader",
     });
     return config;
   },
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'unpkg.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "unpkg.com",
+        pathname: "/**",
       },
     ],
   },

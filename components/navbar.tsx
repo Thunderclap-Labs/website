@@ -12,6 +12,7 @@ import {
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import {
   faYoutube,
   faInstagram,
@@ -27,7 +28,6 @@ import { Divider } from "@heroui/react";
 
 import logo from "@/components/images/logo.png";
 import { siteConfig } from "@/config/site";
-import { HeartFilledIcon } from "@/components/icons";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,7 +64,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-blue-500 data-[active=true]:font-medium",
                 )}
                 color="foreground"
                 data-active={pathname === item.href}
@@ -110,14 +110,17 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-primary-600" />}
-            variant="flat"
+            as={NextLink}
+            className="group bg-transparent text-neutral-300 hover:text-white border border-white/10 hover:border-blue-500/50 rounded-lg font-mono text-[10px] sm:text-xs uppercase tracking-wider h-8 sm:h-9 px-4 transition-all duration-300 relative overflow-hidden"
+            href="/contact"
+            variant="bordered"
           >
-            Sponsor
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+            <span className="relative z-10">Partner Up</span>
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              className="relative z-10 group-hover:translate-x-1 transition-transform"
+            />
           </Button>
         </NavbarItem>
       </NavbarContent>

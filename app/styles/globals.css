@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --primary: #97DFFC;
-  --secondary: #8A2BE2;
-  --accent: #613DC1;
-  --background: #2C0735;
+  --primary: #97dffc;
+  --secondary: #8a2be2;
+  --accent: #613dc1;
+  --background: #2c0735;
   --foreground: #fff;
 }
 
@@ -24,9 +24,8 @@ body {
 }
 
 .glow {
-  filter: drop-shadow(0 0 1px white)
-          drop-shadow(0 0 24px white)
-          drop-shadow(0 0 4px var(--primary));
+  filter: drop-shadow(0 0 1px white) drop-shadow(0 0 24px white)
+    drop-shadow(0 0 4px var(--primary));
 }
 
 .featured-card {
@@ -35,7 +34,11 @@ body {
 }
 
 .featured-card.white-feature::before {
-  background: radial-gradient(circle closest-side, rgba(255, 255, 255, 1), transparent);
+  background: radial-gradient(
+    circle closest-side,
+    rgba(255, 255, 255, 1),
+    transparent
+  );
   width: 500px; /* Adjust size of glow */
   height: 500px; /* Adjust size of glow */
 }
@@ -44,10 +47,14 @@ body {
   content: "";
   position: absolute;
   left: var(--mouse-x, 500%); /* Default to center if JS not loaded/active */
-  top: var(--mouse-y, 500%);  /* Default to center */
+  top: var(--mouse-y, 500%); /* Default to center */
   width: 300px; /* Adjust size of glow */
   height: 300px; /* Adjust size of glow */
-  background: radial-gradient(circle closest-side, rgba(133, 138, 227, 0.15), transparent);
+  background: radial-gradient(
+    circle closest-side,
+    rgba(133, 138, 227, 0.15),
+    transparent
+  );
   transform: translate(-50%, -50%);
   opacity: 1; /* Always visible, removed opacity: 0 */
   transition: opacity 0.2s ease-out;
@@ -62,41 +69,41 @@ body {
 }
 
 .waves {
-    background-color:transparent;
-    position:absolute;
-    left: 0;
-    height: 100px;
-    width: 100vw;
-    top: calc(100vh - 100px);
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  height: 100px;
+  width: 100vw;
+  top: calc(100vh - 100px);
 }
 
 .parallax > use {
-    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
   }
-  .parallax > use:nth-child(1) {
-    animation-delay: -2s;
-    animation-duration: 7s;
+  100% {
+    transform: translate3d(85px, 0, 0);
   }
-  .parallax > use:nth-child(2) {
-    animation-delay: -3s;
-    animation-duration: 10s;
-  }
-  .parallax > use:nth-child(3) {
-    animation-delay: -4s;
-    animation-duration: 13s;
-  }
-  .parallax > use:nth-child(4) {
-    animation-delay: -5s;
-    animation-duration: 20s;
-  }
-  @keyframes move-forever {
-    0% {
-     transform: translate3d(-90px,0,0);
-    }
-    100% { 
-      transform: translate3d(85px,0,0);
-    }
-  }
+}
 
 .pswp__dynamic-caption {
   background-color: rgba(0, 0, 0, 0.5);
